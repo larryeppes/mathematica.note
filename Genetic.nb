@@ -1,0 +1,214 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      7018,        204]
+NotebookOptionsPosition[      6549,        184]
+NotebookOutlinePosition[      6895,        199]
+CellTagsIndexPosition[      6852,        196]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"codeLength", "=", "22"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fitRate", "=", "0.8"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.714805964545251*^9, 3.71480597375978*^9}, {
+  3.7148081363476477`*^9, 3.714808144540453*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"NumberToCode", "=", 
+   RowBox[{
+    RowBox[{"PadLeft", "[", 
+     RowBox[{
+      RowBox[{"IntegerDigits", "[", 
+       RowBox[{"#", ",", "2"}], "]"}], ",", "codeLength"}], "]"}], "&"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"CodeToNumber", "=", 
+   RowBox[{
+    RowBox[{"FromDigits", "[", 
+     RowBox[{"#", ",", "2"}], "]"}], "&"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7148057684050837`*^9, 3.71480581552347*^9}, {
+  3.714805978432091*^9, 3.714806037809162*^9}, {3.714806069585677*^9, 
+  3.714806101784509*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"CrossGenetic", "[", 
+    RowBox[{"x_", ",", "y_", ",", "codeLength_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"gen1", "=", 
+        RowBox[{"NumberToCode", "[", "x", "]"}]}], ",", " ", 
+       RowBox[{"gen2", "=", 
+        RowBox[{"NumberToCode", "[", "y", "]"}]}], ",", " ", 
+       RowBox[{"start", "=", "0"}], ",", " ", 
+       RowBox[{"end", "=", "0"}], ",", 
+       RowBox[{"nextGeneration", "=", 
+        RowBox[{"{", "}"}]}], ",", 
+       RowBox[{"nextGeneration1", "=", 
+        RowBox[{"{", "}"}]}], ",", 
+       RowBox[{"nextGeneration2", "=", 
+        RowBox[{"{", "}"}]}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"start", ",", "end"}], "}"}], "=", 
+           RowBox[{"Sort", "[", 
+            RowBox[{"RandomInteger", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"2", ",", 
+                RowBox[{"codeLength", "-", "1"}]}], "}"}], ",", "2"}], "]"}], 
+            "]"}]}], ";", 
+          RowBox[{"nextGeneration1", "=", 
+           RowBox[{"Join", "[", 
+            RowBox[{
+             RowBox[{"gen1", "[", 
+              RowBox[{"[", 
+               RowBox[{"1", ";;", 
+                RowBox[{"start", "-", "1"}]}], "]"}], "]"}], ",", 
+             RowBox[{"gen2", "[", 
+              RowBox[{"[", 
+               RowBox[{"start", ";;", "end"}], "]"}], "]"}], ",", " ", 
+             RowBox[{"gen1", "[", 
+              RowBox[{"[", 
+               RowBox[{
+                RowBox[{"end", "+", "1"}], ";;", 
+                RowBox[{"-", "1"}]}], "]"}], "]"}]}], "]"}]}], ";", 
+          RowBox[{"nextGeneration2", "=", 
+           RowBox[{"Join", "[", 
+            RowBox[{
+             RowBox[{"gen2", "[", 
+              RowBox[{"[", 
+               RowBox[{"1", ";;", 
+                RowBox[{"start", "-", "1"}]}], "]"}], "]"}], ",", " ", 
+             RowBox[{"gen1", "[", 
+              RowBox[{"[", 
+               RowBox[{"start", ";;", "end"}], "]"}], "]"}], ",", " ", 
+             RowBox[{"gen2", "[", 
+              RowBox[{"[", 
+               RowBox[{
+                RowBox[{"end", "+", "1"}], ";;", 
+                RowBox[{"-", "1"}]}], "]"}], "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"nextGeneration", "=", 
+           RowBox[{"Join", "[", 
+            RowBox[{"nextGeneration", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"CodeToNumber", "[", "nextGeneration1", "]"}], ",", 
+               " ", 
+               RowBox[{"CodeToNumber", "[", "nextGeneration2", "]"}]}], 
+              "}"}]}], "]"}]}]}], ")"}], "&"}], "/@", 
+       RowBox[{"Range", "[", "10", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Union", "[", "nextGeneration", "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7148061743178864`*^9, 3.714806243264737*^9}, {
+   3.71480627457292*^9, 3.7148063424348507`*^9}, {3.714806444477844*^9, 
+   3.7148066578462315`*^9}, {3.7148068473765917`*^9, 3.714806861223403*^9}, {
+   3.714807478832828*^9, 3.7148074828806996`*^9}, {3.7148075196467466`*^9, 
+   3.7148075458182907`*^9}, 3.714808152474074*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"aberranceGenetic", "[", 
+    RowBox[{"x_", ",", "codeLength_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"gen", "=", 
+       RowBox[{"NumberToCode", "[", "x", "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"RandomReal", "[", "]"}], "<", "0.01"}], ",", 
+           RowBox[{
+            RowBox[{"gen", "[", 
+             RowBox[{"[", "#", "]"}], "]"}], "=", 
+            RowBox[{"1", "-", 
+             RowBox[{"gen", "[", 
+              RowBox[{"[", "#", "]"}], "]"}]}]}]}], "]"}], ")"}], "&"}], "/@", 
+       RowBox[{"Range", "[", "codeLength", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"CodeToNumber", "[", "gen", "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7148083552293243`*^9, 3.714808492696039*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"aberranceGenetic", "[", 
+    RowBox[{"10", ",", "codeLength"}], "]"}], "&"}], "/@", 
+  RowBox[{"Range", "[", "10", "]"}]}]], "Input",
+ CellChangeTimes->{{3.7148067867096057`*^9, 3.7148067934223623`*^9}, {
+  3.714808525403208*^9, 3.714808555019166*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "10", ",", "10", ",", "10", ",", "524298", ",", "10", ",", "10", ",", "10", 
+   ",", "10", ",", "2097162", ",", "10"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.7148067947052717`*^9, 3.714806869622368*^9, 3.7148074943147984`*^9, {
+   3.7148075349305763`*^9, 3.714807547848729*^9}, {3.7148081155489116`*^9, 
+   3.714808154861766*^9}, {3.714808519957349*^9, 3.7148085641936703`*^9}}]
+}, Open  ]]
+},
+WindowSize->{1134, 360},
+WindowMargins->{{28, Automatic}, {Automatic, 57}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (November 20, 2012)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 271, 6, 52, "Input"],
+Cell[831, 28, 573, 16, 52, "Input"],
+Cell[1407, 46, 3355, 83, 192, "Input"],
+Cell[4765, 131, 1017, 29, 92, "Input"],
+Cell[CellGroupData[{
+Cell[5807, 164, 299, 7, 31, "Input"],
+Cell[6109, 173, 424, 8, 31, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
