@@ -1,0 +1,881 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     28786,        873]
+NotebookOptionsPosition[     26918,        810]
+NotebookOutlinePosition[     27261,        825]
+CellTagsIndexPosition[     27218,        822]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["112555", "Section",
+ CellChangeTimes->{{3.7261984015484967`*^9, 3.7261984033607864`*^9}}],
+
+Cell["Neural network playground", "Subsection",
+ CellChangeTimes->{{3.7261984061637926`*^9, 3.726198413196789*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["123684", "Section",
+ CellChangeTimes->{{3.7261985261872573`*^9, 3.726198528604957*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["How to monitor the process of Neural Network Learning", "Subsection",
+ CellChangeTimes->{{3.726198531742218*^9, 3.7261985440179296`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"trainset", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#1", "\[Rule]", 
+      RowBox[{"{", "#2", "}"}]}], "&"}], "@@@", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Thread", "[", 
+         RowBox[{
+          RowBox[{"Rest", "[", 
+           RowBox[{"AnglePath", "[", 
+            RowBox[{
+             RowBox[{"#", " ", "Pi"}], ",", 
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"1.", "/", 
+                RowBox[{"t", "^", 
+                 RowBox[{"(", 
+                  RowBox[{"2", "/", "3"}], ")"}]}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"t", ",", "1", ",", "200"}], "}"}]}], "]"}]}], "]"}], 
+           "]"}], "\[Rule]", 
+          RowBox[{
+           RowBox[{"2", " ", "#"}], "-", "1"}]}], "]"}], "&"}], "/@", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1"}], "}"}]}], ",", "1"}], "]"}]}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.7261986108695297`*^9, 3.7261986108715363`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"net", "=", 
+   RowBox[{"NetInitialize", "@", 
+    RowBox[{"NetChain", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"DotPlusLayer", "[", 
+        RowBox[{"20", ",", "2"}], "]"}], ",", "Tanh", ",", "20", ",", "Tanh", 
+       ",", "20", ",", "Tanh", ",", "20", ",", "Tanh", ",", "1", ",", 
+       "Tanh"}], "}"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"net", "=", 
+   RowBox[{"NetTrain", "[", 
+    RowBox[{"net", ",", "trainset", ",", 
+     RowBox[{"MaxTrainingRounds", "\[Rule]", "2500"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"ContourPlot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"net", "[", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "40"}], ",", "40"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "40"}], ",", "40"}], "}"}], ",", 
+     RowBox[{"ColorFunction", "\[Rule]", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ColorData", "[", "\"\<RedGreenSplit\>\"", "]"}], "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"#", "/", "2"}], "+", "1"}], ")"}], "/", "2"}], "]"}], 
+        "&"}], ")"}]}], ",", 
+     RowBox[{"ColorFunctionScaling", "\[Rule]", "False"}]}], "]"}], ",", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Style", "[", 
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"ColorData", "[", "\"\<RedGreenSplit\>\"", "]"}], "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", 
+               RowBox[{"2", ",", "1"}], "]"}], "]"}], "+", "1"}], ")"}], "/", 
+           "2"}], "]"}]}], "]"}], "&"}], "/@", "trainset"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"PointSize", "[", "Large", "]"}]}]}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.726198806691946*^9, 3.726198806693945*^9}, {
+  3.7261991880234604`*^9, 3.726199189438473*^9}, {3.7261992733399477`*^9, 
+  3.726199301229802*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"net", "=", 
+   RowBox[{"NetInitialize", "@", 
+    RowBox[{"NetChain", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"DotPlusLayer", "[", 
+        RowBox[{"20", ",", "2"}], "]"}], ",", "Tanh", ",", "20", ",", "Tanh", 
+       ",", "20", ",", "Tanh", ",", "20", ",", "Tanh", ",", "1", ",", 
+       "Tanh"}], "}"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Dynamic", "[", 
+   RowBox[{
+    RowBox[{"Show", "[", 
+     RowBox[{
+      RowBox[{"ContourPlot", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"net", "[", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y"}], "}"}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "40"}], ",", "40"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"y", ",", 
+          RowBox[{"-", "40"}], ",", "40"}], "}"}], ",", 
+        RowBox[{"ColorFunction", "\[Rule]", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"ColorData", "[", "\"\<RedGreenSplit\>\"", "]"}], "[", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"#", "/", "2"}], "+", "1"}], ")"}], "/", "2"}], "]"}], 
+           "&"}], ")"}]}], ",", 
+        RowBox[{"ColorFunctionScaling", "\[Rule]", "False"}]}], "]"}], ",", 
+      RowBox[{"ListPlot", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Style", "[", 
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", 
+           RowBox[{
+            RowBox[{"ColorData", "[", "\"\<RedGreenSplit\>\"", "]"}], "[", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", 
+                 RowBox[{"2", ",", "1"}], "]"}], "]"}], "+", "1"}], ")"}], 
+             "/", "2"}], "]"}]}], "]"}], "&"}], "/@", "trainset"}], "]"}]}], 
+     "]"}], ",", 
+    RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+     RowBox[{"{", "net", "}"}]}]}], "]"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{"Do", "[", 
+   RowBox[{
+    RowBox[{"net", "=", 
+     RowBox[{"NetTrain", "[", 
+      RowBox[{"net", ",", "trainset", ",", 
+       RowBox[{"MaxTrainingRounds", "\[Rule]", "250"}], ",", 
+       RowBox[{"\"\<ShowTrainingProgress\>\"", "\[Rule]", "False"}]}], 
+      "]"}]}], ",", 
+    RowBox[{"{", "10", "}"}]}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.72619889239198*^9, 3.726198892393979*^9}, 
+   3.726199614919177*^9, {3.726206209578193*^9, 3.726206217678935*^9}, {
+   3.7262064613746586`*^9, 3.726206463819399*^9}, {3.726206807811309*^9, 
+   3.726206812297504*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Options", "@", "NetTrain"}]], "Input",
+ CellChangeTimes->{{3.7262067727293315`*^9, 3.7262067727313347`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"BatchSize", "\[Rule]", "Automatic"}], ",", 
+   RowBox[{"MaxTrainingRounds", "\[Rule]", "Automatic"}], ",", 
+   RowBox[{"Method", "\[Rule]", "Automatic"}], ",", 
+   RowBox[{"TargetDevice", "\[Rule]", "\<\"CPU\"\>"}], ",", 
+   RowBox[{"ValidationSet", "\[Rule]", "None"}], ",", 
+   RowBox[{"\<\"ShowTrainingProgress\"\>", "\[Rule]", "True"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.7262067743855257`*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["124769(error)", "Section",
+ CellChangeTimes->{{3.726207013639852*^9, 3.7262070166059637`*^9}, {
+  3.7262089295255785`*^9, 3.7262089320533752`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Using a Convolutional Neural Network for time series classification\
+\>", "Subsection",
+ CellChangeTimes->{{3.726207028423398*^9, 3.726207046038944*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"tech", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<GE\>\"", ",", "\"\<AAPL\>\"", ",", "\"\<MSFT\>\"", ",", 
+     "\"\<MRK\>\"", ",", "\"\<IBM\>\""}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"banks", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<DB\>\"", ",", "\"\<BAC\>\"", ",", "\"\<HSBC\>\"", ",", 
+     "\"\<BCS\>\""}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.726207433932454*^9, 3.726207433935459*^9}, 
+   3.7262076322886868`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Callout", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"FinancialData", "[", 
+        RowBox[{"#", ",", "\"\<Jan. 1, 2007\>\""}], "]"}], "//", 
+       RowBox[{
+        RowBox[{"Replace", "[", 
+         RowBox[{
+          RowBox[{"Transpose", "@", "#"}], ",", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"a_", ",", "b_"}], "}"}], "\[RuleDelayed]", 
+           RowBox[{"Transpose", "@", 
+            RowBox[{"{", 
+             RowBox[{"a", ",", 
+              RowBox[{"Rescale", "@", "b"}]}], "}"}]}]}]}], "]"}], "&"}]}], 
+      ",", "#"}], "]"}], "&"}], "/@", "tech"}], "//", 
+  "DateListPlot"}]], "Input",
+ CellChangeTimes->{{3.726207441731005*^9, 3.7262074417330065`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Callout", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"FinancialData", "[", 
+        RowBox[{"#", ",", "\"\<Jan. 1, 2007\>\""}], "]"}], "//", 
+       RowBox[{
+        RowBox[{"Replace", "[", 
+         RowBox[{
+          RowBox[{"Transpose", "@", "#"}], ",", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"a_", ",", "b_"}], "}"}], "\[RuleDelayed]", 
+           RowBox[{"Transpose", "@", 
+            RowBox[{"{", 
+             RowBox[{"a", ",", 
+              RowBox[{"Rescale", "@", "b"}]}], "}"}]}]}]}], "]"}], "&"}]}], 
+      ",", "#"}], "]"}], "&"}], "/@", "banks"}], "//", 
+  "DateListPlot"}]], "Input",
+ CellChangeTimes->{{3.726207500364752*^9, 3.726207500368755*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"financialDataToList", "[", "stock_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"FinancialData", "[", 
+       RowBox[{"stock", ",", "\"\<Jan. 1, 2007\>\""}], "]"}], "//", 
+      "Transpose"}], "//", "Last"}], "//", "Rescale"}], "//", 
+   RowBox[{
+    RowBox[{"ArrayResample", "[", 
+     RowBox[{"#", ",", "100"}], "]"}], "&"}]}]}]], "Input",
+ CellChangeTimes->{{3.72620754772147*^9, 3.726207547729473*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"myarrayplot", "[", "stock_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"financialDataToList", "@", "stock"}], "//", "List"}], "//", 
+      RowBox[{
+       RowBox[{"ArrayPlot", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"AspectRatio", "\[Rule]", 
+          RowBox[{"1", "/", "4"}]}]}], "]"}], "&"}]}], ",", "stock"}], 
+    "}"}]}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Grid", "[", 
+       RowBox[{"#", ",", 
+        RowBox[{"Alignment", "\[Rule]", "Left"}]}], "]"}], "&"}], "@*", 
+     RowBox[{"Map", "[", "myarrayplot", "]"}]}], "/@", 
+    RowBox[{"{", 
+     RowBox[{"tech", ",", "banks"}], "}"}]}], "//", "List"}], "//", 
+  RowBox[{
+   RowBox[{"Grid", "[", 
+    RowBox[{"#", ",", 
+     RowBox[{"Spacings", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"5", ",", "1"}], "}"}]}]}], "]"}], "&"}]}]}], "Input",
+ CellChangeTimes->{{3.726207589830448*^9, 3.7262075898344517`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"toImage", "[", "stock_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"financialDataToList", "@", "stock"}], "//", "List"}], "//", 
+    RowBox[{
+     RowBox[{"Replace", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"a_", "\[RuleDelayed]", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "a"}], ")"}]}]}], "]"}], "&"}]}], "//", 
+   "Image"}]}]], "Input",
+ CellChangeTimes->{{3.7262076841616144`*^9, 3.7262076841636105`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"net", "=", 
+  RowBox[{"NetChain", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ConvolutionLayer", "[", 
+       RowBox[{"5", ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "20"}], "}"}]}], "]"}], ",", 
+      RowBox[{"PoolingLayer", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "5"}], "}"}], ",", 
+        RowBox[{"\"\<Stride\>\"", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"4", ",", "4"}], "}"}]}]}], "]"}], ",", 
+      RowBox[{"FlattenLayer", "[", "]"}], ",", 
+      RowBox[{"DotPlusLayer", "[", "2", "]"}]}], "}"}], ",", 
+    RowBox[{"\"\<Input\>\"", "\[Rule]", 
+     RowBox[{"NetEncoder", "[", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Image\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{"100", ",", "1"}], "}"}], ",", "\"\<Grayscale\>\""}], "}"}], 
+      "]"}]}], ",", 
+    RowBox[{"\"\<Output\>\"", "\[Rule]", 
+     RowBox[{"NetDecoder", "[", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Class\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{"\"\<tech\>\"", ",", "\"\<banks\>\""}], "}"}]}], "}"}], 
+      "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7262077025707145`*^9, 3.726207702571716*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"trainingdata", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{
+     RowBox[{"Thread", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"toImage", "/@", "tech"}], ")"}], "\[Rule]", "\"\<tech\>\""}],
+       "]"}], ",", 
+     RowBox[{"Thread", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"toImage", "/@", "banks"}], ")"}], "\[Rule]", 
+       "\"\<banks\>\""}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.726207715261751*^9, 3.7262077340261383`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"NetTrain", "[", 
+  RowBox[{"net", ",", "trainingdata"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7262077431696467`*^9, 3.7262077431746235`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"industries", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Basic Industries\>\"", ",", "\"\<Capital Goods\>\"", ",", 
+       "\"\<Consumer Durables\>\"", ",", "\"\<Consumer Non-Durables\>\"", 
+       ",", "\"\<Consumer Services\>\"", ",", "\"\<Energy\>\"", ",", 
+       "\"\<Finance\>\"", ",", "\"\<Health Care\>\"", ",", 
+       "\"\<Miscellaneous\>\"", ",", "\"\<Public Utilities\>\"", ",", 
+       "\"\<Technology\>\"", ",", "\"\<Transportation\>\""}], "}"}]}], ";"}], 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"industries", "=", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Finance\>\"", ",", "\"\<Technology\>\""}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"importIndustryStocks", "[", "name_", "]"}], ":=", 
+     RowBox[{
+      RowBox[{"Import", "[", 
+       RowBox[{
+        RowBox[{
+        "\"\<http://www.nasdaq.com/screening/companies-by-industry.aspx?\
+industry=\>\"", "<>", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"name", ",", 
+           RowBox[{"\"\< \>\"", "\[Rule]", "\"\<+\>\""}]}], "]"}], "<>", 
+         "\"\<&render=download\>\""}], ",", "\"\<CSV\>\""}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{
+        RowBox[{"2", ";;"}], ",", "1"}], "]"}], "]"}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.726207812263812*^9, 3.7262078307439704`*^9}, {
+  3.7262087546360626`*^9, 3.72620875612012*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"stocksByIndustry", "=", 
+   RowBox[{"AssociationMap", "[", 
+    RowBox[{"importIndustryStocks", ",", "industries"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"Length", "/@", "stocksByIndustry"}]}], "Input",
+ CellChangeTimes->{{3.7262078357445483`*^9, 3.7262078434980664`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"Finance\"\>", "\[Rule]", "1022"}], ",", 
+   RowBox[{"\<\"Technology\"\>", "\[Rule]", "623"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.72620784924516*^9, 3.7262086293438716`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"stocks", "=", 
+   RowBox[{"Catenate", "[", "stocksByIndustry", "]"}]}], ";"}], "\n", 
+ RowBox[{"Length", "[", "stocks", "]"}]}], "Input",
+ CellChangeTimes->{{3.72620786088443*^9, 3.7262078608864307`*^9}}],
+
+Cell[BoxData["1645"], "Output",
+ CellChangeTimes->{3.7262078628017945`*^9, 3.7262086313783073`*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"stock2industry", "=", 
+    RowBox[{"Association", "@", 
+     RowBox[{"Reverse", "[", 
+      RowBox[{
+       RowBox[{"Flatten", "[", 
+        RowBox[{"Thread", "/@", 
+         RowBox[{"Normal", "[", "stocksByIndustry", "]"}]}], "]"}], ",", 
+       "2"}], "]"}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"stockData", "=", 
+   RowBox[{"ParallelMap", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Replace", "[", 
+       RowBox[{
+        RowBox[{"FinancialData", "[", 
+         RowBox[{"#", ",", "\"\<Jan. 1, 2007\>\""}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"Except", "[", "_List", "]"}], "\[Rule]", "$Failed"}]}], 
+       "]"}], "&"}], ",", "stocks"}], "]"}]}], ";", 
+  RowBox[{"(*", 
+   RowBox[{"this", " ", "takes", " ", "a", " ", "while"}], "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.726207871974336*^9, 3.7262078719803567`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<industry_stocks.mx\>\"", ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "industries", ",", "stocks", ",", "stock2industry", ",", "stockData"}], 
+     "}"}]}], "]"}], ";"}], "\n", 
+ RowBox[{"FileByteCount", "[", "\"\<industry_stocks.mx\>\"", "]"}]}], "Input",
+ CellChangeTimes->{{3.726207905018852*^9, 3.726207905021853*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"toList", "[", "ts_List", "]"}], ":=", 
+   RowBox[{"Rescale", "@", 
+    RowBox[{"ArrayResample", "[", 
+     RowBox[{
+      RowBox[{"ts", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", "256"}], "]"}]}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"toList", "[", "_", "]"}], ":=", "$Failed"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"rules", "=", 
+   RowBox[{
+    RowBox[{"DeleteCases", "[", 
+     RowBox[{"$Failed", "\[Rule]", "_"}], "]"}], "@", 
+    RowBox[{"Thread", "[", 
+     RowBox[{
+      RowBox[{"Map", "[", 
+       RowBox[{"toList", ",", "stockData"}], "]"}], "\[Rule]", 
+      RowBox[{"Lookup", "[", 
+       RowBox[{"stock2industry", ",", "stocks"}], "]"}]}], "]"}]}]}], 
+  ";"}], "\n", 
+ RowBox[{"Length", "[", "rules", "]"}]}], "Input",
+ CellChangeTimes->{{3.7262079200505533`*^9, 3.726207920053555*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"TestTrainSplit", "[", 
+    RowBox[{"rules_", ",", "frac_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "grouped", "}"}], ",", 
+     RowBox[{
+      RowBox[{"grouped", "=", 
+       RowBox[{"GroupBy", "[", 
+        RowBox[{
+         RowBox[{"RandomSample", "[", "rules", "]"}], ",", "Last", ",", 
+         RowBox[{"split", "[", "frac", "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Map", "[", 
+       RowBox[{"Catenate", ",", 
+        RowBox[{"Transpose", "@", 
+         RowBox[{"Values", "[", "grouped", "]"}]}]}], "]"}]}]}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"split", "[", "frac_", "]"}], "[", "list_", "]"}], ":=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "tn"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"n", "=", 
+       RowBox[{"Length", "[", "list", "]"}]}], ";", 
+      RowBox[{"tn", "=", 
+       RowBox[{"Ceiling", "[", 
+        RowBox[{"n", "*", "frac"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"TakeDrop", "[", 
+       RowBox[{"list", ",", "tn"}], "]"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"testData", ",", "trainingData"}], "}"}], "=", 
+    RowBox[{"TestTrainSplit", "[", 
+     RowBox[{"rules", ",", "0.2"}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"module", "[", 
+    RowBox[{"n_", ",", "sz_"}], "]"}], ":=", 
+   RowBox[{"Sequence", "[", 
+    RowBox[{
+     RowBox[{"ConvolutionLayer", "[", 
+      RowBox[{"n", ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "sz"}], "}"}], ",", 
+       RowBox[{"\"\<Dilation\>\"", "\[Rule]", "4"}]}], "]"}], ",", 
+     RowBox[{"PoolingLayer", "[", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "16"}], "}"}], "]"}], ",", "Ramp"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"net", "=", 
+   RowBox[{"NetChain", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ReshapeLayer", "[", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "1", ",", "256"}], "}"}], "]"}], ",", 
+       RowBox[{"module", "[", 
+        RowBox[{"4", ",", "8"}], "]"}], ",", 
+       RowBox[{"(*", 
+        RowBox[{"can", " ", "add", " ", "more", " ", "modules", " ", "here"}],
+         "*)"}], 
+       RowBox[{"FlattenLayer", "[", "]"}], ",", 
+       RowBox[{"DotPlusLayer", "[", "]"}], ",", 
+       RowBox[{"SoftmaxLayer", "[", "]"}]}], "}"}], ",", 
+     RowBox[{"\"\<Input\>\"", "\[Rule]", "256"}], ",", 
+     RowBox[{"\"\<Output\>\"", "\[Rule]", 
+      RowBox[{"NetDecoder", "[", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Class\>\"", ",", "industries"}], "}"}], "]"}]}]}], 
+    "]"}]}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"trained", "=", 
+   RowBox[{"NetTrain", "[", 
+    RowBox[{"net", ",", "trainingData", ",", 
+     RowBox[{"MaxTrainingRounds", "\[Rule]", "100"}], ",", 
+     RowBox[{"Method", "\[Rule]", "\"\<ADAM\>\""}], ",", 
+     RowBox[{"ValidationSet", "\[Rule]", "testData"}]}], "]"}]}], ";", 
+  RowBox[{"(*", 
+   RowBox[{"overfitting", " ", "happens", " ", "VERY", " ", "quickly"}], 
+   "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.7262079467225456`*^9, 3.726207946725545*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ListLinePlot", "@", 
+  RowBox[{
+   RowBox[{"NetExtract", "[", 
+    RowBox[{"trained", ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "\"\<Weights\>\""}], "}"}]}], "]"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"All", ",", "1", ",", "1"}], "]"}], "]"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"plot", " ", "the", " ", "kernels"}], ",", 
+    RowBox[{"they", " ", 
+     RowBox[{"don", "'"}], "t", " ", "look", " ", "particularly", " ", "nice",
+      " ", "though"}]}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.7262079615240984`*^9, 3.726207961526083*^9}}],
+
+Cell[BoxData[
+ RowBox[{"measure", "=", 
+  RowBox[{"ClassifierMeasurements", "[", 
+   RowBox[{"trained", ",", "testData"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.726207970289321*^9, 3.7262079702913237`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"measure", "[", "\"\<Accuracy\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.7262079747795177`*^9, 3.7262079747815294`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"tech", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<GE\>\"", ",", "\"\<AAPL\>\"", ",", "\"\<MSFT\>\"", ",", 
+     "\"\<MRK\>\"", ",", "\"\<IBM\>\""}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"banks", "=", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<DB\>\"", ",", "\"\<C\>\"", ",", "\"\<BAC\>\"", ",", "\"\<HSBC\>\"", 
+      ",", "\"\<BCS\>\""}], "}"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"financialDataToList", "[", "stock_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"FinancialData", "[", 
+        RowBox[{"stock", ",", "\"\<Jan. 1, 2007\>\""}], "]"}], "//", 
+       "Transpose"}], "//", "Last"}], "//", "Rescale"}], "//", 
+    RowBox[{
+     RowBox[{"ArrayResample", "[", 
+      RowBox[{"#", ",", "100"}], "]"}], "&"}]}]}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"toImage", "[", "stock_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"financialDataToList", "@", "stock"}], "//", "List"}], "//", 
+     RowBox[{
+      RowBox[{"Replace", "[", 
+       RowBox[{"#", ",", 
+        RowBox[{"a_", "\[RuleDelayed]", 
+         RowBox[{"(", 
+          RowBox[{"1", "-", "a"}], ")"}]}]}], "]"}], "&"}]}], "//", 
+    "Image"}]}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"trainingdata", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{
+     RowBox[{"Thread", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"toImage", "/@", "tech"}], ")"}], "\[Rule]", "\"\<tech\>\""}],
+       "]"}], ",", 
+     RowBox[{"Thread", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"toImage", "/@", "banks"}], ")"}], "\[Rule]", 
+       "\"\<banks\>\""}], "]"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.726207991039096*^9, 3.7262079910481014`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"width", "=", "100"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"height", "=", "1"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"net", "=", 
+  RowBox[{"NetChain", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ConvolutionLayer", "[", 
+       RowBox[{"16", 
+        RowBox[{"(*", 
+         RowBox[{"number", " ", "of", " ", "filters"}], "*)"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"height", ",", "3"}], 
+         RowBox[{"(*", 
+          RowBox[{"kernel", " ", "size"}], "*)"}], "}"}]}], "]"}], ",", 
+      RowBox[{"PoolingLayer", "[", 
+       RowBox[{"{", 
+        RowBox[{"height", ",", "2"}], 
+        RowBox[{"(*", 
+         RowBox[{"pooling", " ", "size"}], "*)"}], "}"}], "]"}], ",", 
+      RowBox[{"FlattenLayer", "[", "]"}], ",", 
+      RowBox[{"DotPlusLayer", "[", "10", "]"}], ",", 
+      RowBox[{"DotPlusLayer", "[", "2", 
+       RowBox[{"(*", 
+        RowBox[{"number", " ", "of", " ", "classes"}], "*)"}], "]"}], ",", 
+      RowBox[{"SoftmaxLayer", "[", 
+       RowBox[{"\"\<Output\>\"", "\[Rule]", 
+        RowBox[{"NetDecoder", "[", 
+         RowBox[{"{", 
+          RowBox[{"\"\<Class\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{"\"\<tech\>\"", ",", "\"\<banks\>\""}], "}"}]}], "}"}], 
+         "]"}]}], "]"}]}], "}"}], ",", 
+    RowBox[{"\"\<Input\>\"", "\[Rule]", 
+     RowBox[{"NetEncoder", "[", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Image\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{"width", ",", "height"}], "}"}], ",", 
+        RowBox[{"ColorSpace", "\[Rule]", "\"\<Grayscale\>\""}]}], "}"}], 
+      "]"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7262079981041436`*^9, 3.726207998106126*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"net", "=", 
+   RowBox[{"NetTrain", "[", 
+    RowBox[{"net", ",", "trainingdata", ",", 
+     RowBox[{"MaxTrainingRounds", "\[Rule]", "5"}]}], "]"}]}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"ClassifierMeasurements", "[", 
+  RowBox[{"net", ",", "trainingdata", ",", "\"\<Accuracy\>\""}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.726208005356291*^9, 3.7262080053582907`*^9}}]
+}, Open  ]]
+}, Closed]]
+},
+WindowSize->{683, 264},
+WindowMargins->{{Automatic, 16}, {-14, Automatic}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 95, 1, 70, "Section"],
+Cell[678, 25, 115, 1, 49, "Subsection"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[830, 31, 93, 1, 56, "Section"],
+Cell[CellGroupData[{
+Cell[948, 36, 143, 1, 49, "Subsection"],
+Cell[1094, 39, 1040, 31, 107, "Input"],
+Cell[2137, 72, 2268, 63, 183, "Input"],
+Cell[4408, 137, 2687, 72, 240, "Input"],
+Cell[CellGroupData[{
+Cell[7120, 213, 132, 2, 30, "Input"],
+Cell[7255, 217, 459, 10, 50, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[7775, 234, 153, 2, 56, "Section"],
+Cell[CellGroupData[{
+Cell[7953, 240, 163, 3, 49, "Subsection"],
+Cell[8119, 245, 482, 14, 50, "Input"],
+Cell[8604, 261, 759, 22, 69, "Input"],
+Cell[9366, 285, 758, 22, 69, "Input"],
+Cell[10127, 309, 476, 13, 69, "Input"],
+Cell[10606, 324, 1047, 32, 126, "Input"],
+Cell[11656, 358, 478, 14, 50, "Input"],
+Cell[12137, 374, 1198, 33, 107, "Input"],
+Cell[13338, 409, 514, 15, 50, "Input"],
+Cell[13855, 426, 167, 3, 30, "Input"],
+Cell[14025, 431, 1474, 37, 183, "Input"],
+Cell[CellGroupData[{
+Cell[15524, 472, 303, 6, 50, "Input"],
+Cell[15830, 480, 272, 6, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16139, 491, 240, 5, 50, "Input"],
+Cell[16382, 498, 99, 1, 30, "Output"]
+}, Open  ]],
+Cell[16496, 502, 911, 25, 145, "Input"],
+Cell[17410, 529, 387, 9, 50, "Input"],
+Cell[17800, 540, 897, 27, 107, "Input"],
+Cell[18700, 569, 3239, 92, 354, "Input"],
+Cell[21942, 663, 582, 15, 50, "Input"],
+Cell[22527, 680, 209, 4, 30, "Input"],
+Cell[22739, 686, 145, 2, 30, "Input"],
+Cell[22887, 690, 1830, 56, 240, "Input"],
+Cell[24720, 748, 1752, 46, 221, "Input"],
+Cell[26475, 796, 415, 10, 69, "Input"]
+}, Open  ]]
+}, Closed]]
+}
+]
+*)
+
