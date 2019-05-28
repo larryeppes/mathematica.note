@@ -1,0 +1,257 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      9072,        247]
+NotebookOptionsPosition[      8755,        231]
+NotebookOutlinePosition[      9097,        246]
+CellTagsIndexPosition[      9054,        243]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "g", ",", "L", ",", "\[CapitalOmega]", ",", "v01", ",", "\[Omega]01", ",", 
+   "v02", ",", "\[Omega]02", ",", "as", ",", "\[Theta]", ",", "\[Theta]1", 
+   ",", "\[Theta]2", ",", "bs", ",", "a", ",", "b", ",", "t"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g", "=", "9.8"}], ";", 
+  RowBox[{"L", "=", "1.5"}], ";", 
+  RowBox[{"\[CapitalOmega]", "=", 
+   SqrtBox[
+    RowBox[{"g", "/", "L"}]]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"v01", "=", "1"}], ";", 
+  RowBox[{"\[Omega]01", "=", 
+   RowBox[{"v01", "/", "L"}]}], ";", "   ", 
+  RowBox[{"v02", "=", "3"}], ";", 
+  RowBox[{"\[Omega]02", "=", 
+   RowBox[{"v02", "/", "L"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"as", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Theta]", "''"}], "[", "t", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"-", 
+          SuperscriptBox["\[CapitalOmega]", "2"]}], "*", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]}]}], ",", 
+       RowBox[{
+        RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Theta]", "'"}], "[", "0", "]"}], "\[Equal]", 
+        "\[Omega]01"}]}], "}"}], ",", "\[Theta]", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "20"}], "}"}]}], "]"}]}], ";", 
+  RowBox[{"\[Theta]1", "=", 
+   RowBox[{"\[Theta]", "/.", 
+    RowBox[{"as", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bs", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Theta]", "''"}], "[", "t", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"-", 
+          SuperscriptBox["\[CapitalOmega]", "2"]}], "*", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]}]}], ",", 
+       RowBox[{
+        RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Theta]", "'"}], "[", "0", "]"}], "\[Equal]", 
+        "\[Omega]02"}]}], "}"}], ",", "\[Theta]", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "20"}], "}"}]}], "]"}]}], ";", 
+  RowBox[{"\[Theta]2", "=", 
+   RowBox[{"\[Theta]", "/.", 
+    RowBox[{"bs", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Animate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", "=", 
+     RowBox[{"ListPlot", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"1.5", "*", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"\[Theta]1", "[", "t", "]"}], "]"}]}], ",", 
+          RowBox[{
+           RowBox[{"-", "1.5"}], "*", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"\[Theta]1", "[", "t", "]"}], "]"}]}]}], "}"}], "}"}], 
+       ",", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1.5"}], ",", "1.5"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1.5"}], ",", "0"}], "}"}]}], "}"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"PointSize", "[", "0.03", "]"}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"b", "=", 
+     RowBox[{"ListPlot", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"1.5", "*", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"\[Theta]2", "[", "t", "]"}], "]"}]}], ",", 
+          RowBox[{
+           RowBox[{"-", "1.5"}], "*", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"\[Theta]2", "[", "t", "]"}], "]"}]}]}], "}"}], "}"}], 
+       ",", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1.5"}], ",", "1.5"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1.5"}], ",", "0"}], "}"}]}], "}"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Black", ",", 
+          RowBox[{"PointSize", "[", "0.03", "]"}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Show", "[", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "20"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Top"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "a", ",", "b", ",", "g", ",", "L", ",", "\[CapitalOmega]", ",", "as", ",", 
+   "bs"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.5284488767216797`*^9, 3.5284489287373047`*^9}, {
+  3.5284489884091797`*^9, 3.5284490156591797`*^9}, {3.5284491451904297`*^9, 
+  3.5284491866904297`*^9}, {3.5284493269091797`*^9, 3.5284494110185547`*^9}, {
+  3.5284495447685547`*^9, 3.5284495609404297`*^9}, {3.5284496038623047`*^9, 
+  3.5284497481591797`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  TagBox[
+   FormBox[
+    StyleBox[
+     DynamicModuleBox[{$CellContext`t$$ = 0.9580055999999448, Typeset`show$$ =
+       True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+      Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+      "\"untitled\"", Typeset`specs$$ = {{
+        Hold[$CellContext`t$$], 0, 20}}, Typeset`size$$ = {
+      360., {107., 112.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+      Typeset`skipInitDone$$ = True, $CellContext`t$15352$$ = 0}, 
+      DynamicBox[Manipulate`ManipulateBoxes[
+       1, TraditionalForm, "Variables" :> {$CellContext`t$$ = 0}, 
+        "ControllerVariables" :> {
+          Hold[$CellContext`t$$, $CellContext`t$15352$$, 0]}, 
+        "OtherVariables" :> {
+         Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+          Typeset`initDone$$, Typeset`skipInitDone$$}, 
+        "Body" :> ($CellContext`a = ListPlot[{{1.5 Sin[
+                $CellContext`\[Theta]1[$CellContext`t$$]], (-1.5) Cos[
+                $CellContext`\[Theta]1[$CellContext`t$$]]}}, 
+            PlotRange -> {{-1.5, 1.5}, {-1.5, 0}}, PlotStyle -> {Red, 
+              PointSize[0.03]}]; $CellContext`b = ListPlot[{{1.5 Sin[
+                $CellContext`\[Theta]2[$CellContext`t$$]], (-1.5) Cos[
+                $CellContext`\[Theta]2[$CellContext`t$$]]}}, 
+            PlotRange -> {{-1.5, 1.5}, {-1.5, 0}}, PlotStyle -> {Black, 
+              PointSize[0.03]}]; Show[{$CellContext`a, $CellContext`b}]), 
+        "Specifications" :> {{$CellContext`t$$, 0, 20, 
+           AppearanceElements -> {
+            "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
+             "DirectionButton"}}}, 
+        "Options" :> {
+         ControlPlacement -> Top, ControlType -> Animator, AppearanceElements -> 
+          None, DefaultBaseStyle -> "Animate", DefaultLabelStyle -> 
+          "AnimateLabel", SynchronousUpdating -> True, ShrinkingDelay -> 10.},
+         "DefaultOptions" :> {}],
+       ImageSizeCache->{409., {144., 151.}},
+       SingleEvaluation->True],
+      Deinitialization:>None,
+      DynamicModuleValues:>{},
+      SynchronousInitialization->True,
+      UnsavedVariables:>{Typeset`initDone$$},
+      UntrackedVariables:>{Typeset`size$$}], "Animate",
+     Deployed->True,
+     StripOnInput->False],
+    TraditionalForm],
+   Manipulate`InterpretManipulate[1]], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.5284489296123047`*^9, 3.5284490168623047`*^9, 3.5284492001591797`*^9, 
+   3.5284493070029297`*^9, 3.5284494121279297`*^9, {3.5284495457060547`*^9, 
+   3.5284495612529297`*^9}, 3.5284496341748047`*^9, 3.5284496702216797`*^9, {
+   3.5284497019560547`*^9, 3.5284497166279297`*^9}, 3.5284497487529297`*^9}]
+}, Open  ]]
+},
+WindowSize->{707, 505},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 5296, 150, 344, "Input"],
+Cell[5878, 174, 2861, 54, 312, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

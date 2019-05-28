@@ -1,0 +1,564 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     22859,        554]
+NotebookOptionsPosition[     22537,        538]
+NotebookOutlinePosition[     22881,        553]
+CellTagsIndexPosition[     22838,        550]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ FormBox[
+  RowBox[{"DynamicModule", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"Snake", ",", "Food", ",", 
+      RowBox[{"x", "=", "23"}], 
+      RowBox[{
+      "(*", "\:4fee\:6539\:8fd9\:4e2a\:6570\:53ef\:4ee5\:6539\:53d8\:6e38\
+\:620f\:533a\:57df\:7684\:9ad8", "*)"}], ",", 
+      RowBox[{"y", "=", "23"}], 
+      RowBox[{
+      "(*", "\:4fee\:6539\:8fd9\:4e2a\:6570\:53ef\:4ee5\:6539\:53d8\:6e38\
+\:620f\:533a\:57df\:7684\:5bbd", "*)"}], ",", 
+      RowBox[{"t", "=", "0.7"}], 
+      RowBox[{"(*", 
+       RowBox[{
+       "\:4fee\:6539\:8fd9\:4e2a\:6570\:53ef\:4ee5\:6539\:53d8\:79fb\:52a8\
+\:4e00\:683c\:6240\:9700\:7684\:65f6\:95f4", "\:ff0c", 
+        "\:4ece\:800c\:6539\:53d8\:6e38\:620f\:901f\:5ea6"}], "*)"}], ",", 
+      RowBox[{"Pausing", "=", "True"}], ",", 
+      RowBox[{"Stop", "=", "True"}], ",", 
+      RowBox[{"Score", "=", "0"}], ",", 
+      RowBox[{"SnakeDirection", "=", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}]}], ",", 
+      RowBox[{"PreDirection", "=", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}]}], ",", "SnakePlot", ",", "RestartAll",
+       ",", "Go"}], "}"}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"SnakePlot", "[", "array_", "]"}], ":=", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"EdgeForm", "[", "Black", "]"}], ",", "Gray", ",", 
+          RowBox[{"Rectangle", "/@", "array"}]}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"1", ",", 
+              RowBox[{"1", "+", "#"}]}], "}"}], "&"}], ")"}], "/@", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y"}], "}"}]}]}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", 
+         RowBox[{"20", " ", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y"}], "}"}]}]}], ",", 
+        RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+        RowBox[{"FrameTicks", "\[Rule]", "None"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Go", "[", "]"}], ":=", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"PrependTo", "[", 
+         RowBox[{"Snake", ",", 
+          RowBox[{
+           RowBox[{"Snake", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "+", "SnakeDirection"}]}], "]"}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Snake", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "Food"}], ",", 
+          RowBox[{
+           RowBox[{"Score", "++"}], ";", "\[IndentingNewLine]", 
+           RowBox[{"Food", "=", 
+            RowBox[{"RandomChoice", "[", 
+             RowBox[{"Select", "[", 
+              RowBox[{
+               RowBox[{"Join", "@@", 
+                RowBox[{"Table", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"i", ",", "j"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"i", ",", "x"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"j", ",", "y"}], "}"}]}], "]"}]}], ",", 
+               RowBox[{
+                RowBox[{"!", 
+                 RowBox[{"MemberQ", "[", 
+                  RowBox[{"Snake", ",", "#"}], "]"}]}], "&"}]}], "]"}], 
+             "]"}]}]}], ",", 
+          RowBox[{"Snake", "=", 
+           RowBox[{"Most", "[", "Snake", "]"}]}]}], "]"}], ";"}], ")"}]}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"RestartAll", "[", "]"}], ":=", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"RemoveScheduledTask", "[", 
+         RowBox[{"ScheduledTasks", "[", "]"}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"RunScheduledTask", "[", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"!", "Pausing"}], ",", 
+            RowBox[{
+             RowBox[{"SnakeDirection", "=", "PreDirection"}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"Snake", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "+", "SnakeDirection"}], 
+                   ")"}], "[", 
+                  RowBox[{"[", "1", "]"}], "]"}], ">", "x"}], "||", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"Snake", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "+", "SnakeDirection"}], 
+                   ")"}], "[", 
+                  RowBox[{"[", "1", "]"}], "]"}], "<", "1"}], "||", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"Snake", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "+", "SnakeDirection"}], 
+                   ")"}], "[", 
+                  RowBox[{"[", "2", "]"}], "]"}], ">", "y"}], "||", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"Snake", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "+", "SnakeDirection"}], 
+                   ")"}], "[", 
+                  RowBox[{"[", "2", "]"}], "]"}], "<", "1"}], "||", 
+                RowBox[{"MemberQ", "[", 
+                 RowBox[{"Snake", ",", 
+                  RowBox[{
+                   RowBox[{"Snake", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "+", "SnakeDirection"}]}],
+                  "]"}]}], ",", 
+               RowBox[{
+                RowBox[{"Pausing", "=", 
+                 RowBox[{"Stop", "=", "True"}]}], ";", "\[IndentingNewLine]", 
+                RowBox[{"CreateDialog", "[", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"TextCell", "[", "\"\<Game over.\>\"", "]"}], ",", 
+                   RowBox[{"Row", "@", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Score:\>\"", ",", "Score"}], "}"}]}], ",", 
+                   RowBox[{"DefaultButton", "[", "]"}]}], "}"}], "]"}]}], ",", 
+               RowBox[{"Go", "[", "]"}]}], "]"}]}]}], "]"}], ",", "t"}], 
+         "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Snake", "=", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Ceiling", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"x", "-", "1"}], ")"}], "/", "2"}], "]"}], "+", 
+              "1"}], ",", 
+             RowBox[{
+              RowBox[{"Round", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"y", "-", "1"}], ")"}], "/", "2"}], "]"}], "+", 
+              "1"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Ceiling", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"x", "-", "1"}], ")"}], "/", "2"}], "]"}], ",", 
+             RowBox[{
+              RowBox[{"Round", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"y", "-", "1"}], ")"}], "/", "2"}], "]"}], "+", 
+              "1"}]}], "}"}]}], "}"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Food", "=", 
+         RowBox[{"RandomChoice", "[", 
+          RowBox[{"Select", "[", 
+           RowBox[{
+            RowBox[{"Join", "@@", 
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"i", ",", "j"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"i", ",", "x"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"j", ",", "y"}], "}"}]}], "]"}]}], ",", 
+            RowBox[{
+             RowBox[{"!", 
+              RowBox[{"MemberQ", "[", 
+               RowBox[{"Snake", ",", "#"}], "]"}]}], "&"}]}], "]"}], "]"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"SnakeDirection", "=", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0"}], "}"}]}]}], ")"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"RestartAll", "[", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"EventHandler", "[", 
+      RowBox[{
+       RowBox[{"Column", "@", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Deploy", "@", 
+           RowBox[{"Panel", "[", 
+            RowBox[{"Row", "@", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", 
+                RowBox[{"SnakePlot", "[", 
+                 RowBox[{"Append", "[", 
+                  RowBox[{"Snake", ",", "Food"}], "]"}], "]"}], "]"}], ",", 
+               RowBox[{"Column", "@", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Row", "@", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Score:\>\"", ",", 
+                    RowBox[{"Dynamic", "[", "Score", "]"}]}], "}"}]}], ",", 
+                  RowBox[{"Button", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"!", "Stop"}], ",", "\"\<Restart\>\"", ",", 
+                    "\"\<Start\>\""}], "]"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"RestartAll", "[", "]"}], ";", 
+                    RowBox[{"Stop", "=", 
+                    RowBox[{"Pausing", "=", "False"}]}], ";", 
+                    RowBox[{"Score", "=", "0"}]}]}], "]"}], ",", 
+                  RowBox[{"Button", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"!", "Pausing"}], ",", "\"\<Pause\>\"", ",", 
+                    "\"\<Resume\>\""}], "]"}], "]"}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{"Pausing", ",", 
+                    RowBox[{"Pausing", "=", "False"}], ",", 
+                    RowBox[{"Pausing", "=", "True"}]}], "]"}], ",", 
+                    RowBox[{"Enabled", "\[Rule]", 
+                    RowBox[{"Dynamic", "[", 
+                    RowBox[{"!", "Stop"}], "]"}]}]}], "]"}], ",", 
+                  RowBox[{"Dynamic", "[", 
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"!", "Stop"}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"!", "Pausing"}], ",", "\"\<Playing\>\"", ",", 
+                    "\"\<Pausing\>\""}], "]"}], ",", "\"\<Stop\>\""}], "]"}], 
+                   "]"}]}], "}"}]}]}], "}"}]}], "]"}]}], ",", 
+          "\"\<Click here before playing.\>\""}], "}"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\"\<LeftArrowKeyDown\>\"", "\[RuleDelayed]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"!", "Pausing"}], "&&", 
+             RowBox[{"SnakeDirection", "\[NotEqual]", 
+              RowBox[{"{", 
+               RowBox[{"1", ",", "0"}], "}"}]}]}], ",", 
+            RowBox[{
+             RowBox[{"PreDirection", "=", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", "0"}], "}"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"SnakeDirection", "\[Equal]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "1"}], ",", "0"}], "}"}]}], ",", 
+               RowBox[{"Go", "[", "]"}]}], "]"}]}]}], "]"}]}], ",", 
+         RowBox[{"\"\<RightArrowKeyDown\>\"", "\[RuleDelayed]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"!", "Pausing"}], "&&", 
+             RowBox[{"SnakeDirection", "\[NotEqual]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", "0"}], "}"}]}]}], ",", 
+            RowBox[{
+             RowBox[{"PreDirection", "=", 
+              RowBox[{"{", 
+               RowBox[{"1", ",", "0"}], "}"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"SnakeDirection", "\[Equal]", 
+                RowBox[{"{", 
+                 RowBox[{"1", ",", "0"}], "}"}]}], ",", 
+               RowBox[{"Go", "[", "]"}]}], "]"}]}]}], "]"}]}], ",", 
+         RowBox[{"\"\<UpArrowKeyDown\>\"", "\[RuleDelayed]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"!", "Pausing"}], "&&", 
+             RowBox[{"SnakeDirection", "\[NotEqual]", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", 
+                RowBox[{"-", "1"}]}], "}"}]}]}], ",", 
+            RowBox[{
+             RowBox[{"PreDirection", "=", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "1"}], "}"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"SnakeDirection", "\[Equal]", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+               RowBox[{"Go", "[", "]"}]}], "]"}]}]}], "]"}]}], ",", 
+         RowBox[{"\"\<DownArrowKeyDown\>\"", "\[RuleDelayed]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"!", "Pausing"}], "&&", 
+             RowBox[{"SnakeDirection", "\[NotEqual]", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "1"}], "}"}]}]}], ",", 
+            RowBox[{
+             RowBox[{"PreDirection", "=", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", 
+                RowBox[{"-", "1"}]}], "}"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"SnakeDirection", "\[Equal]", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", 
+                  RowBox[{"-", "1"}]}], "}"}]}], ",", 
+               RowBox[{"Go", "[", "]"}]}], "]"}]}]}], "]"}]}]}], "}"}]}], 
+      "]"}]}]}], "]"}], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.524662068776367*^9, 3.5246620687871094`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  DynamicModuleBox[{$CellContext`Snake$$ = CompressedData["
+1:eJxN0NsNwjAMBdDypnXivmAAVmEERmAA2P8PKp1K/bCOIjmOcx/v7+uzb5rm
++a/F6792XM8HHnnimRcu1bJjsLAy2XPgyIkzb7xvbNkxWFiZ7qd5aX56L72/
+WlkY9gw9oSf0xKY6tpu/h4xCZiHDkGnIeLWwMtlz4MiJs3mrE0cO7Jms9qn2
+q/Zd/AEMBwec
+   "], $CellContext`Food$$ = {18, 2}, $CellContext`x$$ = 
+   23, $CellContext`y$$ = 23, $CellContext`t$$ = 0.7, $CellContext`Pausing$$ =
+    False, $CellContext`Stop$$ = False, $CellContext`Score$$ = 
+   64, $CellContext`SnakeDirection$$ = {0, 1}, $CellContext`PreDirection$$ = {
+   0, -1}, $CellContext`SnakePlot$$, $CellContext`RestartAll$$, \
+$CellContext`Go$$}, 
+   TagBox[
+    TagBox[GridBox[{
+       {
+        TagBox[
+         PanelBox[
+          TemplateBox[{DynamicBox[
+             ToBoxes[
+              $CellContext`SnakePlot$$[
+               Append[$CellContext`Snake$$, $CellContext`Food$$]], 
+              TraditionalForm], ImageSizeCache -> {460., {228., 232.}}],TagBox[
+             GridBox[{{
+                TemplateBox[{"\"Score:\"", 
+                  DynamicBox[
+                   ToBoxes[$CellContext`Score$$, TraditionalForm], 
+                   ImageSizeCache -> {14., {0., 9.}}]}, "Row", 
+                 DisplayFunction -> (RowBox[{#, "\[InvisibleSpace]", #2}]& ), 
+                 InterpretationFunction -> (RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{#, ",", #2}], "}"}], "]"}]& )]}, {
+                ButtonBox[
+                 DynamicBox[
+                  ToBoxes[
+                   If[
+                    Not[$CellContext`Stop$$], "Restart", "Start"], 
+                   TraditionalForm], ImageSizeCache -> {27., {0., 9.}}], 
+                 Appearance -> Automatic, 
+                 ButtonFunction :> ($CellContext`RestartAll$$[]; \
+$CellContext`Stop$$ = ($CellContext`Pausing$$ = False); $CellContext`Score$$ = 
+                   0), Evaluator -> Automatic, Method -> "Preemptive"]}, {
+                ButtonBox[
+                 DynamicBox[
+                  ToBoxes[
+                   If[
+                    Not[$CellContext`Pausing$$], "Pause", "Resume"], 
+                   TraditionalForm], ImageSizeCache -> {46., {0., 9.}}], 
+                 Appearance -> Automatic, ButtonFunction :> 
+                 If[$CellContext`Pausing$$, $CellContext`Pausing$$ = 
+                   False, $CellContext`Pausing$$ = True], Enabled -> Dynamic[
+                   Not[$CellContext`Stop$$]], Evaluator -> Automatic, Method -> 
+                 "Preemptive"]}, {
+                DynamicBox[
+                 ToBoxes[
+                  If[
+                   Not[$CellContext`Stop$$], 
+                   If[
+                    Not[$CellContext`Pausing$$], "Playing", "Pausing"], 
+                   "Stop"], TraditionalForm], 
+                 ImageSizeCache -> {27., {3., 9.}}]}}, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
+             "Column"]},
+           "Row",
+           DisplayFunction->(RowBox[{#, "\[InvisibleSpace]", #2}]& ),
+           InterpretationFunction->(RowBox[{"Row", "[", 
+              RowBox[{"{", 
+                RowBox[{#, ",", #2}], "}"}], "]"}]& )]],
+         Deploy,
+         DefaultBaseStyle->{Deployed -> True}]},
+       {"\<\"Click here before playing.\"\>"}
+      },
+      GridBoxAlignment->{"Columns" -> {{Left}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+     "Column"],
+    EventHandlerTag[{"LeftArrowKeyDown" :> If[
+        And[
+         Not[$CellContext`Pausing$$], $CellContext`SnakeDirection$$ != {1, 
+          0}], $CellContext`PreDirection$$ = {-1, 0}; 
+        If[$CellContext`SnakeDirection$$ == {-1, 0}, 
+          $CellContext`Go$$[]]], "RightArrowKeyDown" :> If[
+        And[
+         Not[$CellContext`Pausing$$], $CellContext`SnakeDirection$$ != {-1, 
+          0}], $CellContext`PreDirection$$ = {1, 0}; 
+        If[$CellContext`SnakeDirection$$ == {1, 0}, 
+          $CellContext`Go$$[]]], "UpArrowKeyDown" :> If[
+        And[
+         Not[$CellContext`Pausing$$], $CellContext`SnakeDirection$$ != {
+          0, -1}], $CellContext`PreDirection$$ = {0, 1}; 
+        If[$CellContext`SnakeDirection$$ == {0, 1}, 
+          $CellContext`Go$$[]]], "DownArrowKeyDown" :> If[
+        And[
+         Not[$CellContext`Pausing$$], $CellContext`SnakeDirection$$ != {0, 
+          1}], $CellContext`PreDirection$$ = {0, -1}; 
+        If[$CellContext`SnakeDirection$$ == {0, -1}, 
+          $CellContext`Go$$[]]], PassEventsDown -> Automatic, PassEventsUp -> 
+      True}]],
+   DynamicModuleValues:>{{DownValues[$CellContext`SnakePlot$$] = {HoldPattern[
+          $CellContext`SnakePlot$$[
+           Pattern[$CellContext`array$, 
+            Blank[]]]] :> Graphics[{
+           EdgeForm[Black], Gray, 
+           Map[Rectangle, $CellContext`array$]}, PlotRange -> 
+          Map[{1, 1 + #}& , {$CellContext`x$$, $CellContext`y$$}], ImageSize -> 
+          20 {$CellContext`x$$, $CellContext`y$$}, Frame -> True, FrameTicks -> 
+          None]}}, {DownValues[$CellContext`RestartAll$$] = {HoldPattern[
+          $CellContext`RestartAll$$[]] :> (RemoveScheduledTask[
+           ScheduledTasks[]]; RunScheduledTask[
+           If[
+            
+            Not[$CellContext`Pausing$$], $CellContext`SnakeDirection$$ = \
+$CellContext`PreDirection$$; If[
+              Or[
+              Part[Part[$CellContext`Snake$$, 
+                   1] + $CellContext`SnakeDirection$$, 1] > $CellContext`x$$, 
+               Part[Part[$CellContext`Snake$$, 
+                   1] + $CellContext`SnakeDirection$$, 1] < 1, 
+               Part[Part[$CellContext`Snake$$, 
+                   1] + $CellContext`SnakeDirection$$, 2] > $CellContext`y$$, 
+               Part[Part[$CellContext`Snake$$, 
+                   1] + $CellContext`SnakeDirection$$, 2] < 1, 
+               
+               MemberQ[$CellContext`Snake$$, 
+                Part[$CellContext`Snake$$, 
+                  1] + $CellContext`SnakeDirection$$]], \
+$CellContext`Pausing$$ = ($CellContext`Stop$$ = True); CreateDialog[{
+                 TextCell["Game over."], 
+                 Row[{"Score:", $CellContext`Score$$}], 
+                 DefaultButton[]}], 
+              $CellContext`Go$$[]]], $CellContext`t$$]; $CellContext`Snake$$ = \
+{{Ceiling[($CellContext`x$$ - 1)/2] + 1, Round[($CellContext`y$$ - 1)/2] + 
+             1}, {
+             Ceiling[($CellContext`x$$ - 1)/2], 
+             Round[($CellContext`y$$ - 1)/2] + 1}}; $CellContext`Food$$ = 
+          RandomChoice[
+            Select[
+             Apply[Join, 
+              
+              Table[{$CellContext`i, $CellContext`j}, {$CellContext`i, \
+$CellContext`x$$}, {$CellContext`j, $CellContext`y$$}]], Not[
+              
+              MemberQ[$CellContext`Snake$$, #]]& ]]; \
+$CellContext`SnakeDirection$$ = {1, 0})}}, {
+     DownValues[$CellContext`Go$$] = {HoldPattern[
+          $CellContext`Go$$[]] :> (
+         PrependTo[$CellContext`Snake$$, 
+           Part[$CellContext`Snake$$, 1] + $CellContext`SnakeDirection$$]; 
+         If[Part[$CellContext`Snake$$, 1] == $CellContext`Food$$, 
+           Increment[$CellContext`Score$$]; $CellContext`Food$$ = RandomChoice[
+              Select[
+               Apply[Join, 
+                
+                Table[{$CellContext`i, $CellContext`j}, {$CellContext`i, \
+$CellContext`x$$}, {$CellContext`j, $CellContext`y$$}]], Not[
+                MemberQ[$CellContext`Snake$$, #]]& ]], $CellContext`Snake$$ = 
+           Most[$CellContext`Snake$$]]; Null)}}}], TraditionalForm]], "Output",
+ CellChangeTimes->{3.5246620699492188`*^9, 3.524662141203125*^9}]
+}, Open  ]]
+},
+WindowSize->{862, 540},
+WindowMargins->{{73, Automatic}, {Automatic, 42}},
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 14241, 353, 582, "Input"],
+Cell[14823, 377, 7698, 158, 517, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

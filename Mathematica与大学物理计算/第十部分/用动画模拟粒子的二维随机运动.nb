@@ -1,0 +1,4973 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[    191781,       4964]
+NotebookOptionsPosition[    178581,       4638]
+NotebookOutlinePosition[    178951,       4654]
+CellTagsIndexPosition[    178908,       4651]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData["\:7528\:52a8\:753b\:6a21\:62df\:4e00\:4e2a\:7c92\:5b50\:7684\
+\:4e8c\:7ef4\:968f\:673a\:8fd0\:52a8"], "Input",
+ CellChangeTimes->{{3.44844077415625*^9, 3.44844078321875*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dis", "=", 
+   RowBox[{"NormalDistribution", "[", 
+    RowBox[{"0", ",", "1"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"m", "=", "1000"}], ";", 
+  RowBox[{"\[Delta]t", "=", "0.1"}], ";", 
+  RowBox[{"time", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"m", "-", "1"}], ")"}], "*", "\[Delta]t"}]}], ";", 
+  RowBox[{"\[Alpha]", "=", "0.5"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f1", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"RandomReal", "[", "dis", "]"}], ",", 
+     RowBox[{"{", "m", "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f2", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"RandomReal", "[", "dis", "]"}], ",", 
+     RowBox[{"{", "m", "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f1", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Delta]t", "*", 
+        RowBox[{"(", 
+         RowBox[{"i", "-", "1"}], ")"}]}], ",", 
+       RowBox[{"f1", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "m"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f2", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Delta]t", "*", 
+        RowBox[{"(", 
+         RowBox[{"i", "-", "1"}], ")"}]}], ",", 
+       RowBox[{"f2", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "m"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f1", "=", 
+   RowBox[{"Interpolation", "[", "f1", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f2", "=", 
+   RowBox[{"Interpolation", "[", "f2", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"equs", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"x", "''"}], "[", "t", "]"}], "+", 
+       RowBox[{"\[Alpha]", "*", 
+        RowBox[{
+         RowBox[{"x", "'"}], "[", "t", "]"}]}]}], "\[Equal]", 
+      RowBox[{"f1", "[", "t", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"x", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"x", "'"}], "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "''"}], "[", "t", "]"}], "+", 
+       RowBox[{"\[Alpha]", "*", 
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "t", "]"}]}]}], "\[Equal]", 
+      RowBox[{"f2", "[", "t", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"y", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"y", "'"}], "[", "0", "]"}], "\[Equal]", "0"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"s", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{"equs", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "time"}], "}"}], ",", 
+     RowBox[{"MaxSteps", "\[Rule]", "\[Infinity]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sample", "=", "200"}], ";", "  ", 
+  RowBox[{"\[Delta]t", "=", 
+   RowBox[{"time", "/", 
+    RowBox[{"(", 
+     RowBox[{"sample", "-", "1"}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xsignal", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"i", "-", "1"}], ")"}], "*", "\[Delta]t"}], "]"}], "/.", 
+      RowBox[{"s", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "sample"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"x1", "=", 
+   RowBox[{"Min", "[", "xsignal", "]"}]}], ";", 
+  RowBox[{"x2", "=", 
+   RowBox[{"Max", "[", "xsignal", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ysignal", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"y", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"i", "-", "1"}], ")"}], "*", "\[Delta]t"}], "]"}], "/.", 
+      RowBox[{"s", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "sample"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"y1", "=", 
+   RowBox[{"Min", "[", "ysignal", "]"}]}], ";", 
+  RowBox[{"y2", "=", 
+   RowBox[{"Max", "[", "ysignal", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"g", "=", 
+     RowBox[{"ListPlot", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"xsignal", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", 
+          RowBox[{"ysignal", "[", 
+           RowBox[{"[", "i", "]"}], "]"}]}], "}"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"PointSize", "[", "0.02", "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x1", ",", "x2"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"y1", ",", "y2"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"Axes", "\[Rule]", "False"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Ticks", "\[Rule]", "None"}], ",", 
+       RowBox[{"Frame", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    RowBox[{"Print", "[", "g", "]"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "sample"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "dis", ",", "m", ",", "\[Delta]t", ",", "time", ",", "f1", ",", "f2", ",", 
+   "equs", ",", "s", ",", "x", ",", "y"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.44843990228125*^9, 3.448439914390625*^9}, {
+   3.448440029234375*^9, 3.4484400540625*^9}, 3.44844012553125*^9, {
+   3.448440216*^9, 3.44844021846875*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.630377802368942*^-26, -5.048709793414476*^-28}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465200947266`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.015500579477913645`, -0.09614610309789813}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465201171875`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.060078761326918625`, -0.2993182309928346}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520138672*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.006258003311915746, -0.4400613971610695}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520161133*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.02931760944680814, -0.6297197151395972}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465201835938`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.10032610042805802`, -0.8800253297867943}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520205078*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.1989339323288719, -0.9742851859003967}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520227539*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.19299912077623213`, -1.0335717385588299`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465202509766`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.23459063729800422`, -1.2061495157848097`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520272461*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.3714567678046515, -1.3402443970609963`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520294922*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.5790037662231329, -1.2930268688246809`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520317383*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.6751193762934387, -1.193577893326473}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465203398438`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.8367644901024961, -1.2021487039639347`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465203623047`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.0023252616288358`, -1.368680184657281}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465203847656`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.1515530875048712`, -1.5305267649864542`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465204072266`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.3446798215064675`, -1.5142302874315456`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520428711*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.4683687709229227`, -1.422001653154291}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520451172*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.4369087068399315`, -1.4717461563511318`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520473633*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.4959160414172725`, -1.603019577098849}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465204960938`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.4923282953126178`, -1.6720136479445649`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465205185547`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.518840628548655, -1.7331714413759203`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520540039*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.4784930229827735`, -1.7999149133009014`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465205625*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.3430225833808669`, -1.8521683923852166`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520584961*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.1667903757136593`, -1.8969691273016935`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520607422*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.9397550286443401, -1.9088668369901916`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520629883*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.6850927039803, -1.8695219180989564`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465206523438`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.41652745338676683`, -1.8355845001711033`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465206748047`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.14455423801553824`, -1.804838259766282}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520698242*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.12385912721962623`, -1.7627684600729243`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520720703*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.2229379454155892, -1.772591541647994}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465207421875`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.20039207411215643`, -1.8315777286976365`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465207646484`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.01891574117686104, -1.935253022407829}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520786133*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.18617831672236088`, -2.0634847852614264`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520807617*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.2544456829355885, -2.054362822967931}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465208291016`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.31587079526316114`, -2.145484874769362}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520850586*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.6058960189590237, -2.3772062335213855`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465208720703`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.8427705438179361, -2.5322027581628244`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465208945312`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.0882966031922436`, -2.49459867576379}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846520916992*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.1305214770623115`, -2.463862738881771}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465209414062`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.0720935414133799`, -2.5125452303792297`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465209648438`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.0407301776183822`, -2.5564785305492834`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465209873047`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.0255742065846258`, -2.6044230530984103`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521010742*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.0083608631836598`, -2.681934322903626}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465210341797`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.0086179270810374`, -2.890521964264395}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465210566406`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-1.0176106672765852`, -3.3039891004738706`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465210791016`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.9897788202030079, -3.821395482986337}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521102539*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.7492953416036681, -4.269641845684956}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465211445312`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.5058666134198846, -4.606352720555659}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521166992*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.3740317857154864, -4.777877301922905}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465211904297`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.2847282802914611, -5.005982528854822}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465212128906`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.2821927285372617, -5.277283957746882}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465212353516`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.31018114033175787`, -5.444780054020662}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465212578125`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{-0.12998076538644857`, -5.650150086679152}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465212802734`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.021900550944422767`, -5.808110861520749}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465213027344`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.23099609026926254`, -5.845084419989099}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465213291016`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.5611509529266524, -5.735119959251529}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465213535156`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.8274364090302673, -5.659203671125467}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465214941406`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.936876829080254, -5.5645286892709995`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521536133*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{1.1148778220765292`, -5.507643654595238}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465215595703`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{1.1589712261138732`, -5.524090897459704}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465215839844`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{1.3747957267036641`, -5.54178658914584}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521607422*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{1.7023492492793275`, -5.541966734251009}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465216308594`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.01271941683959, -5.508813454664774}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521654297*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.2210822686248437`, -5.53295720200322}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465216796875`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.4705030790999474`, -5.502671207281753}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521701172*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.743262895522827, -5.506166527141497}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521723633*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.8549704156005298`, -5.613959973318423}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521745117*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.826494363564881, -5.830520595734692}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465217666016`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.773883205234296, -6.013715499716828}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521955078*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.9990722241594496`, -6.11561576369753}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521975586*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.222462808891873, -6.22543569068603}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846521998047*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.3114135869462826`, -6.309011031071032}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465220195312`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.4298457128437994`, -6.389942466264004}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465220410156`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.5523162269018584`, -6.46540084361903}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465220634766`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.6393363419614575`, -6.526768556015151}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465220859375`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.6452674404716707`, -6.6508868644376085`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522129883*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.634270322656875, -6.708524383097562}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522161133*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.8374085671575173`, -6.686410518425082}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465221972656`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.139164313329102, -6.663885577270648}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522220703*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.376518582582666, -6.678106405947544}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465222441406`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.5174157065947735`, -6.680799014928115}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522267578*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.584100542908155, -6.740772610565031}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465222910156`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.637187022905431, -6.721984462310148}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522314453*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.6874306497678395`, -6.5685929789982715`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522338867*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.781575723485171, -6.277988870896734}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522361328*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.64217828053088, -6.003135826165237}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465223828125`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.544105712365726, -5.890479314210774}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.53784652240625*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.457603426305715, -5.743029474525157}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522428711*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.374637199401248, -5.552944341451702}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465224541016`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.246601489040683, -5.299035554877377}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522479492*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.234449098603993, -5.074901811255159}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522501953*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.216948419559328, -4.895577903016642}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465225273438`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.110020693299906, -4.797392671940224}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465225566406`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.945269146573796, -4.775874821771103}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465225947266`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.8711921778995912`, -4.697548473281354}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465226171875`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.9026450388944074`, -4.536941536693185}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465226396484`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.8382570695443214`, -4.3433602025220965`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465226601562`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.7827032131709433`, -4.199122405125648}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465226816406`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.706783110874231, -4.086321129957596}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522703125*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.700180268888374, -4.0383128108959205`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522725586*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.711996250682899, -4.056981198461881}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465227470703`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.6516456856908537`, -4.239546061037806}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522767578*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.6286764564199996`, -4.382922223255241}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465227890625`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.625335351790414, -4.51332468761125}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522810547*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.596844971095193, -4.495452976697239}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465228427734`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.690848744804809, -4.332929406417695}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846522864258*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.737715359367641, -4.327674326184685}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465228847656`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.872411403972664, -4.316692124154518}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.53784652290625*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.002615413965278, -4.383663440869059}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465229277344`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.087857672132475, -4.488488111959459}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465229492188`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.215063431903883, -4.665368192816559}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465229716797`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.26781716853658, -4.861032962572305}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465229921875`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.256308668515471, -4.870443738043248}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523013672*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.120856165690164, -4.8678410682127895`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465230351562`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.981934251578444, -5.0064291044561475`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465230566406`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.8164594513279106`, -5.03814749931626}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523078125*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.7131368631574286`, -5.054913419976902}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523100586*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.6942136673389987`, -4.991823226143294}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465231220703`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.851965465633682, -5.004861829823543}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523142578*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.96798260950447, -5.1025721641478246`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465231640625`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.147814443688556, -5.129643582572409}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465231845703`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.3333406426690475`, -5.055455717662606}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465232060547`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.219198750371425, -4.8440572542954925`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523243164*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.126789859693703, -4.578129982379704}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523265625*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.028796612348768, -4.399755021081007}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465232871094`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.894576108320827, -4.296222635513577}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523307617*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.774317965970233, -4.245516629525756}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465233291016`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.6691085516523927`, -4.195454681162256}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523350586*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.6395196255689433`, -4.166016577618396}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465233720703`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.6672238365661145`, -4.150979417973042}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523392578*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.688495727121307, -4.335919437157372}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523415039*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.8336089602956918`, -4.540719260588947}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465234628906`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.0287521783022004`, -4.691653149860379}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523484375*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.221312734820656, -4.830646171437029}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465235058594`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.390305238922979, -4.894290601046959}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465235273438`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.4356747267762895`, -4.900101365171095}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523548828*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.328504885552679, -4.813667001244025}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523569336*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.1117653596828525`, -4.762457180418261}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465235908203`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.018360975619295, -4.8003179507069005`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465236123047`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.9960945200059723`, -4.863865701619306}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465236347656`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.115026133424924, -4.831511730830826}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.53784652365625*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.273512881968279, -4.85125253173864}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465236777344`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.360447723584279, -4.8927408421399665`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465236992188`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.399285082440647, -4.9886619995325505`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465237265625`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.490499980510267, -5.1004446315016345`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523748047*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.677636428466302, -5.261421579320748}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465237695312`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.785697627283603, -5.379920597735057}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465237910156`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.846542757393001, -5.495935691539903}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465238125*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.969985534742849, -5.5834409805519165`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465238339844`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{5.1413907733822795`, -5.827506298154047}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465238554688`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{5.185965997995628, -6.09288062509681}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523876953*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{5.168610978920465, -6.322738367137652}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465238984375`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{5.124698737252975, -6.5426360254279565`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523919922*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{5.0718646375708465`, -6.607556794491104}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465239414062`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.945027687633885, -6.666788021121203}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846523961914*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.767286507712019, -6.780726598568093}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465239833984`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.686461321336699, -6.9242083480930265`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524004883*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.590030963940971, -7.0105808311906594`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524026367*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.4570877571728245`, -7.175442451833749}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465240478516`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.272232203696971, -7.305179992395093}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524069336*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.222453700062308, -7.40334290563445}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465240908203`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.151771279010275, -7.341410968297782}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524131836*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.082005965067458, -7.42274429473449}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465241533203`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.309764396750876, -7.506813820736854}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465241748047`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.5158898080766745`, -7.583176133209369}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465241972656`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.531553523401858, -7.5068698550822255`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.53784652421875*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.499191262846791, -7.317670929820501}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465242402344`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{4.333716651416554, -7.133981483425443}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465242617188`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.959202301452205, -7.005054706078582}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524296875*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.5946886262300533`, -6.824412701844428}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465243183594`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.274925185454095, -6.624142720833996}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465243398438`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.9838422791515558`, -6.280998284711667}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465243603516`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.778738947294849, -6.019462968568789}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524381836*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.6991212980877304`, -5.7663752875756344`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465244033203`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.7470139062224663`, -5.66109074429513}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465244248047`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.7437241571627213`, -5.5681334998821015`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465244453125`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.7164147770684046`, -5.576170564892697}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524466797*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.8610593480139834`, -5.57518691746713}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465244882812`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.0340984177167667`, -5.560142700499061}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465245097656`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.115629825328924, -5.508151399537218}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.53784652453125*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.142791599123039, -5.367601124052135}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465245527344`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{3.0593355047755018`, -5.270221131325556}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465245742188`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.9358737050725714`, -5.160446213157328}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465245947266`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.9213984940002216`, -4.991214598885049}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524616211*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.8954224687523142`, -4.843872185369271}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465246376953`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.911287289236948, -4.887689633992591}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465246601562`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.965927098198231, -4.850082560313304}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524680664*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.9228717660793087`, -4.600316366592423}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465247021484`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.7930576906610147`, -4.2833438883857635`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524723633*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.629233019103495, -3.905518017623353}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465247460938`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.3314966782715327`, -3.5366509773496486`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465247666016`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{2.058566761081644, -3.201653289907464}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524788086*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{1.985027965127695, -3.027539736669322}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465248095703`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{1.8198020016142955`, -2.81361438940065}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465248310547`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{1.540911381936839, -2.626050208427838}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524852539*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{1.2171130519410365`, -2.473048886033969}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465248740234`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.9460186446997346, -2.42078658446655}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524895508*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.8436863560597665, -2.4183911544843104`}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.537846524916992*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.8521250718254555, -2.293643924198447}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465249375*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], 
+   PointBox[{{0.8628325570504648, -2.200877774623504}}]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-1.518840628548655, 
+   5.185965997995628}, {-7.583176133209369, -5.048709793414476*^-28}},
+  PlotRangeClipping->True,
+  Ticks->None]], "Print",
+ CellChangeTimes->{3.5378464229091797`*^9, 3.5378465249589844`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData["\:6a21\:62df\:591a\:7c92\:5b50\:7684\:4e8c\:7ef4\:8fd0\:52a8"], \
+"Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dis", "=", 
+   RowBox[{"NormalDistribution", "[", 
+    RowBox[{"0", ",", "1"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n", "=", "20"}], ";", 
+  RowBox[{"m", "=", "1000"}], ";", 
+  RowBox[{"\[Delta]t", "=", "0.1"}], ";", 
+  RowBox[{"time", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"m", "-", "1"}], ")"}], "*", "\[Delta]t"}]}], ";", 
+  RowBox[{"\[Alpha]", "=", "0.5"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f1", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"RandomReal", "[", "dis", "]"}], " ", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "n"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "m"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f1", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Delta]t", "*", 
+        RowBox[{"(", 
+         RowBox[{"i", "-", "1"}], ")"}]}], ",", 
+       RowBox[{"f1", "[", 
+        RowBox[{"[", 
+         RowBox[{"j", ",", "i"}], "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "n"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "m"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f1", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Interpolation", "[", 
+      RowBox[{"f1", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "n"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f2", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"RandomReal", "[", "dis", "]"}], " ", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "n"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "m"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f2", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Delta]t", "*", 
+        RowBox[{"(", 
+         RowBox[{"i", "-", "1"}], ")"}]}], ",", 
+       RowBox[{"f2", "[", 
+        RowBox[{"[", 
+         RowBox[{"j", ",", "i"}], "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "n"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "m"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f2", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Interpolation", "[", 
+      RowBox[{"f2", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "n"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"equs", "=", "\[IndentingNewLine]", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"x", "''"}], "[", "t", "]"}], "+", 
+         RowBox[{"\[Alpha]", "*", 
+          RowBox[{
+           RowBox[{"x", "'"}], "[", "t", "]"}]}]}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"f1", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "[", "t", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"x", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"x", "'"}], "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"y", "''"}], "[", "t", "]"}], "+", 
+         RowBox[{"\[Alpha]", "*", 
+          RowBox[{
+           RowBox[{"y", "'"}], "[", "t", "]"}]}]}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"f2", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "[", "t", "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"y", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "0", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "n"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"s", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"NDSolve", "[", 
+      RowBox[{
+       RowBox[{"equs", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "time"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"MaxSteps", "\[Rule]", "\[Infinity]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "n"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"s", "=", 
+   RowBox[{"Flatten", "[", "s", "]"}]}], ";", 
+  RowBox[{"s", "=", 
+   RowBox[{"Partition", "[", 
+    RowBox[{"s", ",", "2"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sample", "=", "100"}], ";", 
+  RowBox[{"\[Delta]t", "=", 
+   RowBox[{"time", "/", 
+    RowBox[{"(", 
+     RowBox[{"sample", "-", "1"}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fig", "=", 
+   RowBox[{"total", "=", 
+    RowBox[{"{", "}"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"section", "=", "\[IndentingNewLine]", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"x", "[", 
+           RowBox[{"\[Delta]t", "*", 
+            RowBox[{"(", 
+             RowBox[{"i", "-", "1"}], ")"}]}], "]"}], ",", 
+          RowBox[{"y", "[", 
+           RowBox[{"\[Delta]t", "*", 
+            RowBox[{"(", 
+             RowBox[{"i", "-", "1"}], ")"}]}], "]"}]}], "}"}], "/.", 
+        RowBox[{"s", "[", 
+         RowBox[{"[", "j", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", "n"}], "}"}]}], "]"}]}], ";", 
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"total", ",", "section"}], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "sample"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"g", "=", 
+     RowBox[{"ListPlot", "[", 
+      RowBox[{
+       RowBox[{"total", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"PointSize", "[", "0.02", "]"}]}], ",", 
+       RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "15"}], ",", "15"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "15"}], ",", "15"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"Axes", "\[Rule]", "False"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"fig", ",", "g"}], "]"}], ";", 
+    RowBox[{"Print", "[", "g", "]"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "sample"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<e:/data/2d-Brown.gif\>\"", ",", "fig"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "dis", ",", "time", ",", "equs", ",", "s", ",", "total", ",", "x", ",", "y",
+    ",", "fig", ",", "g"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.448440357046875*^9, 3.448440357359375*^9}, {
+   3.448440388640625*^9, 3.448440395109375*^9}, {3.448440430765625*^9, 
+   3.448440483984375*^9}, {3.448440573421875*^9, 3.448440581140625*^9}, 
+   3.448440914796875*^9, {3.44844107809375*^9, 3.44844114615625*^9}, 
+   3.448441187078125*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJxTTMoPSmViYGAQAWIQDQHFVmDqQP4uMB0wF0Jv6IbQCbMh8hNWQvgMMyG0
+QzVE3GIRhH7RARH3qIHwBSZC+AfMIHSDC4RWOASVT4bQFcsg9AYHCN1QDqWh
+5nesgOrvhPAZGqE0E9R99lB3ZUPEFzRD6A8NULoPQt/YClE3oR2qvw5CB8RB
+aIkCCK0ADQ+HBAht0A61pwrq/mYIvWCJFQB8WTW8
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636216797*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAFr9U9/W6wD9RLEj8xSLNv9u5j+yn
+Z6O/+C43U8DLq7+MlIlXH8Wgv/8Cp0a7+se/0FSr1+RWuD8SYWstcxuqPxYG
+Use70qC/djqKk1Spxz83Nu9BsIbDP/Z2stc/HXc/JYUVzVXJwr9vv1j4muTZ
+P46SLnyyYLc/gGxpYaQLyb9GlvMI/R3DP14KytWQ5s0/JAgxV4ExYT+IaIvZ
+1CbQv2f4Myddjmi/BJ+JMNZYqL+Czy5ISgPTv4m8AjsmspK//Q1oqrIhvj+S
+ixsCYPHBPyXkQWW4GrA/WCfacrzBwb/qcfrAmHSPPw0opXA+gdI/PE9/QipI
+fT8jyEKhoja7P5KVFZFwyZ4/Zov9XFEGzb+GTDQj+EDEPxreByTeBLa/CRUw
+kZYPtD98NTK1Cc+9P5dDTVJPYqK/IJ6gG4840T+4XZ5i
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466362373047`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAHi0AesFa3z+LSwrDOZrav3Pmq3hp
+b7O/lBv7Z1RHyD/lNhPveeTav+CB8ttyCNe/XAAl/QKVxj865SHlUXGCvzlg
+tHwEj8m/8reeOTZs4j8phfZCG0CxP0Fft9uaYbU/XCNwddQyy79UViQeT5bn
+PxHnnNRYn9E/afX2wMbZzb8O9kD167rdP1dSWs8qDto/MA/5k9sWsr+Gztq0
+OpTWv3F8v2Q56a0/3hys4l/73b877RRL3Qnov2SBo5STWss/rzfeDpEhwz8K
+QXtE6wnRP9uFZsxyE7U/LovUd5lByL8g77RCamXAv0zKAT/NheY/kijIrL3C
+wb+JpuLzBR/DPyl2JBHVBcq/6KXpXJGG178sFI7NO4PTP2+Ly/wiLrm/OfTv
+Y14sib966ZCWg4qEPwA9iXndYn6/2LZnCpnq6T+FUalz
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636256836*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAFFqjeQ0F5j8WJH0r50bfv/TINN/Q
+lMC/bdbdaZam3j99GW37nBjsv/VL4tXZrOO/2VQ5ZxiVuz8Ss/4IdonRv0Ar
+/i6Vru6/uMS+rhLp5D9K0bVYZabAvzo7pIRhPMC/VzMr6gtGzr98mHjtVWbg
+PxTiGvIa798/hLtUiyq4zb/TKr7ekKHZP3N8HaDGbNo/Kd3lZ1t0tj+kSpDw
+IOzhv+f8jaMyi9E/5WPT1SEA7L8aMlJQCwH3vyGWvtOpsco/Ie8k0CSrxT+c
+KS7kNuPAP+RF9lID1ri/CrZL2/no6r/vqH/3OltgP1ky1m3pQfA/+P4DwPqz
+z787XgxVlcvQP3w/2lQA/t+/7Kjmu2ut5L9TtgvHENjUPw3i7AXQWNC/MrVm
+c4l8pb/S9n4QMxbCP8YguIIFp5s/nF4UwINq9j8yhbCH
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636276367*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAeqeCLX3K7D9nGKh6W0mnvwR1K+eE
+ydG/u4x9SovVwj/d31ITsPjvv8P2l3xdwPG//rsrP3/OqD/UyWg19Jvfv6Pz
+fHRpqvy/Cy0I9PpZ4D+xEgMmUy7Fv3SuELt+hOO/8nF5f1n94b9OlVS58brU
+P70xrdKwW+o/+ClYRNCA1L+ZKWwWxgq6vzrGjM9FjdM/iX1slLfI2j/Yuos+
+PE/qv4pqdh/ioOE/cQCkoIko7r96AstT9+b8vzbqez/aYcY/ciTU9J+V4D++
+zkooZ3fZPzjqZAQjUdq/R9xECNf59b+KIl9ckw+Vv08bW1ZAOPU/6GaGV7zx
+2b/rcn5hFTLRP40bHOIhAuW/tYxdplCr8L+hKICZSz/RP8Khiu8VTdy/Vh1R
++By0uT83w5z3TzvdPwpztkE2r9I/Ia/wm/ZD/D9koq6J
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636294922*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAdms6mGDW7j9aBoMI+xTePzLw5Zh0
+v9C/qw3iQKZtoT/3a5Qgmx3jvzElUgd3I/u/fNGSGXQCk79SUBUPBFjlv83z
+2VL9JALAWbRheL3uzD+oVk1P+pnIvzOIncTaVvK/J6ZPCEsX7r/qMkaoOuK+
+P2s3I4x7res/4YQwp6v/0r80fA0gcKjYvwdmplYzjuQ/mcwPFvS53j+ZRxaZ
+ujf0vzRocuQxWeg/ej/Im99J7L/FcQLRLvb8v5CKa8feN74/XGKOYUzY7j+K
+DZHNq0vcP6rPcoS58tC/OqBq+yFO+7/OMWV7zR/av6/uNBInqPY/CfMrIGiT
+1b/lxenVpJu1Px6Wp/5CcuK/D1qr5zMn9b+KrEEoOIfFP2v6DI07oeq/PWxp
+h8RpuT8sCYHcTB/vP7jl/qXcD9s/5MzaotZ2/D/3OKsn
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636314453*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAocCf1i958T98q0mqthrkP0ZDY4E/
+CMA/zGt/z06o0j/2ILFSpULQv0NZVXbeWwLAndjNZ3Agob/PwolC8yHovzWR
+hD2uLQbA57TFbirS1L+oNoiG9l3Fv4hs6EQf2v+/y4B9QweC9r/wIXl1cVzT
+v+RCz5k8Y+s/q98e5rPG1b+X4EogGWjgvx3MUZfAT+Q/VnF1j7Ax2z8ScYAt
+LNTzv5Ui1x3qs+4/BqwCnzqQ67+m2xXrQzn/vw5TFuEWjsQ/wufkzMWP7z9p
+18y4bPrVPz4Bc6T+pNm/qzmGH3bi/b9AnrR3EZTbv2TfL3UlHfs/rSeIL9zg
+0r/SsvsW4pi+P+T2iKwL9eS/Is3y2GM++L+fEtZ0ORCwP0UG9iBrkPO/f7t6
+tgJ7qT8wkc9NaZTxP0pLogORluM/S2GBhSVy/D/RXa5v
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466363339844`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAUbY2hnMV9j8GUoVQkVbrPxmLi/mP
+7dI/tbAcVWl/4D/GTbELDKOBPw7JquodkwbA4+52UWxUzb9zzidgFczov8ZS
+gBoTZAvAgOt6reEJ2b+PMgKTvqayPxr/mjARswLArsJxbSlc+b+eGxBkNjnk
+v6Dh3DTjidw/h89ROCpO47+zbp6vIy7sv9kp4ZG7FuE/u1J+fyuw4j8g7p3M
+5iD0v8IjLJhCYfE//QsYb9Fv6L++b70RJn38v22OgC1+SOA/CKJPvS9H8T9M
+xfs34vHZP7/YJnoc2eq/rHRgeSGvAMCC3g7vUW2uvzocXnwKf/0/htqYtCyc
+yT+k8W1vHdwyP5b7mz4S9ee/A9pmD5pE+r9vOmRpECjaP/ZzYKhwa/u/7FRn
+SyTi178Bw7wEm//zP4XBi9+b6OE/aBZV7Po9/z/Ivacn
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636352539*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAwPKVK4DT+T+EwlMJbGzwP5PTBdXy
+ndc/j3s8mX1b4T8A7BVNVCjePw2ohb87eQrAfSxvdsRO5L+ezTP6RUTxv8jR
+R4eBvA7AxN5sgeQM2L/psXOlo8zhP0EFPZZLUwfA7ZCnnFDK+b8ZQ9d87UTv
+v3nKkVyFH9C/baIvrFoB7b/lOefCuujxv8yFIcNCld8/ruy47VAo6z8xU4YN
+tnj1vzje1e07PfI/RbhW+8qr378+Dk/ZxRb3v6oecDgFxe8/bVS2dSP07j/0
+xIc7L4/jP8hbuFIjrfC/hTKN6aqaAcC7r4sOgHPFP1DGv/64+v4/Pj6rVBtw
+6D8En8gv0Om1v9QRLQl6uvC/NvcDh/k4+b/j255SWh/vP7rs+yizHQLAn++B
+f0GI278z60cMI2n5P2k598qB+9Y/egcXWxYcAUBha62j
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466363720703`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAc8KpYpQzAkCZ4/uxwbzvP5J9yC2E
+w98/3g7drTzE1z/aictGuEHqP1/nfnZSwQ3AOahCmUJK779CcWmbF7f5v62L
+xFA6WRDAJpTYVTnnzL97bh7gfn7pP/wiz9DVgQvA3Yzcp14M87/wKsjR9wz0
+v3u4BdHnKea/4W8la+bK9r82JfMf9hH4vwwFCOI8n+E/gHs8boXp8T8ZVqDl
+HaL1v3tjgTjvVvQ/7Dnlis5Z4b9vrHqbFrn2v6J9W0iiR/g/Am9upOpM6D+t
+NCfyR03oP2L+CkEMMve/CfiZ1zyqA8CmV80sPVDdPxFUj/lbeQBAaR/OhBVs
+6j+t5u/D5WTYv2NnTasa5PO/gQTQ7Hxw9L9MZqIyEF7yP5AuIXoaWwbAFS0p
+M+rn0L9qgdnGcesBQGnNCxmAltg/7Oum7yCSAkAl8qrN
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636390625*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAOFi30NMHB0BFNCLVhvrrP5FA8FUC
+/vA/ZMKNRC7cwb8T2FluypTnPzj+zKoFThHAQ6I2fSNz878CisUZMnwAwCS7
+TCGFAQ/Ab/O0EJPqyL+mIQp/l+rmPxpO9x52Yg7AU6im3LE85b/okaP17GPw
+v+P2MnvQrPW/S4X9Th6P+7+VIme+Wpv7v2wjXPHlNeQ/PTvHVi2v8z/4Y/Fn
+OOzuv3uIU+tPyvc/F99oI7hE6r9JNT7vktb1vyUvKjcKLf0/8IiJW7vD0j9h
+MvSHQgXsP1m+Bhig9v6/MW1tIVmSBsA+IbH4QQ3RP6uyRHB1FQBAylq5Is/y
+5D8GMirBInfTvwFxP8dwgPe/s090Hhm997/OH4p5+7zzPzu3WD8rXQrAzNcc
+dD7zyb+fKemuFJQDQDZFaHkaa+o/p89ZDPgGAkAu5KLQ
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466364101562`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAHZcWWmQ1C0BVjsMIzUrnP5rzWyKY
+SPs/vkb3+Uxo1r84RWJK03LlP7ZyAaB26RLAatSg+5E29L/XX8gPNjwDwCr/
+Wc5pjQvA9bT57Fe+tL+I88q21NjqP4jMj7gVgBDAZYoaQfDp479ErMfn6u/j
+vyye4jkeu/2/LZ+r35JSAMDLx1pRey4CwD0k6pIXhOw/GpNFDP6u9D+mTnsd
+NELxv4sNmu1gnPg/TfszdXgS6r9z7bZ7h+r4vwxgBp1ULQJAEV08D51AwD/E
+WFaDtEXwP+2AlspuIwDATZceNj4ZCMAwArlA/BjUP20DIevbpfU//uo6YOzS
+0j9vUtOT2SHVv9FNavMOy/q/YyZ3CwekAMCm2Xf7sx30P2hWojOPqA7AnEEY
+uoQnhD+Oo2IpIxECQGNpZw6OO/Y/WwQLL7+GAkBwQqDG
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466364296875`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA/ZNKz5SlCkA8gkMvqPPhP5jncPRo
+wAFAzqedRHq70L/nMbgG857pP7V2sjZmQBTAG2JMm2xl9b9y2a+BTMEFwOWe
+5jGpYgvArjQLh40Ivz+JOPhP59zxP11OvSRZZRHAedcZtgIy678WiZNoZC6v
+vzXtzz8rZAPAp49NN8y8AcAtkRHjwWUDwCOpIdEJFPA/EGvk6Tvu+D+NLYGy
+zjfzv5VrTBmrw/k/4bBD7uAA8L9XZAx0cPj+v06w8chzrQVAF2XD0OGD0j8l
+MzbnMJvvPwV94PC1Ufy/eh9LOPGuBcDJH8GdHzPNP2ohnfN79OY/oJBPwgOY
+yD/Oxhl0MbDnv7V0NSdtp/2/BKIUDj+vA8AYdbuh0CXzP9P3x9e+cw/ABU0d
+rQN50L8nED7ahqABQMBv7ZqHMvw/YNllIHlaBUC7saMJ
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466364492188`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAACHT69ZiDCUDwzHoXocDbP67enVtU
+FgVA5apDrnP44L+3k3sKt5HxP94suZCu+hPApYmSA/QO878u+dFi3ZMJwPwa
+To/KcQzA+zI6Ia09lr/ZkrBTc/H3P2BLry3UjhPAEn4Si8ae8L9oz47VcbXR
+P51SeA+WVAXAgUfcnVaEAsDjMqURH04CwORDQw2ad+0/D+biQBcw+j85lTl8
+OXfzv6BEZMEPqf4/1eZ5UWKF878OrkOSurkAwHNqdNW0UQlAfPdLXN1oyz8l
+UTu0vovvP27C9fXd5/S/Q1OiwHNvAsAXsQOOp5SiPxKWiIngk9A/0XdfN2I5
+3T+7jCfrFcjzv2hWdOv2k/q/4x+Xd4MlB8DDNfsJyLXxP0mWvQQDlA3AYAli
+ZWF82r8A46sQJ4gBQD+fELCwMQBA/bqsx1laB0DzRaSL
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466364677734`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA9evVQru9CEBy3s3pEajZP0Y4incf
+TwVAsZwUoxny4r/PHIzfF17wP3Q5Kw/MMBXAcxKNb/fa9r82hucTjCALwOUz
+z406Hg3Ak1IIH0nE1r8bCJuaXKD9P9nFrzbYQxTAWuuhmhWL678YJcPuFxHp
+P8pdTS7HRQbAPnPKHbcPBMChrDWLB1b+vyaHJ90JxOo/g5YlSfDH9j8kWlGS
+/Ojsv2xrsmaDSARAdDC05CNA9L9w8VaapCb9v86O/DAZxwpAJWdCLbrJ0D+5
+uvgfZIL2P/t8fOBP4Ou/3REwtxDk/L/0+N962FbIvxrNSrhZ0dY/g3zFbR4w
+4T8ajfR5FV//vxFwPsl8q/m/3DmSzycZC8BtsXRPoX3sP7/n1gD6LA7A3UfW
+9KRu5b83TgTPLPT/P3qo+N0WbgFAVRBdzuhjBUDKDqUq
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466364873047`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA72G8gcA5BkDYiSqfoFTgP1S1jjRA
+4gZAcwAzh/705r/te8TeQkXwP4dggNMgNhXAjEMxW9f3+b9QX/sexWALwIBY
+tpjJTQ/AaEQFV5Z83b+Mvf8YmeYAQPn2MOTUDRXApTU1B/fX47+1chmILgjy
+PxGqoYu7AQfAbe1ovFI3BsDjK0KoKGb8vxjZ+CCWaOc/tM+HcTP89D+zRjCI
+XErhv/ZN7ozAIwdAY2RCvk1o+L8DNr+YELH4v0IRiFjW0QtAsm+mitMtu799
+ta/YKT36PyfbsQMa99a/MFDoXiyk8b9JXM2q0ZGYv39ellO7gOg/1qE5DtR/
+2j/fs7qP4lQGwDw4QQzM+vm/42fVublAC8AGGx8zslLgP7vhnq/QpBHAq7hl
+QzKI8b8puGa9Rnf6P8wHrmunjwBAS8AgVMiYAEAXQqXg
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636506836*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAprBS38FEBUBdhYnjqgfqP4S96twM
+eAhAlwaV8Mme3r/k3LNbF9LyP1+PfNiljBXA2G6YDgDj+b+A2ICRdOsMwBkW
+58CbkxDAta+Jo3ux1r92dtaTaJsBQGy/4OEQkhXA1bOYFOmdy7+7xk1ECv31
+P973p72d4AfAJA7uvAfpBcCiaJr2JAD+vxwudFV6OeE/sjWpGyKV8z9tO5q+
+HojIv3z+XmZvbAdAZA+mr2FPAMAmSg6K97D6v7+UlqYkkwtAeptZ1F0mu79b
+v5KbhJD5PxzCVS2AxaG/4iF0Ty9k4b/k4TQS9p/KP6ZhRt7Tneo/dRvzKvjh
+p79c4E9UlGsKwCbzUx+J6fi/pKNdNCNuB8DqdnPKXkLFP5TofucDwBPAz+Za
+DifP9b+ZGIfl9Nf1P0A9prUB9/w/AX5/3EdB9z9J+qtl
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466365253906`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAp9S1xc8wBUDH1dQ/tSbxP1slUA4T
+aQhAYwHwkW+8jz/5mxsXHsr5P5+4mmP9XRXAFDZyew4R97+GFpJEdYwOwJY6
+wZyhQxDAlvpucCgV3L/UBmHRVT8AQKtu8N2gfBbAdxRxg7cG0j/tVf+SR4P6
+Pxre0EFgMgrAwDShuX7LBsD+ZN7g6ff+v8TF7N6YedE/h4FXYJBx8z8DVzh1
+f3m1P+KDk/W0yAZAbCcgW6IeAsBhgIlXehoDwNThcgkgew5AiRVdLDZQwb9g
+tEhuN1/2PyjkPtcYeMk/MDHWcmgB3b/4WwzvTwW/P+Hz7uAUtuE/U6j13Cpe
+3r8Wow/CPDMMwCrtDY+1Qfm/cKvXXE/CBMDa+/8TPX3SvyOenlziUxXAX3Ue
+zbrG8r+tyIkzw77yP7VzLj4VivU/2gHl+75n9T84gqIJ
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636544922*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAEaAysTPVBEDsxmtvR9DyPwDk0fna
+lglAH3ODgD+G1z/AljA423cEQBrS8u2hKxXANKCQQ6P59r8xMNw2aWkPwJx+
+YgQIYxDAiDlX+p0P6L/htIVPjtn+P5+PZr6fCBjAdAfz4diE5T8eLSFkGgv/
+P1K/lzFVOAvAHe27Yhl0CsBlvMzTmpABwC/knNHBkca/iiZPGjsV+T9GJlVi
+zmrJP7DGEzWzfgZAUU0TP8IJAsBdL+ufk1AIwJKN6idQBxBANBIAH9G72b9A
+1OIVu+HwP++znHIxTdg/eDSA7LoG379xq4Fgk5+BvwhdJxySCt0/oXffhNgc
+8L8JlCWQLyoQwBahpMMAWAHAjwfq2VaBBMBl7yovCoTqv2nsnA+AqxXAZG7O
+AKih8L/c5n5Q0MHxP0FYECMspO4/auOySykg9z/Sfpok
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636564453*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA7HkkjjqdA0D9DRrz2Hr1P/ZUHK07
+bAtAyd3Z4vyf4z+7jc+Yi74LQE5471FEehXAE+lESdic+r831qPE4G8PwD49
+My3djQ7AnwoT7qb08r+mdD/9PxX/P6/BLSRWvxjAL3lU/yT88j9Al8iBPEYB
+QA6yL3iGLQzAPQ3qgw91DsDpmNVJa5ADwPhwyulucdC/RsQuTfoM+T+iscUo
+GO7YP5g0HxNv3gVABWHuLssyAsDasLT/B7EKwCD9HwplIA5AkEHeY/zG379r
+1zpWKOPxP7A4KuJBvto/NpCHSs7q4b/iPmn3++nBv7sJNi1j9uE/xkHUS4Va
+9L8WYG9xu3ISwB5PF0kNJgbA2pgFVZqUAcCFY2KM9er1v2vlqfkRSRXAKtzQ
+APzO679c5T9HDiHxP3rNRBSe2eI/B9AL/L9j+T8i0aM3
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636583008*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAALbu5g5hF/z9/cZvyjeP5PyhZluPe
+3QpA5ITNp4IE6j/FyeJo2MAPQG9oVd1YTRbAplbbREkx+L/uNmZeJgMQwEJu
+x87RIQvAhVhhy9CM97+F9TUo8mEBQMJ5HzwKmBfA+Ye9AKHU+z+zyJYxUjsB
+QNAbZd/tyQvANOb60GFrEMAHXCatv9UEwJp0lHgbDbs/Gk5TkfdK+T/FuSTQ
+isTkP0oQTR4NAwdAja6/M1FvAsAu+q4eNJ4MwH0p7qRJJgxANhcpJWam4L8/
+DX/7oJv0P/tWHptZgOI/JLl9dRR84r8hl0wtlYThv2rza/QEhOk/4ndFl9Ac
++b92mlyF/v0UwM3QAdQjSgnAZd2xl5PE/78wMuXabBv4v/J7o5VwCxbA4dgX
+jarc7b/OrE4Qs+rzP5LUPoqesdM/oYE3WLwt/D+8IKRI
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636602539*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAFg7TRl6N+z+MKPbRlrz9P7GCvTGT
+Gg1ACj1dHiMS5T8G5yFyAMMPQFo9DLxBhBfAZ878TYfi+b+ugDuOKTEQwA9B
+rh3fbgjAy2OqdA+t+L+2MaYd4vwDQOh57EGAKhjAwKue9NoGA0DDKU3dUuIA
+QO+/dn6DyArAPMeAPjQEEsBqEP5eUgEHwIjKWDWGGsc/F1CpOl4Y9T/Jgs8N
+uPLhP1rbayoGCglAjch6m7UcAsCWs1bP/oAOwEp1YZ1S1QpAXYAovdJI4b9x
+seFjnir9P+d9QXWDoeQ//xfOOjtk5L/52l5iwonnv+d2p9OLKfA/ae6J123x
+/L/ZwSNlKpIXwLSQSTU3EQ3AvOUpn9BC97+yjcJgN874v21fBzr0FBfAqWdX
+1IUj77+E+QO9D9v0P9J9b/3oDMO/uKLXdkUj+D/5zaDl
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636623047*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAYOACQQ5Z+D+KGr56GMkBQA0PKagW
+2QtALequZPeU2T/xyrjv9gENQHZH2wdctRfAjndHc4UV979kfGpp24oQwNMF
+a6d+DgPAppIxxMfU+b/LViPm2+oFQDkE6sWyXxnA0OKgxF9fBUB6MLlqdFX+
+P9x9/nWD4wfAmDoVwSu3E8BlwRwU1vYJwJQT3NITvcI/6Z+hb/h98D/fTezJ
+YjHfPy4u+qxwOQlAPl7KxgvkAcArHnylt7wOwF2YShfUAwpAUQL9/GUf4L/i
+GYGnx+EBQOz8ZYa2Suk/frV//nJ72r+BQta3yZPovw7aKZkda/A/g0trkG6G
+AMBb5PzwwecZwBYRN1t3gxHAyVb3Isdt8L8ws0cH+sH2v0ER0K1IbRjA2MoP
+ZIyH8r8d0vTOMwT2PxYwCY+vatG/7me7le1l8j9nyaSY
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466366416016`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAARUaX5PaL+D+UcxyKaPsDQAWor2ed
+EApAv86Berczyj+8xKpZ2dIGQNWZkh6vwBXAcL9NjiDe8b+oFe3GkIwQwKeB
+gNOVE/y/k9Nj8zYo/780e3YrAT0FQFKiuljJAxrAp8KMgtDxBECeI7UtB4/+
+P9bUkDfwiwfAs+FGwotDFMCy1rbG888KwH5C1HWLx7E/Py5YiDX87D8kT2BR
+8d7hPzMycQC65gdAVZzGyR22A8Cp0G0sOZcOwFh/svMcCghAFgcFAX3a47/0
+Y3A3n/4EQBTEjzqpJOg/eP8zIFj/0L96kwKkaVDuv1jmmxFd+/E/MymxIBwp
+AcAEkYeMo84bwCbli72X/hLAfKlGld1X4b/SpLjTOqP1v2UAfjAB3xjAvvOx
+I/Rb9L8DRPpkKO7+P2RM2tGbWtS/yHAZ41qq7j97XaSy
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636661133*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAALMXMDSKS+T/QTldYiHYGQMbUUKoX
+ZglAPjyAH1lqyD/yCaf+QWoBQLt6uxBlWhTAZ21f3eZB7b+/l+TuTCQRwBqa
+NijKq/e/4kRc4l62AcBNRx3vJDwEQBjSCI8H5BrAl5gNEqiQAkDBGU4hfTQC
+QIMFFWLK9gXAs+HJYAFTFcA3VShGLcsKwEtYkRYVHZO/htfLw8PA6T+2TCx9
+IEvjPzVCrQNc0gRAeZfPY/SEB8CvXFkV3LgLwOaT2DZn/ANAQKWK44Ah6r+9
+zeCfjDgFQE7iC8u9Pto/L+SaRwhB4L+8QHBiSbPzvxahBitL7/Y/JFQjKmbk
+AsChS1oOl70dwF1zvS7roRLA38uPO/4s2L99F8U/7P74v4erGp0U4BfA0MzW
+5rdC97/Tw9vOLQAEQPcaykqirt+/TQz2JihZ8D9uyZoN
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636680664*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAALr9ttO4t+j803G6mV0AHQIgu5u+E
+QgpA7eCT2XMVxr/GHJL5n+T6P312vVu7kRPAM5cybUS/7L9j8AbGDNoQwDXY
+24n63/W/g1LgvyHYAsB8GztF3tEEQIID9/bLuBvAuK2EaZafAUBHm24LcdYE
+QKahg78/vAbAmXRqNvQOF8B7T4f5kC8JwK073JzFUce/kYxtyEPI6j9d1FJO
+e+XfP8VzoZD6V/0/r5Fstqd/CcBS7OrIWcEJwKy1EFZX1ABAriah0r8x6b9h
+MtiS9PcEQLEHnAVyRsg/uL0H+dG18r/2aZ70d0z2v5nMjocDNfg/7lf3+4PJ
+AsC4pPQpoV0ewMw4azQtHBPAddcSDMdi1r+nuglhWDX5v8gPCktvdRbA+bwd
+Gcue9r8uB1kW8YwFQDI6ousc9+y/vi7zzBhQ8z9Ozam9
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466367001953`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAARViNqimq+j/cU9TXkaAHQH/29ucR
+fwxAekvztSfK2L/mHypopFv7P0j0qjCkfBHAim1rdzDZ6b/eqI74ZFsRwDgD
+ta+BG/W/ALyYVkkeBMCCZURqnhsIQNNQ1Q59NRzAVeyvnHgqAUAc1FqMLgAE
+QEMxkitAVQvAmXkuX3L+GcCNEmZgeuAIwOpwXMl0Hd2/7/vjgqQn5T9i+EfU
+RQXLP1c6DhXGnPA/P///XWFtCcBUg18HNgkKwAMjYsCmT/4/CECKAu9w2L8c
+B+6mQI0DQMSerNfaZaI/BIRRCcro/791Qk0HYnX6v3++CHqmu/c/xgtBNKfK
+/7/j3cRjyxMfwCUeR/HZmxPAMJBOGfdcsr/PmcnKk6P1vzFHyZS7yhTAoiR2
+B2le979rH3Fl3/wEQCFi/BflPvm/+LPBv6Qe7z/UiJ8f
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.53784663671875*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAy7FqmZrz/D8lMMxy5oEHQDv11DX2
+jQ1AOXGyhNXw4b+OvVLHc0f8P39sQaxMhQ7A+8axI9vh4r/GcG/31MERwGO8
+F7uumvK/4EED8T4CBsAXsLb/TaAMQOLRtH3Rxx7ARFz9MY42AEDiEnAESkwD
+QEBcchvBog7AcMocqkz5G8BlgXLaMm8IwPtisi6K+dK/YXue5rmd2T+r/70o
+1JLVv8b6Tt4yEek/UBzo1daYB8A4C+aIzlkKwJAghu9/iv0/XtKJU+nm2799
+slUTqjoFQCVrmX+WrKA/MHcMpcU2A8DxLx6wBR0AwIme2mIhjPo/Hx4sNAGy
+9b+h6J+mRZIgwE97ya4WnBPAWvistj1Kw78u+6WB3BDwv3RyVKTFHRTAcBNN
+9QSK+L9YYWt+scECQOvt+t6IWQDA474xO3yb6j/M8qe2
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466367382812`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAACgVf8Q/H/j9ntw8qUlwHQMeeKRfT
+nwlAUAco1PVz57/IpKIlsdT4P+pc0fcDjgnA/+hRYS3t07/F5zLGKvQQwIHT
+fHyuw+S/3EQySnEfCMBJPwLtCZMQQMtcCtoTRiDAbxqCGpxl/j+VRdhALFIB
+QIO5Mbzpnw/A2ZbqQG/KHcAZeahpEhEIwFduyf5WRsa/e0fj0FBOzT8UN3iP
+ICDiv7JBwPmpSeM/in3kBBSoBMBpGZ5piMAKwPc5kND87Pk//AHZhHxr4b8A
+G5mYWe0HQNb6gel9pro/nYnH4b1ABsA5uYllgBoAwDnjW/k1KP8/FZqY1FmU
+3r8KCa75ga8hwArXLIcQPBPAANoHmT6uvD/Mq1RAWLbmv/bN5poKVRTA63wF
+tUv4/L/CSOIUsRj9P5G2s3LdlAXAdY3HlivX6T/BO6Kh
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466367578125`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAWl8nPF6HAUA81KvdNuoDQNx+pHEx
+HAVA5e7xkR4F8L8oD0youyb1Px6hGDDx/gbAqjWiUcPczr+q6cwRE4QPwJDP
+LVsxeuG/U0ck35zSC8C+PWEoBDQSQFtiq5OzGiDAcw8GrELY/z/2nXwDMKn9
+P2JGMf6F+g7A52czGsQ7HsDwBYw7qWIFwFLwWfOJcLi/Au9wTYvFsD+XtWWN
+e6rpv158VYmoeuM/nn6LT2lJBcAXAmco7lcJwFS9sNvfpvQ/ouNaNT2E27+O
+MkZvYaMKQD8YYLdcIOU/bkPzMFLMCcAqGB47DrsAwODRdnt4dABAqOMNT2fe
+sj/Hc5bvPzUiwDOtw1t7jRPAphhLwjj42j96CYC2RnbYv4vGQ0ywOxbA7GOR
+wiFw/b/Ah6cSkeLzP+gHUfcGxgnAVsOfS0tU2j/e+ZrN
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636776367*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA430p45iMAUAmMK5NLof+P3TMzZEi
+dABAuv4MbFGA9r+vkP3G68rwP93hIzokFALAbL1BKJ704b9jdB/xP04NwG1B
+WlJJB+q/l57beCaBDMB7z62x+l8TQFVMOS4iZh/AoT2Z5ssAAUD62bsZ3Pr7
+P7KTuBUTfAzAtCd360OlHcC2a4MCUlEBwIOuCyx2qsa//Qf5YaIU0r/cvUbQ
+M1/wv2oZIDqRit4/B+wm1wR0BsBmEmJTv9YIwK82GkYW3/A/5FYaPBaNzr+4
+L1+h4kIMQADROcNXke8/hzjsV5TTC8DII1qnnV0BwGLpcfLHzAJAA4y70lfW
+3T8asXBvx+giwMMLh869rxTAPnucBJNI6D8nip7+47rSv7JcmuFvARjAahKq
+/Frf9b+fo7NCb6LvP1fj+k6iQxDAzElQ6nFv2D99tKGG
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466367958984`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAABZxdTsYh/j+LfJfCZ3j1Pzj3SvN5
+uP4/ZhVz+NpU+794ViHoTmPyP97ZpVgRt/2/QNy5R+r98L+HDW+s0yIPwN8J
+3tEpFvW/2YhMRdUJDcCy1XuzUKUTQMDpjYe28x3Acz0X1x2jAUD/FKgmR1T3
+PySKdfKaFArAp/MsWbRcHcAYgqJYT/D7v5O+g4J0SNi/mqxD8lw26L9Iv2+P
+W5T2v8+FM+e0ndI/8hCB+aXVBMDgrap+OSEKwLzshNQmJO8/hyNwrkEn0L8U
+cyhiJAkLQOq/D3mU9/c/2FeWRx+ZC8ARhHsAn1n7v07c6qJ9cQZAB1oL/tZD
+5z/70sboL9wjwNssjh9psxXA5qKni7gn7D/LjRCp5DXVvwi+Qldp5RfAF+DZ
+zpIG679DSdR8foTnP002dlUDOhLAwO4xcpNl2T9Gsaf2
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636814453*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAACEo8MEcO+z+6M3TChlfsPx5tndeQ
+IP0/7qUQ9+0RAcDAqDYWlED4PyJBMrZoNPu/uBl11HWX/b//rXF7/1EPwHHG
+PDqIhPu/iISwXXsqDsA6WeELdXoUQIzDKoL0MRzA059OgkOGAECmnZwH6iv1
+PyH7AQ/DcQnAfaeJTTlYHMBhB0I6+OXzv0S0nuJYO+a/SUpMmAwb8L9p0B8q
+M6n3vwHiAmWMA5o/1fz7pAmBAcAmiJXIDmUJwAcp3exqJfA/PN80YcOy5L+3
+ZvnXy0sJQEaVKvC3cf4/bOqqd1p9C8CrjLpi/W70v22rkTZHvAdAx2YcaNVH
+7j8jZuvYWnAkwCb0pUh0NBbAvoyfBCH+6T8cRal3S9TYv8xkAi/a0BXAp4rr
+Dac22b8JuVssq3HeP9Rosi6z1hHAt6akFW3v4D+jrqA5
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636833008*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAG9UAIi4T+D8cTgK3oVndP/q8xA/0
+Xv8/rY+E0POdBcDEV030LYT8P+tO6VC4J/a/UA6Xhqb4BcBIXCsiCwkPwIDO
+aaiO7wDANeU5tkynC8D4W9CbNd0UQIvEdbayUBzAXvb2oFpY/z/V+2nQkdTq
+P5B4k0yccwjA+snBlo3WG8CIEOUMpdzsv6uYSGQxk+6/PJbhzFcI8r9YpH0r
+XAD0v/TtpmoZ5LW/bBAGHFHkAcCabqmV2m4IwD1s2X3hdfE/9oQcuKxP779i
+Ug+fr60IQAOdfoqVfwFAwZEl4207CcB8QekEsgDwv0OGOecuVQhAxdTsQb1u
+7z+g1KkaQdIkwIAlanib5hbApQEpJxgI0j9ohjNPaQDIv1v4MLg5RxTAzYfT
+jsAz1b+3YybLmELNP6OJkwHRKBDAWgsqgZB74D9qf6LG
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466368515625`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAvqJhMPSe7D/G3xlD1ay5v+lfxwOy
+X/s/wIiYLqPrB8CIaTPFUez9P9A0IiY5y/m/a29VtMm+CMBZaQc/9hYQwLf5
+OfanZwDAvBrWoXqaCsBWkkyXgSkVQPLaPUb/Zx3AQNJiMrIxAkDNoyn5+6SH
+v4JgA674YQbApQO3nZmeHMCe4UsATDHtv6g1L55T+PK//n53UpRB878PIecH
+wpD2v2GIIY4Lrru/FLFyOvXMAcB29PTm04AIwPf2+PF3CPY/HIHRkubY87/F
+mdc6sIAHQLIijkvHvwRApcQNuGxWBMCzeGN08anqv3xtraBGEgtAP8vIT+Qc
+8j9ND+hy6GUlwPxS9lpXkhbAmH4S94X21b/mF7YToUzBv9i9VoXhGxPA4uj5
+i5RW2L9j6WF9N/bRP38nUGs5dw3AdmT+vFLq0j++kqzd
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466368710938`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA62QM6Vou0z8W9XYdFFjXv3wxJIHl
+L/Y/n7tEhekaC8Dy7BIqjG/9P1UllBH9PPq/EbrEqeIfCcAImz6nCNcOwEfx
+w/LJvPi/xWTvd1NKC8AGj+D4BNoVQNSBiaLxaB7AZ2RLwg62BkCGmpjxXPzp
+v32pFd5KLAbAokWKsaLCHMAog025hDTuv3bP27vOV/O/+O7QK/pA9b/JUobA
+wsn4v06enUz8a66/JciOjt/pAcACp9XLRjgLwE9Wmk6Am/c/D8L4hdYo/L+Y
+kGYm/ZUIQNvsikz+hwhAvOAuKeVC/L9Y07jQ3HPrv4HBMPQjEwpAgHZHQKNN
+8D/JwzqBlyslwMrM+yjDwBfAi1fYcB4H6r9R0Wr/liTGv53JHlK5SBPAdABM
+huOVxL+XBc/ZS+LgPxhnSjkQlwrApj3kzehPUL/bhKyQ
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466368896484`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAodYn4d2DnD8naYo3Hi/XvzBH8F9Z
+2u0/bWa1F7UMDsBK9AitZVj7P2fa56rPT/y/IIsUsCq9B8BwUN1jLZ8LwClp
+07o7jPC/rNWj6P5JCsAPuwUCockXQE73bkvaWCDAxTx4ccoUCEAX0bwtxhzw
+v2d+dqKVUAfAzJER2vgSHsD8RPZ0zlXrv9zSksBDlfi/YnJTjv8T9L8TBnJY
+62n4v6OFfFmX0c0/oHUO0kvJBMBiaWCATvUNwN+5QL3vNv0/Rh+57urHA8Am
+hzRbnLYHQCC9I6KTDQZA7K1lcEvM77/ZSrsMFvTsv9mrBmnOsQtARf2BKp4Q
+7T9v5RgCstskwLX8LK5S+hfAJqeJuuaH9L8FOu2S6PG+vz9EQ0RhHRPAtT9U
+GpzjhD/nVY9UXdXhP5hMg8w4FgrALr0HeE2pwj+2LqRo
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636908203*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAgPSDOxokW7+0U5jPh2XjvwX1bnLd
+6uM/X7UOxWJuEMBJqcKVPqb3P5dh9mL3h/2/CHxI0/cIBsAUD6wCZCIMwMaL
+1iHGkcC/+MsIAv9kCsDecgczSjgYQCebnaqo+SDAO+3GpyCoBUDXGz3wmLPt
+v06O8Uz8mwfA2mOTCtO0HsBHyKYAg4Llv5Odhjebgfu/24wMUxja8b89UDQg
+Hl35v188qZuKjdk/4ADOQmsWB8AG+CU7Z7UQwJe2tVHiLPw/Jp2I7GbpBsB6
+lsl38DYFQOSCpHq0nwJAhdIJ9rU46r+a/HN6WILxvzbR+mGpewxAqXpvCqTN
+8T8h9yKqAsAkwBzsice8RhnAXhRkLlp5AMC8FqxBG3qzv+6tFX4ZIhPA+WZT
+X+Tp3D/snAV/t5vaP7V50Ib5VwnAHzzNNKSh2T/SQqSH
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846636926758*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAitg/BhE0sj9+xIz/qTbuvz1ztLKG
+EOo/ugLFubooEcAZpEIyppv0PzGYAkteZf2/arth8nLEBcBjzvfE85UNwJY1
+vSYdkeA/16d6mKjdCcAKmNA8trEXQKkpWOWxBiHAqKDbRmY7BUDnv4y6BcTz
+v7ZUo62dwQfA5/E4WlaJHsDf3pjnS8rkvxi3ApbASPy/6+dr1uCP6L/qJFlq
+sZ72v1tTQ4efLOc/O7V80q/dCcAfy5g8v/UQwC0SvZ08ufg/E1DoHKDIB8Cg
+uQiEe0wFQPVRh7izVAFAxv2J7bAA4L9JdSKl23X3v7E7bi6fTg1AF0ZcgaQr
+8T/kC3IwO4wkwNp0rr92LxvAG9Gd1bYvBsDjNf0u1zyXP5EhgfnJrRPAe+lf
+WsOO3T9iA0I5xHDKPyMP6qxPFAfAjO5gRjLDyD/X8qXH
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466369453125`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAr1H5WtK4wT/UZ+pFMPD0v3nI/ztC
+9fQ/6g2q4j/YEcAsqaB5YMTtPyX+o/NNN/y/VEiX8y9UBcDFb4EURPgPwJg9
+mP02Auk/o2KgoTFIB8DZ/kIAU+QYQEIlJk/2cCHA5QP6QaiwA0B7fv3AW5X7
+vwBPN/hregjAl+bl8i0oHsDJuHJqskDkvz6zGZbK4f6/PdCNLAGixb+hNAhD
+gi34vwn5K3mEhfU/4AGQv1C1C8BRTHrZjGMQwIUjsoEu9/M/B57Mj5HlCMCJ
+aBSTp8EEQIcuYGt9hwFACuyMsp+Avz9L+dm7Uqb9v2FVn6J+Yw1ADxYdVow1
+7z8jzZ3V1r4jwI+FXjQv3BvAcxl16i2RCsAzQ/8B4h3UPwqMJ86OBhTAEKtR
+4Y3T1D9cNpj+opmVP75Uqz2mBQXA697k/rPvyj8fKKQ6
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466369648438`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA3TAR6lqDuj8SSshj8kfzvxQmYNCP
+E/Y/O/f8cMZYEsAwn2pxKcXgPyp3GQa8Tv+/tBDFMlWoBsA1WD/zvDARwGdt
+14xYCOs/b8XumK72A8CWrqZhc4YbQLqav2HmCCLAzFj2iljgAUA4ljHz3RkC
+wD66refIQgvAAWnshYxbHsBs0wLw/7Dcv2y6GTjjJ/2/Ej8OExSN1z/W1XeA
+BQH+v19XOG6f9/s/gZxy/GC+CsBkvsJIGt8NwPrceQXoF+k/rub4h77PCcCG
+00Xh//UEQAGbrWmG0wFAiH+NF2sy8T8zgdmafAj+vynE4KQksA5AQploJA7N
+6T/pOvw1NFwjwIg9WnT/qxvAe0WNOJdQD8D42VfkgHfePzZB9COqbBPAs2xx
+wGpYuL+LQUPDj9bgv1yw9TUsJwbAjXPaNxLo0D+h9KK7
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466369853516`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA+efYYPZIwz9w0a/om/Dxv+2V1Mwc
+xvg/FxH0J1jlEsAcPVOoXInkP3DWWtBLLwDA3LhfE2W6B8Dfg8+Yo9sSwI0O
+i+csYe8/aAb5PmVBAcBzX3NvkHQcQDdF61A53iHAVzueXFaqAkCaBu115a0D
+wBLw3HWuGwzAvT02KdnBH8Cmv5ah2Xncv4/X+hckuv6/h6sGiNGp6j/ojrQ9
+0k8BwBQ4o+guFv8/pVkyHiPkB8CyrxE2P1ILwI6816nR0Nw/hi7TyoxACcDV
+H+3Q0IIEQMw8wu1CUQFAc31y/VS7+z96qZTxADf9v2e6DFmMwhBAgAi82lnp
+6T9irtbR85ojwDdKjLp8MxvAuvGH+1v6EcAryNkeJT/iP1juN7AWnBLAwhic
+yhSm4L92MYSi4N3rv78yP9HGGwfAL1wBd780uT+EuqZ3
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466370058594`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAn1VAPmAQ0j9T6keaD/f2vzvabztc
+3Pg/URG2+NJsEsBMPwq0KAziPyEoLEPwqvy/J5ysyW7ACMDwX/1nsNUTwErJ
+LinzEfQ/aQCL0HeZ/b++4D4HUSIcQELTIEgnjiHA7KGNtvWPBEC833Vr95YF
+wB8NsjpmFQ3AXEsh89mTIMAiznocXzLmv7x9PC9PSAHAx+9KlIlN7D+a0U1l
+bNQEwDpiUmCFxwBAqvVCd+vQBMAlGPv6vBsKwLJA9KIMWtw/fpoN0+IjCMD6
+7G+y+dEGQHqlQT1HcQNA2pXuS3hBA0Dlf/o/rGL7v7XmScj+xRFAow+5HmaT
+8D8fHw/uY/AjwDFiOosrUBvAMHxFE7RZEcBzs7H1HIbwP9yT7aNavhHASQ1n
+NZew579QexEo6mPzv7zLmze+RwjAsY5vY+KFkL+jP57A
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466370253906`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAjWqBKh3B3j/EyqDA/0j6v/Y9WIo1
+UPY/rTQ9uxllEcCjsHUHq9LjP4CDTK6f1vy/Ht3aiPCmCsDLi5K3ntATwG46
+f+Y1Mfk/zROWCZ9H+L9/dyw0pIoaQFr0jew+qSHASm9Iyz6ABkCgOHqRX1AF
+wH9IRBEusg3A9O7pTgfdIMAGmkXBLTf0v9hZMfyY0wPAxkLtiBjn6D9NIF6U
+KWUJwJdZoIvwyQBAwo6lvzbhAsDaWevJ++kJwFpgDd3EuNI/5UoZkYPeBsB6
+n/Xcd3kHQIVsGmy6wANAR72IZdi6B0CNKW2pL/j2v4LOJE1oIRJAAy9thVN8
++T+t9Wd/aIUjwGZhFdrD+RrA9u9tEq10D8B5S5pNmUf0PxoX7cK5uxHARCmc
+ZBH26b9wnogg35fxv0XUnJl3tgXAHyW8DPxyzb+eRaQs
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637044922*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAn5K/i3e75j/m+Gey/in4v58d0ror
+V/Q/qNfFLXxxEMBWkf3iWvDsP7YBndPZivy/xdb1YyG6C8AJSRhULU0UwARW
+crcJP/8/Ojua5KY+9r/k+9DXzxcZQGNXm2fQqiHAVn6aKNEdBkApBxSoW3oF
+wAK9oTZ+cg/Akv7gKwETIcDcc4MJFL77v0PJ1Ca6/ATAKG1iTyYA6j9m5cJ/
+5i4MwDTEp3Xn+QBAYHEetf3R/7/ZRlAZPcsLwFhf8kyoxcG/RZDtI8koBcCL
+QothRAcFQH+MuMRWdwVAyBRTgp84DUB8al+yLzvxvxr8E1JTfRFAw7bMCv3/
+AUA9gPeppeoiwD/j4JEtshrApfYmbcXYDMA8sjvQKjjwP4j0YrLAzhDALyvL
+KnL+8b8qHH9avnfiv/LYXYUA6/+/f9AsRO+Cwb85aaQF
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466370634766`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAy8Ndx/6Y7T9C53bpNFH3vwlD0WEO
+vuc/TG4uPLidEMBoOkyWOUfqP0Sgc1225Py/RshdffpLC8CtUoAgEPMUwF6E
+k7FdaQFAMizxamzG9L9e7Ig3e54YQJlRpZjrgSLAQzh7tnHoA0Auii8q9H0F
+wL1br5oz6RDADgZ9cFp3IcCA76TU5jP+v/I64qiJEgLA1ZY+XAxh4z+Yb623
+ksAMwBHikqh2LP4/9RpA6Py89r+1/nmCixsMwAX9XAJYbNC/QWEWnksfAsBG
+kVHyG+4AQMINrRJMYAhAM2IxtqHIDUCFleoWKbvmv+eRX+8RdBBAhxJwEj2N
+BEBxviueG6ciwKHUjynQ9xnAKEdB7lwADsC2nsDDzNjuP0uS9m6XuhDACC6m
+B9PF9L9iN3PcfFy/PxQC5ZIXsvi/85iNVjtc1b877J7c
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466370820312`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA0Cm+4Fi78D8H4/pbcR3xv44afJsW
+t78/xQaidQAuDMB2uyDVesneP5/PBESVjgDA6M4nWj7xCcAUdFEvfuIVwDum
+7ToKTQBAbp7Kh43S8b+oR4S0I7wXQFCtwCA9ASTABXmU6ypZAkCuaCcWgIgH
+wKHzF9mRXRLA/uyR00byIcD2n5mmbdv+v9BcYLoSrf2/bqK7w1M54D/IC8J/
+JVgMwDdYiJPOk/Y/STzhZG8F9L9dNK1mBm0MwMoOPvfoFOS/tJ+iEO0jAsDG
+DrtK9av6P234yd1b8w1ApldopBn3DUDezzRN3e7iv+WRGJ35vg9AxGpUK3Wq
+BEAQabNATvwhwLbMhj3dTBjAS0PUH3CVDcB+woLo7YrzP0KrJtTFVhDAoVqQ
+I3U8979/QsQuAHTkP3nJSM0uMu6/KMUGnXEb078giKIl
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637100586*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAyxrQmUf98T+e+yzpaKrsv2gO/gmg
+Z8u/p9OmeeYPBsDhVq7D0+HGv6rdJ+usfgPA0FFBHg/NB8D+wMe9C44WwILw
+QcNAh/w/qIpnry698r+fV9rvbbAXQEWDcmeVeiXAb/pkXiRD/j8xlK/szS0M
+wNudgKsv7RPA8jV/cN+WIsAa2tnSRC7+v7A3bLw2z/u/v1f6JSUT4D88+x6a
+w+wLwKLmztCidO4/L6/NJLFN7r9WS8fyhqIJwHvP8t03WeW/OEb/eN52A8Cc
+0hKxgW75P6c+ze5uXBFAT/gvZ2mDDkDX4jBp+2vGv7MugijUyg9AkRcM7Ijw
+BEAezU21yichwF5KI3Q3QhfAD3pqebEMDcDw84FX0QD7P+jOI7WOAQ/AxRks
+RNUj97+RpXiAyrrtP8Hv1q3jYd2/UUVkZR7X1L+cRa3B
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466371191406`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAGXBRGdXI9z+86Ba6U+/gv2l+X8ZD
+WL6/kDsCV/6WA8A32koE11vov2U7XTn1nQTA0N0cu3kpCMCzymhcXj0WwMc6
+y/BNDPI/c5mM6gMY8b812J97MAQXQJJofOGAOyfAbYjLLXK4+j8pszcL6GQQ
+wEYHgSGiyhXAuJQHm+API8DYUq9PIM7+v6ur8YXYL/S/UK3DqWMb5z9KlbbB
+0j8LwJ/XMhh2zOI/D6C7pkT8z7/+OCuKIiIIwGlWo745Q+G/mnO0RwqeB8B1
+soFI3WL7P1f6Hut2exNAoeaM2zQQEEADsI+vWh/eP5xvUGWDng9A6BkAK+rk
+A0A2QaMOVbsgwCTsZ9dFZhfAnjj1LFRiC8BRxorJgUr8P5v5icT+gw7AWSNd
+1qOQ+L8FxZJvk+bvP+osT5GLr9G/nJxzLxGP2b/cFKE1
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466371396484`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAUAK7HiFqAEB6f3Mv9Hvhv81qgbOG
+1NA/MPkekzbvAcDo1ZZNGwjzv8PdGSIhZQTALPmd1IJQCMDK2Sz1b4IVwE3t
+2rWCSNc/5cCstYpg3r/SN0hDcAsWQObAXrvr1SjAk0UuHkEC+z/Y4o8EmbES
+wLUtTgQn3BbAOl3qkBwdI8Cemq410a4AwPoDJgS2zuG/w9D6FiTi8D8bfTOv
+VTQLwNH9z7Ndc78/5Yg8oM830j8u1YCovtMIwP3wcuvdSuS/ibUECePRC8Co
+9MNF8d37P+l9+6NIkxRA11xDVkZyEEByRuj6mrXuPyhKu1QNMg9At/+3ETpU
+AEBDUEoh6BQhwO61t9JDQhfAQqtGnT1iB8Bad9IOGNP5Pz+7qIZ1vxHAU9Dy
+bBme/L8AInycz3TwP8XrJsM1YNA/cCTy49Q83r/M8aRr
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466371591797`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA5+ZSEu7MAUCw00XuEp/QvwaQvzW5
+8d4/73CiN0auAMA5P1Emq9b2v1BK6O3dhQPArAL3AIMrBMAkWSurjgkVwIC2
+JoJkcMq/RO8Zvz1O3j+zwv/7ANsVQCowJRTcpynAHlfaI0DR+z9crCNSBbUT
+wImD1HLkUxnA1+9QHo+9IsCGnmtpBxkCwBYxnP7BUsy/WMn+tVtU8z+svXJT
+7dkKwFYm43Jaf7m/whPB+ww84D85k7VLypEKwFEt3/KdN+m/P8J6yvKQEMBS
+AyS9Nrn4P1bHdwoT2xVABcxa4xMMEEB2VaV9yEzzP62womHAOxBA6uxe2g0o
+9z/1SwblJw4hwCIgq7xwDxjAdmPDHjJCA8C8BCoJRh75P5ZGOFn7bBLAD4As
+AhhX/b/hMvy4ObTxPz21CcaogeM/UW35oIJV0r/x65wP
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466371796875`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAqwHy+b4qAkCAGW1KTEPSv/m2KhwP
+buc/Pd+uwEYp/L+Yb6OinP/3v1bdm9kCCAfAqi4Pv436/b/kGb19FkwWwNsQ
+WqVLYPS/NS0f7tZj8D8Ym4ARIsQWQMPp0ImyUCnAZtjq8B0WAkCNI8tkJt8T
+wBfjjRyObxvAJitTmLLMIsCxH1A6JGgAwDLQXGzolMY/KokhJDjj+D8kov5O
+17oLwLmcYCbkn8C/2PXJ3i0Y7j/uMTzrDr0JwD61Rc+sS/C/Wb8Iqe24E8C0
+j65mtFLyP8ZO3Ga5VxZAKM2SOq6uD0B6W81BTpbzP60aE7SQqhBAqTJnpXTy
+5z+Pk3iUXcMgwE0Lgy7cDxnAoMQIuMynAMBbanPGTZn7Pwvwiq8lFRLAZUXH
+BE0Z/79WfCawk8juPzxbbhoJOug/0r+llut7jb+kpp+E
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637198242*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAH9ViHUJIA0BrS4Lruhngv5nYhQ9c
+be8/TkLL1S4q97/Sgrhbzsz1v7cR7Y8qmgjANzR7Bb7x8b9RbWVf5gMYwLC7
+gA5zngLAhZOwI9Uf9z/GRtPEHncWQPhpEe9gvSjAjO3YQWn9BUDQdM1QFVEU
+wCh3YU+dyx3A/bLms2DWIsA58VhpWZX1vyzQ+RnVgN0/2NMBalYL/T8Fpj+I
+b+cKwLSFY9yYsqA/tVLkqp9s9D8k1Gg71ToLwMceqzDvg/K/U+0Bd3/mFsBr
+xXnRyiTtPxeC22QvdRVANzL+eYr8DkB5u8PXa7/wP33CyyPXcBBABPKRLgDD
+0j82tBTFqSUgwBwrotzYFBjAfN9o3x5v/L/inADJri4CQFlS+5D28xHA9bmT
+di6p/b96l8ioRonwPzeOvFScnuE/Vi40jz7hrr9dI6Yl
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637258789*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAABkm2iccxBUA9GuC4uFvtv1KSDFjL
+tvI/ikyTUWHE8L8LdMusXH3yv58Yd2YhTwjAlPsKWvUQ5b9BjJ6DWXAYwGp1
+iIrBUQfATCwUvhr9/z+XQKyYNVsWQPkKh+O7kyjASwKPzRuYCEDf60r/+XoT
+wNYGOdtYfB/AtElPZyGRIsBFDhsP97HqvxVgdjRf1tE/MXMhJ1Jr/j8LE5v/
+vMQKwDx8aAZ5XNQ/gym56YVq+T/n4y1tFhkNwHUI9Qgzm+y/roYvB5bsF8Aa
+Auhu/wzrP/fJxjJrFRVAQ1g8D2LfDEB0f7Wu+oTmP4qkgvBiJg9AyXRDcilJ
+t79hPWCxGXgfwHBHEzda7BbAhwTAaLuU+r9nJxzmpQ0FQAEWa+9b7hDAjR1o
+ZDi8/r9Jw8z+sjXtP/Iz9T7lkeE/szQ60KWQwr+s8pl/
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637298828*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA9JHrAFgAB0Bhtch3lRv3v9iTF3nI
+RfI/DdXTgOu74r9Pk4pyV+P0v9M7wkj+IgjAKb92CoICuL9eIoEn544WwIYL
+QfxtbQrAqDKtxReYAEAWublkT4IWQFv19E1f5SjAAKqwNpP/CkCEaRclAp4S
+wLHx2/xNyh/Azp0hrBPkIsBMjB0BxTjtv4CuoL3zxKC/UPq71lgvAEDOZxgP
+fgkKwIWpGvTVruM/pqQuz6HVAEAwXC1r4sIPwH65LzRlnuy/9aZMes8RFsDj
+fypX+HTqP69meGMR1xRAa5CR8ItzDUCOiIuXGbLiPy31HptiMQxAkePd8iR7
+0b9T3a1q2q8ewHyG5vIXVhbAjI47rKla979/R3ESoAMGQMuiTL7KqBDAxPKG
+65jHAcCnc1NjjLPkP4duWFcd9dw/cm1SRQ+h0r98S6J1
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637317383*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA2joKxRXXCEADh4giQCMAwF3opeuF
+UfU/q1Q54T0b3r/p8BgmpCj0vy5dbKsHFAfAN7bY3Xdlzz8RQ51VxPITwFx1
+pJVoSgvA+IeQvWOoAEA2CIFSsakVQNVxJNX3LinANMVD1RxwDECT7PmRAW4S
+wHiYUkdu0h7AqXoGZYc1I8AoWwwoEQnwvx+MpDPpydq/gm8Cx9jOA0AIHCul
+QyUIwEcTJNy2POc/nm27kK5qA0DC0pgJ4p0QwAN0lv7MH/K/I80yMopqFcDX
+KX2NJLjxPziHqDXcpBRAYp48esMlEEAv6Q/4wAHsP0LAo43czwlALeLenDyA
+3r8wyUqinYYdwMOjrhP9JRbAvlerLydy778mSf4l07AHQMTpXmgIfhDA9egr
+i5G3BMAvB3L+YzjWP+hjk+q5atw/DwRo7Iym0L+b3Jjs
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637336914*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAdawz2lbICkB8T1Oh7M4EwCjmfCH5
+4/c/Ohm/5CHE2L8eUkN710Drvw6dryjz3AfAF0lDGi0m2z81l0cTLk8SwFcU
+F6s+bw3AYGFZ+zHt/T/CLv8ZPh8VQHqGDLR0QynARfcv9fWsDEDPUvqtWcAS
+wEepPGSjbB7A2ZegQzfOI8B1OHC+hE/yv8qXgTrtouS/sOextqE1B0D3nXHZ
+2cAGwHR9O4/bQu0/N0s1Ys+MBEBvmu7JjuoRwJVBzv2xJf2/f0RFWRKbFcCn
+9w/Fz430P35avD2t9BNAh5pzEPyTEUDw7+AXGLrwP5aMH4jx2QhA+fKORKe8
+7b+ATmHH2I4bwIf2B+anLRbAxAHAGsCVyL+6J66q9H4KQDA9t5gJZxHAtQtG
+d/R6CMCjBpPE6aXCv6F0nmP5Heo/rUXFXnNo1L9JuKRM
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466373564453`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAUZVTs0tRD0DDbS9aoskIwNxExU6g
+dvo/fV+Q84nl0r8BADJt3P7nvw2MGTmn3QnATvVj8hE02T/YofyPk78RwCif
+4eRvuQzAx7SJDepl+z8sryFbRkAVQM+DfLdb3yjATg1TahF1DkCw5doFUpQU
+wHJUltTaJh3AOvpQAq86JMBjhQkyN5L2v/w5pyKZjuq/JHpdgAfcBUBBsafm
+AUgEwLQTH6TklPM/RMIV/qqxA0Dlba54+OISwLWPYGV6JQXAk4mCFMfFFMDE
+C6gQvQf2P4SBXtzSBhNAeZIsemPbEkAtZJVtFLvzPw3Y7rUZwwhA6Eg/b3u4
+9b8o5BgK8fwZwPj93w6VUBbAF4xISfs10D9r4wadmAEQQDGNmBaj/hLAYICz
+96iGC8DGBq5fMTrkv6jpv1oMv/Q/wJ4DoPXB3L8Pu57D
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466373789062`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA8OSEJ0qFEUC06sEehV4LwNMaPDId
+kP8/oV+hhvVC1L+WvUGiw0Xnvw9qsLOONAvAZDSMCqtO6j9oME5Q2WMSwGjV
+Ea7b2gnAQOTnbbK49z8kNJ1Dv4wVQFtZWj00SSjAB7aDKpzoDkArV/8i+F4V
+wDv1f1GxRhvAr7avznpFJMBKAKD2C5T/v+4SR1NHde+/WdKB4CZlBUC0CBxr
+CC4DwFG6RyHFjPU/JyOaLemtAED6jkAAFScTwI1W66OlVwrAOkg7gCxyE8Bx
+f10mJQ/4P/E+Xli4uhJAg80UBf58E0D1bvZXuG35P+uOL5EjYwlABa0IWZa4
++7+IzrL22dAZwMVyiziPMhbAQjUBCktU5T/7T+CMT5YRQLkXJCAkxhPA32Ll
+eatTC8CCCEqWyer1v989n2/dFP8/nuCHH88A0b8DmZeo
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637397461*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAJb2PAd0/EkCf9W0C0DkMwGCDzLIX
+ywJAVjvJYGcT4b9TIH4v8pXtv4cKI3+U3ArAMX239Vmc8T9sqlQ6Di8TwKRF
+CFDrdATAfxBGrQES9j8xu9vMYhkUQJH7Avr29ibA/dIWl1joD0BuXgblbVsU
+wLFs/J4qnRvA5bLLemilJMCu5JRa048CwM95cdhpnO2/ciiagQnUBkBxpu/y
+XZQBwIN82Qupy/c/U/fKtp5QAEDigVQl85YSwGfN9kVqwQ7AM6qpsT7kEcA6
+OPJ77n77P9W6Hz5N+RFAS2GhoZwVE0DEJp/VRZD5PxFqiJs4MgpAF61HBRiN
+/b/qPnH5a/8awHPSPaRDXRXA1jN+S+RB7z+CYFqHjyMRQFXWnfPLLhPARzhm
+E2MdC8Bbj3JdtpAAwFz43Z3W0QJA4t9YWWXRr78wr53E
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637416992*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAOKhCeEaLEUA2EJElh2EKwBBS1VHf
+/gJAaOQJ3wIN67+zSWaTt7nxv2qIFblsIgjAvqwEaISF6T8hbzmjPRoUwODj
+qlDxSv+/4raVbVqb8z+MIlGnjtETQDIxhJHd0CXAuD56XXTbEECcv3BUR4QT
+wJu+FkWJJhvAddqJKyZQJcADD/b15XUEwP+e+P7iGeW/jechsxwvB0BhwE9Z
+xa8AwFU24TR8eP8/3H440/7hAUB5HoGCm7MQwHoYcfQzehHAlgtP34I6EsBz
+EMUnYsj7P+WCnQ5/QRNAxg/9rgROEkDiIdFH1Kz3P5DwF7dHIAlAC3jjJ7x+
+/r/TsoKPGKEbwJvN70gGjhTAh8/CkEKi9T91cQ9gMzgPQJcPdy8K7hHAdCKS
+mQHqDMCQrR44gKIFwFz8WaChyQdAzboETHYVvz8hnpgE
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466374365234`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAMKIm/qILEUCqQw70d0QKwI6hHf2D
+HwNAWR6LCajZ6b8doMxvwfDzv7xazIIeoQnAzP/amvYI1j8F38uY9LgUwIcb
+lJyBOvW/B4BQlriy5z/FJmGEL34TQKr2LwgmGCXAoycSEWGFEUCQOJoIvjMU
+wKFRuzbzDBvARZs7P7rGJcBK7vB6xK8GwNDO7Wnkf8y/evBzJkhkBkBXTtYk
+gqYCwEbDuO8ysgVAz3JLUfuhBUCFCtC+XjsPwBGBjMVcNBLA91YlN7YnE8AJ
+mjge4Cj6PwIsaqqI9hRAvOBelgrnEECLZZVofCD6P1hTjfmhKQZAtU2lwO5P
+/L+XkNOfOyoawOeesRpynRTApZn6J034+j/zSEhabwMNQLmGZfYtzhHAfk0f
+sb+kDMC4xXw4OoUKwIFFlQ9Seg1AGBUYhfQ+0T8I+pg2
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637455078*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAM96wyXOAEUC9/BgIn0sKwIqhPSDe
+kAJAIEUAMOES8b/SMortTdTzv2R0BIe6QgnANXOzKuN4vD/yYABW6NcUwMxM
+Nqbi8uu/MKhXZukL6z/dHVSEGdQTQKKjjoidTyXAdGZJxQDoEUD64aZbnB4W
+wCmc4OmstBrAsHjtcFKEJcCAUb9aoSUJwGrLm0VlKZm/RDNzOos6BUAthE9w
+7RsEwCnY2qa2/wlApKsRKTYBB0C7U+SZQlsPwJ26BEyafxPAtfVvRI6LE8BE
+LvBkVEn4P8yIkujA8xZA4aigEW8oEEDwSC2TKnf7P+srAvJhpAJAfpCtqof/
+/L9PaTUf3aAYwBnRJRjC6hPAxLGhqbmMAEDOHOu9KzEKQCCmS1KnSBLAhgKs
+4lJ0C8A/Nhf4WVINwBXstZlbLRFA84eZPyIr0z/z75fH
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637473633*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAQEMFMyKHEkCwJaNCYyYHwKWYzvAF
+3QFAi1N5iUU99r8Ho8nrx8/1v1vdus63UgjAwSk8XJCcsj9AV1ld9kkUwFnj
+vFkBMN6/NytQ2H2J8D+B9bITl7kTQAISOF2G0SXA9UFPMuFBEkCT/w117CUZ
+wEwQLT5RmRvA1w8eldpEJcA6bVtiANUMwMSJaodV0tM/zf1QcwysAkB5/dfw
+aDwGwGpF3J0oNQxAHKCLSEvGB0Bv1xqCXm0PwBflQ6N6XBXA7X1DPY0RFcD9
+6oqn8ZXzPxVbX1dPOhhAwzuEnKwFEEAHnCD1osj5P9A5H8zXuwJAvKdPcPH2
+AMDwIKCzmxAYwHhOfMDFXBPARv6uZMcHA0DJAEGSVYoIQO4gVdCHzxPAW6M1
+a8d8CsAJAehqu7oQwEoUz7f8zBJAbJ2rJz3u4T8CaJVc
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466374921875`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA3UMPsqL1EUBCQRDhhhYDwDzcpoic
+zP0/VfILBA4P/L9HRlo2+nb5v4PWWenbTAjAIxNdVrbDt7+CoYQsDPkSwBgS
+aiEMlc6/FhUpIFyC8T9478iBU/0SQLA3SgavvyXAWl+CEbM8E0BIjtPBTPAZ
+wNfH1P7QpRzAoOvfyfu+JMBo0TLJ0XwQwI66iP4Od+A/+eorT64BAkCKCiFW
+HAwHwFmiw9gz/AxAXen+sQ1yB0CPCGxNQy4QwFuRhvOk7RbA7bSdaS7WFcAg
+CIfuz4jxPzgzduFGEhpALdTeA2jjDUDKUUSf5577PzL5yJby3v4/lLPkc4e+
+AsBZHuuW4KsYwHb4VakAiRTAv0WyoFO9B0DPnUoOf4EKQDJNLoLHmRTAfPmu
+VSmxCMDN17R5lQUSwMJnSLEIXxJAb9kue3Ch6T9AG50C
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637510742*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAIApF6qGDE0BbW9t4xgoBwNYXmKwy
+KPU/QhZ/ojeN/L/wA5Gzbpb+v1hFf1IURQrAIcYjDt/nvr+0lsiH8JwRwNfx
+w+6v1oG/vONNepR55j/7ga7vdfESQLTWB9EbdSXA8GPCa2uhE0AKP8KX1rIa
+wHsqOMy2aBzAeNin8BknJcDd6qQMNZ4RwODdJoqRXdo/7/gA70PP/T/A/NTe
+FEMIwN73aroUbwpA4MteChP1BUD/KI2d4SoOwEsbwXmDVBnADEWyMLNMFcCJ
+TwKCTXHtP03VoPw7WxxAHxmDiaqMC0CpSvzHZJX9P2zZnwgoAfs/aOfa4q2q
+BsB6hMZU7FsawA2oqjHc1RXAfxEzDl/7CUBJnirYWK0JQGgtqee1EBTA8WTR
+uETOCMBoXWJ/ZS4SwK6awZ9c3hBAkQNzizs16j+9D5+p
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466375302734`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAjYG76Q96FEBadefH0tABwIptPxnq
+quk/U1Bbj56r+79NrBHjvUgDwNmArl6WXRDACI+fpj6Duz97aiURPjcQwDTG
+4em5Urg/kfReJmUn2j9UHtwlVbkTQJ7ceimzPiXAhV3MALG6FEDtf4SKn7Yb
+wA/6sWdkaxvAnhhmlE3qJcCVUfDvMuoRwN7H4Mhc89Y/Gd77JxaR+T9CBIDG
+Y/UIwApRCiiOUQlAGK3K7fS1BEA6ojg7m7YNwDGfcqBElhvAum+9NwrZFMAc
+0JAn/azqP04u4TMqYh5AmtPFzLL0CkDaMtSIPgv+P/kjFpJSuf0/V1vpJVpT
+CcDQnwQSmtQbwDnAHoSPvRbAK1Q7ZrBxCUB8Bv2qqfMJQB4gqfj7RhLA85Fp
++tsmCMAksoMoncERwKWyQWXYZhBA+QPG+HHk6T+2t5zJ
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637548828*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA6VOaZUUyFUDHkWX5hGEBwP5Gsi3l
+19g/8hgfUFUu+b9xsKCdYoMGwLnkmK9ughLAWaAI2wsHyD+QbQDA7tIMwHUG
+3miukNG/NIRRuetS0T9JJ4h/NEMVQK33Zan7PyXAdX8n7jlPFkCr5/m3p0wc
+wLxVP0l9ShrAJ9hiclD+JsAuZM91fLUSwKZMfgl8Hcg/RUT8v9SM+D/Rgfls
+sHQIwHxGGrhUIwpAi1tsHRmPBkASXVWm1xYOwCiCkeMBPh7AOfdyEoHcE8CF
+LvRG4mryP/Pl0cGuoCBA51C1uJ2RDkDJIdQMDNH+P+D4F/bWZQJApFDnHhui
+CsCle2bZSHscwGW08GAXzxfAdBFelRg5DEBsHFd786IHQPij3HWiuBDAck/Q
+AI7pBsCAZQAclkgRwBDnzeI/zg9ArGlmjHt76D9KUJqe
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637567383*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAZOHx5YXlFUDvtEqZOWQAwHbOKXNd
+J+E/fu/gGW4F9b+fMIbLhlMJwDTLbnkxUhPAxpr04GO82T+ASTwFnIELwLhC
+Z7Qo4dm/Rpq08mAVwD/AAdXfysAVQBMNyK61QyXAuub2/5zdFUCpZ7/F8mkc
+wDy7X4mtXxnArvDq2AVSKMCyCWgmHNYTwFE8v2/Pz8M/cocNvtJF9z+sKfuo
+vQkJwLIs1n1SnwlAge2AefLkCECDTB/kFOEPwDeJCXJuiR/AEqU0K6dREsCw
+i8/d1Br7P0kQ081oeSFAMwU60izxD0BfQQs7r5n9P3qedKwGzgdAJukAuwRA
+DcDitiV6/a0cwI8E2Q70dRjAHJCbo+KADkBUUe2CgNkCQNTMMTMQ5w3Ac+8w
+WrOvB8BDcZ3ntxwRwJXdvnxiKAxA6EK6i/1p4j/Fqp5v
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637604492*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAxH/yG6fPFkBqzNGKATwAwK2zBYPG
+yOg/PbJaq6hj8L9RF0biw0UNwGD4K+tQHhXAKdAjtJBI5D8Q7WxyPJUJwFfd
+nhM4y5S/PpF053LIyL9COPEHK3wUQK/PdhUMxSXAHT1kbth3F0CdSA2XsdQc
+wJC4DwFs4BjARDxJNabgKMAbkh5vbvQUwNMy02djYro/+vy9WpZO+j82uZxw
+ts8JwCUaH2TYWQhAYsV5y+koDECwFKWeiDsQwPFakYlWvR/AMJW7rwNUEcBT
+kqhqTcMAQBo5brWPmyJAqSjSaTNaEEDx+F9/Vb/6P/15drgs2QpAHubNJlXW
+DcBYDkjH9lwdwHINMS3y6xjAb9AlD8u/DUBzVJBmRm0BQEsuNuFo8AjAImXH
+302WB8DD7eSJLQsRwMg80u4n7gZAc+ECqAWByT//gZbf
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637623047*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA7Y76TCVNF0BS3iEXcpT/v+cqr+OJ
+IO0/ojNBA5+24b+Cty+9tA4OwLNomwTXXxbAcYPT1tZ+6z/XT2HLwWwIwC4Q
+p3hvRNM/Qpt1mqdM4b+TkV+0DAEUQA/XUOEvribAmwWWDN1WGEDKmnpQ7Egc
+wGzDtvCCmxjA5KlvbOFCKcCNazAJxRkWwJO1+mB+k8K/iNkVDmKZ/T+DAxaH
+Yx0KwOpCeYYOBQxAi9RDKjMSD0Cl2gKuigAQwIHC4zNYOh7AItzGXRphEMBU
+B3S8evgCQP7MJO9I/iJAcVlVVyU8EEAf/4HM1IH4P17lRzQLNQ1AnDusKXy5
+DsCOaNaCEIEdwJUTMX1gERrAE930d5R3DUBOlzSQCZD+Pxo02c4NCQfAvlLp
+zUceCcAODF+6W04QwHgCzV05ZgVAzPaiGo7Pwb+DLpLg
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466376416016`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAJFmmTBqeF0BZkYGMwdD+vxVMGQyp
+KPA/tJM3krgg579NrJ4ovjYOwEuYhLd4uhbAihQT/20E5z+0E0ZSJ0IHwP6x
+eU1JIdc/wf97QcDA5L9Ba8rj4aYSQBwgiIXnZSfA2TqHosNBGUAYhHMOnkob
+wIOGeghe/BjATfO7T3SdKcBHASCV078WwCl6Zr3nc+W/em6Hgjx0AUBvR4rf
+/TgLwN+4qC/Gtg9AAr5Dmp0yEUD1exA7ZRgQwOvuFjEKQR3AIG1PR+CBEMB7
+7YyCjkoGQIrxG2Z37yJAaALH0z6xDUBun0KOQX34P3zIq+i5bw1ANrEW9O/U
+EMARfDLzJgkewBeHF7vFuhrA6vMsyZ0TDEAMSupu3jUBQGMJ+l896QbAHQo/
+81iHCsD3L7y1UIgPwNQzmbpBSAVAByY5LEyt47/xD5Nu
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466376601562`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAGxwdLJbgF0AFqu8iq+r+v112fOGs
+afE/Q9ykkPm28L+OhGdTv18MwDeGdoqDjxfAKZ0R4ltZ7j/lY58KEHAEwCsA
+BVKswMQ/TwHLaCdK77+0JBa+7SESQH1lmNl91CfAHbQeuUa5GkBAAuXSEq8a
+wKv4ErFeghnA9fCvBBvoKcC2zOsZ7+sXwD4EvjI+i/K/uEYiM5buB0DpRzKZ
+Q60KwJZiC3Z1wRBAlLzZDFu4EkBuStdRMnwPwCRqrHXTDBzAeGsrWrmhEcB5
+g2aQ+A0IQCFfu7dHaSJAAxE4GV7SCEDdSZ/uR6T4PyYYkv6wrg1AhADjxOpi
+EsAM2WdVLTcewKLY2kEKyxrAYHsfAi/VC0Bsa5r27PEAQBZfdw5KSwfAHFyz
+PVbSCcBx4M9CXzMOwOjvS2/KJAdAo+M0zD247b/ROJSI
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466376796875`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAIIt5MAEfFkAJyn2S2Mn+v4axZOQ9
+NfM/lrlDdzSy8r//iIGhnTMLwJsk+TVvRxjAYgfkAO7l8j+7faCWYYj/v6/4
+7QxP5cq/Lc2x2wEC87/8oGpvvOgRQOIa7cGlwyfA+PdXWIiBG0AQU4UKI7Ya
+wGyM4ETmDhvAxycQcT/dKcD82w1EO7AYwO0GZAyDr/a/nKHgavW/DUCd1LLo
+27QJwJxP/Xa1UBFAay8FhJuhE0Avy3szVqEPwDNwNYZjYBvA92LpdvGME8Bc
+xG1mAY8IQExQrTvVlyJAFY0oxV5tBkAOcrs/Qnz0P6IXd6iNrA9AOLSc/Z4D
+EsCurO2ZfcsdwH10blGRYBrA4lr2Bcz9CkD0ntCdnBX+P2FZ2JMiYAfAi24t
+lNgjCMA1TXzk0EIMwBYi83JVUgpAs8gxHowT7r8vWJ4z
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637698242*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAbo8FVob/FED1ewFlNq35vwLfJtPM
+t/Q/xCBK1i7M97+KnHjZ0akJwHnJ2F4j4xjAXmKx6RF/+D8dTKNQNUzxv8Fp
+hapGGZO/kJE5Plhh87+WExSNdeoRQAutWHXcwSfA98q7Tem0G0Dc0N1HEkca
+wJDvXBiUQRzATAVkPQbzKcDIorAP718YwFZUPnYx0/u/2544kBc6EEBkVbTE
+Ao8LwKdlaFAO2xFAvmIOu2A/E0DclIROJqUPwKKA0AUDCxrAw2+X2RfBFcCy
+HD4Db/cIQBYAlFw1MyNA0ROo/8MZB0C/IIXHAzP0P4Gd/kUbgg9A5fxJ1uQI
+EMCfXUlipQ0dwLjmvG+zShvA/+ayKN0JCUBJfG6Xj0/5P5x46+XHeQbABmI2
+WNtWBcBUvz7wo7EIwDE0AJN7xg5AoWAVhemu7r+3R5iG
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466377177734`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAzs8RNCZnE0CoSamRQtTyv2me1JoB
+WPc/Rq5nkDsf/r+ESQR15hIIwCPjQfzg1hnA4tSdbR6l+z+nwCAa1zriv/6P
+me6cpdI/d+pWGtdM6L90xzs0+HERQEdTo2VBOyfALE5Er4xiG0D+wK4CyAIZ
+wBiuZAlwpBvAqTPtzl3lKcCuEY7Av4wXwC5Xg/WE2P+/w6IYLJIIEUBtmXhX
+UQMOwK2EuCVG+RBA0cBTGg74EUBEZ7KSL9YPwDs8krA13RfA6bzv7WTXF8Ct
+uwEuoe0HQJjR40UTySNA+EuiWzAaCUCrCsBj+wX5P7BcIofyCg9AmWmmeCMO
+CsBvMhPjAPYcwJj4cFcl6RvAAAFbAW+pBUD4aFoqPJX0P/ywQsFhswTAOCJR
+nWZNA8DtdDRMDu4FwMXX4kPUeBBAB3Z0ToyR7r+qLJkG
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466377373047`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAxlkp9vbJEUDZaKOhV6Lsv7YHcSTo
+0Pk/8tpySfmDAcDozexAm5sGwJlJkz/u+BnAie/l+JSd+z+m2c4ox07hvx94
+RzW9OOA/cgkDQk0117/5tIUrQ5kSQMgytbhLFSbAlFzNZz+IG0Af1OI2LwoY
+wMpe5FZGCBvAaSQYrz9+KcChMI1Ej80VwHTCeBoL0QHAADWC0VrqEEBcz/wN
+l6EOwDJQ2yf4Vg9AFyJJFWtMEECFWJi7aaQQwJ7OZVWTSRbAHkq3RpIOGMA5
+U44rNOIFQDhpv8K87yNAtyUGR/hAC0AhKcKmVhP/P7Ld7JlM9g9A9VLHaJ0t
+A8CbBrZox7YawGF2PnXs6hvAChmI+tzgAEBXaXlaJabyP2LEFLEoZ/+/P5Jy
+kdbHBcBXNUQHuyEEwB5C3dKkzhBAZWM5XtAC7r8fl5g4
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466377558594`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAT3TghiMxEUAQRM8Az0Tlv3niBvR6
+xf4/Cp8mME92A8AMQ6P0zQsGwPTXdNpcjhrApvRUU9tv+T8DmC49H7zXvzpW
+SSBlaOo/25FLDm7r0L8uid7utZgUQIOHwddbYiXAWocJHDMAG0DmT1n9kwMW
+wEc3VLaLbRrAQ1mvmRzAKcB/Xjwl/GAUwM+LkW6ZGQTAhXn6efxIEEA1i0jT
+i+gPwPr0ObgGrQxA6mzDGVuYDUDGfyJX2F4SwCcUWgY0XBPAPhr7dwxtF8AR
+V3gelosDQNlm3JZz7yJAW7xgycB0C0D4MDBCB9IAQJAmLFwiZw1AIWszSTCh
++L9AcxgjjOIXwGvuAE7/0BrAEmc11vko/T+mKLY+UgvsP4XLlUdlJPi/Talq
+a4ipBsCIKHJNjx4EwHnwCh0ClBFA4yvFcpij5785cJDC
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466377753906`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAtLhVsRzmEUAOBtAptTPov7yCZuki
+1wFAb3qajQXUBcAFuPTvHr4GwOXTKzp2ShvA7iy7Gs4C+T9DQk+AMNvRv4en
+buiLf/E/9+NcFBxU37+qUzFphM0UQJr6DnNMiCXAm30gRPDzGUAm2oivRqcV
+wP0GXx4WZxrAW0sFvS88KsBq44tVIyMTwNfCRlujnAPAnkWq1fA4D0AihD8e
+p3QQwD4EVoaV7gpA0aneG6HbC0CHqtH3AJgVwD15bW+QsBDAZn55gJo2FsCZ
+4kiCYMMBQK5oLQcqTyJAcDO3hDusDEBhxtTl4xkAQCAwjKr1eQxA4YiPcP4t
+8L+NqscSrVYWwGoTWsk/2xrApXPqn95s8j/pS9nlG3DrP6cE83kuNPG/7Dbq
+zhPoB8CPU5qDoTYHwImwQLLZgBBAGU+tBjbm0b9y2pmQ
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637794922*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAkFGTTdL9EkBjjKXGf7rov/ETkbVR
+OwJAg9nQ1infBcCyydn6Lq0HwMxWrlxMnRzAIe92cGvD+D//2pDjZwTRv+cv
+smleLu4/zBG1NW4h7b/+0fhKbV0VQHAkvw+vVibA/weqMmsuGkD8ky0Nte0V
+wDhv0ENpDRvAJQyG0HSbKsCS1y0gSN8TwGtsLmS4TAXAK39pq8CMDECQRJPU
+TIEQwCs+Bg0DkAlAiT0YcW96C0BqGe+DX1cZwArZdpIL4g7A5w0aaNw9FsDz
+Hqbo/TcAQLK4ijrDDiJA69hBCIGCDkCzVWOQGI36PxhrrpnzbApAo/RMOuJV
+47/3dAVnSFEWwFWO6VsHVRrAnJL8p/2t4T+DBUuumefxPwLIHKZK5eW/Ulj1
+K8I5B8BI7DdGNnUJwNoYGx8FDhBAggsxLwYcaD/hPpSi
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466378134766`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAdRLdM5KhE0AAztNGdITqvyeE7Jnb
+Wf8/YFtbA3hXB8Au6SGCJzALwNHPRE6EIx3Ae4MiZ9SZ+D9WfY53I4fFvzgG
+qrfnsug/3Qk21CNE+r+XYkDBbLQVQHSuGI2bFifAN8R8LUZiG0CbG7QCgF0X
+wEM9GhnCIxvA1IntforPK8Djz/rc4aETwMidzDV83AfAyUeOyVUHC0Bj8eb1
+4joRwADKAX30mwVA1ZUULfpUCkCKgVbNzoMbwKUU0+Q54g3AIp+BacsoF8A5
++yegczb3P/iQA94HfyJAxXhrAHgQEEDBrAeBlKTzP3bDyUahdwhAhwvixHxj
+078Bgz7SDxUWwPjZpp1cuBnAM6uX9NKH1D8l2BqzDZP3P+hfzlwSstW//Hbj
+yJtFB8AMsO1pTM0JwLnR/KkmahBAnLcIjlEYnT9/Opwt
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637833008*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAcjlHqUrTE0D1wlJZ96ryv5tw/yOp
+JfY/eCFjn3ZcCMBym44bQA8OwEKNkrpwch7AvBM24QMc+D+QSzceMnrEv2lI
+QnMf6ew/9hC997X1A8A0QPzKcJEVQM/2BuIk9SfAVd7h5r8AHEBbUnfY3tUX
+wLek5xbVrhrArWD6J0OMLMAf8WO7eh8SwN++8O1B8gfAGeWBCebyCEDytZ2K
+wzMSwGDrA0VLVANAslafGwAaCEB3Z3yH7TcdwDphwf8uPQ7AvOF5I9z/F8AP
+cyN4+23nP46tqEaksCNAPROBVzyhEECR9U7PggnwPxd8h97XPgdA4mc+IA7p
+s78FsDEtLa8XwCPHvbms4xnABoGYLcb4wD88pihC+Dn3P2bDSHq9+ri/lViU
+SIxxBcAJrnefkcMNwIUiJzxbMhBAPgNsFiSrl7+1cZn2
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637852539*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAucKlr/S1E0BpHrUmfU/+v8RyTvYu
+TPM/tNH91eOqC8CCJaGMFJ8QwHXiydUQdR/AQJht31tY9j+fEPGjId3IP5CJ
+BfjnfvE/qIFWZIhUCMCvXuspjx8TQHdFhYhG9yjACUcHC4lcG0D5D4Tq5KcX
+wKQOIsrelhrAmv72i8luLMCn6h2DcJsQwJaDE82jswbAWYa1f3RpCUDSp4B8
+svQSwIYaod0FjQFA/kyfWmbfCEBYV4qw+GofwPY4w8rmCRDAOuguxYAyGMAq
+kbWdY9HRP5UyYZ16JSRADEpIM0aBEUCKsp8SSynxP0v+Ofo9aQZAlgPZwmLM
+tT83IuPcp08ZwBa+yhhKqxnAf43R8RqO0b+A0grNs732PzgtTmxhGcs/SEec
+W/y1BcApGo/cjxwQwLLNVYybJg9AcRbNvOGihr+WR54g
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466378720703`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAdco9iz4lFUCWyplr10sDwKj7U/v+
+8/Q/e4yy44JID8ApE0FNtOcRwHjjeSnFLiDABsZ5tEjq9D+TEBOcpXnEP9ma
+tcjfGfQ/Jqe0UxPOC8CFqINw/YcQQC31h722WynA+2aPSun5GkARL+sEvH8X
+wH4Kc9ta1xvABaRAK31qLMA7TbIwiNAPwLyatRVbeAPAjH37HakLCECxR45H
+NcsTwA5onU6LkgBADgqhIY09CUB8ngztqO0gwHZVd1RbahDAzjGL7cvoF8C6
+i42w4TnIvxW7zRwoBSRA/x/iZDwQEkC9A2EneurxP1QZ0FwrEgRA0irt8SKE
+wT+9s1PMB3AZwF6KMv0g1RjAR3zJeOH77b+GT/iVtWX2P1Jfkk4XROM/sYnA
+fCy0BcB12X7Uak4QwJSTQjbUuQxAGOEAQ9uVgD/D75nW
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466378916016`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAezp7wWPfFkAdYtDi4H0HwDJI/ayz
+Wfc/1QRTl99NEcARXfNLsm8SwMs2fdfEwSDAo3qUQMkx9j935MjpDInTP8Cd
+4eWBufo/m3sfzXNPDsBYsFoVP3wNQFkgJizSpinAURsrHf8JGkCREOhfo40W
+wHc4QRO01BvAdwtxxWiBK8CGsqdZPUMPwN7vU9+a+f+/Fu4u9dfhCEAyTCOl
+LQEUwEjQwI+Zyv4/Vy48RjAXCECNvtp5cRYhwNQUvC0vZBHAzFtNfYnhF8A7
+VNhbiyDlv6jEhiARBSRARWxjfKd8EkDWHU0ZyfjyP8AyUfbS5AJA3ZULs7oX
+wT95WoriopYYwIUEh+b5sBnAGbnTKgRA878PuqnbTqT0P8ngKDVGjOg/3wnt
+4pnvBMD8zetc0VQQwN/p/2nD6AlAN+Brevsctr9A+5/a
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466379101562`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA+Gnw9bJGGUAEGK/WDu0KwI9AgXfQ
+S/g/4S3yJTG5EsDQVSRtIxITwI3tuN1bNyHAHMmWGuAJ9D85mVk7T7/ZP45U
+KhN18v0/SLVMaJOFEcCBfxg13PgHQJ7PtDNqGirAHHSunDjZG0BKP75PKNkV
+wIkEVk4y2RvAbN3wpOCPKsDNgqbquGwOwDT9w67QCwDAs8L8ROGFB0D3q4Ib
+bxAUwGkCc87Xnvk/Unt1sHQnB0D8Zu2E0oghwKgLLmHdQhPApg1YJ0NrGMDg
+E1wV9Nfqv4W9WhD9YyRAwrGBIEjSE0DARWmqB4rxP9OsA5+jpAFADBoETGON
+zj+Ialswd2kXwBqYPjo5CRvAsAn47nZW8b+lP+JXnDf1P+HZuNablvE/fAsb
+oIXbA8Coi/FmHR8NwIWSzU9qXwdAmKNNP71bmT+i2pj3
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466379296875`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAr3gm95mIGkC1B+Wjex4NwKHr5+j0
+3fk/vxe3jx//EsDfKR8gnP8TwAXEVbSOdyHA66kKZUyw8D9mC99VNVXQP+lq
+MU4urgBABekLdDxEFcAjTEg1eaUEQI0TYf2J7CrABePGx662H0Bha9BBHDkU
+wHAQZVkBGhvAn9b8x4tmKcCDp31+PfAPwEdJg9bYjAHA1RW6UrGKBkCN3XRx
+DmwUwEp+wZAaNPU/Q7dMIt3dBkCXMG7wBCwiwAf4lJED8hHA+PzrE+VDGsDU
+zFWswqftv1pBWvhiFCRAtYU4UQWqFUBUf21smpPtPy3/OCLcaANA57YWgjcQ
+yD8r3WvjDQwVwMzcylydvxzA2XAVzWbY7b/ry1kIu9b3PwDJ22km9vk/GCy+
+egUIBMDjFx5AaTUJwFUy90r+0wNAYXCrKu5cwD9YD5j8
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637948242*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAqpBbNPujGkDTu0aIWmINwCGlfacI
+dfw/KbfxFjJDFMCcWqGIWTcVwJwOZnayXyHALGD6X+YK7z8IMdc2fXOyP09H
+pvLaSAJAfgcasQ4NGMBRWLwC3wkBQLMXZ//XQCvA5Zc0hIIxIkAM+KTQZAET
+wEuFxq4nNhvAUFb9F4t/KMBrUhZXJUUQwCdVRipbxAPAcERSLLHoBUBkzIEx
+dfwUwKfXx4IO8fE/mvgPEI1rBEAAmUmAlhoiwLfCXbfzTxDAbpIbGNtJG8CH
+CC+VJXzqvyDwzzfFfiNAfGhI1wu2GEBZfXF0yDflPwrVPyFe6QJAmLhIdPAG
+1z82k6kuZO4SwFdQHRv3wh3AdzQ3uRqH5r8+HkL55S37P3NHo+D1ewFAQ7Su
+f/rGBsB/hVEMX0EJwHRY0YHcPAJALio38bTOxL+Dho+4
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466379677734`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAxPKwzxLuG0B79r71AdsLwC6p53xo
+YwFAa9fy7QlDFMAhaPKwgJoWwOZM0fRIeiHAyR5IzlvZ8D+vPt6WuSTFv/mI
+RUO3JQVABJS1I+oKGsCZFOByji/+P19Mwy2X+SrAd43NQL9nI0BICv+UbRIS
+wGWFSC1SghvA8I+OdF9PKMB4Pj0pE6ARwJY4OdTKrgbA1SpWgWYzBkB28mVg
+brUUwMJVlZt06fI/VrqbwQ2OA0AI6ub+/tYhwEA/Nc4dPQ7ApenW01CRG8B8
+I1sxfAHlv+hCMR134CNA7OM+Yn0eGkCkjzeHyKTiP9NbrS+PUgJAeYew0wjy
+0D+VnDWGOgcSwP5Is6e+uR7A6sDNEFoV3b8LeMA5Uw0BQF/fSNK3BgRARJn+
+3ovVCcCRQ8CSD4QMwDKLz4lKxAFAYJKD+FrKzL91cpy7
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846637986328*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAEhskjHIQHUB8Jl2BepMNwDQ1T/kT
+KgRATSfSE9a9EsC8UCVfQY0WwIHh4bWl4iHAASuzGq4s7T8JfIj+z/nSv2So
+FqhgRQdAcCzC1/BdG8D1DaTg9977P5bOYGPjpivAMbAhTqqeI0C/aT1bd04R
+wM6gYll4DRzAR0djd7M5KMBg7Q3mFRgUwMD88YO9uQrACNis9CCXBkC60VUa
+aNEUwO9wuKfw+fc/TXYbelvoAUAFCm2l9sUhwD5yssn8BQ3AZK76alsyHMBv
+nrkW2XTkv1nGUlB8KCRAfcPrFDaUGkDlkG9w4bfRP69I7/5uCv8/YDqji35H
+wz80MfX+UGoRwLPTUbKLdh/AJW9XWZCSx78pAEsNynkDQKpjngACHwZAHG7O
+sUstDcCKAtZS4QURwKpjSYiAdwBA6BIYeRUz2b/+HpZD
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846638004883*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAQVhL+eobH0DvhMCJHegOwGxV+ikt
+hQdAR9Q27S1nEcDC4R65Y9gVwC7UdFA2MiPAdvASb2187T9/EyEDXz7Wv+xP
+Cii9OAdAqCqegvn1G8Bwb7noB9v7Pxee/8ZxmSzAbUsCOOMRI0DXsDqC070Q
+wLdKiA0ujBrATbO75NXhJ8Caxjp6evUVwG7lATdO1gzAiEsK2mOHCEC3k6eh
+N9YUwMmCdmzvM/s/Om/vMg+7AECIlMnslKMhwPdG98ZWIA3AC6swoMwaHMBa
+73DLBwfyv2uglGOk7yNA1pxO/XRnG0Bc74+gkbixP6z5ZOHqh/k/uNPlO7cr
+tz/mLtnyTBERwLdfRFLwYSDAfZkyTI5C0D/WPA58BxkEQIUh4db9YgdAgC49
+axTFEMBaoQLwGDkSwMa0rPe+SvY/DPcWhlul27+iXJ1G
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466380253906`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAfUg5UxiyIECpltYIjjIQwKIoPnrd
+vAlAJBQtJjroD8AUGtkGwnMUwK9KYS6b5SPAp4gBpGnb5D+Kq+tQOvXDv2Q9
+A5tdEgdAE1FJ68FTHMBrzHLxAir6P7Xq+fH20y3AluFr2/b6IkAvPN7PB3oQ
+wJJpwq9/WBnAmtWykGkAKMDY3atE6AUXwMU7D8kzCw/An2n4qWfXCEA6jzaO
+nIUUwDtEeRQXnvw/MK4gFd/++T+JUpzh5ssgwBGhYIpgEAzAIRcu+bYvHMBj
+stwc7LL4v83dC4DjoyNAslIntRmEG0D1g6c28NGLvxwKuvvaEPE/H+26mN3M
+0T+fnRO5qQsQwNDGRph9PiDAKWeNp6ab4j9NkzCsrbwCQHP6P6cRfQdAZcRB
+vYYtEsBIsosvK/cSwEqm5JjZFfE/Kah5OyPk1b87zpyN
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846638044922*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA2LluEsCXIUCinwSEXlkRwHg+Wt8Y
+BA1AwBs9+fiuDMAo94A2KVATwGUEuae4ASTALF6DQGeZ3z/xQSf799uAP0Yo
+wgwiPAhAsUv+AqohHcAlaIPvvnTyPykRx52hsC7AMx60vUSFIkDKlde3yR0R
+wNuSpo9pAxnA66gW2it2KMA8bBVwL0cXwF890aY9jBDAloztR5B3BUBGpTAv
+a0QTwDC4fTdovfw/mS7Ricqp8D+lPHnJODogwAr0B1LFKQvAlxu7iIycG8D5
+oDddP7n4v2djTL3lnyJAkaF7COkqGkBv5JHWVGmpv3+hEMgxjO0/PBnuXbeq
+3D/nNGDLaC8MwPEPrQQCPB/A30JGM0aa6T/U4wv6tFMDQHSI6CSiUgdAPe8H
+523qEcAgFtXggk8TwMXX3BESsvA/Y35dkLag079Ee5af
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466380634766`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAALq5FP2JVIkDxegLb4rMSwO2AY+EY
+lBBAu8+vNpOrCcCAJc9gcdUSwPvsx+FfQiTAmWRb5wvP3j/aItRADjCrv1JN
+SPTtUQhAfrCpvlZIHMBqnVE3dpDpP7GjWb8qkS/AWV7x0lvEIUDK9v2V3vcR
+wBlVoIbYPRnAfrai/nbCKMDrA0e12bMWwLsHIEcmWhLAn6ih+yZGAkDZ+tWn
+Qx8SwKg91n4crfk/VIWL5C981j+xOboCpKUewLobkr4wYgvAxt27v0zeG8C2
+xDqxa3/6v0s7sKrdvyFAMAYDt63oGEBUGHlsMEvUP4mCxjVJnN4/6leQWfzl
+6D83Hf2StsIJwDH1GhBtYh3AgUJPPXw67j8DtknGiTEFQKrpZkUpeQdAPxq5
+6mdlEsCdWzWsl8MUwGS93vkhJPA/CXe+GZWUyb/EM59k
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466380820312`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAATQta+2DXIkAmhLIFtGgVwHhoqOs/
+FRJAKpAQeYpTCMAaFUmeUIMSwBwGkNNkdSTANH82DoYI6T+pWPJMfO2oPx7b
+steZLgdA6b6ii5I5HMCW1EhJenPpP/3u9d6giC/A0viu+1PzIECjeGGwy3oQ
+wH7SKA10iRnA+Po2brFYKcCV0q+Ey+MVwBujpg/sQBPAJinTViaq/T8Uk7Nv
+lDoRwG0Nk2DZ+PU/3j0DVk+Uh78yg6Q8t7EdwP7uPkuXcAzAXHotHHxYHcCx
+/UG7ki/7v3rYvnmWEyFAawunYc1uF0ApycSMgyXlP5HJiTJjvt8/BktBt2T4
+6T+OUQf59NkIwNsfBc6nMRzAZyte1J0J8j+Yu5KshRUGQOEFOCu5FAlA163f
+4ePzE8DdHgU2Qb8WwO1NQlWjwPE/6zskJzEHvr9rvZsX
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846638100586*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAA99k7NQr+I0CPKV/cKZ4YwDxsJGb5
+IBNA/eo86dAnBsC9EmeTl1kSwJpbZw76TCTA7UPypzct9D+lJt9cHJexP5ox
+O6cv4wZAKJL3uW3sG8A2XBNCFvbiP92kJXAHHjDAFmoLznT6IEBfifTO4MwM
+wLIuCSb14RjALB/P/RXoKcACo+jWA2EVwNuBw/vPDRTAbm8CoGEN+j/9VjmV
+H2cRwERVn44nkfY/yEynns5b0r+6/O7DTEAcwNi8kxnNTQzAuDG5wCbSHsAa
+bKS60QP4vwTH2o+sbCBAa7t+II1iFkC6oTlqT23oP/MUaFBpyuM/BwJrFduR
+5T9hF/Cf+TAJwBlvHVYHXxvAWhxnzfE+8j+ZTI8PAmoHQHxm5enAlglAqZEA
+3pUaFsAuC5RsgjAWwOWoAupHKO4/5J64inkWvr8hG5ij
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846638120117*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAKe6x6I8GJUBqTTvTmN4awMhxsYbu
+kRNAwiA2fZEjB8D+0MPMh/8RwKXDy5JCACTAub7Cq4Jd/j/IlT82FHrAPzCA
+2PTO5AhALBupQhFMGsBssXwo5DHgPzuWoPZRTTDA+FpB/OAJIUCegeSF/AML
+wGzd0KmODhjAAFQKJxyuKsB88LHzG4AVwALyQjEl5xPAymd/VMpG+D969c7F
+kNESwFmf4aX1xfk/We3MHoEv1r8hktexuPYawANbaQL5DA3AiIIMro7pHsD5
+eSod0Nvyv8CwJBtSdCBAXCnYnELCFUAlNtNJL2XyPyMys3JcaOI/eN+0ZLQ/
+0j+bslddg7kHwOp4bauBahvAcCoh+S6X8z/nOvQ2zf0EQIaEglo7hAtA++Wh
+VV2iF8C5XxDpUDkVwJS6XFcLP/A/M8bw1kJ31L+q0aD4
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466381396484`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAsWp5c1XMJUBd5IfJD8YcwPMLnKpQ
+MxVAWlrjHgjhB8Cxn16daxkSwGFuCCF/0iPANt4TELi8AkByrKlvzVXUP6xy
+ZmlCdwpAzwA4Yz4YF8BWH9ko+RjmP/oVnMVkTDDAY4sCFBrSIEBTIE0c+rgM
+wD4z08VqsBfASHxRk1n0K8Dv+cFmmq8UwI9PKzogvBPACvxX/ab29T8EZxBr
+APYVwGWu3+gAWPo/5zB5/t9iwr8OvK+F4I0ZwAv2wmJ4pwvABtDxvyD2HcDV
+HEEOyzzvv6KMquqzZSFAo4rYko6kFUDfgf20unr3P0A0O6T98Og/ogw9br/z
+3T+MwKisGZgCwC6WhIojYxvAPkkYYPeh8z+jyB7Wm2ACQAeNT7cx/wpABpJg
+nlOtF8BbkMyX1V8UwLDChGodsPQ/9JEj1wnJ4L/OEZyn
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846638158203*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAnoK/FZ38JUCigA7ll/8ewPhNYoUq
+nBVA9WmvzTyVBsDkf5iNi5sSwAC4bLfMsyPAubideE5lBUCSqhZK9x7iP35y
+Xv8QgwdAG+ZVUN0lFcB85K0ngLTtP12IEwPBEzDA70KyVDp2IECJfIeHDu0N
+wO2uAhFeohfAMDMBEPr8LMCWiLvbRl8TwGKomweBahLA8xqWugSa9j/Q1DHg
+rsgZwMafyPdyE/U/NAprjvQvvT9eYPcN+2gZwDb4X6ZPZgjAyl9TP/WlHMDy
+xKQWBJvsv00m2vjHSyJA+S+Xby7GFkAT98CmyE36P3pdHpxihuw/anP/fiZx
+6z/M6mLqng39v8rEzYpsexvAdQCdLiOJ8z9wXbh71D/+P87FIjeT2QhAi2zV
+iKMnF8Ct867zFY8TwDziHsUPcfQ/yZXWYjdB57+q56Fs
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.5378466381777344`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1:eJwBUQGu/iFib1JlAgAAABQAAAACAAAAFBLy4TWSJUD25n1EsCghwE3GUqkm
+dxRARzAQUdUVBcCqO2THS5oUwLoQ56/3HCTAwlJ4g0IXBUAyH6iKkgncP6Ov
+RfRqsgRAWONu+0uPFMDsF5LqPjPxP9kIe5A+ti/AmetY7GISIEAGKqNDCIIM
+wJEhs+8iIxjA9g5Yg1j3LcAjN/GxzRoSwH0Do2r6ThDAb82APxvN9T+vb5WV
+cTcewJgUF1G4LPI/q8+74kRoxD+rrW+zJ3wZwAO2GdiPIAPAqWawuRvsHMCY
+NwGpOZ7uv90PZ8RVSyJAVX3JU1GyGEDhvjHixNT+P2PfzEbQ5OY/g/Gefzj3
+7D/RRwqYY6Hyv+7RT+wosRzAr9kCB8/59T/gOaoJZrz6P360F8AD1AdAMjr8
+BgFuFsAH9MAehp8SwKkDDxdwQfQ/6a6mPC866b8CRZne
+    "]]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Frame->True,
+  PlotRange->{{-15, 15}, {-15, 15}},
+  PlotRangeClipping->True]], "Print",
+ CellChangeTimes->{3.537846638196289*^9}]
+}, Open  ]],
+
+Cell[BoxData["\<\"e:/data/2d-Brown.gif\"\>"], "Output",
+ CellChangeTimes->{3.5378466525878906`*^9}]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1344, 633},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 188, 2, 31, "Input"],
+Cell[CellGroupData[{
+Cell[758, 26, 6007, 179, 492, "Input"],
+Cell[CellGroupData[{
+Cell[6790, 209, 440, 10, 243, "Print"],
+Cell[7233, 221, 437, 10, 243, "Print"],
+Cell[7673, 233, 434, 10, 243, "Print"],
+Cell[8110, 245, 432, 10, 243, "Print"],
+Cell[8545, 257, 434, 10, 243, "Print"],
+Cell[8982, 269, 433, 10, 243, "Print"],
+Cell[9418, 281, 431, 10, 243, "Print"],
+Cell[9852, 293, 436, 10, 243, "Print"],
+Cell[10291, 305, 434, 10, 243, "Print"],
+Cell[10728, 317, 432, 10, 243, "Print"],
+Cell[11163, 329, 432, 10, 243, "Print"],
+Cell[11598, 341, 432, 10, 243, "Print"],
+Cell[12033, 353, 434, 10, 243, "Print"],
+Cell[12470, 365, 433, 10, 243, "Print"],
+Cell[12906, 377, 435, 10, 243, "Print"],
+Cell[13344, 389, 433, 10, 243, "Print"],
+Cell[13780, 401, 431, 10, 243, "Print"],
+Cell[14214, 413, 433, 10, 243, "Print"],
+Cell[14650, 425, 433, 10, 243, "Print"],
+Cell[15086, 437, 435, 10, 243, "Print"],
+Cell[15524, 449, 431, 10, 243, "Print"],
+Cell[15958, 461, 431, 10, 243, "Print"],
+Cell[16392, 473, 433, 10, 243, "Print"],
+Cell[16828, 485, 433, 10, 243, "Print"],
+Cell[17264, 497, 432, 10, 243, "Print"],
+Cell[17699, 509, 431, 10, 243, "Print"],
+Cell[18133, 521, 436, 10, 243, "Print"],
+Cell[18572, 533, 432, 10, 243, "Print"],
+Cell[19007, 545, 433, 10, 243, "Print"],
+Cell[19443, 557, 431, 10, 243, "Print"],
+Cell[19877, 569, 435, 10, 243, "Print"],
+Cell[20315, 581, 431, 10, 243, "Print"],
+Cell[20749, 593, 434, 10, 243, "Print"],
+Cell[21186, 605, 432, 10, 243, "Print"],
+Cell[21621, 617, 432, 10, 243, "Print"],
+Cell[22056, 629, 434, 10, 243, "Print"],
+Cell[22493, 641, 434, 10, 243, "Print"],
+Cell[22930, 653, 430, 10, 243, "Print"],
+Cell[23363, 665, 433, 10, 243, "Print"],
+Cell[23799, 677, 435, 10, 243, "Print"],
+Cell[24237, 689, 435, 10, 243, "Print"],
+Cell[24675, 701, 433, 10, 243, "Print"],
+Cell[25111, 713, 433, 10, 243, "Print"],
+Cell[25547, 725, 433, 10, 243, "Print"],
+Cell[25983, 737, 435, 10, 243, "Print"],
+Cell[26421, 749, 430, 10, 243, "Print"],
+Cell[26854, 761, 432, 10, 243, "Print"],
+Cell[27289, 773, 430, 10, 243, "Print"],
+Cell[27722, 785, 432, 10, 243, "Print"],
+Cell[28157, 797, 432, 10, 243, "Print"],
+Cell[28592, 809, 432, 10, 243, "Print"],
+Cell[29027, 821, 434, 10, 243, "Print"],
+Cell[29464, 833, 434, 10, 243, "Print"],
+Cell[29901, 845, 434, 10, 243, "Print"],
+Cell[30338, 857, 433, 10, 243, "Print"],
+Cell[30774, 869, 431, 10, 243, "Print"],
+Cell[31208, 881, 431, 10, 243, "Print"],
+Cell[31642, 893, 430, 10, 243, "Print"],
+Cell[32075, 905, 432, 10, 243, "Print"],
+Cell[32510, 917, 432, 10, 243, "Print"],
+Cell[32945, 929, 429, 10, 243, "Print"],
+Cell[33377, 941, 432, 10, 243, "Print"],
+Cell[33812, 953, 427, 10, 243, "Print"],
+Cell[34242, 965, 431, 10, 243, "Print"],
+Cell[34676, 977, 430, 10, 243, "Print"],
+Cell[35109, 989, 428, 10, 243, "Print"],
+Cell[35540, 1001, 430, 10, 243, "Print"],
+Cell[35973, 1013, 430, 10, 243, "Print"],
+Cell[36406, 1025, 428, 10, 243, "Print"],
+Cell[36837, 1037, 429, 10, 243, "Print"],
+Cell[37269, 1049, 427, 10, 243, "Print"],
+Cell[37699, 1061, 432, 10, 243, "Print"],
+Cell[38134, 1073, 432, 10, 243, "Print"],
+Cell[38569, 1085, 431, 10, 243, "Print"],
+Cell[39003, 1097, 432, 10, 243, "Print"],
+Cell[39438, 1109, 432, 10, 243, "Print"],
+Cell[39873, 1121, 428, 10, 243, "Print"],
+Cell[40304, 1133, 432, 10, 243, "Print"],
+Cell[40739, 1145, 428, 10, 243, "Print"],
+Cell[41170, 1157, 430, 10, 243, "Print"],
+Cell[41603, 1169, 430, 10, 243, "Print"],
+Cell[42036, 1181, 430, 10, 243, "Print"],
+Cell[42469, 1193, 428, 10, 243, "Print"],
+Cell[42900, 1205, 432, 10, 243, "Print"],
+Cell[43335, 1217, 428, 10, 243, "Print"],
+Cell[43766, 1229, 429, 10, 243, "Print"],
+Cell[44198, 1241, 427, 10, 243, "Print"],
+Cell[44628, 1253, 428, 10, 243, "Print"],
+Cell[45059, 1265, 430, 10, 243, "Print"],
+Cell[45492, 1277, 428, 10, 243, "Print"],
+Cell[45923, 1289, 428, 10, 243, "Print"],
+Cell[46354, 1301, 430, 10, 243, "Print"],
+Cell[46787, 1313, 430, 10, 243, "Print"],
+Cell[47220, 1325, 430, 10, 243, "Print"],
+Cell[47653, 1337, 432, 10, 243, "Print"],
+Cell[48088, 1349, 432, 10, 243, "Print"],
+Cell[48523, 1361, 434, 10, 243, "Print"],
+Cell[48960, 1373, 432, 10, 243, "Print"],
+Cell[49395, 1385, 428, 10, 243, "Print"],
+Cell[49826, 1397, 430, 10, 243, "Print"],
+Cell[50259, 1409, 430, 10, 243, "Print"],
+Cell[50692, 1421, 430, 10, 243, "Print"],
+Cell[51125, 1433, 432, 10, 243, "Print"],
+Cell[51560, 1445, 427, 10, 243, "Print"],
+Cell[51990, 1457, 430, 10, 243, "Print"],
+Cell[52423, 1469, 428, 10, 243, "Print"],
+Cell[52854, 1481, 430, 10, 243, "Print"],
+Cell[53287, 1493, 427, 10, 243, "Print"],
+Cell[53717, 1505, 430, 10, 243, "Print"],
+Cell[54150, 1517, 430, 10, 243, "Print"],
+Cell[54583, 1529, 430, 10, 243, "Print"],
+Cell[55016, 1541, 429, 10, 243, "Print"],
+Cell[55448, 1553, 428, 10, 243, "Print"],
+Cell[55879, 1565, 432, 10, 243, "Print"],
+Cell[56314, 1577, 432, 10, 243, "Print"],
+Cell[56749, 1589, 429, 10, 243, "Print"],
+Cell[57181, 1601, 430, 10, 243, "Print"],
+Cell[57614, 1613, 432, 10, 243, "Print"],
+Cell[58049, 1625, 428, 10, 243, "Print"],
+Cell[58480, 1637, 431, 10, 243, "Print"],
+Cell[58914, 1649, 430, 10, 243, "Print"],
+Cell[59347, 1661, 432, 10, 243, "Print"],
+Cell[59782, 1673, 430, 10, 243, "Print"],
+Cell[60215, 1685, 428, 10, 243, "Print"],
+Cell[60646, 1697, 430, 10, 243, "Print"],
+Cell[61079, 1709, 428, 10, 243, "Print"],
+Cell[61510, 1721, 430, 10, 243, "Print"],
+Cell[61943, 1733, 430, 10, 243, "Print"],
+Cell[62376, 1745, 432, 10, 243, "Print"],
+Cell[62811, 1757, 430, 10, 243, "Print"],
+Cell[63244, 1769, 428, 10, 243, "Print"],
+Cell[63675, 1781, 432, 10, 243, "Print"],
+Cell[64110, 1793, 430, 10, 243, "Print"],
+Cell[64543, 1805, 430, 10, 243, "Print"],
+Cell[64976, 1817, 430, 10, 243, "Print"],
+Cell[65409, 1829, 430, 10, 243, "Print"],
+Cell[65842, 1841, 428, 10, 243, "Print"],
+Cell[66273, 1853, 432, 10, 243, "Print"],
+Cell[66708, 1865, 432, 10, 243, "Print"],
+Cell[67143, 1877, 432, 10, 243, "Print"],
+Cell[67578, 1889, 427, 10, 243, "Print"],
+Cell[68008, 1901, 429, 10, 243, "Print"],
+Cell[68440, 1913, 432, 10, 243, "Print"],
+Cell[68875, 1925, 432, 10, 243, "Print"],
+Cell[69310, 1937, 430, 10, 243, "Print"],
+Cell[69743, 1949, 430, 10, 243, "Print"],
+Cell[70176, 1961, 430, 10, 243, "Print"],
+Cell[70609, 1973, 426, 10, 243, "Print"],
+Cell[71038, 1985, 432, 10, 243, "Print"],
+Cell[71473, 1997, 432, 10, 243, "Print"],
+Cell[71908, 2009, 427, 10, 243, "Print"],
+Cell[72338, 2021, 430, 10, 243, "Print"],
+Cell[72771, 2033, 430, 10, 243, "Print"],
+Cell[73204, 2045, 432, 10, 243, "Print"],
+Cell[73639, 2057, 428, 10, 243, "Print"],
+Cell[74070, 2069, 430, 10, 243, "Print"],
+Cell[74503, 2081, 430, 10, 243, "Print"],
+Cell[74936, 2093, 430, 10, 243, "Print"],
+Cell[75369, 2105, 432, 10, 243, "Print"],
+Cell[75804, 2117, 428, 10, 243, "Print"],
+Cell[76235, 2129, 429, 10, 243, "Print"],
+Cell[76667, 2141, 428, 10, 243, "Print"],
+Cell[77098, 2153, 429, 10, 243, "Print"],
+Cell[77530, 2165, 430, 10, 243, "Print"],
+Cell[77963, 2177, 432, 10, 243, "Print"],
+Cell[78398, 2189, 429, 10, 243, "Print"],
+Cell[78830, 2201, 430, 10, 243, "Print"],
+Cell[79263, 2213, 430, 10, 243, "Print"],
+Cell[79696, 2225, 428, 10, 243, "Print"],
+Cell[80127, 2237, 432, 10, 243, "Print"],
+Cell[80562, 2249, 430, 10, 243, "Print"],
+Cell[80995, 2261, 432, 10, 243, "Print"],
+Cell[81430, 2273, 428, 10, 243, "Print"],
+Cell[81861, 2285, 434, 10, 243, "Print"],
+Cell[82298, 2297, 431, 10, 243, "Print"],
+Cell[82732, 2309, 434, 10, 243, "Print"],
+Cell[83169, 2321, 430, 10, 243, "Print"],
+Cell[83602, 2333, 431, 10, 243, "Print"],
+Cell[84036, 2345, 432, 10, 243, "Print"],
+Cell[84471, 2357, 427, 10, 243, "Print"],
+Cell[84901, 2369, 430, 10, 243, "Print"],
+Cell[85334, 2381, 432, 10, 243, "Print"],
+Cell[85769, 2393, 432, 10, 243, "Print"],
+Cell[86204, 2405, 430, 10, 243, "Print"],
+Cell[86637, 2417, 432, 10, 243, "Print"],
+Cell[87072, 2429, 430, 10, 243, "Print"],
+Cell[87505, 2441, 428, 10, 243, "Print"],
+Cell[87936, 2453, 432, 10, 243, "Print"],
+Cell[88371, 2465, 432, 10, 243, "Print"],
+Cell[88806, 2477, 430, 10, 243, "Print"],
+Cell[89239, 2489, 434, 10, 243, "Print"],
+Cell[89676, 2501, 428, 10, 243, "Print"],
+Cell[90107, 2513, 430, 10, 243, "Print"],
+Cell[90540, 2525, 431, 10, 243, "Print"],
+Cell[90974, 2537, 428, 10, 243, "Print"],
+Cell[91405, 2549, 432, 10, 243, "Print"],
+Cell[91840, 2561, 428, 10, 243, "Print"],
+Cell[92271, 2573, 431, 10, 243, "Print"],
+Cell[92705, 2585, 427, 10, 243, "Print"],
+Cell[93135, 2597, 431, 10, 243, "Print"]
+}, Open  ]]
+}, Open  ]],
+Cell[93593, 2611, 88, 1, 31, "Input"],
+Cell[CellGroupData[{
+Cell[93706, 2616, 7470, 217, 592, "Input"],
+Cell[CellGroupData[{
+Cell[101201, 2837, 523, 12, 236, "Print"],
+Cell[101727, 2851, 773, 16, 236, "Print"],
+Cell[102503, 2869, 771, 16, 236, "Print"],
+Cell[103277, 2887, 771, 16, 236, "Print"],
+Cell[104051, 2905, 771, 16, 236, "Print"],
+Cell[104825, 2923, 771, 16, 236, "Print"],
+Cell[105599, 2941, 773, 16, 236, "Print"],
+Cell[106375, 2959, 771, 16, 236, "Print"],
+Cell[107149, 2977, 773, 16, 236, "Print"],
+Cell[107925, 2995, 771, 16, 236, "Print"],
+Cell[108699, 3013, 773, 16, 236, "Print"],
+Cell[109475, 3031, 773, 16, 236, "Print"],
+Cell[110251, 3049, 773, 16, 236, "Print"],
+Cell[111027, 3067, 773, 16, 236, "Print"],
+Cell[111803, 3085, 773, 16, 236, "Print"],
+Cell[112579, 3103, 771, 16, 236, "Print"],
+Cell[113353, 3121, 773, 16, 236, "Print"],
+Cell[114129, 3139, 771, 16, 236, "Print"],
+Cell[114903, 3157, 771, 16, 236, "Print"],
+Cell[115677, 3175, 771, 16, 236, "Print"],
+Cell[116451, 3193, 771, 16, 236, "Print"],
+Cell[117225, 3211, 771, 16, 236, "Print"],
+Cell[117999, 3229, 773, 16, 236, "Print"],
+Cell[118775, 3247, 771, 16, 236, "Print"],
+Cell[119549, 3265, 771, 16, 236, "Print"],
+Cell[120323, 3283, 773, 16, 236, "Print"],
+Cell[121099, 3301, 770, 16, 236, "Print"],
+Cell[121872, 3319, 773, 16, 236, "Print"],
+Cell[122648, 3337, 773, 16, 236, "Print"],
+Cell[123424, 3355, 771, 16, 236, "Print"],
+Cell[124198, 3373, 773, 16, 236, "Print"],
+Cell[124974, 3391, 771, 16, 236, "Print"],
+Cell[125748, 3409, 771, 16, 236, "Print"],
+Cell[126522, 3427, 773, 16, 236, "Print"],
+Cell[127298, 3445, 773, 16, 236, "Print"],
+Cell[128074, 3463, 773, 16, 236, "Print"],
+Cell[128850, 3481, 771, 16, 236, "Print"],
+Cell[129624, 3499, 771, 16, 236, "Print"],
+Cell[130398, 3517, 773, 16, 236, "Print"],
+Cell[131174, 3535, 773, 16, 236, "Print"],
+Cell[131950, 3553, 773, 16, 236, "Print"],
+Cell[132726, 3571, 773, 16, 236, "Print"],
+Cell[133502, 3589, 773, 16, 236, "Print"],
+Cell[134278, 3607, 771, 16, 236, "Print"],
+Cell[135052, 3625, 773, 16, 236, "Print"],
+Cell[135828, 3643, 773, 16, 236, "Print"],
+Cell[136604, 3661, 771, 16, 236, "Print"],
+Cell[137378, 3679, 773, 16, 236, "Print"],
+Cell[138154, 3697, 773, 16, 236, "Print"],
+Cell[138930, 3715, 773, 16, 236, "Print"],
+Cell[139706, 3733, 773, 16, 236, "Print"],
+Cell[140482, 3751, 771, 16, 236, "Print"],
+Cell[141256, 3769, 771, 16, 236, "Print"],
+Cell[142030, 3787, 771, 16, 236, "Print"],
+Cell[142804, 3805, 771, 16, 236, "Print"],
+Cell[143578, 3823, 771, 16, 236, "Print"],
+Cell[144352, 3841, 773, 16, 236, "Print"],
+Cell[145128, 3859, 773, 16, 236, "Print"],
+Cell[145904, 3877, 771, 16, 236, "Print"],
+Cell[146678, 3895, 771, 16, 236, "Print"],
+Cell[147452, 3913, 773, 16, 236, "Print"],
+Cell[148228, 3931, 771, 16, 236, "Print"],
+Cell[149002, 3949, 771, 16, 236, "Print"],
+Cell[149776, 3967, 773, 16, 236, "Print"],
+Cell[150552, 3985, 771, 16, 236, "Print"],
+Cell[151326, 4003, 773, 16, 236, "Print"],
+Cell[152102, 4021, 771, 16, 236, "Print"],
+Cell[152876, 4039, 771, 16, 236, "Print"],
+Cell[153650, 4057, 771, 16, 236, "Print"],
+Cell[154424, 4075, 771, 16, 236, "Print"],
+Cell[155198, 4093, 773, 16, 236, "Print"],
+Cell[155974, 4111, 773, 16, 236, "Print"],
+Cell[156750, 4129, 773, 16, 236, "Print"],
+Cell[157526, 4147, 771, 16, 236, "Print"],
+Cell[158300, 4165, 773, 16, 236, "Print"],
+Cell[159076, 4183, 773, 16, 236, "Print"],
+Cell[159852, 4201, 773, 16, 236, "Print"],
+Cell[160628, 4219, 773, 16, 236, "Print"],
+Cell[161404, 4237, 771, 16, 236, "Print"],
+Cell[162178, 4255, 773, 16, 236, "Print"],
+Cell[162954, 4273, 771, 16, 236, "Print"],
+Cell[163728, 4291, 771, 16, 236, "Print"],
+Cell[164502, 4309, 773, 16, 236, "Print"],
+Cell[165278, 4327, 773, 16, 236, "Print"],
+Cell[166054, 4345, 773, 16, 236, "Print"],
+Cell[166830, 4363, 773, 16, 236, "Print"],
+Cell[167606, 4381, 771, 16, 236, "Print"],
+Cell[168380, 4399, 773, 16, 236, "Print"],
+Cell[169156, 4417, 771, 16, 236, "Print"],
+Cell[169930, 4435, 771, 16, 236, "Print"],
+Cell[170704, 4453, 773, 16, 236, "Print"],
+Cell[171480, 4471, 771, 16, 236, "Print"],
+Cell[172254, 4489, 773, 16, 236, "Print"],
+Cell[173030, 4507, 773, 16, 236, "Print"],
+Cell[173806, 4525, 771, 16, 236, "Print"],
+Cell[174580, 4543, 771, 16, 236, "Print"],
+Cell[175354, 4561, 773, 16, 236, "Print"],
+Cell[176130, 4579, 771, 16, 236, "Print"],
+Cell[176904, 4597, 773, 16, 236, "Print"],
+Cell[177680, 4615, 771, 16, 236, "Print"]
+}, Open  ]],
+Cell[178466, 4634, 99, 1, 30, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

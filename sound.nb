@@ -1,0 +1,1399 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     57516,       1389]
+NotebookOptionsPosition[     56032,       1332]
+NotebookOutlinePosition[     56378,       1347]
+CellTagsIndexPosition[     56335,       1344]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{"\[Pi]", ",", "21"}], "]"}]], "Input",
+ CellChangeTimes->{{3.578014458640625*^9, 3.57801447296875*^9}, 
+   3.5780145559375*^9}],
+
+Cell[BoxData["3.14159265358979323846264338327950427632`21."], "Output",
+ CellChangeTimes->{3.57801447328125*^9, 3.578014556265625*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{"\[ExponentialE]", ",", "21"}], "]"}]], "Input",
+ CellChangeTimes->{{3.578015790796875*^9, 3.578015795921875*^9}}],
+
+Cell[BoxData["2.71828182845904523536028746877783245151`21."], "Output",
+ CellChangeTimes->{3.5780157963125*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"note", "=", 
+  RowBox[{"{", 
+   RowBox[{
+   "\"\<F6\>\"", ",", "\"\<D6\>\"", ",", "\"\<G6\>\"", ",", "\"\<D6\>\"", 
+    ",", "\"\<A6\>\"", ",", "\"\<E7\>\"", ",", "\"\<E6\>\"", ",", 
+    "\"\<B6\>\"", ",", "\"\<A6\>\"", ",", "\"\<F6\>\"", ",", "\"\<A6\>\"", 
+    ",", "\"\<D7\>\"", ",", "\"\<E7\>\"", ",", "\"\<C7\>\"", ",", 
+    "\"\<E7\>\"", ",", "\"\<F6\>\"", ",", "\"\<E6\>\"", ",", "\"\<F6\>\"", 
+    ",", "\"\<D7\>\"", ",", "\"\<G6\>\""}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"notee", "=", 
+  RowBox[{"{", 
+   RowBox[{
+   "\"\<E6\>\"", ",", "\"\<C7\>\"", ",", "\"\<D6\>\"", ",", "\"\<D7\>\"", 
+    ",", "\"\<E6\>\"", ",", "\"\<D7\>\"", ",", "\"\<D6\>\"", ",", 
+    "\"\<D7\>\"", ",", "\"\<E6\>\"", ",", "\"\<D7\>\"", ",", "\"\<G6\>\"", 
+    ",", "\"\<A6\>\"", ",", "\"\<E7\>\"", ",", "\"\<C6\>\"", ",", 
+    "\"\<G6\>\"", ",", "\"\<A6\>\"", ",", "\"\<E6\>\"", ",", "\"\<F6\>\"", 
+    ",", "\"\<A6\>\"", ",", "\"\<F6\>\""}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.578014665484375*^9, 3.57801477921875*^9}, {
+  3.5780158705625*^9, 3.57801595871875*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"F6\"\>", ",", "\<\"D6\"\>", ",", "\<\"G6\"\>", 
+   ",", "\<\"D6\"\>", ",", "\<\"A6\"\>", ",", "\<\"E7\"\>", ",", "\<\"E6\"\>",
+    ",", "\<\"B6\"\>", ",", "\<\"A6\"\>", ",", "\<\"F6\"\>", 
+   ",", "\<\"A6\"\>", ",", "\<\"D7\"\>", ",", "\<\"E7\"\>", ",", "\<\"C7\"\>",
+    ",", "\<\"E7\"\>", ",", "\<\"F6\"\>", ",", "\<\"E6\"\>", 
+   ",", "\<\"F6\"\>", ",", "\<\"D7\"\>", ",", "\<\"G6\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.578014781921875*^9, 3.578015961546875*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"E6\"\>", ",", "\<\"C7\"\>", ",", "\<\"D6\"\>", 
+   ",", "\<\"D7\"\>", ",", "\<\"E6\"\>", ",", "\<\"D7\"\>", ",", "\<\"D6\"\>",
+    ",", "\<\"D7\"\>", ",", "\<\"E6\"\>", ",", "\<\"D7\"\>", 
+   ",", "\<\"G6\"\>", ",", "\<\"A6\"\>", ",", "\<\"E7\"\>", ",", "\<\"C6\"\>",
+    ",", "\<\"G6\"\>", ",", "\<\"A6\"\>", ",", "\<\"E6\"\>", 
+   ",", "\<\"F6\"\>", ",", "\<\"A6\"\>", ",", "\<\"F6\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.578014781921875*^9, 3.5780159615625*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"note", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.578014783515625*^9, 3.578014786890625*^9}}],
+
+Cell[BoxData["\<\"F6\"\>"], "Output",
+ CellChangeTimes->{3.578014787359375*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"note", "[", 
+       RowBox[{"[", 
+        RowBox[{
+         RowBox[{"2", "i"}], "-", "1"}], "]"}], "]"}], ",", 
+      RowBox[{"note", "[", 
+       RowBox[{"[", 
+        RowBox[{"2", "i"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{"Floor", "[", 
+      RowBox[{
+       RowBox[{"Length", "[", "note", "]"}], "/", "2"}], "]"}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.578014801265625*^9, 3.578014866203125*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{"\<\"F6\"\>", ",", "\<\"D6\"\>"}], "}"}], "]"}], ",", 
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{"\<\"G6\"\>", ",", "\<\"D6\"\>"}], "}"}], "]"}], ",", 
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{"\<\"A6\"\>", ",", "\<\"E7\"\>"}], "}"}], "]"}], ",", 
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{"\<\"E6\"\>", ",", "\<\"B6\"\>"}], "}"}], "]"}], ",", 
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{"\<\"A6\"\>", ",", "\<\"F6\"\>"}], "}"}], "]"}], ",", 
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{"\<\"A6\"\>", ",", "\<\"D7\"\>"}], "}"}], "]"}], ",", 
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{"\<\"E7\"\>", ",", "\<\"C7\"\>"}], "}"}], "]"}], ",", 
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{"\<\"E7\"\>", ",", "\<\"F6\"\>"}], "}"}], "]"}], ",", 
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{"\<\"E6\"\>", ",", "\<\"F6\"\>"}], "}"}], "]"}], ",", 
+   RowBox[{"SoundNote", "[", 
+    RowBox[{"{", 
+     RowBox[{"\<\"D7\"\>", ",", "\<\"G6\"\>"}], "}"}], "]"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.578014850046875*^9, 3.578014866515625*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"rnd", "=", 
+   RowBox[{"RandomChoice", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "9", ",", "10", ",", "11", ",", "12", ",", "13", ",", "14", ",", "15", 
+       ",", "25", ",", "51"}], "}"}], ",", "3"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sound", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"SoundNote", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"note", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"notee", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"RandomReal", "[", 
+        RowBox[{"{", 
+         RowBox[{"0.1", ",", "0.2"}], "}"}], "]"}], ",", 
+       RowBox[{"RandomChoice", "[", "rnd", "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "20"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Sound", "[", "sound", "]"}]}], "Input",
+ CellChangeTimes->{{3.5780149241875*^9, 3.57801493703125*^9}, {
+  3.5780150154375*^9, 3.578015096359375*^9}, {3.578015174984375*^9, 
+  3.57801521084375*^9}, {3.5780152760625*^9, 3.57801534278125*^9}, {
+  3.57801537796875*^9, 3.578015558125*^9}, {3.57801561628125*^9, 
+  3.578015616703125*^9}, {3.578015741140625*^9, 3.578015741734375*^9}, {
+  3.57801597059375*^9, 3.578016016234375*^9}, {3.57801608953125*^9, 
+  3.578016170671875*^9}, {3.578016945078125*^9, 3.578016957203125*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  GraphicsBox[{
+    {GrayLevel[0.9], RectangleBox[{0, 0}, {360, -164}]}, {InsetBox[
+      GraphicsBox[{
+        {Hue[0.24459263497607545`, 0.9, 0.7], 
+         StyleBox[{
+           RectangleBox[{0.47529526657918025`, 0.7415107755517961}, \
+{0.6651387066255684, 0.7534155374565579}], 
+           RectangleBox[{1.3119296853541673`, 0.7653202993613198}, \
+{1.4337565233314005`, 0.7772250612660818}], 
+           RectangleBox[{2.697439497054964, 0.7772250612660818}, \
+{2.8768456068605612`, 0.7891298231708438}], 
+           RectangleBox[{2.697439497054964, 0.7772250612660818}, \
+{2.8768456068605612`, 0.7891298231708438}], 
+           RectangleBox[{1.3119296853541673`, 0.8248441088851293}, \
+{1.4337565233314005`, 0.8367488707898912}], 
+           RectangleBox[{0.47529526657918025`, 0.884367918408939}, \
+{0.6651387066255684, 0.896272680313701}], 
+           RectangleBox[{0.8562883388775292, 0.884367918408939}, \
+{1.045493942075869, 0.896272680313701}], 
+           RectangleBox[{0.8562883388775292, 0.9081774422184627}, \
+{1.045493942075869, 0.9200822041232247}]},
+          Antialiasing->True]}, 
+        {Hue[0.2852741406766892, 0.9, 0.7], 
+         StyleBox[{
+           RectangleBox[{0.30350657673879206`, 0.7415107755517961}, \
+{0.4667058320871608, 0.7534155374565579}], 
+           RectangleBox[{1.0554521317178869`, 0.7415107755517961}, \
+{1.1841212195196387`, 0.7534155374565579}], 
+           RectangleBox[{0., 0.7653202993613198}, \
+{0.11915952024903102`, 0.7772250612660818}], 
+           RectangleBox[{1.0554521317178869`, 0.7653202993613198}, \
+{1.1841212195196387`, 0.7772250612660818}], 
+           RectangleBox[{2.5593737601855526`, 0.7653202993613198}, \
+{2.6905362102114934`, 0.7772250612660818}], 
+           RectangleBox[{2.5593737601855526`, 0.7653202993613198}, \
+{2.6905362102114934`, 0.7772250612660818}], 
+           RectangleBox[{0., 0.7772250612660818}, \
+{0.11915952024903102`, 0.7891298231708438}], 
+           RectangleBox[{1.4401684621723074`, 0.7772250612660818}, \
+{1.5836817529831844`, 0.7891298231708438}], 
+           
+           RectangleBox[{0.30350657673879206`, 0.8010345850756058}, \
+{0.4667058320871608, 0.8129393469803675}], 
+           RectangleBox[{1.5912350840784937`, 0.8010345850756058}, \
+{1.7226874599444562`, 0.8129393469803675}], 
+           RectangleBox[{1.5912350840784937`, 0.8248441088851293}, \
+{1.7226874599444562`, 0.8367488707898912}], 
+           RectangleBox[{1.7296060060426648`, 0.8248441088851293}, \
+{1.8374004333628347`, 0.8367488707898912}], 
+           RectangleBox[{2.8862880336924346`, 0.8248441088851293}, \
+{3.0640415662099065`, 0.8367488707898912}], 
+           RectangleBox[{1.4401684621723074`, 0.884367918408939}, \
+{1.5836817529831844`, 0.896272680313701}], 
+           RectangleBox[{1.7296060060426648`, 0.884367918408939}, \
+{1.8374004333628347`, 0.896272680313701}], 
+           RectangleBox[{2.8862880336924346`, 0.884367918408939}, \
+{3.0640415662099065`, 0.896272680313701}]},
+          Antialiasing->True]}, 
+        {Hue[0.4073186577785305, 0.9, 0.7], 
+         StyleBox[{
+           RectangleBox[{2.02371288186285, 0.7177012517422724}, \
+{2.206076235236671, 0.7296060136470344}], 
+           RectangleBox[{0.12543107394634845`, 0.7415107755517961}, \
+{0.29460280159916985`, 0.7534155374565579}], 
+           RectangleBox[{0.6751304666280099, 0.7653202993613198}, \
+{0.8472304452650532, 0.7772250612660818}], 
+           RectangleBox[{2.3943906979583116`, 0.7772250612660818}, \
+{2.5511246070741906`, 0.7891298231708438}], 
+           RectangleBox[{3.0733970152897734`, 0.7772250612660818}, \
+{3.180930509353923, 0.7891298231708438}], 
+           RectangleBox[{2.2156743064668722`, 0.8010345850756058}, \
+{2.3854548783837397`, 0.8129393469803675}], 
+           RectangleBox[{3.0733970152897734`, 0.8010345850756058}, \
+{3.180930509353923, 0.8129393469803675}], 
+           RectangleBox[{0.6751304666280099, 0.8248441088851293}, \
+{0.8472304452650532, 0.8367488707898912}], 
+           RectangleBox[{2.3943906979583116`, 0.8248441088851293}, \
+{2.5511246070741906`, 0.8367488707898912}], 
+           RectangleBox[{1.1908932767723623`, 0.8486536326946532}, \
+{1.305877864925077, 0.860558394599415}], 
+           RectangleBox[{0.12543107394634845`, 0.860558394599415}, \
+{0.29460280159916985`, 0.872463156504177}], 
+           RectangleBox[{2.02371288186285, 0.860558394599415}, \
+{2.206076235236671, 0.872463156504177}], 
+           RectangleBox[{1.1908932767723623`, 0.884367918408939}, \
+{1.305877864925077, 0.896272680313701}], 
+           RectangleBox[{1.8430738242744225`, 0.9081774422184627}, \
+{2.0146809289834287`, 0.9200822041232247}], 
+           RectangleBox[{1.8430738242744225`, 0.9081774422184627}, \
+{2.0146809289834287`, 0.9200822041232247}], 
+           RectangleBox[{2.2156743064668722`, 0.9081774422184627}, \
+{2.3854548783837397`, 0.9200822041232247}]},
+          Antialiasing->True]}},
+       AspectRatio->NCache[
+         Rational[6, 35], 0.17142857142857143`],
+       Background->GrayLevel[1],
+       Frame->True,
+       FrameStyle->GrayLevel[0.75],
+       FrameTicks->False,
+       ImagePadding->None,
+       PlotRange->All,
+       PlotRangePadding->{Automatic, 0.05}], {180, -35}, 
+      ImageScaled[{0.5, 0.5}], {350, 60},
+      Background->GrayLevel[0.9]], InsetBox[
+      GraphicsBox[
+       {GrayLevel[0.6], RectangleBox[{0, 0}]},
+       AspectRatio->NCache[
+         Rational[6, 35], 0.17142857142857143`],
+       Background->GrayLevel[1],
+       Frame->True,
+       FrameStyle->GrayLevel[0.75],
+       FrameTicks->False,
+       ImagePadding->None], {180, -100}, ImageScaled[{0.5, 0.5}], {350, 60},
+      Background->GrayLevel[0.9]]}, InsetBox[
+     StyleBox[
+      TemplateBox[{
+       StyleBox[
+        "\" | \"", FontSize -> 14, FontColor -> GrayLevel[0.75], StripOnInput -> 
+         False],TemplateBox[{"\"3.19\"", "\" s\""}, "RowDefault"]},
+       "RowWithSeparator"], "DialogStyle",
+      StripOnInput->False], {355, -159}, Scaled[{1, 0}]], 
+    TagBox[
+     TooltipBox[
+      TagBox[{
+        {GrayLevel[0.9], RectangleBox[{5, -158}, {29, -135}]}, 
+        {GrayLevel[0.3], 
+         PolygonBox[
+          NCache[{{13, -153}, {13, -140}, {21, Rational[-293, 2]}, {
+            13, -153}}, {{13, -153}, {13, -140}, {21, -146.5}, {13, -153}}]]}, 
+        {GrayLevel[0.5], 
+         StyleBox[
+          LineBox[{{5, -158}, {5, -135}, {29, -135}, {29, -158}, {5, -158}}],
+          Antialiasing->False]}},
+       EventHandlerTag[{"MouseClicked" :> (Sound`EmitMIDI[
+            Sound`MIDISequence[{
+              Sound`MIDITrack[{
+                Sound`MIDIEvent[0, "SetTempo", "Tempo" -> 1000000], 
+                Sound`MIDIEvent[
+                0, "ProgramCommand", "Channel" -> 0, "Value" -> 8], 
+                Sound`MIDIEvent[
+                15574, "NoteOn", "Note" -> 86, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                15574, "NoteOn", "Note" -> 98, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                22122, "NoteOff", "Note" -> 86, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                22122, "NoteOff", "Note" -> 98, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                28058, "NoteOn", "Note" -> 100, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                28058, "NoteOn", "Note" -> 98, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                34584, "NoteOff", "Note" -> 100, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                34584, "NoteOff", "Note" -> 98, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                42988, "NoteOn", "Note" -> 93, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                42988, "NoteOn", "Note" -> 88, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                47190, "NoteOff", "Note" -> 93, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                47190, "NoteOff", "Note" -> 88, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                88387, "NoteOn", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                88387, "NoteOn", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                94575, "NoteOff", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                94575, "NoteOff", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 0]}], 
+              Sound`MIDITrack[{
+                Sound`MIDIEvent[0, "SetTempo", "Tempo" -> 1000000], 
+                Sound`MIDIEvent[
+                0, "ProgramCommand", "Channel" -> 1, "Value" -> 12], 
+                Sound`MIDIEvent[
+                0, "NoteOn", "Note" -> 89, "Channel" -> 1, "Velocity" -> 127], 
+                Sound`MIDIEvent[
+                0, "NoteOn", "Note" -> 88, "Channel" -> 1, "Velocity" -> 127], 
+                Sound`MIDIEvent[
+                4110, "NoteOff", "Note" -> 89, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                4110, "NoteOff", "Note" -> 88, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                9945, "NoteOn", "Note" -> 91, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                9945, "NoteOn", "Note" -> 86, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                15574, "NoteOff", "Note" -> 91, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                15574, "NoteOff", "Note" -> 86, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                34584, "NoteOn", "Note" -> 88, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                34584, "NoteOn", "Note" -> 86, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                39022, "NoteOff", "Note" -> 88, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                39022, "NoteOff", "Note" -> 86, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                47190, "NoteOn", "Note" -> 89, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                47190, "NoteOn", "Note" -> 98, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                52140, "NoteOff", "Note" -> 89, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                52140, "NoteOff", "Note" -> 98, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                52140, "NoteOn", "Note" -> 93, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                52140, "NoteOn", "Note" -> 91, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                56674, "NoteOff", "Note" -> 93, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                56674, "NoteOff", "Note" -> 91, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                56674, "NoteOn", "Note" -> 98, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                56674, "NoteOn", "Note" -> 93, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                60392, "NoteOff", "Note" -> 98, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                60392, "NoteOff", "Note" -> 93, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                83863, "NoteOn", "Note" -> 88, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                83863, "NoteOn", "Note" -> 88, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                88387, "NoteOff", "Note" -> 88, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                88387, "NoteOff", "Note" -> 88, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                94575, "NoteOn", "Note" -> 98, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                94575, "NoteOn", "Note" -> 93, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                100706, "NoteOff", "Note" -> 98, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                100706, "NoteOff", "Note" -> 93, "Channel" -> 1, "Velocity" -> 
+                 0]}], 
+              Sound`MIDITrack[{
+                Sound`MIDIEvent[0, "SetTempo", "Tempo" -> 1000000], 
+                Sound`MIDIEvent[
+                0, "ProgramCommand", "Channel" -> 2, "Value" -> 24], 
+                Sound`MIDIEvent[
+                4110, "NoteOn", "Note" -> 86, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                4110, "NoteOn", "Note" -> 96, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                9945, "NoteOff", "Note" -> 86, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                9945, "NoteOff", "Note" -> 96, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                22122, "NoteOn", "Note" -> 93, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                22122, "NoteOn", "Note" -> 88, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                28058, "NoteOff", "Note" -> 93, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                28058, "NoteOff", "Note" -> 88, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                39022, "NoteOn", "Note" -> 95, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                39022, "NoteOn", "Note" -> 98, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                42988, "NoteOff", "Note" -> 95, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                42988, "NoteOff", "Note" -> 98, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                60392, "NoteOn", "Note" -> 100, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                60392, "NoteOn", "Note" -> 100, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                66311, "NoteOff", "Note" -> 100, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                66311, "NoteOff", "Note" -> 100, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                66311, "NoteOn", "Note" -> 96, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                66311, "NoteOn", "Note" -> 84, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                72601, "NoteOff", "Note" -> 96, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                72601, "NoteOff", "Note" -> 84, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                72601, "NoteOn", "Note" -> 100, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                72601, "NoteOn", "Note" -> 91, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                78457, "NoteOff", "Note" -> 100, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                78457, "NoteOff", "Note" -> 91, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                78457, "NoteOn", "Note" -> 89, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                78457, "NoteOn", "Note" -> 93, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                83863, "NoteOff", "Note" -> 89, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                83863, "NoteOff", "Note" -> 93, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                100706, "NoteOn", "Note" -> 91, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                100706, "NoteOn", "Note" -> 89, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                104415, "NoteOff", "Note" -> 91, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                104415, "NoteOff", "Note" -> 89, "Channel" -> 2, "Velocity" -> 
+                 0]}]}, "DivisionType" -> "PPQ", "Resolution" -> 32767]]; 
+          Sound`EmitSampledSound[None, "Preemptive"]), PassEventsDown -> 
+         Automatic, PassEventsUp -> True}]],
+      DynamicBox[
+       ToBoxes[
+        FEPrivate`FrontEndResource["FEStrings", "playText"], StandardForm]]],
+     Annotation[#, 
+      Dynamic[
+       FEPrivate`FrontEndResource["FEStrings", "playText"]], "Tooltip"]& ], 
+    TagBox[
+     TooltipBox[
+      TagBox[{
+        {GrayLevel[0.9], RectangleBox[{34, -158}, {58, -135}]}, 
+        {GrayLevel[0.3], RectangleBox[{42, -150}, {50, -143}]}, 
+        {GrayLevel[0.5], 
+         StyleBox[
+          LineBox[{{34, -158}, {34, -135}, {58, -135}, {58, -158}, {
+           34, -158}}],
+          Antialiasing->False]}},
+       EventHandlerTag[{"MouseClicked" :> (Sound`EmitSampledSound[
+            SampledSoundList[{{0.}}, 8000], "Preemptive"]; Sound`StopMIDI[]), 
+         PassEventsDown -> Automatic, PassEventsUp -> True}]],
+      DynamicBox[
+       ToBoxes[
+        FEPrivate`FrontEndResource["FEStrings", "stopText"], StandardForm]]],
+     Annotation[#, 
+      Dynamic[
+       FEPrivate`FrontEndResource["FEStrings", "stopText"]], "Tooltip"]& ], 
+    {GrayLevel[0.75], 
+     StyleBox[LineBox[{{0, 0}, {360, 0}, {360, -164}, {0, -164}, {0, 0}}],
+      Antialiasing->False]}},
+   ContentSelectable->False,
+   ImageSize->250,
+   PlotRange->{{0, 360}, {-164, 0}},
+   PlotRangePadding->1],
+  Sound[{
+    SoundNote[{"F6", "E6"}, 0.12546074339861812`, 13], 
+    SoundNote[{"D6", "C7"}, 0.17807051407338692`, 25], 
+    SoundNote[{"G6", "D6"}, 0.17179029622618358`, 13], 
+    SoundNote[{"D6", "D7"}, 0.19983494799189083`, 9], 
+    SoundNote[{"A6", "E6"}, 0.18113598890746652`, 25], 
+    SoundNote[{"E7", "D7"}, 0.1991854753664032, 9], 
+    SoundNote[{"E6", "D6"}, 0.13541800224031933`, 13], 
+    SoundNote[{"B6", "D7"}, 0.12104283476484992`, 25], 
+    SoundNote[{"A6", "E6"}, 0.1282469522644186, 9], 
+    SoundNote[{"F6", "D7"}, 0.15105449679124647`, 13], 
+    SoundNote[{"A6", "G6"}, 0.13837371747726832`, 13], 
+    SoundNote[{"D7", "A6"}, 0.11347767732795425`, 13], 
+    SoundNote[{"E7", "E7"}, 0.18064908615329817`, 25], 
+    SoundNote[{"C7", "C6"}, 0.19194244446159242`, 25], 
+    SoundNote[{"E7", "G6"}, 0.1787121125180191, 25], 
+    SoundNote[{"F6", "A6"}, 0.1650027200137535, 25], 
+    SoundNote[{"E6", "E6"}, 0.13805243776906692`, 13], 
+    SoundNote[{"F6", "F6"}, 0.1888387968879942, 9], 
+    SoundNote[{"D7", "A6"}, 0.18712164310268825`, 13], 
+    SoundNote[{"G6", "F6"}, 0.11319817711323243`, 25]}]]], "Output",
+ CellChangeTimes->{{3.578015082171875*^9, 3.57801512559375*^9}, {
+   3.5780151914375*^9, 3.578015237640625*^9}, {3.578015276796875*^9, 
+   3.578015294453125*^9}, {3.57801532490625*^9, 3.57801549975*^9}, {
+   3.578015537296875*^9, 3.578015558890625*^9}, 3.57801561728125*^9, {
+   3.578015742296875*^9, 3.5780157545*^9}, 3.5780159881875*^9, {
+   3.578016104*^9, 3.578016171359375*^9}, {3.578016902359375*^9, 
+   3.57801696125*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Prepend", "[", 
+  RowBox[{
+   RowBox[{"RandomReal", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.01", ",", "0.05"}], "}"}], ",", 
+     RowBox[{"Length", "[", "note", "]"}]}], "]"}], ",", "0"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.578016563765625*^9, 3.578016597234375*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0", ",", "0.03063699326267547`", ",", "0.02631926784710244`", ",", 
+   "0.023874501899292397`", ",", "0.03805426380705738`", ",", 
+   "0.04005677387151129`", ",", "0.018817488109727182`", ",", 
+   "0.041711741223262246`", ",", "0.015753361817547384`", ",", 
+   "0.016811397100638743`", ",", "0.04717925335288287`", ",", 
+   "0.0411219823421185`", ",", "0.03226045191955983`", ",", 
+   "0.016069043764874287`", ",", "0.014409174608249637`", ",", 
+   "0.02443365572752538`", ",", "0.03105310358632101`", ",", 
+   "0.043785495699721545`", ",", "0.01651801557558805`", ",", 
+   "0.017519866582837496`", ",", "0.01839692080908075`"}], "}"}]], "Output",
+ CellChangeTimes->{3.578016560171875*^9, 3.578016597625*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"rnd", "=", 
+   RowBox[{"RandomChoice", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "9", ",", "10", ",", "11", ",", "12", ",", "13", ",", "14", ",", "15", 
+       ",", "25", ",", "51"}], "}"}], ",", "3"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"rndtime", "=", 
+   RowBox[{"Accumulate", "[", 
+    RowBox[{"Prepend", "[", 
+     RowBox[{
+      RowBox[{"RandomReal", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.01", ",", "0.05"}], "}"}], ",", 
+        RowBox[{"Length", "[", "note", "]"}]}], "]"}], ",", "0"}], "]"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"rndtimee", "=", 
+   RowBox[{"Accumulate", "[", 
+    RowBox[{"Prepend", "[", 
+     RowBox[{
+      RowBox[{"RandomReal", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.01", ",", "0.05"}], "}"}], ",", 
+        RowBox[{"Length", "[", "note", "]"}]}], "]"}], ",", "0"}], "]"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sound", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"SoundNote", "[", 
+        RowBox[{
+         RowBox[{"note", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"rndtime", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], ",", 
+           RowBox[{"rndtime", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", "+", "1"}], "]"}], "]"}]}], "}"}], ",", 
+         RowBox[{"RandomChoice", "[", "rnd", "]"}]}], "]"}], ",", 
+       RowBox[{"SoundNote", "[", 
+        RowBox[{
+         RowBox[{"notee", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"rndtimee", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], ",", 
+           RowBox[{"rndtimee", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", "+", "1"}], "]"}], "]"}]}], "}"}], ",", 
+         RowBox[{"RandomChoice", "[", "rnd", "]"}]}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "5"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Sound", "[", "sound", "]"}]}], "Input",
+ CellChangeTimes->{{3.5780162286875*^9, 3.578016273296875*^9}, {
+   3.578016368640625*^9, 3.578016505546875*^9}, {3.57801660265625*^9, 
+   3.578016611703125*^9}, 3.578016721046875*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  GraphicsBox[{
+    {GrayLevel[0.9], RectangleBox[{0, 0}, {360, -164}]}, {InsetBox[
+      GraphicsBox[{
+        {Hue[0.07226301140122887, 0.9, 0.7], 
+         StyleBox[{
+           RectangleBox[{0.06598101748710593, 0.7415107755517961}, \
+{0.10051118503372296`, 0.7534155374565579}], 
+           RectangleBox[{0.32642597735526596`, 0.7415107755517961}, \
+{0.3457640308847316, 0.7534155374565579}], 
+           RectangleBox[{0.1716971343119602, 0.8010345850756058}, \
+{0.21225775933103427`, 0.8129393469803675}], 
+           RectangleBox[{0.4792016357921079, 0.8248441088851293}, \
+{0.5161381878109074, 0.8367488707898912}]},
+          Antialiasing->True]}, 
+        {Hue[-0.10006661217361768`, 0.9, 0.7], 
+         StyleBox[{
+           RectangleBox[{0.14691610461745047`, 0.7415107755517961}, \
+{0.16616718039490952`, 0.7534155374565579}], 
+           RectangleBox[{0.4602801599169897, 0.7653202993613198}, \
+{0.5026673177282022, 0.7772250612660818}], 
+           RectangleBox[{0., 0.7772250612660818}, \
+{0.03134098330637532, 0.7891298231708438}], 
+           RectangleBox[{0.06219672231208228, 0.860558394599415}, \
+{0.07677999206518754, 0.872463156504177}]},
+          Antialiasing->True]}, 
+        {Hue[0.45760376425153576`, 0.9, 0.7], 
+         StyleBox[{
+           RectangleBox[{0., 0.7653202993613198}, \
+{0.027745902890102845`, 0.7772250612660818}], 
+           RectangleBox[{0.2792138431958983, 0.884367918408939}, \
+{0.3254570146794031, 0.896272680313701}]},
+          Antialiasing->True]}},
+       AspectRatio->NCache[
+         Rational[6, 35], 0.17142857142857143`],
+       Background->GrayLevel[1],
+       Frame->True,
+       FrameStyle->GrayLevel[0.75],
+       FrameTicks->False,
+       ImagePadding->None,
+       PlotRange->All,
+       PlotRangePadding->{Automatic, 0.05}], {180, -35}, 
+      ImageScaled[{0.5, 0.5}], {350, 60},
+      Background->GrayLevel[0.9]], InsetBox[
+      GraphicsBox[
+       {GrayLevel[0.6], RectangleBox[{0, 0}]},
+       AspectRatio->NCache[
+         Rational[6, 35], 0.17142857142857143`],
+       Background->GrayLevel[1],
+       Frame->True,
+       FrameStyle->GrayLevel[0.75],
+       FrameTicks->False,
+       ImagePadding->None], {180, -100}, ImageScaled[{0.5, 0.5}], {350, 60},
+      Background->GrayLevel[0.9]]}, InsetBox[
+     StyleBox[
+      TemplateBox[{
+       StyleBox[
+        "\" | \"", FontSize -> 14, FontColor -> GrayLevel[0.75], StripOnInput -> 
+         False],TemplateBox[{"\"0.52\"", "\" s\""}, "RowDefault"]},
+       "RowWithSeparator"], "DialogStyle",
+      StripOnInput->False], {355, -159}, Scaled[{1, 0}]], 
+    TagBox[
+     TooltipBox[
+      TagBox[{
+        {GrayLevel[0.9], RectangleBox[{5, -158}, {29, -135}]}, 
+        {GrayLevel[0.3], 
+         PolygonBox[
+          NCache[{{13, -153}, {13, -140}, {21, Rational[-293, 2]}, {
+            13, -153}}, {{13, -153}, {13, -140}, {21, -146.5}, {13, -153}}]]}, 
+        {GrayLevel[0.5], 
+         StyleBox[
+          LineBox[{{5, -158}, {5, -135}, {29, -135}, {29, -158}, {5, -158}}],
+          Antialiasing->False]}},
+       EventHandlerTag[{"MouseClicked" :> (Sound`EmitMIDI[
+            Sound`MIDISequence[{
+              Sound`MIDITrack[{
+                Sound`MIDIEvent[0, "SetTempo", "Tempo" -> 1000000], 
+                Sound`MIDIEvent[
+                0, "ProgramCommand", "Channel" -> 0, "Value" -> 9], 
+                Sound`MIDIEvent[
+                2162, "NoteOn", "Note" -> 86, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                3353, "NoteOff", "Note" -> 86, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                5626, "NoteOn", "Note" -> 91, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                7025, "NoteOff", "Note" -> 91, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                10696, "NoteOn", "Note" -> 86, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                11363, "NoteOff", "Note" -> 86, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                15702, "NoteOn", "Note" -> 93, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                16976, "NoteOff", "Note" -> 93, "Channel" -> 0, "Velocity" -> 
+                 0]}], 
+              Sound`MIDITrack[{
+                Sound`MIDIEvent[0, "SetTempo", "Tempo" -> 1000000], 
+                Sound`MIDIEvent[
+                0, "ProgramCommand", "Channel" -> 1, "Value" -> 10], 
+                Sound`MIDIEvent[
+                0, "NoteOn", "Note" -> 89, "Channel" -> 1, "Velocity" -> 127], 
+                Sound`MIDIEvent[
+                1081, "NoteOff", "Note" -> 89, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                2038, "NoteOn", "Note" -> 96, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                2541, "NoteOff", "Note" -> 96, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                4814, "NoteOn", "Note" -> 86, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                5478, "NoteOff", "Note" -> 86, "Channel" -> 1, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                15082, "NoteOn", "Note" -> 88, "Channel" -> 1, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                16544, "NoteOff", "Note" -> 88, "Channel" -> 1, "Velocity" -> 
+                 0]}], 
+              Sound`MIDITrack[{
+                Sound`MIDIEvent[0, "SetTempo", "Tempo" -> 1000000], 
+                Sound`MIDIEvent[
+                0, "ProgramCommand", "Channel" -> 2, "Value" -> 11], 
+                Sound`MIDIEvent[
+                0, "NoteOn", "Note" -> 88, "Channel" -> 2, "Velocity" -> 127], 
+                Sound`MIDIEvent[
+                957, "NoteOff", "Note" -> 88, "Channel" -> 2, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                9149, "NoteOn", "Note" -> 98, "Channel" -> 2, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                10744, "NoteOff", "Note" -> 98, "Channel" -> 2, "Velocity" -> 
+                 0]}]}, "DivisionType" -> "PPQ", "Resolution" -> 32767]]; 
+          Sound`EmitSampledSound[None, "Preemptive"]), PassEventsDown -> 
+         Automatic, PassEventsUp -> True}]],
+      DynamicBox[
+       ToBoxes[
+        FEPrivate`FrontEndResource["FEStrings", "playText"], StandardForm]]],
+     Annotation[#, 
+      Dynamic[
+       FEPrivate`FrontEndResource["FEStrings", "playText"]], "Tooltip"]& ], 
+    TagBox[
+     TooltipBox[
+      TagBox[{
+        {GrayLevel[0.9], RectangleBox[{34, -158}, {58, -135}]}, 
+        {GrayLevel[0.3], RectangleBox[{42, -150}, {50, -143}]}, 
+        {GrayLevel[0.5], 
+         StyleBox[
+          LineBox[{{34, -158}, {34, -135}, {58, -135}, {58, -158}, {
+           34, -158}}],
+          Antialiasing->False]}},
+       EventHandlerTag[{"MouseClicked" :> (Sound`EmitSampledSound[
+            SampledSoundList[{{0.}}, 8000], "Preemptive"]; Sound`StopMIDI[]), 
+         PassEventsDown -> Automatic, PassEventsUp -> True}]],
+      DynamicBox[
+       ToBoxes[
+        FEPrivate`FrontEndResource["FEStrings", "stopText"], StandardForm]]],
+     Annotation[#, 
+      Dynamic[
+       FEPrivate`FrontEndResource["FEStrings", "stopText"]], "Tooltip"]& ], 
+    {GrayLevel[0.75], 
+     StyleBox[LineBox[{{0, 0}, {360, 0}, {360, -164}, {0, -164}, {0, 0}}],
+      Antialiasing->False]}},
+   ContentSelectable->False,
+   ImageSize->{245., Automatic},
+   PlotRange->{{0, 360}, {-164, 0}},
+   PlotRangePadding->1],
+  Sound[{{
+     SoundNote["F6", {0, 0.03299784554605531}, 11], 
+     SoundNote["E6", {0, 0.02922481435450714}, 12]}, {
+     SoundNote["D6", {0.03299784554605531, 0.0693576702822378}, 10], 
+     SoundNote["C7", {0.02922481435450714, 0.0445679167431512}, 11]}, {
+     SoundNote["G6", {0.0693576702822378, 0.11203900119732008`}, 10], 
+     SoundNote["D6", {0.0445679167431512, 0.0648446838581434}, 11]}, {
+     SoundNote["D6", {0.11203900119732008`, 0.13240803250872635`}, 10], 
+     SoundNote["D7", {0.0648446838581434, 0.11350872409222539`}, 12]}, {
+     SoundNote["A6", {0.13240803250872635`, 0.1713046724399985}, 10], 
+     SoundNote[
+     "E6", {0.11350872409222539`, 0.15812069276728713`}, 11]}}]]], "Output",
+ CellChangeTimes->{{3.578016245859375*^9, 3.578016274828125*^9}, 
+   3.578016377484375*^9, {3.578016474265625*^9, 3.578016511328125*^9}, {
+   3.578016613046875*^9, 3.578016662671875*^9}, 3.5780167215625*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["sound"], "Input",
+ CellChangeTimes->{{3.57801625075*^9, 3.57801631440625*^9}, {
+  3.578016355984375*^9, 3.57801638259375*^9}, {3.57801653659375*^9, 
+  3.57801653759375*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"SoundNote", "[", 
+      RowBox[{"\<\"F6\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0.03299784554605531`"}], "}"}], ",", "11"}], "]"}],
+      ",", 
+     RowBox[{"SoundNote", "[", 
+      RowBox[{"\<\"E6\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0.02922481435450714`"}], "}"}], ",", "12"}], 
+      "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"SoundNote", "[", 
+      RowBox[{"\<\"D6\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.03299784554605531`", ",", "0.0693576702822378`"}], "}"}], 
+       ",", "10"}], "]"}], ",", 
+     RowBox[{"SoundNote", "[", 
+      RowBox[{"\<\"C7\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.02922481435450714`", ",", "0.0445679167431512`"}], "}"}], 
+       ",", "11"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"SoundNote", "[", 
+      RowBox[{"\<\"G6\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.0693576702822378`", ",", "0.11203900119732008`"}], "}"}], 
+       ",", "10"}], "]"}], ",", 
+     RowBox[{"SoundNote", "[", 
+      RowBox[{"\<\"D6\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.0445679167431512`", ",", "0.0648446838581434`"}], "}"}], 
+       ",", "11"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"SoundNote", "[", 
+      RowBox[{"\<\"D6\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.11203900119732008`", ",", "0.13240803250872635`"}], "}"}], 
+       ",", "10"}], "]"}], ",", 
+     RowBox[{"SoundNote", "[", 
+      RowBox[{"\<\"D7\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.0648446838581434`", ",", "0.11350872409222539`"}], "}"}], 
+       ",", "12"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"SoundNote", "[", 
+      RowBox[{"\<\"A6\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.13240803250872635`", ",", "0.1713046724399985`"}], "}"}], 
+       ",", "10"}], "]"}], ",", 
+     RowBox[{"SoundNote", "[", 
+      RowBox[{"\<\"E6\"\>", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.11350872409222539`", ",", "0.15812069276728713`"}], "}"}], 
+       ",", "11"}], "]"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.57801625415625*^9, 3.578016267171875*^9}, {
+   3.578016360890625*^9, 3.578016383234375*^9}, 3.578016538171875*^9, 
+   3.5780166163125*^9, 3.57801667303125*^9, 3.57801674215625*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"rnd", "=", 
+   RowBox[{"{", "59", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sound", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"SoundNote", "[", 
+      RowBox[{
+       RowBox[{"note", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ",", 
+       RowBox[{"RandomReal", "[", 
+        RowBox[{"{", 
+         RowBox[{"0.1", ",", "0.2"}], "}"}], "]"}], ",", 
+       RowBox[{"RandomChoice", "[", "rnd", "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "note", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Sound", "[", "sound", "]"}]}], "Input",
+ CellChangeTimes->{{3.57801543321875*^9, 3.5780154789375*^9}, {
+  3.57801556796875*^9, 3.5780157815*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  GraphicsBox[{
+    {GrayLevel[0.9], RectangleBox[{0, 0}, {360, -164}]}, {InsetBox[
+      GraphicsBox[
+       {Hue[0.3881114562337579, 0.9, 0.7], 
+        StyleBox[{
+          RectangleBox[{0.11947996459852901`, 0.7415107755517961}, \
+{0.23107242042298656`, 0.7534155374565579}], 
+          RectangleBox[{0.36048463393047886`, 0.7415107755517961}, \
+{0.4939664906765953, 0.7534155374565579}], 
+          RectangleBox[{0.8361766411328471, 0.7653202993613198}, \
+{0.9718909268471329, 0.7772250612660818}], 
+          RectangleBox[{2.3491012298959317`, 0.7653202993613198}, \
+{2.471884823145238, 0.7772250612660818}], 
+          RectangleBox[{0., 0.7772250612660818}, \
+{0.11350596636860256`, 0.7891298231708438}], 
+          RectangleBox[{1.2865077669606617`, 0.7772250612660818}, \
+{1.4386608478041931`, 0.7891298231708438}], 
+          RectangleBox[{2.218604083376568, 0.7772250612660818}, \
+{2.3425763725699635`, 0.7891298231708438}], 
+          RectangleBox[{2.47834711752678, 0.7772250612660818}, \
+{2.5986373485518968`, 0.7891298231708438}], 
+          RectangleBox[{0.2369457075716422, 0.8010345850756058}, \
+{0.354307687612537, 0.8129393469803675}], 
+          RectangleBox[{2.76342051454207, 0.8010345850756058}, \
+{2.9170812097537153`, 0.8129393469803675}], 
+          RectangleBox[{0.5009918515579699, 0.8248441088851293}, \
+{0.6618717001861629, 0.8367488707898912}], 
+          RectangleBox[{1.1472823267311625`, 0.8248441088851293}, \
+{1.2795464949491868`, 0.8367488707898912}], 
+          RectangleBox[{1.4466689046906949`, 0.8248441088851293}, \
+{1.5819772942289498`, 0.8367488707898912}], 
+          RectangleBox[{0.97903378398999, 0.8486536326946532}, \
+{1.1388698995941038`, 0.860558394599415}], 
+          RectangleBox[{1.8572649311807612`, 0.860558394599415}, \
+{2.041947691274758, 0.872463156504177}], 
+          RectangleBox[{1.5890987884151737`, 0.884367918408939}, \
+{1.7315393536179693`, 0.896272680313701}], 
+          RectangleBox[{2.6049684133426925`, 0.884367918408939}, \
+{2.755497909482101, 0.896272680313701}], 
+          
+          RectangleBox[{0.6703390606402784, 0.9081774422184627}, \
+{0.8278847621082186, 0.9200822041232247}], 
+          RectangleBox[{1.739036225470748, 0.9081774422184627}, \
+{1.8513534958952604`, 0.9200822041232247}], 
+          RectangleBox[{2.051667836542863, 0.9081774422184627}, \
+{2.2102572710348825`, 0.9200822041232247}]},
+         Antialiasing->True]},
+       AspectRatio->NCache[
+         Rational[6, 35], 0.17142857142857143`],
+       Background->GrayLevel[1],
+       Frame->True,
+       FrameStyle->GrayLevel[0.75],
+       FrameTicks->False,
+       ImagePadding->None,
+       PlotRange->All,
+       PlotRangePadding->{Automatic, 0.05}], {180, -35}, 
+      ImageScaled[{0.5, 0.5}], {350, 60},
+      Background->GrayLevel[0.9]], InsetBox[
+      GraphicsBox[
+       {GrayLevel[0.6], RectangleBox[{0, 0}]},
+       AspectRatio->NCache[
+         Rational[6, 35], 0.17142857142857143`],
+       Background->GrayLevel[1],
+       Frame->True,
+       FrameStyle->GrayLevel[0.75],
+       FrameTicks->False,
+       ImagePadding->None], {180, -100}, ImageScaled[{0.5, 0.5}], {350, 60},
+      Background->GrayLevel[0.9]]}, InsetBox[
+     StyleBox[
+      TemplateBox[{
+       StyleBox[
+        "\" | \"", FontSize -> 14, FontColor -> GrayLevel[0.75], StripOnInput -> 
+         False],TemplateBox[{"\"2.93\"", "\" s\""}, "RowDefault"]},
+       "RowWithSeparator"], "DialogStyle",
+      StripOnInput->False], {355, -159}, Scaled[{1, 0}]], 
+    TagBox[
+     TooltipBox[
+      TagBox[{
+        {GrayLevel[0.9], RectangleBox[{5, -158}, {29, -135}]}, 
+        {GrayLevel[0.3], 
+         PolygonBox[
+          NCache[{{13, -153}, {13, -140}, {21, Rational[-293, 2]}, {
+            13, -153}}, {{13, -153}, {13, -140}, {21, -146.5}, {13, -153}}]]}, 
+        {GrayLevel[0.5], 
+         StyleBox[
+          LineBox[{{5, -158}, {5, -135}, {29, -135}, {29, -158}, {5, -158}}],
+          Antialiasing->False]}},
+       EventHandlerTag[{"MouseClicked" :> (Sound`EmitMIDI[
+            Sound`MIDISequence[{
+              Sound`MIDITrack[{
+                Sound`MIDIEvent[0, "SetTempo", "Tempo" -> 1000000], 
+                Sound`MIDIEvent[
+                0, "ProgramCommand", "Channel" -> 0, "Value" -> 58], 
+                Sound`MIDIEvent[
+                0, "NoteOn", "Note" -> 89, "Channel" -> 0, "Velocity" -> 127], 
+                Sound`MIDIEvent[
+                3915, "NoteOff", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                3915, "NoteOn", "Note" -> 86, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                7764, "NoteOff", "Note" -> 86, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                7764, "NoteOn", "Note" -> 91, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                11812, "NoteOff", "Note" -> 91, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                11812, "NoteOn", "Note" -> 86, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                16416, "NoteOff", "Note" -> 86, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                16416, "NoteOn", "Note" -> 93, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                21965, "NoteOff", "Note" -> 93, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                21965, "NoteOn", "Note" -> 100, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                27399, "NoteOff", "Note" -> 100, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                27399, "NoteOn", "Note" -> 88, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                32080, "NoteOff", "Note" -> 88, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                32080, "NoteOn", "Note" -> 95, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                37593, "NoteOff", "Note" -> 95, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                37593, "NoteOn", "Note" -> 93, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                42155, "NoteOff", "Note" -> 93, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                42155, "NoteOn", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                47403, "NoteOff", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                47403, "NoteOn", "Note" -> 93, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                52070, "NoteOff", "Note" -> 93, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                52070, "NoteOn", "Note" -> 98, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                56983, "NoteOff", "Note" -> 98, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                56983, "NoteOn", "Note" -> 100, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                60857, "NoteOff", "Note" -> 100, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                60857, "NoteOn", "Note" -> 96, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                67227, "NoteOff", "Note" -> 96, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                67227, "NoteOn", "Note" -> 100, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                72697, "NoteOff", "Note" -> 100, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                72697, "NoteOn", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                76973, "NoteOff", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                76973, "NoteOn", "Note" -> 88, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                81208, "NoteOff", "Note" -> 88, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                81208, "NoteOn", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                85357, "NoteOff", "Note" -> 89, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                85357, "NoteOn", "Note" -> 98, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                90549, "NoteOff", "Note" -> 98, "Channel" -> 0, "Velocity" -> 
+                 0], 
+                Sound`MIDIEvent[
+                90549, "NoteOn", "Note" -> 91, "Channel" -> 0, "Velocity" -> 
+                 127], 
+                Sound`MIDIEvent[
+                95849, "NoteOff", "Note" -> 91, "Channel" -> 0, "Velocity" -> 
+                 0]}]}, "DivisionType" -> "PPQ", "Resolution" -> 32767]]; 
+          Sound`EmitSampledSound[None, "Preemptive"]), PassEventsDown -> 
+         Automatic, PassEventsUp -> True}]],
+      DynamicBox[
+       ToBoxes[
+        FEPrivate`FrontEndResource["FEStrings", "playText"], StandardForm]]],
+     Annotation[#, 
+      Dynamic[
+       FEPrivate`FrontEndResource["FEStrings", "playText"]], "Tooltip"]& ], 
+    TagBox[
+     TooltipBox[
+      TagBox[{
+        {GrayLevel[0.9], RectangleBox[{34, -158}, {58, -135}]}, 
+        {GrayLevel[0.3], RectangleBox[{42, -150}, {50, -143}]}, 
+        {GrayLevel[0.5], 
+         StyleBox[
+          LineBox[{{34, -158}, {34, -135}, {58, -135}, {58, -158}, {
+           34, -158}}],
+          Antialiasing->False]}},
+       EventHandlerTag[{"MouseClicked" :> (Sound`EmitSampledSound[
+            SampledSoundList[{{0.}}, 8000], "Preemptive"]; Sound`StopMIDI[]), 
+         PassEventsDown -> Automatic, PassEventsUp -> True}]],
+      DynamicBox[
+       ToBoxes[
+        FEPrivate`FrontEndResource["FEStrings", "stopText"], StandardForm]]],
+     Annotation[#, 
+      Dynamic[
+       FEPrivate`FrontEndResource["FEStrings", "stopText"]], "Tooltip"]& ], 
+    {GrayLevel[0.75], 
+     StyleBox[LineBox[{{0, 0}, {360, 0}, {360, -164}, {0, -164}, {0, 0}}],
+      Antialiasing->False]}},
+   ContentSelectable->False,
+   ImageSize->250,
+   PlotRange->{{0, 360}, {-164, 0}},
+   PlotRangePadding->1],
+  Sound[{
+    SoundNote["F6", 0.11949473481778367`, 59], 
+    SoundNote["D6", 0.11746602441130082`, 59], 
+    SoundNote["G6", 0.12354248510527883`, 59], 
+    SoundNote["D6", 0.14048959781753337`, 59], 
+    SoundNote["A6", 0.16937483602879036`, 59], 
+    SoundNote["E7", 0.165812898144033, 59], 
+    SoundNote["E6", 0.14286990880491968`, 59], 
+    SoundNote["B6", 0.16823525687037888`, 59], 
+    SoundNote["A6", 0.13922641923913906`, 59], 
+    SoundNote["F6", 0.16018014447493545`, 59], 
+    SoundNote["A6", 0.14242834957914582`, 59], 
+    SoundNote["D7", 0.1499265144176315, 59], 
+    SoundNote["E7", 0.11824225182854638`, 59], 
+    SoundNote["C7", 0.1944013581280806, 59], 
+    SoundNote["E7", 0.16694058441956947`, 59], 
+    SoundNote["F6", 0.13048609356294832`, 59], 
+    SoundNote["E6", 0.12924505676164333`, 59], 
+    SoundNote["F6", 0.12661870040049603`, 59], 
+    SoundNote["D7", 0.15844491472278022`, 59], 
+    SoundNote["G6", 0.16175435082196263`, 59]}]]], "Output",
+ CellChangeTimes->{{3.57801557296875*^9, 3.57801578178125*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["rnd"], "Input",
+ CellChangeTimes->{{3.578015368765625*^9, 3.578015369*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"11", ",", "30", ",", "24", ",", "26", ",", "15"}], "}"}]], "Output",
+ CellChangeTimes->{3.5780153698125*^9}]
+}, Open  ]]
+},
+WindowSize->{715, 536},
+WindowMargins->{{Automatic, 68}, {-65, Automatic}},
+FrontEndVersion->"9.0 for Microsoft Windows (32-bit) (November 20, 2012)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 171, 4, 31, "Input"],
+Cell[753, 28, 134, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[924, 34, 158, 3, 31, "Input"],
+Cell[1085, 39, 111, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1233, 45, 1091, 20, 92, "Input"],
+Cell[2327, 67, 517, 8, 31, "Output"],
+Cell[2847, 77, 515, 8, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3399, 90, 146, 3, 31, "Input"],
+Cell[3548, 95, 79, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3664, 101, 604, 19, 52, "Input"],
+Cell[4271, 122, 1282, 34, 92, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5590, 161, 1450, 36, 92, "Input"],
+Cell[7043, 199, 20862, 448, 130, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27942, 652, 313, 9, 31, "Input"],
+Cell[28258, 663, 751, 13, 72, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29046, 681, 2384, 68, 192, "Input"],
+Cell[31433, 751, 8760, 194, 127, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[40230, 950, 187, 3, 31, "Input"],
+Cell[40420, 955, 2393, 65, 192, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[42850, 1025, 794, 22, 92, "Input"],
+Cell[43647, 1049, 12092, 269, 130, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55776, 1323, 89, 1, 31, "Input"],
+Cell[55868, 1326, 148, 3, 31, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

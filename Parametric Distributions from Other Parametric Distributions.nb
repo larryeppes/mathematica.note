@@ -1,0 +1,367 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     12104,        357]
+NotebookOptionsPosition[     11748,        340]
+NotebookOutlinePosition[     12091,        355]
+CellTagsIndexPosition[     12048,        352]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ StyleBox[
+  RowBox[{
+  "Parametric", " ", "Distributions", " ", "from", " ", "Other", " ", 
+   "Parametric", " ", "Distributions"}], "Title"]], "Input",
+ CellChangeTimes->{{3.5103788184480705`*^9, 3.5103788202500744`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"distTable", "[", "list_List", "]"}], ":=", 
+   RowBox[{"TraditionalForm", "@", 
+    RowBox[{"Grid", "[", 
+     RowBox[{"list", ",", 
+      RowBox[{"Dividers", "\[Rule]", "All"}], ",", 
+      RowBox[{"Spacings", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1"}], "}"}], ",", "5"}], "}"}]}], ",", 
+      RowBox[{"Alignment", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"Left", ",", "Center"}], "}"}]}], ",", 
+      RowBox[{"BaseStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"FontFamily", "\[Rule]", "\"\<Verdana\>\""}], "}"}]}], ",", 
+      RowBox[{"Background", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"None", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Hue", "[", 
+            RowBox[{".6", ",", ".5", ",", ".9"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Hue", "[", 
+              RowBox[{".6", ",", ".15", ",", ".9"}], "]"}], ",", 
+             RowBox[{"GrayLevel", "[", ".9", "]"}]}], "}"}]}], "}"}]}], 
+        "}"}]}], ",", 
+      RowBox[{"FrameStyle", "\[Rule]", 
+       RowBox[{"Directive", "[", 
+        RowBox[{"Thick", ",", "White"}], "]"}]}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dists", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"HoldForm", "[", 
+      RowBox[{"OrderDistribution", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"UniformDistribution", "[", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "1"}], "}"}], "]"}], ",", "n"}], "}"}], ",", 
+        "k"}], "]"}], "]"}], ",", 
+     RowBox[{"HoldForm", "[", 
+      RowBox[{"TransformedDistribution", "[", 
+       RowBox[{
+        RowBox[{"Min", "[", 
+         RowBox[{"u", ",", "v"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"u", "\[Distributed]", 
+           RowBox[{"ExponentialDistribution", "[", 
+            RowBox[{"Subscript", "[", 
+             RowBox[{"\[Lambda]", ",", "1"}], "]"}], "]"}]}], ",", 
+          RowBox[{"v", "\[Distributed]", 
+           RowBox[{"ExponentialDistribution", "[", 
+            RowBox[{"Subscript", "[", 
+             RowBox[{"\[Lambda]", ",", "2"}], "]"}], "]"}]}]}], "}"}]}], 
+       "]"}], "]"}], ",", 
+     RowBox[{"HoldForm", "[", 
+      RowBox[{"TransformedDistribution", "[", 
+       RowBox[{
+        RowBox[{"u", "+", "v"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"u", "\[Distributed]", 
+           RowBox[{"CauchyDistribution", "[", 
+            RowBox[{
+             RowBox[{"Subscript", "[", 
+              RowBox[{"a", ",", "1"}], "]"}], ",", 
+             RowBox[{"Subscript", "[", 
+              RowBox[{"b", ",", "1"}], "]"}]}], "]"}]}], ",", 
+          RowBox[{"v", "\[Distributed]", 
+           RowBox[{"CauchyDistribution", "[", 
+            RowBox[{
+             RowBox[{"Subscript", "[", 
+              RowBox[{"a", ",", "2"}], "]"}], ",", 
+             RowBox[{"Subscript", "[", 
+              RowBox[{"b", ",", "2"}], "]"}]}], "]"}]}]}], "}"}]}], "]"}], 
+      "]"}], ",", 
+     RowBox[{"HoldForm", "[", 
+      RowBox[{"ParameterMixtureDistribution", "[", 
+       RowBox[{
+        RowBox[{"BorelTannerDistribution", "[", 
+         RowBox[{"\[Alpha]", ",", "n"}], "]"}], ",", 
+        RowBox[{"n", "\[Distributed]", 
+         RowBox[{"PoissonDistribution", "[", "\[Mu]", "]"}]}]}], "]"}], "]"}],
+      ",", 
+     RowBox[{"HoldForm", "[", 
+      RowBox[{"ParameterMixtureDistribution", "[", 
+       RowBox[{
+        RowBox[{"BinomialDistribution", "[", 
+         RowBox[{"n", ",", "p"}], "]"}], ",", 
+        RowBox[{"p", "\[Distributed]", 
+         RowBox[{"BetaDistribution", "[", 
+          RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], "]"}], "]"}], ",", 
+     RowBox[{"HoldForm", "[", 
+      RowBox[{"TruncatedDistribution", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "\[Infinity]"}], "}"}], ",", 
+        RowBox[{"GumbelDistribution", "[", 
+         RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], "]"}], "]"}], ",", 
+     RowBox[{"HoldForm", "[", 
+      RowBox[{"TruncatedDistribution", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "\[Infinity]"}], "}"}], ",", 
+        RowBox[{"NormalDistribution", "[", 
+         RowBox[{"0", ",", "\[Sigma]"}], "]"}]}], "]"}], "]"}], ",", 
+     RowBox[{"HoldForm", "[", 
+      RowBox[{"MarginalDistribution", "[", 
+       RowBox[{
+        RowBox[{"BinormalDistribution", "[", "\[Rho]", "]"}], ",", "2"}], 
+       "]"}], "]"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"distTable", "[", 
+  RowBox[{"Join", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<Derived Distribution\>\"", ",", "Bold"}], "]"}], ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<Parametric Equivalent\>\"", ",", "Bold"}], "]"}]}], 
+      "}"}], "}"}], ",", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Extract", "[", 
+         RowBox[{"dists", ",", "i", ",", "HoldForm"}], "]"}], ",", 
+        RowBox[{"ReleaseHold", "[", 
+         RowBox[{"dists", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", 
+        RowBox[{"Length", "[", "dists", "]"}]}], "}"}]}], "]"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.5103787756859674`*^9, 3.5103787969160104`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  TagBox[GridBox[{
+     {
+      StyleBox["\<\"Derived Distribution\"\>",
+       StripOnInput->False,
+       FontWeight->Bold], 
+      StyleBox["\<\"Parametric Equivalent\"\>",
+       StripOnInput->False,
+       FontWeight->Bold]},
+     {
+      TagBox[
+       TagBox[
+        RowBox[{"OrderDistribution", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"UniformDistribution", "[", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "1"}], "}"}], "]"}], ",", "n"}], "}"}], ",", 
+          "k"}], "]"}],
+        HoldForm],
+       HoldForm], 
+      RowBox[{"BetaDistribution", "[", 
+       RowBox[{"k", ",", 
+        RowBox[{
+         RowBox[{"-", "k"}], "+", "n", "+", "1"}]}], "]"}]},
+     {
+      TagBox[
+       TagBox[
+        RowBox[{"TransformedDistribution", "[", 
+         RowBox[{
+          RowBox[{"min", "(", 
+           RowBox[{"u", ",", "v"}], ")"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"u", "\[Distributed]", 
+             RowBox[{"ExponentialDistribution", "[", 
+              SubscriptBox["\[Lambda]", "1"], "]"}]}], ",", 
+            RowBox[{"v", "\[Distributed]", 
+             RowBox[{"ExponentialDistribution", "[", 
+              SubscriptBox["\[Lambda]", "2"], "]"}]}]}], "}"}]}], "]"}],
+        HoldForm],
+       HoldForm], 
+      RowBox[{"ExponentialDistribution", "[", 
+       RowBox[{
+        SubscriptBox["\[Lambda]", "1"], "+", 
+        SubscriptBox["\[Lambda]", "2"]}], "]"}]},
+     {
+      TagBox[
+       TagBox[
+        RowBox[{"TransformedDistribution", "[", 
+         RowBox[{
+          RowBox[{"u", "+", "v"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"u", "\[Distributed]", 
+             RowBox[{"CauchyDistribution", "[", 
+              RowBox[{
+               SubscriptBox["a", "1"], ",", 
+               SubscriptBox["b", "1"]}], "]"}]}], ",", 
+            RowBox[{"v", "\[Distributed]", 
+             RowBox[{"CauchyDistribution", "[", 
+              RowBox[{
+               SubscriptBox["a", "2"], ",", 
+               SubscriptBox["b", "2"]}], "]"}]}]}], "}"}]}], "]"}],
+        HoldForm],
+       HoldForm], 
+      RowBox[{"CauchyDistribution", "[", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["a", "1"], "+", 
+         SubscriptBox["a", "2"]}], ",", 
+        RowBox[{
+         SubscriptBox["b", "1"], "+", 
+         SubscriptBox["b", "2"]}]}], "]"}]},
+     {
+      TagBox[
+       TagBox[
+        RowBox[{"ParameterMixtureDistribution", "[", 
+         RowBox[{
+          RowBox[{"BorelTannerDistribution", "[", 
+           RowBox[{"\[Alpha]", ",", "n"}], "]"}], ",", 
+          RowBox[{"n", "\[Distributed]", 
+           RowBox[{"PoissonDistribution", "[", "\[Mu]", "]"}]}]}], "]"}],
+        HoldForm],
+       HoldForm], 
+      RowBox[{"PoissonConsulDistribution", "[", 
+       RowBox[{"\[Mu]", ",", "\[Alpha]"}], "]"}]},
+     {
+      TagBox[
+       TagBox[
+        RowBox[{"ParameterMixtureDistribution", "[", 
+         RowBox[{
+          RowBox[{"BinomialDistribution", "[", 
+           RowBox[{"n", ",", "p"}], "]"}], ",", 
+          RowBox[{"p", "\[Distributed]", 
+           RowBox[{"BetaDistribution", "[", 
+            RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], "]"}],
+        HoldForm],
+       HoldForm], 
+      RowBox[{"BetaBinomialDistribution", "[", 
+       RowBox[{"\[Alpha]", ",", "\[Beta]", ",", "n"}], "]"}]},
+     {
+      TagBox[
+       TagBox[
+        RowBox[{"TruncatedDistribution", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "\[Infinity]"}], "}"}], ",", 
+          RowBox[{"GumbelDistribution", "[", 
+           RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], "]"}],
+        HoldForm],
+       HoldForm], 
+      RowBox[{"GompertzMakehamDistribution", "[", 
+       RowBox[{
+        FractionBox["1", "\[Beta]"], ",", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"-", 
+          FractionBox["\[Alpha]", "\[Beta]"]}]]}], "]"}]},
+     {
+      TagBox[
+       TagBox[
+        RowBox[{"TruncatedDistribution", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "\[Infinity]"}], "}"}], ",", 
+          RowBox[{"NormalDistribution", "[", 
+           RowBox[{"0", ",", "\[Sigma]"}], "]"}]}], "]"}],
+        HoldForm],
+       HoldForm], 
+      RowBox[{"HalfNormalDistribution", "[", 
+       FractionBox[
+        SqrtBox[
+         FractionBox["\[Pi]", "2"]], "\[Sigma]"], "]"}]},
+     {
+      TagBox[
+       TagBox[
+        RowBox[{"MarginalDistribution", "[", 
+         RowBox[{
+          RowBox[{"BinormalDistribution", "[", "\[Rho]", "]"}], ",", "2"}], 
+         "]"}],
+        HoldForm],
+       HoldForm], 
+      RowBox[{"NormalDistribution", "[", 
+       RowBox[{"0", ",", "1"}], "]"}]}
+    },
+    AutoDelete->False,
+    BaseStyle->{FontFamily -> "Verdana"},
+    FrameStyle->Directive[
+      Thickness[Large], 
+      GrayLevel[1]],
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Center}}},
+    GridBoxBackground->{"Columns" -> {{None}}, "Rows" -> {
+        Hue[0.6, 0.5, 0.9], {
+         Hue[0.6, 0.15, 0.9], 
+         GrayLevel[0.9]}}},
+    GridBoxDividers->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+    GridBoxSpacings->{"Columns" -> {1, 1}, "Rows" -> {{5}}}],
+   "Grid"], TraditionalForm]], "Output",
+ CellChangeTimes->{3.5103787986350174`*^9}]
+}, Open  ]]
+},
+WindowSize->{707, 505},
+WindowMargins->{{96, Automatic}, {8, Automatic}},
+FrontEndVersion->"8.0 for Microsoft Windows (64-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 237, 5, 113, "Input"],
+Cell[CellGroupData[{
+Cell[819, 29, 5496, 145, 452, "Input"],
+Cell[6318, 176, 5414, 161, 886, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

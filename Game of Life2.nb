@@ -1,0 +1,554 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     23400,        544]
+NotebookOptionsPosition[     23066,        528]
+NotebookOutlinePosition[     23410,        543]
+CellTagsIndexPosition[     23367,        540]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"DynamicModule", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"array", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"RandomChoice", "[", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0"}], "}"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", "20"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", "1", ",", "20"}], "}"}]}], "]"}]}], ",", 
+     RowBox[{"k", "=", "20"}], ",", 
+     RowBox[{"Going", "=", "False"}], ",", 
+     RowBox[{"map", "=", "\"\<torus\>\""}], ",", "GoNext"}], "}"}], ",", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"GoNext", "[", 
+      RowBox[{"array_", ",", "k_", ",", "map_"}], "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"ip", ",", "jp", ",", "in", ",", "jn", ",", "temp"}], "}"}], 
+       ",", 
+       RowBox[{"Switch", "[", 
+        RowBox[{"map", ",", "\"\<torus\>\"", ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"ip", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"i", "\[Equal]", "1"}], ",", 
+                RowBox[{"-", "1"}], ",", 
+                RowBox[{"i", "-", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"jp", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"j", "\[Equal]", "1"}], ",", 
+                RowBox[{"-", "1"}], ",", 
+                RowBox[{"j", "-", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"in", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"i", "\[Equal]", "k"}], ",", "1", ",", 
+                RowBox[{"i", "+", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"jn", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"j", "\[Equal]", "k"}], ",", "1", ",", 
+                RowBox[{"j", "+", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"temp", "=", 
+              RowBox[{
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"ip", ",", "jp"}], "]"}], "]"}], "+", 
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", "jp"}], "]"}], "]"}], "+", 
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"in", ",", "jp"}], "]"}], "]"}], "+", 
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"ip", ",", "j"}], "]"}], "]"}], "+", 
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"in", ",", "j"}], "]"}], "]"}], "+", 
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"ip", ",", "jn"}], "]"}], "]"}], "+", 
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", "jn"}], "]"}], "]"}], "+", 
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"in", ",", "jn"}], "]"}], "]"}]}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Switch", "[", 
+              RowBox[{"temp", ",", "2", ",", 
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", "3", ",", "1", 
+               ",", "_", ",", "0"}], "]"}]}], ")"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "1", ",", "k"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"j", ",", "1", ",", "k"}], "}"}]}], "]"}], ",", 
+         "\"\<cylinder\>\"", ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"ip", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"i", "\[Equal]", "1"}], ",", 
+                RowBox[{"-", "1"}], ",", 
+                RowBox[{"i", "-", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"jp", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"j", "\[Equal]", "1"}], ",", 
+                RowBox[{"-", "1"}], ",", 
+                RowBox[{"j", "-", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"in", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"i", "\[Equal]", "k"}], ",", "1", ",", 
+                RowBox[{"i", "+", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"jn", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"j", "\[Equal]", "k"}], ",", "1", ",", 
+                RowBox[{"j", "+", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"temp", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"i", "\[Equal]", "1"}], "||", 
+                 RowBox[{"i", "\[Equal]", "k"}]}], ",", "0", ",", 
+                RowBox[{
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"ip", ",", "jp"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"i", ",", "jp"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"in", ",", "jp"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"ip", ",", "j"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"in", ",", "j"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"ip", ",", "jn"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"i", ",", "jn"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"in", ",", "jn"}], "]"}], "]"}]}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Switch", "[", 
+              RowBox[{"temp", ",", "2", ",", 
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", "3", ",", "1", 
+               ",", "_", ",", "0"}], "]"}]}], ")"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "1", ",", "k"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"j", ",", "1", ",", "k"}], "}"}]}], "]"}], ",", 
+         "\"\<square\>\"", ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"ip", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"i", "\[Equal]", "1"}], ",", 
+                RowBox[{"-", "1"}], ",", 
+                RowBox[{"i", "-", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"jp", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"j", "\[Equal]", "1"}], ",", 
+                RowBox[{"-", "1"}], ",", 
+                RowBox[{"j", "-", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"in", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"i", "\[Equal]", "k"}], ",", "1", ",", 
+                RowBox[{"i", "+", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"jn", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"j", "\[Equal]", "k"}], ",", "1", ",", 
+                RowBox[{"j", "+", "1"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"temp", "=", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"i", "\[Equal]", "1"}], "||", 
+                 RowBox[{"i", "\[Equal]", "k"}], "||", 
+                 RowBox[{"j", "\[Equal]", "1"}], "||", 
+                 RowBox[{"j", "\[Equal]", "k"}]}], ",", "0", ",", 
+                RowBox[{
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"ip", ",", "jp"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"i", ",", "jp"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"in", ",", "jp"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"ip", ",", "j"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"in", ",", "j"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"ip", ",", "jn"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"i", ",", "jn"}], "]"}], "]"}], "+", 
+                 RowBox[{"array", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"in", ",", "jn"}], "]"}], "]"}]}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Switch", "[", 
+              RowBox[{"temp", ",", "2", ",", 
+               RowBox[{"array", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", "3", ",", "1", 
+               ",", "_", ",", "0"}], "]"}]}], ")"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "1", ",", "k"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"j", ",", "1", ",", "k"}], "}"}]}], "]"}]}], "]"}]}], 
+      "]"}]}], ";", 
+    RowBox[{"Panel", "[", 
+     RowBox[{"Row", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Column", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Map:\>\"", ",", 
+              RowBox[{"PopupMenu", "[", 
+               RowBox[{
+                RowBox[{"Dynamic", "[", "map", "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                 "\"\<torus\>\"", ",", "\"\<cylinder\>\"", ",", 
+                  "\"\<square\>\""}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"\"\<Size:\>\"", ",", 
+               RowBox[{"Dynamic", "[", "k", "]"}], ",", 
+               RowBox[{"Slider", "[", 
+                RowBox[{
+                 RowBox[{"Dynamic", "[", "k", "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"10", ",", "100", ",", "1"}], "}"}]}], "]"}]}], 
+              "}"}], ",", "\"\< \>\""}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"\"\<Control:\>\"", ",", 
+               RowBox[{"Button", "[", 
+                RowBox[{"\"\<Go\>\"", ",", 
+                 RowBox[{"Going", "=", "True"}]}], "]"}], ",", 
+               RowBox[{"Button", "[", 
+                RowBox[{"\"\<Stop\>\"", ",", 
+                 RowBox[{"Going", "=", "False"}]}], "]"}], ",", 
+               RowBox[{"Button", "[", 
+                RowBox[{"\"\<Reset\>\"", ",", 
+                 RowBox[{"array", "=", 
+                  RowBox[{"Table", "[", 
+                   RowBox[{
+                    RowBox[{"RandomChoice", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "0"}], "}"}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", "1", ",", "k"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"j", ",", "1", ",", "k"}], "}"}]}], "]"}]}]}], 
+                "]"}], ",", 
+               RowBox[{"Button", "[", 
+                RowBox[{"\"\<GoNext\>\"", ",", 
+                 RowBox[{"array", "=", 
+                  RowBox[{"GoNext", "[", 
+                   RowBox[{"array", ",", "k", ",", "map"}], "]"}]}]}], 
+                "]"}]}], "}"}], ",", "\"\< \>\""}], "]"}], ",", 
+           RowBox[{"Column", "[", 
+            RowBox[{"Table", "[", 
+             RowBox[{"\"\<\>\"", ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", "1", ",", "27"}], "}"}]}], "]"}], "]"}], ",", 
+           RowBox[{"Dynamic", "[", 
+            RowBox[{"If", "[", 
+             RowBox[{"Going", ",", "\"\<Going\>\"", ",", "\"\<Stop\>\""}], 
+             "]"}], "]"}]}], "}"}], "]"}], " ", 
+        RowBox[{"Panel", "[", 
+         RowBox[{"Deploy", "[", 
+          RowBox[{"Dynamic", "[", 
+           RowBox[{"ArrayPlot", "[", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{"Going", ",", 
+               RowBox[{"array", "=", 
+                RowBox[{"GoNext", "[", 
+                 RowBox[{"array", ",", "k", ",", "map"}], "]"}]}], ",", 
+               "array"}], "]"}], ",", 
+             RowBox[{"Mesh", "\[Rule]", "All"}], ",", 
+             RowBox[{"MeshStyle", "\[Rule]", "White"}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", "500"}]}], "]"}], "]"}], "]"}], 
+         "]"}]}], "}"}], "]"}], "]"}]}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ DynamicModuleBox[{$CellContext`array$$ = CompressedData["
+1:eJxTTMoPSmJiYGCQgmLKACNVZSgBmKYywih0KZgIbhncpg09APUrwv2McDaI
+xYjVa1BR7J7GrgXFZCx6cEnh0QQDACxnAgQ=
+  "], $CellContext`k$$ = 26, $CellContext`Going$$ = 
+  False, $CellContext`map$$ = "square", $CellContext`GoNext$$}, 
+  PanelBox[
+   TemplateBox[{RowBox[{
+       TagBox[
+        GridBox[{{
+           TemplateBox[{"\"Map:\"", 
+             PopupMenuBox[
+              Dynamic[$CellContext`map$$], {
+              "torus" -> "\"torus\"", "cylinder" -> "\"cylinder\"", "square" -> 
+               "\"square\""}]}, "Row", 
+            DisplayFunction -> (RowBox[{#, "\[InvisibleSpace]", #2}]& ), 
+            InterpretationFunction -> (RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2}], "}"}], "]"}]& )]}, {
+           TemplateBox[{"\"Size:\"", 
+             DynamicBox[
+              ToBoxes[$CellContext`k$$, StandardForm], 
+              ImageSizeCache -> {14., {0., 9.}}], 
+             SliderBox[
+              Dynamic[$CellContext`k$$], {10, 100, 1}]}, "Row", 
+            DisplayFunction -> (
+             RowBox[{#, "\[ThinSpace]", #2, "\[ThinSpace]", #3}]& ), 
+            InterpretationFunction -> (RowBox[{"Row", "[", 
+               RowBox[{
+                 RowBox[{"{", 
+                   RowBox[{#, ",", #2, ",", #3}], "}"}], ",", "\" \""}], 
+               "]"}]& )]}, {
+           TemplateBox[{"\"Control:\"", 
+             ButtonBox[
+             "\"Go\"", Appearance -> Automatic, 
+              ButtonFunction :> ($CellContext`Going$$ = True), Evaluator -> 
+              Automatic, Method -> "Preemptive"], 
+             ButtonBox[
+             "\"Stop\"", Appearance -> Automatic, 
+              ButtonFunction :> ($CellContext`Going$$ = False), Evaluator -> 
+              Automatic, Method -> "Preemptive"], 
+             ButtonBox[
+             "\"Reset\"", Appearance -> Automatic, 
+              ButtonFunction :> ($CellContext`array$$ = Table[
+                 
+                 RandomChoice[{1, 0}], {$CellContext`i, 
+                  1, $CellContext`k$$}, {$CellContext`j, 
+                  1, $CellContext`k$$}]), Evaluator -> Automatic, Method -> 
+              "Preemptive"], 
+             ButtonBox[
+             "\"GoNext\"", Appearance -> Automatic, 
+              ButtonFunction :> ($CellContext`array$$ = \
+$CellContext`GoNext$$[$CellContext`array$$, $CellContext`k$$, \
+$CellContext`map$$]), Evaluator -> Automatic, Method -> "Preemptive"]}, "Row",
+             DisplayFunction -> (
+             RowBox[{#, "\[ThinSpace]", #2, "\[ThinSpace]", #3, 
+               "\[ThinSpace]", #4, "\[ThinSpace]", #5}]& ), 
+            InterpretationFunction -> (RowBox[{"Row", "[", 
+               RowBox[{
+                 RowBox[{"{", 
+                   RowBox[{#, ",", #2, ",", #3, ",", #4, ",", #5}], "}"}], 
+                 ",", "\" \""}], "]"}]& )]}, {
+           TagBox[
+            
+            GridBox[{{"\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {
+              "\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {
+              "\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {
+              "\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {"\"\""}, {
+              "\"\""}, {"\"\""}, {"\"\""}, {"\"\""}}, 
+             GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
+            "Column"]}, {
+           DynamicBox[
+            ToBoxes[
+             If[$CellContext`Going$$, "Going", "Stop"], StandardForm], 
+            ImageSizeCache -> {27., {3., 9.}}]}}, 
+         GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+         GridBoxItemSize -> {
+          "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Column"], 
+       " ", 
+       PanelBox[
+        TagBox[
+         DynamicBox[
+          ToBoxes[
+           ArrayPlot[
+            
+            If[$CellContext`Going$$, $CellContext`array$$ = \
+$CellContext`GoNext$$[$CellContext`array$$, $CellContext`k$$, \
+$CellContext`map$$], $CellContext`array$$], Mesh -> All, MeshStyle -> White, 
+            ImageSize -> 500], StandardForm], 
+          ImageSizeCache -> {500., {248., 251.}}], Deploy, 
+         DefaultBaseStyle -> {Deployed -> True}]]}]},
+    "Row",
+    DisplayFunction->(#& ),
+    InterpretationFunction->(RowBox[{"Row", "[", 
+       RowBox[{"{", #, "}"}], "]"}]& )]],
+  DynamicModuleValues:>{{DownValues[$CellContext`GoNext$$] = {HoldPattern[
+         $CellContext`GoNext$$[
+          Pattern[$CellContext`array, 
+           Blank[]], 
+          Pattern[$CellContext`k, 
+           Blank[]], 
+          Pattern[$CellContext`map, 
+           Blank[]]]] :> 
+       Module[{$CellContext`ip, $CellContext`jp, $CellContext`in, \
+$CellContext`jn, $CellContext`temp}, 
+         Switch[$CellContext`map, "torus", 
+          
+          Table[$CellContext`ip = 
+            If[$CellContext`i == 1, -1, $CellContext`i - 1]; $CellContext`jp = 
+            If[$CellContext`j == 1, -1, $CellContext`j - 1]; $CellContext`in = 
+            If[$CellContext`i == $CellContext`k, 1, $CellContext`i + 
+              1]; $CellContext`jn = 
+            If[$CellContext`j == $CellContext`k, 1, $CellContext`j + 
+              1]; $CellContext`temp = 
+            Part[$CellContext`array, $CellContext`ip, $CellContext`jp] + 
+             Part[$CellContext`array, $CellContext`i, $CellContext`jp] + 
+             Part[$CellContext`array, $CellContext`in, $CellContext`jp] + 
+             Part[$CellContext`array, $CellContext`ip, $CellContext`j] + 
+             Part[$CellContext`array, $CellContext`in, $CellContext`j] + 
+             Part[$CellContext`array, $CellContext`ip, $CellContext`jn] + 
+             Part[$CellContext`array, $CellContext`i, $CellContext`jn] + 
+             Part[$CellContext`array, $CellContext`in, $CellContext`jn]; 
+           Switch[$CellContext`temp, 2, 
+             Part[$CellContext`array, $CellContext`i, $CellContext`j], 3, 1, 
+             Blank[], 0], {$CellContext`i, 
+            1, $CellContext`k}, {$CellContext`j, 1, $CellContext`k}], 
+          "cylinder", 
+          
+          Table[$CellContext`ip = 
+            If[$CellContext`i == 1, -1, $CellContext`i - 1]; $CellContext`jp = 
+            If[$CellContext`j == 1, -1, $CellContext`j - 1]; $CellContext`in = 
+            If[$CellContext`i == $CellContext`k, 1, $CellContext`i + 
+              1]; $CellContext`jn = 
+            If[$CellContext`j == $CellContext`k, 1, $CellContext`j + 
+              1]; $CellContext`temp = If[
+              Or[$CellContext`i == 1, $CellContext`i == $CellContext`k], 0, 
+              Part[$CellContext`array, $CellContext`ip, $CellContext`jp] + 
+              Part[$CellContext`array, $CellContext`i, $CellContext`jp] + 
+              Part[$CellContext`array, $CellContext`in, $CellContext`jp] + 
+              Part[$CellContext`array, $CellContext`ip, $CellContext`j] + 
+              Part[$CellContext`array, $CellContext`in, $CellContext`j] + 
+              Part[$CellContext`array, $CellContext`ip, $CellContext`jn] + 
+              Part[$CellContext`array, $CellContext`i, $CellContext`jn] + 
+              Part[$CellContext`array, $CellContext`in, $CellContext`jn]]; 
+           Switch[$CellContext`temp, 2, 
+             Part[$CellContext`array, $CellContext`i, $CellContext`j], 3, 1, 
+             Blank[], 0], {$CellContext`i, 
+            1, $CellContext`k}, {$CellContext`j, 1, $CellContext`k}], 
+          "square", 
+          
+          Table[$CellContext`ip = 
+            If[$CellContext`i == 1, -1, $CellContext`i - 1]; $CellContext`jp = 
+            If[$CellContext`j == 1, -1, $CellContext`j - 1]; $CellContext`in = 
+            If[$CellContext`i == $CellContext`k, 1, $CellContext`i + 
+              1]; $CellContext`jn = 
+            If[$CellContext`j == $CellContext`k, 1, $CellContext`j + 
+              1]; $CellContext`temp = If[
+              
+              Or[$CellContext`i == 
+               1, $CellContext`i == $CellContext`k, $CellContext`j == 
+               1, $CellContext`j == $CellContext`k], 0, 
+              Part[$CellContext`array, $CellContext`ip, $CellContext`jp] + 
+              Part[$CellContext`array, $CellContext`i, $CellContext`jp] + 
+              Part[$CellContext`array, $CellContext`in, $CellContext`jp] + 
+              Part[$CellContext`array, $CellContext`ip, $CellContext`j] + 
+              Part[$CellContext`array, $CellContext`in, $CellContext`j] + 
+              Part[$CellContext`array, $CellContext`ip, $CellContext`jn] + 
+              Part[$CellContext`array, $CellContext`i, $CellContext`jn] + 
+              Part[$CellContext`array, $CellContext`in, $CellContext`jn]]; 
+           Switch[$CellContext`temp, 2, 
+             Part[$CellContext`array, $CellContext`i, $CellContext`j], 3, 1, 
+             Blank[], 0], {$CellContext`i, 
+            1, $CellContext`k}, {$CellContext`j, 
+            1, $CellContext`k}]]]}}}]], "Output",
+ CellChangeTimes->{3.5242254592596664`*^9}]
+}, Open  ]]
+},
+WindowSize->{1344, 633},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (November 10, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 13478, 325, 492, "Input"],
+Cell[14048, 349, 9002, 176, 639, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

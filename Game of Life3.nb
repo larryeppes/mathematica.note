@@ -1,0 +1,383 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     13207,        373]
+NotebookOptionsPosition[     12070,        330]
+NotebookOutlinePosition[     12688,        354]
+CellTagsIndexPosition[     12645,        351]
+WindowTitle->Visualizing Conway's Game of Life - Source
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Visualizing Conway's Game of Life", "Section",
+ CellFrameColor->RGBColor[
+  0.6449835965514611, 0.758632791638056, 0.2516823071641108],
+ FontColor->RGBColor[
+  0.6449835965514611, 0.758632791638056, 0.2516823071641108]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "matrix", "}"}], ",", 
+     RowBox[{
+      RowBox[{"SeedRandom", "[", "seed", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"matrix", "=", 
+       RowBox[{"RandomInteger", "[", 
+        RowBox[{
+         RowBox[{"{", "1", "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"cells", ",", "cells"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"f", "[", 
+         RowBox[{"#", ",", 
+          RowBox[{"ImageSize", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"375", ",", "375"}], "}"}]}]}], "]"}], "&"}], "@@", 
+       "\[IndentingNewLine]", 
+       RowBox[{"CellularAutomaton", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"224", ",", 
+           RowBox[{"{", 
+            RowBox[{"2", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"2", ",", "2", ",", "2"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"2", ",", "1", ",", "2"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"2", ",", "2", ",", "2"}], "}"}]}], "}"}]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{"1", ",", "1"}], "}"}]}], "}"}], ",", " ", "matrix", ",", 
+         RowBox[{"{", 
+          RowBox[{"{", "step", "}"}], "}"}]}], "]"}]}]}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"step", ",", "0", ",", "1000", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Left"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"seed", ",", "1", ",", "\"\<initial condition\>\""}], "}"}], 
+     ",", "1", ",", "2000", ",", "1", ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Left"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"cells", ",", "20", ",", "\"\<number of vertices\>\""}], "}"}], 
+     ",", "10", ",", "50", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Left"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f", ",", "ArrayPlot", ",", "\"\<type of plot\>\""}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "ArrayPlot", ",", "GraphPlot", ",", "GraphPlot3D", ",", 
+       "LayeredGraphPlot", ",", "TreePlot"}], "}"}]}], "}"}], ",", 
+   RowBox[{"AutorunSequencing", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", "4"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.401402431889074*^9, {3.4014912056400824`*^9, 
+   3.4014912310880823`*^9}, {3.4015380748047113`*^9, 
+   3.4015382309453363`*^9}, {3.401630976545312*^9, 3.401630992264062*^9}, {
+   3.4017235002197065`*^9, 3.4017235324228315`*^9}, {3.4017469740480375`*^9, 
+   3.4017469746490374`*^9}, 3.401789802687786*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`cells$$ = 19, $CellContext`f$$ = 
+    TreePlot, $CellContext`seed$$ = 302, $CellContext`step$$ = 513, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`step$$], 0, 1000, 1}, {{
+       Hold[$CellContext`seed$$], 1, "initial condition"}, 1, 2000, 1}, {{
+       Hold[$CellContext`cells$$], 20, "number of vertices"}, 10, 50, 1}, {{
+       Hold[$CellContext`f$$], ArrayPlot, "type of plot"}, {
+      ArrayPlot, GraphPlot, GraphPlot3D, LayeredGraphPlot, TreePlot}}}, 
+    Typeset`size$$ = {375., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`step$230122$$ = 0, $CellContext`seed$230123$$ = 
+    0, $CellContext`cells$230124$$ = 0, $CellContext`f$230125$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`cells$$ = 20, $CellContext`f$$ = 
+        ArrayPlot, $CellContext`seed$$ = 1, $CellContext`step$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`step$$, $CellContext`step$230122$$, 0], 
+        Hold[$CellContext`seed$$, $CellContext`seed$230123$$, 0], 
+        Hold[$CellContext`cells$$, $CellContext`cells$230124$$, 0], 
+        Hold[$CellContext`f$$, $CellContext`f$230125$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`matrix$}, 
+        SeedRandom[$CellContext`seed$$]; $CellContext`matrix$ = 
+         RandomInteger[{1}, {$CellContext`cells$$, $CellContext`cells$$}]; 
+        Apply[$CellContext`f$$[#, ImageSize -> {375, 375}]& , 
+          CellularAutomaton[{
+           224, {2, {{2, 2, 2}, {2, 1, 2}, {2, 2, 2}}}, {1, 
+            1}}, $CellContext`matrix$, {{$CellContext`step$$}}]]], 
+      "Specifications" :> {{$CellContext`step$$, 0, 1000, 1, Appearance -> 
+         "Labeled", ControlPlacement -> Left, ImageSize -> 
+         Tiny}, {{$CellContext`seed$$, 1, "initial condition"}, 1, 2000, 1, 
+         ControlPlacement -> Left, ImageSize -> 
+         Tiny}, {{$CellContext`cells$$, 20, "number of vertices"}, 10, 50, 1, 
+         Appearance -> "Labeled", ControlPlacement -> Left, ImageSize -> 
+         Tiny}, {{$CellContext`f$$, ArrayPlot, "type of plot"}, {
+         ArrayPlot, GraphPlot, GraphPlot3D, LayeredGraphPlot, TreePlot}}}, 
+      "Options" :> {AutorunSequencing -> {3, 4}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{725., {231., 236.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->71354107]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["THIS NOTEBOOK IS THE SOURCE CODE FROM", "Text",
+ CellFrame->{{0, 0}, {0, 1}},
+ CellMargins->{{48, 10}, {4, 28}},
+ CellGroupingRules->{"SectionGrouping", 25},
+ CellFrameMargins->{{48, 48}, {6, 5}},
+ CellFrameColor->RGBColor[0.691905, 0.790311, 0.300252],
+ FontFamily->"Helvetica",
+ FontSize->10,
+ FontWeight->"Bold",
+ FontColor->RGBColor[0.691905, 0.790311, 0.300252]],
+
+Cell[TextData[{
+ "\"",
+ ButtonBox["Visualizing Conway's Game of Life",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/VisualizingConwaysGameOfLife/"], 
+    None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/VisualizingConwaysGameOfLife/"],
+ "\"",
+ " from ",
+ ButtonBox["The Wolfram Demonstrations Project",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/"],
+ "\[ParagraphSeparator]\[NonBreakingSpace]",
+ ButtonBox["http://demonstrations.wolfram.com/VisualizingConwaysGameOfLife/",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/VisualizingConwaysGameOfLife/"], 
+    None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/VisualizingConwaysGameOfLife/"]
+}], "Text",
+ CellMargins->{{48, Inherited}, {0, Inherited}},
+ FontFamily->"Verdana",
+ FontSize->10,
+ FontColor->GrayLevel[0.5]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[" ", "Text",
+ CellFrame->{{0, 0}, {0, 1}},
+ CellMargins->{{48, 10}, {4, 28}},
+ CellGroupingRules->{"SectionGrouping", 25},
+ CellFrameMargins->{{48, 48}, {6, 5}},
+ CellFrameColor->RGBColor[0.691905, 0.790311, 0.300252],
+ FontFamily->"Helvetica",
+ FontSize->10,
+ FontWeight->"Bold",
+ FontColor->RGBColor[0.691905, 0.790311, 0.300252]],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Bichara Sahely",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Bichara+Sahely"]\
+, None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Bichara+Sahely"]
+}], "Text",
+ CellDingbat->"\[FilledSmallSquare]",
+ CellMargins->{{66, 48}, {2, 4}},
+ FontFamily->"Verdana",
+ FontSize->10,
+ FontColor->GrayLevel[0.6]],
+
+Cell[TextData[{
+ "Based on a program by: ",
+ ButtonBox["Luca Zammataro",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Luca+Zammataro"]\
+, None}]
+}], "Text",
+ CellDingbat->"\[FilledSmallSquare]",
+ CellMargins->{{66, 48}, {2, 4}},
+ FontFamily->"Verdana",
+ FontSize->10,
+ FontColor->GrayLevel[0.6],
+ CellID->109725650],
+
+Cell[TextData[{
+ "A full-function Wolfram ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " 6 system is required to edit or run this notebook.\[IndentingNewLine](",
+ StyleBox["Mathematica Player",
+  FontSlant->"Italic"],
+ " runs only Demonstrations published on this site.)\n",
+ StyleBox[ButtonBox["GET WOLFRAM MATHEMATICA 6 \[RightGuillemet]",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://www.wolfram.com/products/mathematica/"], None},
+  ButtonNote->"http://www.wolfram.com/products/mathematica/"],
+  FontFamily->"Helvetica",
+  FontWeight->"Bold",
+  FontSlant->"Italic",
+  FontColor->RGBColor[1, 0.42, 0]]
+}], "Text",
+ CellFrame->True,
+ CellMargins->{{48, 68}, {8, 28}},
+ CellFrameMargins->12,
+ CellFrameColor->RGBColor[0.865507, 0.90634, 0.680751],
+ CellChangeTimes->{3.3750111182355957`*^9},
+ ParagraphSpacing->{1., 1.},
+ FontFamily->"Verdana",
+ FontSize->10,
+ FontColor->GrayLevel[0.411765],
+ Background->RGBColor[0.986023, 0.991363, 0.969818]],
+
+Cell[TextData[{
+ "\[Copyright] ",
+ StyleBox[ButtonBox["The Wolfram Demonstrations Project & Contributors",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/"],
+  FontColor->GrayLevel[0.6]],
+ "\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+ StyleBox[ButtonBox["Terms of Use",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/termsofuse.html"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/termsofuse.html"],
+  FontColor->GrayLevel[0.6]],
+ "\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+ StyleBox[ButtonBox["Make a new version of this Demonstration \
+\[RightGuillemet]",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/participate/upload.jsp?id=\
+VisualizingConwaysGameOfLife"], None},
+  ButtonNote->None],
+  FontColor->GrayLevel[0.6]]
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellMargins->{{48, 10}, {20, 50}},
+ CellFrameMargins->{{6, 0}, {6, 6}},
+ CellFrameColor->GrayLevel[0.6],
+ FontFamily->"Verdana",
+ FontSize->9,
+ FontColor->GrayLevel[0.6]]
+}, Open  ]]
+},
+Editable->True,
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{1344, 633},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowElements->{
+ "StatusArea", "MemoryMonitor", "MagnificationPopUp", "VerticalScrollBar", 
+  "MenuBar"},
+WindowTitle->"Visualizing Conway's Game of Life - Source",
+DockedCells->{},
+CellContext->Notebook,
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[623, 23, 225, 4, 71, "Section"],
+Cell[CellGroupData[{
+Cell[873, 31, 3220, 82, 172, "Input"],
+Cell[4096, 115, 3198, 58, 484, "Output",
+ CellID->71354107]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7343, 179, 373, 9, 50, "Text",
+ CellGroupingRules->{"SectionGrouping", 25}],
+Cell[7719, 190, 968, 28, 34, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8724, 223, 337, 9, 50, "Text",
+ CellGroupingRules->{"SectionGrouping", 25}],
+Cell[9064, 234, 436, 14, 18, "Text"],
+Cell[9503, 250, 374, 13, 18, "Text",
+ CellID->109725650],
+Cell[9880, 265, 967, 27, 113, "Text"],
+Cell[10850, 294, 1204, 33, 88, "Text"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+(* NotebookSignature 3Rj6T#eUAmr#vC0mVM0MjD#S *)

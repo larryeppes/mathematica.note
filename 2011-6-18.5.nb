@@ -1,0 +1,631 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     21552,        622]
+NotebookOptionsPosition[     20706,        589]
+NotebookOutlinePosition[     21051,        604]
+CellTagsIndexPosition[     21008,        601]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Monitor", "[", 
+  RowBox[{
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[PartialD]", 
+          RowBox[{"t", ",", "t"}]], 
+         RowBox[{"u", "[", 
+          RowBox[{"t", ",", "x"}], "]"}]}], "\[Equal]", 
+        RowBox[{
+         SubscriptBox["\[PartialD]", 
+          RowBox[{"x", ",", "x"}]], 
+         RowBox[{"u", "[", 
+          RowBox[{"t", ",", "x"}], "]"}]}]}], " ", ",", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"0", ",", "x"}], "]"}], "\[Equal]", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{
+          RowBox[{"-", "2"}], 
+          SuperscriptBox["x", "2"]}]]}], ",", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["u", 
+          TagBox[
+           RowBox[{"(", 
+            RowBox[{"1", ",", "0"}], ")"}],
+           Derivative],
+          MultilineFunction->None], "[", 
+         RowBox[{"0", ",", "x"}], "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"t", ",", 
+          RowBox[{"-", "10"}]}], "]"}], "\[Equal]", 
+        RowBox[{"u", "[", 
+         RowBox[{"t", ",", "10"}], "]"}]}]}], "}"}], ",", "u", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "50"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+     RowBox[{"EvaluationMonitor", "\[RuleDelayed]", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"sol", "=", 
+         RowBox[{"u", "[", 
+          RowBox[{"t", ",", "x"}], "]"}]}], ";", " ", 
+        RowBox[{"time", "=", "t"}]}], ")"}]}]}], "]"}], ",", 
+   RowBox[{"Plot", "[", 
+    RowBox[{"sol", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "8"}], "}"}]}], ",", 
+     RowBox[{"PlotLabel", "\[Rule]", "time"}]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.517398954515625*^9, 3.5173989556220703`*^9}, {
+   3.517398986270508*^9, 3.5173990063427734`*^9}, {3.517399080234375*^9, 
+   3.517399089544922*^9}, {3.5173993000097656`*^9, 3.5173993875039062`*^9}, {
+   3.5173994368623047`*^9, 3.51739943778125*^9}, {3.517399500790039*^9, 
+   3.517399565107422*^9}, {3.5173995981884766`*^9, 3.5173998877939453`*^9}, 
+   3.517399918395508*^9, {3.517399960696289*^9, 3.5173999609365234`*^9}, {
+   3.5173999948183594`*^9, 3.5173999967998047`*^9}, 3.5174000318134766`*^9, {
+   3.5174000710253906`*^9, 3.517400143647461*^9}, {3.517400184067383*^9, 
+   3.5174001897314453`*^9}, {3.5174002492773438`*^9, 
+   3.5174003232910156`*^9}, {3.517400369086914*^9, 3.517400416223633*^9}, {
+   3.517400510223633*^9, 3.517400527508789*^9}, {3.5174005581220703`*^9, 
+   3.5174006167890625`*^9}, {3.5174006695839844`*^9, 
+   3.5174006829970703`*^9}, {3.5174007154726562`*^9, 
+   3.5174007173271484`*^9}, {3.5174007482617188`*^9, 3.517400753203125*^9}, {
+   3.517400795334961*^9, 3.5174008442158203`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"u", "\[Rule]", 
+    TagBox[
+     RowBox[{"InterpolatingFunction", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0.`", ",", "50.`"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "10.`"}], ",", "10.`"}], "}"}]}], "}"}], 
+       ",", "\<\"<>\"\>"}], "]"}],
+     False,
+     Editable->False]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.5173998215439453`*^9, 3.5173998787128906`*^9}, 
+   3.517399914205078*^9, 3.5173999448876953`*^9, 3.5173999891376953`*^9, 
+   3.5174000250283203`*^9, 3.5174000623867188`*^9, {3.5174001333876953`*^9, 
+   3.5174001550214844`*^9}, 3.517400190745117*^9, {3.517400253142578*^9, 
+   3.517400324573242*^9}, {3.517400408791992*^9, 3.5174004203320312`*^9}, {
+   3.517400514029297*^9, 3.517400536102539*^9}, {3.5174005827441406`*^9, 
+   3.517400600850586*^9}, 3.517400640029297*^9, 3.51740069028125*^9, {
+   3.5174007377226562`*^9, 3.5174007545507812`*^9}, {3.5174008186835938`*^9, 
+   3.517400862848633*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Monitor", "[", 
+  RowBox[{
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[PartialD]", 
+          RowBox[{"t", ",", "t"}]], 
+         RowBox[{"u", "[", 
+          RowBox[{"t", ",", "x"}], "]"}]}], "\[Equal]", 
+        RowBox[{
+         SubscriptBox["\[PartialD]", 
+          RowBox[{"x", ",", "x"}]], 
+         RowBox[{"u", "[", 
+          RowBox[{"t", ",", "x"}], "]"}]}]}], " ", ",", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"0", ",", "x"}], "]"}], "\[Equal]", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "3"}], "x"}], "-", 
+          SuperscriptBox["x", "2"]}]]}], ",", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["u", 
+          TagBox[
+           RowBox[{"(", 
+            RowBox[{"1", ",", "0"}], ")"}],
+           Derivative],
+          MultilineFunction->None], "[", 
+         RowBox[{"0", ",", "x"}], "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"t", ",", 
+          RowBox[{"-", "10"}]}], "]"}], "\[Equal]", 
+        RowBox[{"u", "[", 
+         RowBox[{"t", ",", "10"}], "]"}]}]}], "}"}], ",", "u", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "50"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+     RowBox[{"EvaluationMonitor", "\[RuleDelayed]", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"sol", "=", 
+         RowBox[{"u", "[", 
+          RowBox[{"t", ",", "x"}], "]"}]}], ";", " ", 
+        RowBox[{"time", "=", "t"}]}], ")"}]}]}], "]"}], ",", 
+   RowBox[{"Plot", "[", 
+    RowBox[{"sol", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "8"}], "}"}]}], ",", 
+     RowBox[{"PlotLabel", "\[Rule]", "time"}]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.5173972494365234`*^9, 3.517400872553711*^9, {3.5174009152910156`*^9, 
+   3.5174009232402344`*^9}, {3.5174009656591797`*^9, 
+   3.5174009823359375`*^9}, {3.5174010421728516`*^9, 3.5174010543652344`*^9}, 
+   3.5174010895058594`*^9, 3.517401124125*^9, {3.5174014214179688`*^9, 
+   3.5174014984716797`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"u", "\[Rule]", 
+    TagBox[
+     RowBox[{"InterpolatingFunction", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0.`", ",", "50.`"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "10.`"}], ",", "10.`"}], "}"}]}], "}"}], 
+       ",", "\<\"<>\"\>"}], "]"}],
+     False,
+     Editable->False]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.5173972465908203`*^9, 3.5173972640009766`*^9}, {
+   3.5173976749873047`*^9, 3.517397693475586*^9}, 3.5173995292978516`*^9, {
+   3.5174009162109375`*^9, 3.517400920649414*^9}, 3.517401035453125*^9, {
+   3.5174011012910156`*^9, 3.517401116263672*^9}, 3.5174011489521484`*^9, {
+   3.517401425006836*^9, 3.5174015178583984`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Monitor", "[", 
+  RowBox[{
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[PartialD]", 
+          RowBox[{"t", ",", "t"}]], 
+         RowBox[{"u", "[", 
+          RowBox[{"t", ",", "x", ",", "y"}], "]"}]}], "\[Equal]", 
+        RowBox[{
+         RowBox[{
+          SubscriptBox["\[PartialD]", 
+           RowBox[{"x", ",", "x"}]], 
+          RowBox[{"u", "[", 
+           RowBox[{"t", ",", "x", ",", "y"}], "]"}]}], "+", 
+         RowBox[{
+          SubscriptBox["\[PartialD]", 
+           RowBox[{"y", ",", "y"}]], 
+          RowBox[{"u", "[", 
+           RowBox[{"t", ",", "x", ",", "y"}], "]"}]}]}]}], " ", ",", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"0", ",", "x", ",", "y"}], "]"}], "\[Equal]", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["x", "2"]}], "-", 
+          SuperscriptBox["y", "2"]}]]}], ",", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["u", 
+          TagBox[
+           RowBox[{"(", 
+            RowBox[{"1", ",", "0", ",", "0"}], ")"}],
+           Derivative],
+          MultilineFunction->None], "[", 
+         RowBox[{"0", ",", "x", ",", "y"}], "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"t", ",", "x", ",", 
+          RowBox[{"-", 
+           SqrtBox[
+            RowBox[{
+             SuperscriptBox["10", "2"], "-", 
+             SuperscriptBox["x", "2"]}]]}]}], "]"}], "\[Equal]", 
+        RowBox[{"u", "[", 
+         RowBox[{"t", ",", 
+          RowBox[{"-", "x"}], ",", 
+          SqrtBox[
+           RowBox[{
+            SuperscriptBox["10", "2"], "-", 
+            SuperscriptBox["x", "2"]}]]}], "]"}]}]}], "}"}], ",", "u", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "100"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+     RowBox[{"EvaluationMonitor", "\[RuleDelayed]", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"sol", "=", 
+         RowBox[{"u", "[", 
+          RowBox[{"t", ",", "x", ",", "y"}], "]"}]}], ";", " ", 
+        RowBox[{"time", "=", "t"}]}], ")"}]}]}], "]"}], ",", 
+   RowBox[{"Plot3D", "[", 
+    RowBox[{"sol", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "8"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "8"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"PlotLabel", "\[Rule]", "time"}]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.517397287376953*^9, 3.5173975005976562`*^9}, {
+   3.5173977237470703`*^9, 3.517397771256836*^9}, 3.517397857254883*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NDSolve", "::", "\<\"conarg\"\>"}], 
+  RowBox[{
+  ":", " "}], "\<\"\\!\\(\\*StyleBox[\\\"\\\\\\\"The arguments should be \
+ordered consistently.\\\\\\\"\\\", \\\"MT\\\"]\\) \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NDSolve/conarg\\\", ButtonNote -> \
+\\\"NDSolve::conarg\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.5173975031464844`*^9, {3.5173977635*^9, 3.5173977718554688`*^9}, 
+   3.5173978592314453`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NDSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[PartialD]", 
+        RowBox[{"t", ",", "t"}]], 
+       RowBox[{"u", "[", 
+        RowBox[{"t", ",", "x", ",", "y"}], "]"}]}], "\[Equal]", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["\[PartialD]", 
+         RowBox[{"x", ",", "x"}]], 
+        RowBox[{"u", "[", 
+         RowBox[{"t", ",", "x", ",", "y"}], "]"}]}], "+", 
+       RowBox[{
+        SubscriptBox["\[PartialD]", 
+         RowBox[{"y", ",", "y"}]], 
+        RowBox[{"u", "[", 
+         RowBox[{"t", ",", "x", ",", "y"}], "]"}]}]}]}], " ", ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"0", ",", "x", ",", "y"}], "]"}], "\[Equal]", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["x", "2"]}], "-", 
+        SuperscriptBox["y", "2"]}]]}], ",", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["u", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"1", ",", "0", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"0", ",", "x", ",", "y"}], "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"t", ",", "10", ",", "10"}], "]"}], "\[Equal]", 
+      RowBox[{"u", "[", 
+       RowBox[{"t", ",", 
+        RowBox[{"-", "10"}], ",", 
+        RowBox[{"-", "10"}]}], "]"}]}]}], "}"}], ",", "u", ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "100"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+   RowBox[{"EvaluationMonitor", "\[RuleDelayed]", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"sol", "=", 
+       RowBox[{"u", "[", 
+        RowBox[{"t", ",", "x", ",", "y"}], "]"}]}], ";", " ", 
+      RowBox[{"time", "=", "t"}]}], ")"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5173976093203125`*^9, 3.5173976096152344`*^9}, 
+   3.5173978739785156`*^9, {3.5173981197373047`*^9, 3.5173981622626953`*^9}, {
+   3.5173982095976562`*^9, 3.5173982299501953`*^9}, {3.5173983641464844`*^9, 
+   3.5173984193671875`*^9}, {3.517398483234375*^9, 3.5173984836103516`*^9}, {
+   3.5173985612998047`*^9, 3.5173985974335938`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NDSolve", "::", "\<\"bcedge\"\>"}], 
+  RowBox[{
+  ":", " "}], "\<\"\\!\\(\\*StyleBox[\\\"\\\\\\\"Boundary condition \
+\\\\\\\"\\\", \
+\\\"MT\\\"]\\)\[NoBreak]\\!\\(\\*StyleBox[\\!\\(\\(\\(u[\\(\\(t, 10, \
+10\\)\\)]\\)\\) \[Equal] \\(\\(u[\\(\\(t, \\(\\(-10\\)\\), \\(\\(-10\\)\\)\\)\
+\\)]\\)\\)\\), \\\"MT\\\"]\\)\[NoBreak]\\!\\(\\*StyleBox[\\\"\\\\\\\" is not \
+specified on a single edge of the boundary of the computational domain.\\\\\\\
+\"\\\", \\\"MT\\\"]\\) \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NDSolve/bcedge\\\", ButtonNote -> \
+\\\"NDSolve::bcedge\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.5173975388476562`*^9, 3.517397611932617*^9, 3.517397880459961*^9, 
+   3.517398163786133*^9, 3.5173982302734375`*^9, {3.5173983931123047`*^9, 
+   3.5173984202490234`*^9}, {3.517398569064453*^9, 3.5173985979882812`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NDSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["u", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"2", ",", "0", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"t", ",", "x", ",", "y"}], "]"}], "\[Equal]", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["u", 
+         TagBox[
+          RowBox[{"(", 
+           RowBox[{"0", ",", "0", ",", "2"}], ")"}],
+          Derivative],
+         MultilineFunction->None], "[", 
+        RowBox[{"t", ",", "x", ",", "y"}], "]"}], "+", 
+       RowBox[{
+        SuperscriptBox["u", 
+         TagBox[
+          RowBox[{"(", 
+           RowBox[{"0", ",", "2", ",", "0"}], ")"}],
+          Derivative],
+         MultilineFunction->None], "[", 
+        RowBox[{"t", ",", "x", ",", "y"}], "]"}]}]}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"0", ",", "x", ",", "y"}], "]"}], "\[Equal]", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["x", "2"]}], "-", 
+        SuperscriptBox["y", "2"]}]]}], ",", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["u", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"1", ",", "0", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"0", ",", "x", ",", "y"}], "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"t", ",", "10", ",", "y"}], "]"}], "\[Equal]", 
+      RowBox[{"u", "[", 
+       RowBox[{"t", ",", 
+        RowBox[{"-", "10"}], ",", "y"}], "]"}]}]}], "}"}], ",", "u", ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "100"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "15"}], ",", "15"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "15"}], ",", "15"}], "}"}], ",", 
+   RowBox[{"EvaluationMonitor", "\[RuleDelayed]", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"sol", "=", 
+       RowBox[{"u", "[", 
+        RowBox[{"t", ",", "x", ",", "y"}], "]"}]}], ";", 
+      RowBox[{"time", "=", "t"}]}], ")"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5173987239541016`*^9, 3.5173987295009766`*^9}, {
+  3.517398787564453*^9, 3.517398822540039*^9}, {3.5173988738671875`*^9, 
+  3.517398919614258*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NDSolve", "::", "\<\"bcedge\"\>"}], 
+  RowBox[{
+  ":", " "}], "\<\"\\!\\(\\*StyleBox[\\\"\\\\\\\"Boundary condition \
+\\\\\\\"\\\", \
+\\\"MT\\\"]\\)\[NoBreak]\\!\\(\\*StyleBox[\\!\\(\\(\\(u[\\(\\(t, 10, y\\)\\)]\
+\\)\\) \[Equal] \\(\\(u[\\(\\(t, \\(\\(-10\\)\\), y\\)\\)]\\)\\)\\), \\\"MT\\\
+\"]\\)\[NoBreak]\\!\\(\\*StyleBox[\\\"\\\\\\\" is not specified on a single \
+edge of the boundary of the computational domain.\\\\\\\"\\\", \\\"MT\\\"]\\) \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NDSolve/bcedge\\\", \
+ButtonNote -> \\\"NDSolve::bcedge\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.5173987305527344`*^9, 3.517398737118164*^9}, {
+  3.5173988082265625`*^9, 3.5173988231533203`*^9}, {3.517398876915039*^9, 
+  3.5173989048476562`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"NDSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["u", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"2", ",", "0", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"t", ",", "x", ",", "y"}], "]"}], "\[Equal]", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["u", 
+         TagBox[
+          RowBox[{"(", 
+           RowBox[{"0", ",", "0", ",", "2"}], ")"}],
+          Derivative],
+         MultilineFunction->None], "[", 
+        RowBox[{"t", ",", "x", ",", "y"}], "]"}], "+", 
+       RowBox[{
+        SuperscriptBox["u", 
+         TagBox[
+          RowBox[{"(", 
+           RowBox[{"0", ",", "2", ",", "0"}], ")"}],
+          Derivative],
+         MultilineFunction->None], "[", 
+        RowBox[{"t", ",", "x", ",", "y"}], "]"}]}]}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"0", ",", "x", ",", "y"}], "]"}], "\[Equal]", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["x", "2"]}], "-", 
+        SuperscriptBox["y", "2"]}]]}], ",", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["u", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"1", ",", "0", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"0", ",", "x", ",", "y"}], "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"t", ",", "10", ",", "y"}], "]"}], "\[Equal]", 
+      RowBox[{"u", "[", 
+       RowBox[{"t", ",", 
+        RowBox[{"-", "10"}], ",", "y"}], "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"t", ",", "x", ",", "10"}], "]"}], "\[Equal]", 
+      RowBox[{"u", "[", 
+       RowBox[{"t", ",", "x", ",", 
+        RowBox[{"-", "10"}]}], "]"}]}]}], "}"}], ",", "u", ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "100"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "15"}], ",", "15"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "15"}], ",", "15"}], "}"}], ",", 
+   RowBox[{"EvaluationMonitor", "\[RuleDelayed]", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"sol", "=", 
+       RowBox[{"u", "[", 
+        RowBox[{"t", ",", "x", ",", "y"}], "]"}]}], ";", 
+      RowBox[{"time", "=", "t"}]}], ")"}]}]}], "]"}]], "Output",
+ CellChangeTimes->{{3.517398730553711*^9, 3.517398737123047*^9}, {
+  3.517398808236328*^9, 3.5173988231572266`*^9}, {3.517398876916992*^9, 
+  3.517398904850586*^9}}]
+}, Open  ]]
+},
+WindowSize->{607, 505},
+WindowMargins->{{Automatic, 61}, {52, Automatic}},
+FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (November 10, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 3035, 75, 149, "Input"],
+Cell[3605, 99, 1083, 25, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4725, 129, 2356, 67, 149, "Input"],
+Cell[7084, 198, 810, 21, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7931, 224, 3052, 88, 219, "Input"],
+Cell[10986, 314, 546, 11, 24, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11569, 330, 2327, 65, 115, "Input"],
+Cell[13899, 397, 963, 17, 65, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14899, 419, 2352, 71, 115, InheritFromParent],
+Cell[17254, 492, 875, 15, 65, "Message"],
+Cell[18132, 509, 2558, 77, 111, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

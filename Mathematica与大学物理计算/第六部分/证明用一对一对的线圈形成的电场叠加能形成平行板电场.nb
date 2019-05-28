@@ -1,0 +1,175 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      4921,        166]
+NotebookOptionsPosition[      4490,        147]
+NotebookOutlinePosition[      4860,        163]
+CellTagsIndexPosition[      4817,        160]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData["\:8bc1\:660e\:7528\:4e00\:5bf9\:4e00\:5bf9\:7684\:7ebf\:5708\
+\:5f62\:6210\:7684\:7535\:573a\:53e0\:52a0\:80fd\:5f62\:6210\:5e73\:884c\:677f\
+\:7535\:573a"], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"V0", "[", 
+    RowBox[{"z_", ",", "\[Rho]_", ",", "R_"}], "]"}], ":=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"2", 
+      RowBox[{"EllipticK", "[", 
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{"2", "R", "*", "\[Rho]"}], 
+         RowBox[{
+          SuperscriptBox["z", "2"], "+", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"R", "-", "\[Rho]"}], ")"}], "2"]}]]}], "]"}]}], 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["z", "2"], "+", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"R", "-", "\[Rho]"}], ")"}], "2"]}]]], "+", 
+    "\[IndentingNewLine]", 
+    FractionBox[
+     RowBox[{"2", 
+      RowBox[{"EllipticK", "[", 
+       FractionBox[
+        RowBox[{"2", "R", "*", "\[Rho]"}], 
+        RowBox[{
+         SuperscriptBox["z", "2"], "+", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"R", "+", "\[Rho]"}], ")"}], "2"]}]], "]"}]}], 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["z", "2"], "+", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"R", "+", "\[Rho]"}], ")"}], "2"]}]]]}]}], ";", 
+  RowBox[{"d", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"V1", "[", 
+    RowBox[{"z_", ",", "\[Rho]_", ",", "R_"}], "]"}], ":=", 
+   RowBox[{"V0", "[", 
+    RowBox[{
+     RowBox[{"z", "-", 
+      FractionBox["d", "2"]}], ",", "\[Rho]", ",", "R"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"V2", "[", 
+    RowBox[{"z_", ",", "\[Rho]_", ",", "R_"}], "]"}], ":=", 
+   RowBox[{"-", 
+    RowBox[{"V0", "[", 
+     RowBox[{
+      RowBox[{"z", "+", 
+       FractionBox["d", "2"]}], ",", "\[Rho]", ",", "R"}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"V", "[", 
+    RowBox[{"z_", ",", "\[Rho]_", ",", "R_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"V1", "[", 
+     RowBox[{"z", ",", "\[Rho]", ",", "R"}], "]"}], "+", 
+    RowBox[{"V2", "[", 
+     RowBox[{"z", ",", "\[Rho]", ",", "R"}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Ez", "[", 
+    RowBox[{"z_", ",", "\[Rho]_", ",", "R_"}], "]"}], ":=", 
+   RowBox[{"Evaluate", "[", 
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{"V", "[", 
+       RowBox[{"z", ",", "\[Rho]", ",", "R"}], "]"}], ",", "z"}], "]"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Integrate", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "R"}], "*", 
+    RowBox[{"Ez", "[", 
+     RowBox[{"0", ",", "0", ",", "R"}], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"R", ",", "0", ",", "\[Infinity]"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{"d", ",", "V", ",", "V0", ",", "V1", ",", "V2", ",", "Ez"}], 
+  "]"}]}], "Input"],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{
+   StyleBox[
+    RowBox[{"Integrate", "::", "ilim"}], "MessageName"], 
+   RowBox[{
+   ":", " "}], "\<\"Invalid integration variable or limit(s) in \[NoBreak]\\!\
+\\(TraditionalForm\\`\\({1, 0, \[Infinity]}\\)\\)\[NoBreak]. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/Integrate/ilim\\\", \
+ButtonNote -> \\\"Integrate::ilim\\\"]\\)\"\>"}], TraditionalForm]], "Message",\
+ "MSG",
+ CellChangeTimes->{{3.5367210110185547`*^9, 3.536721041958008*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", "0", "\[Infinity]"], 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox[
+      RowBox[{"16", " ", "\[Pi]"}], 
+      RowBox[{"5", " ", 
+       SqrtBox["5"]}]]}], 
+    RowBox[{"\[DifferentialD]", "1"}]}]}], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.5367210110195312`*^9, 3.5367210419609375`*^9}}]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1272, 683},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 180, 2, 31, "Input"],
+Cell[CellGroupData[{
+Cell[750, 26, 2781, 91, 291, "Input"],
+Cell[3534, 119, 566, 12, 24, "Message"],
+Cell[4103, 133, 371, 11, 53, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

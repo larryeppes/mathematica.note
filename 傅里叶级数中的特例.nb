@@ -1,0 +1,413 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     15757,        403]
+NotebookOptionsPosition[     14775,        363]
+NotebookOutlinePosition[     15293,        385]
+CellTagsIndexPosition[     15208,        380]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ FormBox[
+  RowBox[{"?", " ", "Fouri*"}], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.5324216994853516`*^9, 3.532421703979492*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ DynamicModuleBox[{Typeset`open$$ = True}, 
+  PaneSelectorBox[{False->
+   RowBox[{
+    OpenerBox[Dynamic[Typeset`open$$],
+     ImageSize->Small], 
+    StyleBox["System`", "InfoHeading"]}], True->GridBox[{
+     {
+      RowBox[{
+       OpenerBox[Dynamic[Typeset`open$$],
+        ImageSize->Small], 
+       StyleBox["System`", "InfoHeading"]}]},
+     {GridBox[{
+        {
+         ButtonBox["Fourier",
+          BaseStyle->"InformationLink",
+          ButtonData:>{"Info3532450504-6466307", {"Fourier", "System`"}},
+          ButtonNote->"System`"], 
+         ButtonBox["FourierDCT",
+          BaseStyle->"InformationLink",
+          ButtonData:>{"Info3532450504-6466307", {"FourierDCT", "System`"}},
+          ButtonNote->"System`"], 
+         ButtonBox["FourierSinCoefficient",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierSinCoefficient", "System`"}},
+          ButtonNote->"System`"]},
+        {
+         ButtonBox["FourierCoefficient",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierCoefficient", "System`"}},
+          ButtonNote->"System`"], 
+         ButtonBox["FourierDST",
+          BaseStyle->"InformationLink",
+          ButtonData:>{"Info3532450504-6466307", {"FourierDST", "System`"}},
+          ButtonNote->"System`"], 
+         ButtonBox["FourierSinSeries",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierSinSeries", "System`"}},
+          ButtonNote->"System`"]},
+        {
+         ButtonBox["FourierCosCoefficient",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierCosCoefficient", "System`"}},
+          ButtonNote->"System`"], 
+         ButtonBox["FourierParameters",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierParameters", "System`"}},
+          ButtonNote->"System`"], 
+         ButtonBox["FourierSinTransform",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierSinTransform", "System`"}},
+          ButtonNote->"System`"]},
+        {
+         ButtonBox["FourierCosSeries",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierCosSeries", "System`"}},
+          ButtonNote->"System`"], 
+         ButtonBox["FourierSequenceTransform",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierSequenceTransform", "System`"}},
+          ButtonNote->"System`"], 
+         ButtonBox["FourierTransform",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierTransform", "System`"}},
+          ButtonNote->"System`"]},
+        {
+         ButtonBox["FourierCosTransform",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierCosTransform", "System`"}},
+          ButtonNote->"System`"], 
+         ButtonBox["FourierSeries",
+          BaseStyle->"InformationLink",
+          ButtonData:>{"Info3532450504-6466307", {"FourierSeries", "System`"}},
+          ButtonNote->"System`"], 
+         ButtonBox["FourierTrigSeries",
+          BaseStyle->"InformationLink",
+          
+          ButtonData:>{
+           "Info3532450504-6466307", {"FourierTrigSeries", "System`"}},
+          ButtonNote->"System`"]}
+       },
+       DefaultBaseStyle->"InfoGrid",
+       GridBoxItemSize->{"Columns" -> {{
+            Scaled[0.31666666666666665`]}}}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}}]}, 
+   Dynamic[Typeset`open$$],
+   ImageSize->Automatic]]], "Print", "InfoCell",
+ CellChangeTimes->{3.532421704591797*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox["\<\"\!\(\*RowBox[{\\\"FourierCoefficient\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"t\\\", \\\
+\"TI\\\"], \\\",\\\", StyleBox[\\\"n\\\", \\\"TI\\\"]}], \\\"]\\\"}]\) gives \
+the \!\(\*StyleBox[\\\"n\\\", \\\"TI\\\"]\)\!\(\*SuperscriptBox[\\\"\[Null]\\\
+\", \\\"th\\\"]\) coefficient in the Fourier series expansion of \
+\!\(\*StyleBox[\\\"expr\\\", \
+\\\"TI\\\"]\).\\n\!\(\*RowBox[{\\\"FourierCoefficient\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{SubscriptBox[StyleBox[\\\"t\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
+\\\"TR\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"t\\\", \\\"TI\\\"], \
+StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\
+\"TR\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{SubscriptBox[StyleBox[\\\"n\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
+\\\"TR\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"n\\\", \\\"TI\\\"], \
+StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\
+\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\) gives a multidimensional Fourier \
+coefficient.\"\>", "MSG"], "\[NonBreakingSpace]", 
+  ButtonBox[
+   StyleBox["\[RightSkeleton]", "SR"],
+   Active->True,
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/FourierCoefficient"]}]], "Print", "PrintUsage",
+ CellTags->"Info3532450504-6466307"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"Plot", "[", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"Log", "[", 
+      RowBox[{"Abs", "[", 
+       FractionBox["x", 
+        RowBox[{"2", "\[Pi]"}]], "]"}], "]"}]], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", 
+      RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}]}], "]"}], 
+  TraditionalForm]], "Input",
+ CellChangeTimes->{{3.5324217699101562`*^9, 3.532421802661133*^9}, {
+  3.5324220133789062`*^9, 3.532422022314453*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  GraphicsBox[{{}, {}, 
+    {Hue[0.67, 0.6, 0.6], LineBox[CompressedData["
+1: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
+      "]]}},
+   AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+   Axes->True,
+   AxesOrigin->{0, 0},
+   PlotRange->
+    NCache[{{-Pi, Pi}, {-1.4426949559351305`, 0.}}, {{-3.141592653589793, 
+     3.141592653589793}, {-1.4426949559351305`, 0.}}],
+   PlotRangeClipping->True,
+   PlotRangePadding->{
+     Scaled[0.02], 
+     Scaled[0.02]}], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.532421791361328*^9, 3.532421803475586*^9}, 
+   3.532422023680664*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", 
+   FractionBox["1", 
+    RowBox[{"Log", "[", 
+     RowBox[{"Abs", "[", 
+      FractionBox["x", 
+       RowBox[{"2", "\[Pi]"}]], "]"}], "]"}]]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"list", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"NIntegrate", "[", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         RowBox[{"f", "[", "x", "]"}], " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"n", " ", "x"}], "]"}]}], "\[Pi]"], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", 
+         RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "0", ",", "20"}], "}"}]}], "]"}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"ListPlot", "[", "list", "]"}], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.5324218096708984`*^9, 3.532421869803711*^9}, {
+  3.532421936479492*^9, 3.5324219374501953`*^9}, {3.53242198375*^9, 
+  3.5324219897197266`*^9}, {3.532422037743164*^9, 3.532422046131836*^9}, {
+  3.5324222372910156`*^9, 3.532422287057617*^9}, {3.532422351334961*^9, 
+  3.5324223796816406`*^9}, {3.532422477760742*^9, 3.5324224903291016`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"-", "1.5146841722443543`"}], ",", "0.4638069209297378`", ",", 
+    RowBox[{"-", "0.042030671811134485`"}], ",", "0.0721452652566694`", ",", 
+    RowBox[{"-", "0.007495548243251927`"}], ",", "0.029379106508096775`", ",", 
+    RowBox[{"-", "0.0016993749406599493`"}], ",", "0.016354387198000357`", 
+    ",", 
+    RowBox[{"-", "0.00006741082670284199`"}], ",", "0.010624653834889475`", 
+    ",", "0.0004975558352531967`", ",", "0.0075646353217876`", ",", 
+    "0.0007036278049575451`", ",", "0.005721428105027139`", ",", 
+    "0.0007692411433981605`", ",", "0.004516257136576981`", ",", 
+    "0.0007751176524503885`", ",", "0.0036799527392169656`", ",", 
+    "0.0007548150636201133`", ",", "0.00307283089006059`", ",", 
+    "0.0007234192384273329`"}], "}"}], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.532421860109375*^9, 3.532421871408203*^9}, 
+   3.5324219392626953`*^9, {3.5324219857939453`*^9, 3.5324219927714844`*^9}, 
+   3.5324222286015625`*^9, {3.5324222617216797`*^9, 3.532422289040039*^9}, 
+   3.5324223544384766`*^9, {3.532422469645508*^9, 3.532422493051758*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  GraphicsBox[
+   {Hue[0.67, 0.6, 0.6], PointBox[CompressedData["
+1:eJxTTMoPSmViYGAQBWIQDQEf7N+9q6hQtfmxHyrgcNDP2ZJ5/V17CJfDYY7G
+9kDu1qVQeQEHuY3XNslUbILKizh80VN4uWxzHVRewmGDZ29Zn+g8qLyMwwLr
+s582Xo+Gyis4nMtYGmGyfwJUXsmB4ZWB/t3VglB5FYeEIpZnCYdaofJqDg1C
+WqxnfR2gfA2HEB7mUIk/dVC+lsOETdNMSvncoXwdB7/kfs2o/HIoX89BpODu
+sTsmnlC+gUO+qHX34voiKN/Q4cW+h9UaaTB5IweFt75Ts1XzoHxjh4KVixhv
+7vaA8k0cbnza2Wqokwnlmzo80Df5U7XF3R4AvOVYGg==
+     "]]},
+   AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+   Axes->True,
+   AxesOrigin->{0, Automatic},
+   ImageSize->{563., Automatic},
+   PlotRange->Automatic,
+   PlotRangeClipping->True], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.532421860109375*^9, 3.532421871408203*^9}, 
+   3.5324219392626953`*^9, {3.5324219857939453`*^9, 3.5324219927714844`*^9}, 
+   3.5324222286015625`*^9, {3.5324222617216797`*^9, 3.532422289040039*^9}, 
+   3.5324223544384766`*^9, {3.532422469645508*^9, 3.532422493080078*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", 
+    RowBox[{"-", "\[Pi]"}], "\[Pi]"], 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"Cos", "[", "x", "]"}], "2"], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.5324223061484375`*^9, 3.532422322142578*^9}}],
+
+Cell[BoxData[
+ FormBox["\[Pi]", TraditionalForm]], "Output",
+ CellChangeTimes->{3.5324223224521484`*^9}]
+}, Open  ]]
+},
+WindowSize->{1344, 633},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "Info3532450504-6466307"->{
+  Cell[4729, 139, 1422, 24, 64, "Print",
+   CellTags->"Info3532450504-6466307"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"Info3532450504-6466307", 15103, 374}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 151, 3, 30, "Input"],
+Cell[CellGroupData[{
+Cell[755, 29, 3971, 108, 149, "Print"],
+Cell[4729, 139, 1422, 24, 64, "Print",
+ CellTags->"Info3532450504-6466307"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6200, 169, 467, 14, 60, "Input"],
+Cell[6670, 185, 4219, 76, 239, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10926, 266, 1245, 33, 122, "Input"],
+Cell[12174, 301, 1143, 19, 50, "Output"],
+Cell[13320, 322, 970, 20, 354, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14327, 347, 325, 9, 45, "Input"],
+Cell[14655, 358, 104, 2, 30, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

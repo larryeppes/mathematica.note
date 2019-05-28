@@ -1,0 +1,929 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     39574,        919]
+NotebookOptionsPosition[     39216,        902]
+NotebookOutlinePosition[     39560,        917]
+CellTagsIndexPosition[     39517,        914]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ StyleBox[
+  RowBox[{
+  "An", " ", "Extensive", " ", "Collection", " ", "of", " ", "Distributional",
+    " ", "Properties"}], "Title"]], "Input",
+ CellChangeTimes->{{3.51037871797233*^9, 3.51037871797233*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"props", "=", 
+   RowBox[{"Thread", "[", 
+    RowBox[{"HoldForm", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"PDF", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "x"}], "]"}], ",", 
+       RowBox[{"CDF", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "x"}], "]"}], ",", 
+       RowBox[{"SurvivalFunction", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "x"}], "]"}], ",", 
+       RowBox[{"HazardFunction", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "x"}], "]"}], ",", 
+       RowBox[{
+       "DistributionParameterAssumptions", "[", "\[ScriptCapitalD]", "]"}], 
+       ",", 
+       RowBox[{"RandomVariate", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"\[ScriptCapitalD]", "/.", 
+           RowBox[{"\[Lambda]", "\[Rule]", "3"}]}], ")"}], ",", "3"}], "]"}], 
+       ",", 
+       RowBox[{"EstimatedDistribution", "[", 
+        RowBox[{"data", ",", "\[ScriptCapitalD]"}], "]"}], ",", 
+       RowBox[{"FindDistributionParameters", "[", 
+        RowBox[{"data", ",", "\[ScriptCapitalD]"}], "]"}], ",", 
+       RowBox[{"Quantile", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "q"}], "]"}], ",", 
+       RowBox[{"InverseCDF", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "q"}], "]"}], ",", 
+       RowBox[{"InverseSurvivalFunction", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "q"}], "]"}], ",", 
+       RowBox[{"Median", "[", "\[ScriptCapitalD]", "]"}], ",", 
+       RowBox[{"InterquartileRange", "[", "\[ScriptCapitalD]", "]"}], ",", 
+       RowBox[{"QuartileDeviation", "[", "\[ScriptCapitalD]", "]"}], ",", 
+       RowBox[{"QuartileSkewness", "[", "\[ScriptCapitalD]", "]"}], ",", 
+       RowBox[{"Quartiles", "[", "\[ScriptCapitalD]", "]"}], ",", 
+       RowBox[{"Mean", "[", "\[ScriptCapitalD]", "]"}], ",", 
+       RowBox[{"StandardDeviation", "[", "\[ScriptCapitalD]", "]"}], ",", 
+       RowBox[{"Variance", "[", "\[ScriptCapitalD]", "]"}], ",", 
+       RowBox[{"Skewness", "[", "\[ScriptCapitalD]", "]"}], ",", 
+       RowBox[{"Kurtosis", "[", "\[ScriptCapitalD]", "]"}], ",", 
+       RowBox[{"Likelihood", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "y"}], "}"}]}], "]"}], ",", 
+       RowBox[{"LogLikelihood", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "y"}], "}"}]}], "]"}], ",", 
+       RowBox[{"CharacteristicFunction", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "t"}], "]"}], ",", 
+       RowBox[{"Moment", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "r"}], "]"}], ",", 
+       RowBox[{"MomentGeneratingFunction", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "t"}], "]"}], ",", 
+       RowBox[{"CentralMoment", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "r"}], "]"}], ",", 
+       RowBox[{"CentralMomentGeneratingFunction", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "t"}], "]"}], ",", 
+       RowBox[{"Cumulant", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "r"}], "]"}], ",", 
+       RowBox[{"CumulantGeneratingFunction", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "t"}], "]"}], ",", 
+       RowBox[{"FactorialMoment", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "r"}], "]"}], ",", 
+       RowBox[{"FactorialMomentGeneratingFunction", "[", 
+        RowBox[{"\[ScriptCapitalD]", ",", "t"}], "]"}]}], "}"}], "]"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"data", "=", 
+    RowBox[{"RandomVariate", "[", 
+     RowBox[{
+      RowBox[{"ExponentialDistribution", "[", "5", "]"}], ",", 
+      RowBox[{"10", "^", "5"}]}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"gridData", "=", 
+   RowBox[{"Join", "@@@", 
+    RowBox[{"ArrayFlatten", "[", 
+     RowBox[{"Transpose", "[", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Pane", "[", 
+             RowBox[{
+              RowBox[{"#1", "/.", 
+               RowBox[{
+                RowBox[{"HoldPattern", "[", 
+                 RowBox[{"ReplaceAll", "[", 
+                  RowBox[{"e_", ",", "rhs_"}], "]"}], "]"}], "\[RuleDelayed]",
+                 "e"}]}], ",", "115"}], "]"}], ",", 
+            RowBox[{"Pane", "[", 
+             RowBox[{
+              RowBox[{"Block", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"\[ScriptCapitalD]", "=", 
+                  RowBox[{
+                  "ExponentialDistribution", "[", "\[Lambda]", "]"}]}], "}"}],
+                 ",", 
+                RowBox[{"Refine", "[", 
+                 RowBox[{
+                  RowBox[{"ReleaseHold", "[", "#2", "]"}], ",", 
+                  RowBox[{"0", "\[LessEqual]", "q", "\[LessEqual]", "1"}]}], 
+                 "]"}]}], "]"}], ",", "140", ",", 
+              RowBox[{"Alignment", "\[Rule]", "Left"}]}], "]"}]}], "}"}], 
+          "&"}], "@@@", 
+         RowBox[{"Thread", "[", 
+          RowBox[{"{", 
+           RowBox[{"props", ",", "props"}], "}"}], "]"}]}], ",", 
+        RowBox[{"Ceiling", "[", 
+         RowBox[{
+          RowBox[{"Length", "[", "props", "]"}], "/", "2"}], "]"}], ",", 
+        RowBox[{"Ceiling", "[", 
+         RowBox[{
+          RowBox[{"Length", "[", "props", "]"}], "/", "2"}], "]"}]}], "]"}], 
+      "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Labeled", "[", 
+  RowBox[{
+   RowBox[{"Pane", "[", 
+    RowBox[{
+     RowBox[{"Grid", "[", 
+      RowBox[{"gridData", ",", 
+       RowBox[{"Background", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"None", ",", 
+          RowBox[{"{", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Lighter", "[", 
+              RowBox[{
+               RowBox[{"Blend", "[", 
+                RowBox[{"{", 
+                 RowBox[{"Blue", ",", "Green"}], "}"}], "]"}], ",", ".6"}], 
+              "]"}], ",", 
+             RowBox[{"GrayLevel", "[", ".9", "]"}]}], "}"}], "}"}]}], "}"}]}],
+        ",", 
+       RowBox[{"BaseStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"FontFamily", "\[Rule]", "\"\<Verdana\>\""}], "}"}]}], ",", 
+       RowBox[{"Dividers", "\[Rule]", "All"}], ",", 
+       RowBox[{"FrameStyle", "\[Rule]", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"Thick", ",", "White"}], "]"}]}], ",", 
+       RowBox[{"Spacings", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2"}], "}"}]}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"550", ",", "900"}], "}"}], ",", 
+     RowBox[{"ImageSizeAction", "\[Rule]", "\"\<ResizeToFit\>\""}], ",", 
+     RowBox[{"Alignment", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Center", ",", "Top"}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<Distribution Properties\>\"", ",", "18", ",", "Bold", ",", 
+     RowBox[{"FontFamily", "\[Rule]", "\"\<Verdana\>\""}]}], "]"}], ",", 
+   "Top"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.510378632462165*^9, 3.5103786647022233`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{PaneBox[
+    TagBox[
+     GridBox[{{
+        PaneBox[
+         TagBox[
+          RowBox[{"PDF", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "x"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         TagBox[
+          GridBox[{{"\[Piecewise]", 
+             GridBox[{{
+                RowBox[{
+                  SuperscriptBox["\[ExponentialE]", 
+                   RowBox[{
+                    RowBox[{"-", "x"}], " ", "\[Lambda]"}]], " ", 
+                  "\[Lambda]"}], 
+                RowBox[{"x", "\[GreaterEqual]", "0"}]}, {"0", 
+                TagBox["True", "PiecewiseDefault", AutoDelete -> True]}}, 
+              AllowedDimensions -> {2, Automatic}, Editable -> True, 
+              GridBoxAlignment -> {
+               "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+              GridBoxSpacings -> {"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.84]}, 
+                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}, "RowsIndexed" -> {}}, Selectable -> True]}}, 
+           GridBoxAlignment -> {
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+           GridBoxItemSize -> {
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+           GridBoxSpacings -> {"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.35]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}}], "Piecewise", 
+          DeleteWithContents -> True, Editable -> False, SelectWithContents -> 
+          True, Selectable -> False], Alignment -> Left, ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"Mean", "[", "\[ScriptCapitalD]", "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         FractionBox["1", "\[Lambda]"], Alignment -> Left, ImageSize -> 
+         140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"CDF", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "x"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         TagBox[
+          GridBox[{{"\[Piecewise]", 
+             GridBox[{{
+                RowBox[{"1", "-", 
+                  SuperscriptBox["\[ExponentialE]", 
+                   RowBox[{
+                    RowBox[{"-", "x"}], " ", "\[Lambda]"}]]}], 
+                RowBox[{"x", "\[GreaterEqual]", "0"}]}, {"0", 
+                TagBox["True", "PiecewiseDefault", AutoDelete -> True]}}, 
+              AllowedDimensions -> {2, Automatic}, Editable -> True, 
+              GridBoxAlignment -> {
+               "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+              GridBoxSpacings -> {"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.84]}, 
+                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}, "RowsIndexed" -> {}}, Selectable -> True]}}, 
+           GridBoxAlignment -> {
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+           GridBoxItemSize -> {
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+           GridBoxSpacings -> {"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.35]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}}], "Piecewise", 
+          DeleteWithContents -> True, Editable -> False, SelectWithContents -> 
+          True, Selectable -> False], Alignment -> Left, ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"StandardDeviation", "[", "\[ScriptCapitalD]", "]"}], 
+          HoldForm], ImageSize -> 115], 
+        PaneBox[
+         FractionBox["1", "\[Lambda]"], Alignment -> Left, ImageSize -> 
+         140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"SurvivalFunction", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "x"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         TagBox[
+          GridBox[{{"\[Piecewise]", 
+             GridBox[{{
+                SuperscriptBox["\[ExponentialE]", 
+                 RowBox[{
+                   RowBox[{"-", "x"}], " ", "\[Lambda]"}]], 
+                RowBox[{"x", "\[GreaterEqual]", "0"}]}, {"1", 
+                TagBox["True", "PiecewiseDefault", AutoDelete -> True]}}, 
+              AllowedDimensions -> {2, Automatic}, Editable -> True, 
+              GridBoxAlignment -> {
+               "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+              GridBoxSpacings -> {"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.84]}, 
+                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}, "RowsIndexed" -> {}}, Selectable -> True]}}, 
+           GridBoxAlignment -> {
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+           GridBoxItemSize -> {
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+           GridBoxSpacings -> {"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.35]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}}], "Piecewise", 
+          DeleteWithContents -> True, Editable -> False, SelectWithContents -> 
+          True, Selectable -> False], Alignment -> Left, ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"Variance", "[", "\[ScriptCapitalD]", "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         FractionBox["1", 
+          SuperscriptBox["\[Lambda]", "2"]], Alignment -> Left, ImageSize -> 
+         140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"HazardFunction", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "x"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         TagBox[
+          GridBox[{{"\[Piecewise]", 
+             GridBox[{{"\[Lambda]", 
+                RowBox[{"x", "\[GreaterEqual]", "0"}]}, {"0", 
+                TagBox["True", "PiecewiseDefault", AutoDelete -> True]}}, 
+              AllowedDimensions -> {2, Automatic}, Editable -> True, 
+              GridBoxAlignment -> {
+               "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+              GridBoxSpacings -> {"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.84]}, 
+                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}, "RowsIndexed" -> {}}, Selectable -> True]}}, 
+           GridBoxAlignment -> {
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+           GridBoxItemSize -> {
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+           GridBoxSpacings -> {"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.35]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}}], "Piecewise", 
+          DeleteWithContents -> True, Editable -> False, SelectWithContents -> 
+          True, Selectable -> False], Alignment -> Left, ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"Skewness", "[", "\[ScriptCapitalD]", "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox["2", Alignment -> Left, ImageSize -> 140]}, {
+        PaneBox[
+         TagBox[
+          
+          RowBox[{"DistributionParameterAssumptions", "[", 
+            "\[ScriptCapitalD]", "]"}], HoldForm], ImageSize -> 115], 
+        PaneBox[
+         RowBox[{"\[Lambda]", ">", "0"}], Alignment -> Left, ImageSize -> 
+         140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"Kurtosis", "[", "\[ScriptCapitalD]", "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox["9", Alignment -> Left, ImageSize -> 140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"RandomVariate", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "3"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         RowBox[{"{", 
+           
+           RowBox[{"0.8193164327117788`", ",", "1.2336653825224693`", ",", 
+             "1.1704863576501425`"}], "}"}], Alignment -> Left, ImageSize -> 
+         140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"Likelihood", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", 
+              RowBox[{"{", 
+                RowBox[{"x", ",", "y"}], "}"}]}], "]"}], HoldForm], ImageSize -> 
+         115], 
+        PaneBox[
+         TagBox[
+          GridBox[{{"\[Piecewise]", 
+             GridBox[{{
+                RowBox[{
+                  SuperscriptBox["\[ExponentialE]", 
+                   RowBox[{
+                    RowBox[{"-", 
+                    RowBox[{"(", 
+                    RowBox[{"x", "+", "y"}], ")"}]}], " ", "\[Lambda]"}]], 
+                  " ", 
+                  SuperscriptBox["\[Lambda]", "2"]}], 
+                RowBox[{
+                  RowBox[{"x", "\[GreaterEqual]", "0"}], "&&", 
+                  RowBox[{"y", "\[GreaterEqual]", "0"}]}]}, {"0", 
+                TagBox["True", "PiecewiseDefault", AutoDelete -> True]}}, 
+              AllowedDimensions -> {2, Automatic}, Editable -> True, 
+              GridBoxAlignment -> {
+               "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+              GridBoxSpacings -> {"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.84]}, 
+                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}, "RowsIndexed" -> {}}, Selectable -> True]}}, 
+           GridBoxAlignment -> {
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+           GridBoxItemSize -> {
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+           GridBoxSpacings -> {"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.35]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}}], "Piecewise", 
+          DeleteWithContents -> True, Editable -> False, SelectWithContents -> 
+          True, Selectable -> False], Alignment -> Left, ImageSize -> 140, 
+         ScrollPosition -> {0., 0.}]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"EstimatedDistribution", "[", 
+            RowBox[{"data", ",", "\[ScriptCapitalD]"}], "]"}], HoldForm], 
+         ImageSize -> 115, ScrollPosition -> {0., 0.}], 
+        PaneBox[
+         RowBox[{"ExponentialDistribution", "[", "5.014187843143787`", "]"}], 
+         Alignment -> Left, ImageSize -> 140, ScrollPosition -> {0., 0.}], 
+        PaneBox[
+         TagBox[
+          RowBox[{"LogLikelihood", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", 
+              RowBox[{"{", 
+                RowBox[{"x", ",", "y"}], "}"}]}], "]"}], HoldForm], ImageSize -> 
+         115], 
+        PaneBox[
+         TagBox[
+          GridBox[{{"\[Piecewise]", 
+             GridBox[{{
+                RowBox[{
+                  RowBox[{
+                    RowBox[{"-", 
+                    RowBox[{"(", 
+                    RowBox[{"x", "+", "y"}], ")"}]}], " ", "\[Lambda]"}], "+", 
+                  RowBox[{"2", " ", 
+                    RowBox[{"Log", "[", "\[Lambda]", "]"}]}]}], 
+                RowBox[{
+                  RowBox[{"x", "\[GreaterEqual]", "0"}], "&&", 
+                  RowBox[{"y", "\[GreaterEqual]", "0"}]}]}, {
+                RowBox[{"-", "\[Infinity]"}], 
+                TagBox["True", "PiecewiseDefault", AutoDelete -> True]}}, 
+              AllowedDimensions -> {2, Automatic}, Editable -> True, 
+              GridBoxAlignment -> {
+               "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+              GridBoxSpacings -> {"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.84]}, 
+                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}, "RowsIndexed" -> {}}, Selectable -> True]}}, 
+           GridBoxAlignment -> {
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+           GridBoxItemSize -> {
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+           GridBoxSpacings -> {"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.35]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}}], "Piecewise", 
+          DeleteWithContents -> True, Editable -> False, SelectWithContents -> 
+          True, Selectable -> False], Alignment -> Left, ImageSize -> 140, 
+         ScrollPosition -> {0., 0.}]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"FindDistributionParameters", "[", 
+            RowBox[{"data", ",", "\[ScriptCapitalD]"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         RowBox[{"{", 
+           RowBox[{"\[Lambda]", "\[Rule]", "5.014187843143787`"}], "}"}], 
+         Alignment -> Left, ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"CharacteristicFunction", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "t"}], "]"}], HoldForm], 
+         ImageSize -> 115, ScrollPosition -> {0., 0.}], 
+        PaneBox[
+         FractionBox["\[Lambda]", 
+          RowBox[{
+            RowBox[{
+              RowBox[{"-", "\[ImaginaryI]"}], " ", "t"}], "+", "\[Lambda]"}]],
+          Alignment -> Left, ImageSize -> 140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"Quantile", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "q"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         TagBox[
+          GridBox[{{"\[Piecewise]", 
+             GridBox[{{
+                RowBox[{"-", 
+                  FractionBox[
+                   RowBox[{"Log", "[", 
+                    RowBox[{"1", "-", "q"}], "]"}], "\[Lambda]"]}], 
+                RowBox[{"q", "<", "1"}]}, {"\[Infinity]", 
+                TagBox["True", "PiecewiseDefault", AutoDelete -> True]}}, 
+              AllowedDimensions -> {2, Automatic}, Editable -> True, 
+              GridBoxAlignment -> {
+               "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+              GridBoxSpacings -> {"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.84]}, 
+                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}, "RowsIndexed" -> {}}, Selectable -> True]}}, 
+           GridBoxAlignment -> {
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+           GridBoxItemSize -> {
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+           GridBoxSpacings -> {"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.35]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}}], "Piecewise", 
+          DeleteWithContents -> True, Editable -> False, SelectWithContents -> 
+          True, Selectable -> False], Alignment -> Left, ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"Moment", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "r"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         RowBox[{
+           SuperscriptBox["\[Lambda]", 
+            RowBox[{"-", "r"}]], " ", 
+           RowBox[{"r", "!"}]}], Alignment -> Left, ImageSize -> 140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"InverseCDF", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "q"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         TagBox[
+          GridBox[{{"\[Piecewise]", 
+             GridBox[{{
+                RowBox[{"-", 
+                  FractionBox[
+                   RowBox[{"Log", "[", 
+                    RowBox[{"1", "-", "q"}], "]"}], "\[Lambda]"]}], 
+                RowBox[{"q", "<", "1"}]}, {"\[Infinity]", 
+                TagBox["True", "PiecewiseDefault", AutoDelete -> True]}}, 
+              AllowedDimensions -> {2, Automatic}, Editable -> True, 
+              GridBoxAlignment -> {
+               "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+              GridBoxSpacings -> {"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.84]}, 
+                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}, "RowsIndexed" -> {}}, Selectable -> True]}}, 
+           GridBoxAlignment -> {
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+           GridBoxItemSize -> {
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+           GridBoxSpacings -> {"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.35]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}}], "Piecewise", 
+          DeleteWithContents -> True, Editable -> False, SelectWithContents -> 
+          True, Selectable -> False], Alignment -> Left, ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"MomentGeneratingFunction", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "t"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         FractionBox["\[Lambda]", 
+          RowBox[{
+            RowBox[{"-", "t"}], "+", "\[Lambda]"}]], Alignment -> Left, 
+         ImageSize -> 140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"InverseSurvivalFunction", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "q"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         TagBox[
+          GridBox[{{"\[Piecewise]", 
+             GridBox[{{
+                RowBox[{"-", 
+                  FractionBox[
+                   RowBox[{"Log", "[", "q", "]"}], "\[Lambda]"]}], 
+                RowBox[{"0", "<", "q"}]}, {"\[Infinity]", 
+                TagBox["True", "PiecewiseDefault", AutoDelete -> True]}}, 
+              AllowedDimensions -> {2, Automatic}, Editable -> True, 
+              GridBoxAlignment -> {
+               "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+              GridBoxSpacings -> {"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.84]}, 
+                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}, "RowsIndexed" -> {}}, Selectable -> True]}}, 
+           GridBoxAlignment -> {
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+           GridBoxItemSize -> {
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+           GridBoxSpacings -> {"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.35]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}}], "Piecewise", 
+          DeleteWithContents -> True, Editable -> False, SelectWithContents -> 
+          True, Selectable -> False], Alignment -> Left, ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"CentralMoment", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "r"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         RowBox[{
+           SuperscriptBox["\[Lambda]", 
+            RowBox[{"-", "r"}]], " ", 
+           RowBox[{"Subfactorial", "[", "r", "]"}]}], Alignment -> Left, 
+         ImageSize -> 140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"Median", "[", "\[ScriptCapitalD]", "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         FractionBox[
+          RowBox[{"Log", "[", "2", "]"}], "\[Lambda]"], Alignment -> Left, 
+         ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"CentralMomentGeneratingFunction", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "t"}], "]"}], HoldForm], 
+         ImageSize -> 115, ScrollPosition -> {0., 0.}], 
+        PaneBox[
+         FractionBox[
+          RowBox[{
+            SuperscriptBox["\[ExponentialE]", 
+             RowBox[{"-", 
+               FractionBox["t", "\[Lambda]"]}]], " ", "\[Lambda]"}], 
+          RowBox[{
+            RowBox[{"-", "t"}], "+", "\[Lambda]"}]], Alignment -> Left, 
+         ImageSize -> 140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"InterquartileRange", "[", "\[ScriptCapitalD]", "]"}], 
+          HoldForm], ImageSize -> 115], 
+        PaneBox[
+         FractionBox[
+          RowBox[{"Log", "[", "3", "]"}], "\[Lambda]"], Alignment -> Left, 
+         ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"Cumulant", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "r"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         TagBox[
+          GridBox[{{"\[Piecewise]", 
+             GridBox[{{
+                RowBox[{
+                  SuperscriptBox["\[Lambda]", 
+                   RowBox[{"-", "r"}]], " ", 
+                  RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", "r"}], ")"}], "!"}]}], 
+                RowBox[{"r", "\[GreaterEqual]", "1"}]}, {"0", 
+                TagBox["True", "PiecewiseDefault", AutoDelete -> True]}}, 
+              AllowedDimensions -> {2, Automatic}, Editable -> True, 
+              GridBoxAlignment -> {
+               "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+              GridBoxSpacings -> {"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.84]}, 
+                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+                "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}, "RowsIndexed" -> {}}, Selectable -> True]}}, 
+           GridBoxAlignment -> {
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
+           GridBoxItemSize -> {
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}}, 
+           GridBoxSpacings -> {"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.35]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}}], "Piecewise", 
+          DeleteWithContents -> True, Editable -> False, SelectWithContents -> 
+          True, Selectable -> False], Alignment -> Left, ImageSize -> 140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"QuartileDeviation", "[", "\[ScriptCapitalD]", "]"}], 
+          HoldForm], ImageSize -> 115, ScrollPosition -> {0., 0.}], 
+        PaneBox[
+         FractionBox[
+          RowBox[{"Log", "[", "3", "]"}], 
+          RowBox[{"2", " ", "\[Lambda]"}]], Alignment -> Left, ImageSize -> 
+         140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"CumulantGeneratingFunction", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "t"}], "]"}], HoldForm], 
+         ImageSize -> 115, ScrollPosition -> {0., 0.}], 
+        PaneBox[
+         RowBox[{"Log", "[", 
+           FractionBox["\[Lambda]", 
+            RowBox[{
+              RowBox[{"-", "t"}], "+", "\[Lambda]"}]], "]"}], Alignment -> 
+         Left, ImageSize -> 140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"QuartileSkewness", "[", "\[ScriptCapitalD]", "]"}], 
+          HoldForm], ImageSize -> 115, ScrollPosition -> {0., 0.}], 
+        PaneBox[
+         FractionBox[
+          RowBox[{"Log", "[", 
+            FractionBox["4", "3"], "]"}], 
+          RowBox[{"Log", "[", "3", "]"}]], Alignment -> Left, ImageSize -> 
+         140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"FactorialMoment", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "r"}], "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         RowBox[{"FactorialMoment", "[", 
+           RowBox[{
+             RowBox[{"ExponentialDistribution", "[", "\[Lambda]", "]"}], ",", 
+             "r"}], "]"}], Alignment -> Left, ImageSize -> 140]}, {
+        PaneBox[
+         TagBox[
+          RowBox[{"Quartiles", "[", "\[ScriptCapitalD]", "]"}], HoldForm], 
+         ImageSize -> 115], 
+        PaneBox[
+         RowBox[{"{", 
+           RowBox[{
+             FractionBox[
+              RowBox[{"Log", "[", 
+                FractionBox["4", "3"], "]"}], "\[Lambda]"], ",", 
+             FractionBox[
+              RowBox[{"Log", "[", "2", "]"}], "\[Lambda]"], ",", 
+             FractionBox[
+              RowBox[{"Log", "[", "4", "]"}], "\[Lambda]"]}], "}"}], 
+         Alignment -> Left, ImageSize -> 140], 
+        PaneBox[
+         TagBox[
+          RowBox[{"FactorialMomentGeneratingFunction", "[", 
+            RowBox[{"\[ScriptCapitalD]", ",", "t"}], "]"}], HoldForm], 
+         ImageSize -> 115, ScrollPosition -> {0., 0.}], 
+        PaneBox[
+         FractionBox["\[Lambda]", 
+          RowBox[{"\[Lambda]", "-", 
+            RowBox[{"Log", "[", "t", "]"}]}]], Alignment -> Left, ImageSize -> 
+         140]}}, AutoDelete -> False, BaseStyle -> {FontFamily -> "Verdana"}, 
+      FrameStyle -> Directive[
+        Thickness[Large], 
+        GrayLevel[1]], 
+      GridBoxBackground -> {"Columns" -> {{None}}, "Rows" -> {{
+           RGBColor[0.6, 0.8, 0.8], 
+           GrayLevel[0.9]}}}, 
+      GridBoxDividers -> {"Columns" -> {{True}}, "Rows" -> {{True}}}, 
+      GridBoxItemSize -> {
+       "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+      GridBoxSpacings -> {"Columns" -> {{1}}, "Rows" -> {{2}}}], "Grid"], 
+    Alignment -> {Center, Top}, ImageSize -> {550, 900}, ImageSizeAction -> 
+    "ResizeToFit"],StyleBox[
+   "\"Distribution Properties\"", StripOnInput -> False, FontFamily -> 
+    "Verdana", FontSize -> 18, FontWeight -> Bold]},
+  "Labeled",
+  DisplayFunction->(GridBox[{{
+      ItemBox[#2, DefaultBaseStyle -> "LabeledLabel"]}, {
+      TagBox[
+       ItemBox[
+        PaneBox[
+         TagBox[#, "SkipImageSizeLevel"], Alignment -> {Center, Baseline}, 
+         BaselinePosition -> Baseline], DefaultBaseStyle -> "Labeled"], 
+       "SkipImageSizeLevel"]}}, 
+    GridBoxAlignment -> {"Columns" -> {{Center}}, "Rows" -> {{Center}}}, 
+    AutoDelete -> False, 
+    GridBoxItemSize -> {"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+    BaselinePosition -> {2, 1}]& ),
+  InterpretationFunction->(RowBox[{"Labeled", "[", 
+     RowBox[{#, ",", #2, ",", "Top"}], "]"}]& )]], "Output",
+ CellChangeTimes->{3.5103786662502303`*^9}]
+}, Open  ]]
+},
+WindowSize->{707, 505},
+WindowMargins->{{72, Automatic}, {38, Automatic}},
+FrontEndVersion->"8.0 for Microsoft Windows (64-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 223, 5, 113, "Input"],
+Cell[CellGroupData[{
+Cell[805, 29, 6967, 164, 672, "Input"],
+Cell[7775, 195, 31425, 704, 940, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

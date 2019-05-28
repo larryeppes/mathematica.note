@@ -1,0 +1,612 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     23248,        604]
+NotebookOptionsPosition[     21810,        550]
+NotebookOutlinePosition[     22172,        566]
+CellTagsIndexPosition[     22129,        563]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"txt", "=", 
+   RowBox[{
+   "Import", "[", 
+    "\"\</home/math/Calibre Library/Jack Snow/The Magical Mimics in Oz \
+(5)/bak.txt\>\"", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"allword", "=", 
+   RowBox[{"StringSplit", "[", 
+    RowBox[{
+     RowBox[{
+     "Import", "[", 
+      "\"\</home/math/Calibre Library/Jack Snow/The Magical Mimics in Oz \
+(5)/allwords.txt\>\"", "]"}], ",", "\"\<\\n\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ClearAll", "[", "tootip", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"tootip", "[", "wd_", "]"}], ":=", "wd"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"tootip", "[", 
+       RowBox[{"ToLowerCase", "[", "#", "]"}], "]"}], "=", 
+      RowBox[{"\"\<\\\\index{\>\"", "<>", "#", "<>", "\"\<}\>\""}]}], ")"}], 
+    "&"}], "/@", "allword"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.730251790676222*^9, 3.730251850922346*^9}, {
+   3.730251925215993*^9, 3.7302519710060472`*^9}, {3.730252057830391*^9, 
+   3.730252167199662*^9}, {3.73025244150128*^9, 3.730252489121149*^9}, {
+   3.7302535889560328`*^9, 3.7302535961472282`*^9}, 3.730253867067287*^9, 
+   3.730254068167165*^9, {3.730254098488597*^9, 3.730254103906851*^9}, {
+   3.730254527618115*^9, 3.7302545440822563`*^9}, {3.7302557965104856`*^9, 
+   3.730255900635887*^9}, 3.7302570859387712`*^9, {3.7302571354607983`*^9, 
+   3.730257141125773*^9}, 3.730257196406497*^9, {3.73025757440372*^9, 
+   3.730257574841606*^9}, {3.730257628130824*^9, 3.730257634179014*^9}, {
+   3.730258512835414*^9, 3.730258513213449*^9}, {3.730258624151984*^9, 
+   3.7302586273832407`*^9}, {3.730258991987522*^9, 3.730258993595772*^9}, {
+   3.730260113036858*^9, 3.730260113938881*^9}, {3.730260409156027*^9, 
+   3.730260410278946*^9}, {3.730420237459096*^9, 3.730420253717787*^9}, {
+   3.730420286948386*^9, 3.730420293052031*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "head", "=", 
+   "\"\<\\\\documentclass[a4paper]{article}\n\\\\usepackage{imakeidx}\n\
+\\\\usepackage{color}\n\\\\makeindex[columns=3, title=Alphabetical Index, \
+intoc]\n\n\\\\usepackage{geometry}\n \\\\geometry{\n a4paper,\n \
+total={170mm,257mm},\n left=20mm,\n top=20mm,\n }\n\
+\\\\setlength{\\\\columnsep}{1cm}\n\\\\setlength{\\\\columnseprule}{1pt}\n\
+\\\\def\\\\columnseprulecolor{\\\\color{blue}}\n\n\\\\begin{document}\n\
+\\\\begin{multicols}{2}\n\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "tail", "=", 
+   "\"\<\n\n\\\\end{multicols}\n[\\\\printindex]\n\n\\\\end{document}\n\n\
+\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"content", "=", 
+   RowBox[{"StringReplace", "[", 
+    RowBox[{
+     RowBox[{"StringReplace", "[", 
+      RowBox[{"txt", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\"\<#\>\"", "\[Rule]", "\"\<\\#\>\""}], ",", 
+         RowBox[{"\"\<%\>\"", "\[Rule]", "\"\<\\%\>\""}], ",", 
+         RowBox[{"\"\<&\>\"", "\[Rule]", "\"\<\\&\>\""}]}], "}"}]}], "]"}], 
+     ",", 
+     RowBox[{
+      RowBox[{"x", ":", 
+       RowBox[{
+        RowBox[{"RegularExpression", "[", "\"\<\\\\w\>\"", "]"}], ".."}]}], 
+      "\[RuleDelayed]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"tootip", "[", 
+          RowBox[{"ToLowerCase", "[", "x", "]"}], "]"}], "\[NotEqual]", 
+         RowBox[{"ToLowerCase", "[", "x", "]"}]}], ",", 
+        RowBox[{"\"\<{\\\\framebox{\>\"", "<>", "x", "<>", "\"\<}}\>\"", "<>", 
+         RowBox[{"tootip", "[", 
+          RowBox[{"ToLowerCase", "@", "x"}], "]"}]}], ",", "x"}], "]"}]}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\</tmp/temp.txt\>\"", ",", 
+   RowBox[{"StringJoin", "[", 
+    RowBox[{"head", ",", "content", ",", "tail"}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7302542403862247`*^9, 3.7302542878746843`*^9}, 
+   3.730254452792445*^9, {3.730254484978417*^9, 3.730254510095888*^9}, {
+   3.7302546400999928`*^9, 3.730254651491335*^9}, {3.730256014894401*^9, 
+   3.730256141872552*^9}, {3.7302561795373793`*^9, 3.7302562216684113`*^9}, {
+   3.730257219405176*^9, 3.730257258313097*^9}, {3.730257329386929*^9, 
+   3.730257418990962*^9}, {3.7302574993653393`*^9, 3.730257519528613*^9}, {
+   3.730257592382717*^9, 3.730257593102757*^9}, {3.730258483566126*^9, 
+   3.730258493227582*^9}, {3.730258551524459*^9, 3.7302585523645487`*^9}, {
+   3.730259164153639*^9, 3.730259194318832*^9}, {3.730259325204877*^9, 
+   3.730259327523139*^9}, {3.730259405089013*^9, 3.730259409266761*^9}, {
+   3.730260088005939*^9, 3.730260144498591*^9}, {3.730260198021101*^9, 
+   3.730260224168955*^9}, {3.730260269816105*^9, 3.730260276715845*^9}, {
+   3.730260310514443*^9, 3.7302603448547792`*^9}, {3.730260417379874*^9, 
+   3.730260427101066*^9}, {3.730260625689587*^9, 3.730260634469426*^9}, {
+   3.730260666585598*^9, 3.730260694814816*^9}, {3.7302609555853243`*^9, 
+   3.730260963215397*^9}, {3.7302610623388653`*^9, 3.730261063423353*^9}, {
+   3.730261107300866*^9, 3.730261150851675*^9}, {3.730282628365405*^9, 
+   3.730282682672948*^9}, {3.7302827685133257`*^9, 3.73028277223206*^9}, {
+   3.730282866103256*^9, 3.7302829347944717`*^9}, {3.730282978921584*^9, 
+   3.730282982150774*^9}}],
+
+Cell[BoxData["\<\"/tmp/temp.txt\"\>"], "Output",
+ CellChangeTimes->{{3.730254271019796*^9, 3.730254299730089*^9}, 
+   3.730254454539991*^9, 3.7302545137962933`*^9, 3.730254548505089*^9, 
+   3.730254652893157*^9, 3.73025591023238*^9, {3.7302561302638597`*^9, 
+   3.730256142674136*^9}, {3.7302561874944487`*^9, 3.730256222641101*^9}, 
+   3.730257096207349*^9, 3.7302571443500547`*^9, 3.730257259723102*^9, 
+   3.730257364943819*^9, 3.730257424649081*^9, 3.730257521372284*^9, 
+   3.730257594849286*^9, 3.7302576377338448`*^9, 3.7302585535002937`*^9, 
+   3.7302586300100193`*^9, 3.7302589989681883`*^9, 3.7302591985677547`*^9, 
+   3.730259330276258*^9, 3.730259418664353*^9, 3.730260278680682*^9, 
+   3.730260316505077*^9, 3.730260351813327*^9, {3.7302604144882593`*^9, 
+   3.730260428322852*^9}, 3.730260635996193*^9, {3.730260680118368*^9, 
+   3.7302606958587637`*^9}, 3.7302609647499857`*^9, 3.7302610645830297`*^9, 
+   3.730261109399906*^9, 3.7302611519626427`*^9, 3.730282684956291*^9, 
+   3.730282774407487*^9, 3.7302828773062572`*^9, {3.7302829084285707`*^9, 
+   3.7302829360302143`*^9}, 3.7302829847293158`*^9, 3.730362725431305*^9, 
+   3.730419386252062*^9, 3.7305827440256243`*^9, 3.7306990791456347`*^9, 
+   3.735702595873065*^9, 3.735702638136075*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["foot note", "Section",
+ CellChangeTimes->{{3.730420584054738*^9, 3.730420585815753*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"words", "=", 
+   RowBox[{"Partition", "[", 
+    RowBox[{
+     RowBox[{"StringSplit", "[", 
+      RowBox[{
+       RowBox[{"Import", "[", "\"\</home/math/words.txt\>\"", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\\t\>\"", ",", "\"\<\\n\>\""}], "}"}]}], "]"}], ",", 
+     "2"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Grid", "[", 
+   RowBox[{"words", ",", 
+    RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+    RowBox[{"ItemSize", "\[Rule]", "20"}]}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.730419784823284*^9, 3.7304198448583603`*^9}, {
+   3.730419894643951*^9, 3.730419994080401*^9}, {3.7304201957703323`*^9, 
+   3.730420217871793*^9}, {3.73042040509267*^9, 3.73042041889865*^9}, {
+   3.730420542577318*^9, 3.7304205553231983`*^9}, {3.730420681780553*^9, 
+   3.730420688034465*^9}, 3.730699082902834*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"footnote", "[", "wd_", "]"}], ":=", "wd"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"footnote", "[", 
+       RowBox[{"ToLowerCase", "[", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}], "]"}], "=", 
+      RowBox[{"\"\<\\\\footnote{\>\"", "<>", 
+       RowBox[{"#", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "<>", "\"\<: \>\"", "<>", 
+       RowBox[{"#", "[", 
+        RowBox[{"[", "2", "]"}], "]"}], "<>", "\"\<}\>\""}]}], ")"}], "&"}], "/@",
+    "words"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.730420604951935*^9, 3.7304207412251062`*^9}, 
+   3.7304207735039377`*^9, {3.730421030224001*^9, 3.730421037492158*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "head", "=", 
+   "\"\<\\\\documentclass[a4paper]{article}\n\\\\usepackage{imakeidx}\n\
+\\\\usepackage{CJKutf8}\n\n\\\\usepackage{color}\n\\\\makeindex[columns=3, \
+title=Alphabetical Index, intoc]\n\n\\\\usepackage{geometry}\n \\\\geometry{\n\
+ a4paper,\n total={170mm,257mm},\n left=20mm,\n top=20mm,\n }\n\\\\setlength{\
+\\\\columnsep}{1cm}\n\\\\setlength{\\\\columnseprule}{1pt}\n\
+\\\\def\\\\columnseprulecolor{\\\\color{blue}}\n\n\\\\begin{document}\n\
+\\\\begin{CJK}{UTF8}{gbsn}\n\\\\begin{multicols}{2}\n\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "tail", "=", 
+   "\"\<\n\n\\\\end{multicols}\n[\\\\printindex]\n\\\\end{CJK}\n\
+\\\\end{document}\n\n\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"content", "=", 
+   RowBox[{"StringReplace", "[", 
+    RowBox[{
+     RowBox[{"StringReplace", "[", 
+      RowBox[{"txt", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\"\<#\>\"", "\[Rule]", "\"\<\\#\>\""}], ",", 
+         RowBox[{"\"\<%\>\"", "\[Rule]", "\"\<\\%\>\""}], ",", 
+         RowBox[{"\"\<&\>\"", "\[Rule]", "\"\<\\&\>\""}]}], "}"}]}], "]"}], 
+     ",", 
+     RowBox[{
+      RowBox[{"x", ":", 
+       RowBox[{
+        RowBox[{"RegularExpression", "[", "\"\<\\\\w\>\"", "]"}], ".."}]}], 
+      "\[RuleDelayed]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"footnote", "[", 
+          RowBox[{"ToLowerCase", "[", "x", "]"}], "]"}], "\[NotEqual]", 
+         RowBox[{"ToLowerCase", "[", "x", "]"}]}], ",", 
+        RowBox[{"\"\<{\\\\framebox{\>\"", "<>", "x", "<>", "\"\<}}\>\"", "<>", 
+         RowBox[{"footnote", "[", 
+          RowBox[{"ToLowerCase", "@", "x"}], "]"}]}], ",", "x"}], "]"}]}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\</tmp/ftemp.txt\>\"", ",", 
+   RowBox[{"StringJoin", "[", 
+    RowBox[{"head", ",", "content", ",", "tail"}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.730420593385079*^9, 3.730420594624981*^9}, 
+   3.7304207551428022`*^9, 3.730420790616189*^9, {3.730420895029275*^9, 
+   3.730420928985507*^9}}],
+
+Cell[BoxData["\<\"/tmp/ftemp.txt\"\>"], "Output",
+ CellChangeTimes->{3.73042079498353*^9, 3.730420930790351*^9, 
+  3.730421041060796*^9, 3.7305827605219383`*^9, 3.730699086523437*^9, 
+  3.735702701843401*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["only footnote", "Section",
+ CellChangeTimes->{{3.730421520018154*^9, 3.7304215226643047`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"words", "=", 
+   RowBox[{"Partition", "[", 
+    RowBox[{
+     RowBox[{"StringSplit", "[", 
+      RowBox[{
+       RowBox[{"Import", "[", "\"\</home/math/words.txt\>\"", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\\t\>\"", ",", "\"\<\\n\>\""}], "}"}]}], "]"}], ",", 
+     "2"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Grid", "[", 
+   RowBox[{"words", ",", 
+    RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+    RowBox[{"ItemSize", "\[Rule]", "20"}]}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.730419784823284*^9, 3.7304198448583603`*^9}, {
+   3.730419894643951*^9, 3.730419994080401*^9}, {3.7304201957703323`*^9, 
+   3.730420217871793*^9}, {3.73042040509267*^9, 3.73042041889865*^9}, {
+   3.730420542577318*^9, 3.7304205553231983`*^9}, {3.730420681780553*^9, 
+   3.730420688034465*^9}, 3.730699089989088*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"wfootnote", "[", "wd_", "]"}], ":=", "wd"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"wfootnote", "[", 
+       RowBox[{"ToLowerCase", "[", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}], "]"}], "=", 
+      RowBox[{
+       RowBox[{"#", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "<>", "\"\<: \>\"", "<>", 
+       RowBox[{"#", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}]}], ")"}], "&"}], "/@", "words"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.730420604951935*^9, 3.7304207412251062`*^9}, 
+   3.7304207735039377`*^9, {3.730421030224001*^9, 3.730421037492158*^9}, {
+   3.7304215596270447`*^9, 3.7304215810308723`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "head", "=", 
+   "\"\<\\\\documentclass[a4paper]{article}\n\\\\usepackage{imakeidx}\n\
+\\\\usepackage{CJKutf8}\n\n\\\\usepackage{color}\n\\\\makeindex[columns=3, \
+title=Alphabetical Index, intoc]\n\n\\\\usepackage{geometry}\n \\\\geometry{\n\
+ a4paper,\n total={170mm,257mm},\n left=20mm,\n top=20mm,\n }\n\\\\setlength{\
+\\\\columnsep}{1cm}\n\\\\setlength{\\\\columnseprule}{1pt}\n\
+\\\\def\\\\columnseprulecolor{\\\\color{blue}}\n\n\\\\begin{document}\n\
+\\\\begin{CJK}{UTF8}{gbsn}\n\\\\begin{multicols}{2}\n\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "tail", "=", 
+   "\"\<\n\n\\\\end{multicols}\n[\\\\printindex]\n\\\\end{CJK}\n\
+\\\\end{document}\n\n\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"content", "=", 
+   RowBox[{"StringRiffle", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"wfootnote", "[", 
+         RowBox[{"ToLowerCase", "[", "#", "]"}], "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"Select", "[", 
+       RowBox[{
+        RowBox[{"StringSplit", "[", 
+         RowBox[{"txt", ",", 
+          RowBox[{
+           RowBox[{"RegularExpression", "[", "\"\<\\\\W\>\"", "]"}], ".."}]}],
+          "]"}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"wfootnote", "[", 
+           RowBox[{"ToLowerCase", "[", "#", "]"}], "]"}], "\[NotEqual]", 
+          RowBox[{"ToLowerCase", "[", "#", "]"}]}], "&"}]}], "]"}]}], ",", 
+     "\"\<\\n\\n\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\</tmp/wtemp.txt\>\"", ",", 
+   RowBox[{"StringJoin", "[", 
+    RowBox[{"head", ",", "content", ",", "tail"}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.730420593385079*^9, 3.730420594624981*^9}, 
+   3.7304207551428022`*^9, 3.730420790616189*^9, {3.730420895029275*^9, 
+   3.730420928985507*^9}, {3.730421547681829*^9, 3.730421547798655*^9}, {
+   3.730421619396225*^9, 3.730421659939465*^9}, 3.7304217234282837`*^9, {
+   3.730421788267144*^9, 3.730421789194018*^9}, 3.730422036237131*^9}],
+
+Cell[BoxData["\<\"/tmp/wtemp.txt\"\>"], "Output",
+ CellChangeTimes->{
+  3.730421670284066*^9, {3.730421726122373*^9, 3.730421745267873*^9}, 
+   3.730421795545539*^9, 3.730422038127349*^9, 3.73058277128185*^9, 
+   3.730699093317659*^9, 3.735702752705599*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\:586b\:7a7a", "Section",
+ CellChangeTimes->{{3.7305827797573233`*^9, 3.730582787662993*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"words", "=", 
+   RowBox[{"Partition", "[", 
+    RowBox[{
+     RowBox[{"StringSplit", "[", 
+      RowBox[{
+       RowBox[{"Import", "[", "\"\</home/math/words.txt\>\"", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\\t\>\"", ",", "\"\<\\n\>\""}], "}"}]}], "]"}], ",", 
+     "2"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Grid", "[", 
+   RowBox[{"words", ",", 
+    RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+    RowBox[{"ItemSize", "\[Rule]", "20"}]}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.730419784823284*^9, 3.7304198448583603`*^9}, {
+   3.730419894643951*^9, 3.730419994080401*^9}, {3.7304201957703323`*^9, 
+   3.730420217871793*^9}, {3.73042040509267*^9, 3.73042041889865*^9}, {
+   3.730420542577318*^9, 3.7304205553231983`*^9}, {3.730420681780553*^9, 
+   3.730420688034465*^9}, 3.730699096713668*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"footnote", "[", "wd_", "]"}], ":=", "wd"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"footnote", "[", 
+       RowBox[{"ToLowerCase", "[", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}], "]"}], "=", 
+      RowBox[{"\"\<\\\\footnote{\>\"", "<>", 
+       RowBox[{"#", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "<>", "\"\<: \>\"", "<>", 
+       RowBox[{"#", "[", 
+        RowBox[{"[", "2", "]"}], "]"}], "<>", "\"\<}\>\""}]}], ")"}], "&"}], "/@",
+    "words"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.730420604951935*^9, 3.7304207412251062`*^9}, 
+   3.7304207735039377`*^9, {3.730421030224001*^9, 3.730421037492158*^9}, {
+   3.730582856544607*^9, 3.730582901897171*^9}, {3.7305829485947037`*^9, 
+   3.730582952589346*^9}, 3.730582990780405*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "footnote", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"footnote", "[", "wd_", "]"}], ":=", "wd"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"w_", ",", "exp_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"footnote", "[", 
+     RowBox[{"ToLowerCase", "[", "w", "]"}], "]"}], "=", 
+    RowBox[{
+    "\"\<\\\\footnote{\>\"", "<>", "w", "<>", "\"\<: \>\"", "<>", "exp", 
+     "<>", "\"\<}\>\""}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Map", "[", 
+   RowBox[{"f", ",", "words"}], "]"}], ";"}], "\n", 
+ RowBox[{"Print", "[", 
+  RowBox[{"footnote", "[", "\"\<abide\\\\\>\"", "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.742798210434731*^9, 3.742798227790893*^9}, {
+  3.742798279415197*^9, 3.742798305931443*^9}}],
+
+Cell[BoxData["\<\"abide\\\\\"\>"], "Print",
+ CellChangeTimes->{{3.74279828684921*^9, 3.742798307123273*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"words", "[", 
+  RowBox[{"[", 
+   RowBox[{"1", ",", "1"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.742798248980788*^9, 3.742798272265773*^9}}],
+
+Cell[BoxData["\<\"abide\\\\\"\>"], "Output",
+ CellChangeTimes->{{3.742798252704583*^9, 3.7427982726903267`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "head", "=", 
+   "\"\<\\\\documentclass[a4paper]{article}\n\\\\usepackage{imakeidx}\n\
+\\\\usepackage{CJKutf8}\n\n\\\\usepackage{color}\n\\\\makeindex[columns=3, \
+title=Alphabetical Index, intoc]\n\n\\\\usepackage{geometry}\n \\\\geometry{\n\
+ a4paper,\n total={170mm,257mm},\n left=20mm,\n top=20mm,\n }\n\\\\setlength{\
+\\\\columnsep}{1cm}\n\\\\setlength{\\\\columnseprule}{1pt}\n\
+\\\\def\\\\columnseprulecolor{\\\\color{blue}}\n\n\\\\begin{document}\n\
+\\\\begin{CJK}{UTF8}{gbsn}\n\\\\begin{multicols}{2}\n\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "tail", "=", 
+   "\"\<\n\n\\\\end{multicols}\n[\\\\printindex]\n\\\\end{CJK}\n\
+\\\\end{document}\n\n\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"content", "=", 
+   RowBox[{"StringReplace", "[", 
+    RowBox[{
+     RowBox[{"StringReplace", "[", 
+      RowBox[{"txt", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\"\<#\>\"", "\[Rule]", "\"\<\\#\>\""}], ",", 
+         RowBox[{"\"\<%\>\"", "\[Rule]", "\"\<\\%\>\""}], ",", 
+         RowBox[{"\"\<&\>\"", "\[Rule]", "\"\<\\&\>\""}]}], "}"}]}], "]"}], 
+     ",", 
+     RowBox[{
+      RowBox[{"x", ":", 
+       RowBox[{
+        RowBox[{"RegularExpression", "[", "\"\<\\\\w\>\"", "]"}], ".."}]}], 
+      "\[RuleDelayed]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"footnote", "[", 
+          RowBox[{"ToLowerCase", "[", "x", "]"}], "]"}], "\[NotEqual]", 
+         RowBox[{"ToLowerCase", "[", "x", "]"}]}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"RandomReal", "[", "]"}], ">", "0.7"}], ",", 
+          RowBox[{
+          "\"\<{\\\\framebox{\\\\color{white}{\>\"", "<>", "x", "<>", "x", 
+           "<>", "\"\<}}}\>\"", "<>", 
+           RowBox[{"footnote", "[", 
+            RowBox[{"ToLowerCase", "@", "x"}], "]"}]}], ",", 
+          RowBox[{"\"\<{\\\\framebox{\>\"", "<>", "x", "<>", "\"\<}}\>\"", "<>", 
+           RowBox[{"footnote", "[", 
+            RowBox[{"ToLowerCase", "@", "x"}], "]"}]}]}], "]"}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"RandomReal", "[", "]"}], ">", "0.95"}], ",", 
+          RowBox[{
+          "\"\<\\\\underline{\\\\color{white}{\>\"", "<>", "x", "<>", "x", 
+           "<>", "\"\<}}\>\""}], ",", "x"}], "]"}]}], "]"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\</tmp/ctemp.txt\>\"", ",", 
+   RowBox[{"StringJoin", "[", 
+    RowBox[{"head", ",", "content", ",", "tail"}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.730420593385079*^9, 3.730420594624981*^9}, 
+   3.7304207551428022`*^9, 3.730420790616189*^9, {3.730420895029275*^9, 
+   3.730420928985507*^9}, {3.730583022192932*^9, 3.730583039053591*^9}, {
+   3.730583251401517*^9, 3.7305833603971987`*^9}, {3.730583455690915*^9, 
+   3.730583461436572*^9}}],
+
+Cell[BoxData["\<\"/tmp/ctemp.txt\"\>"], "Output",
+ CellChangeTimes->{3.730583366377796*^9, 3.730583466223975*^9, 
+  3.7306990996464*^9, 3.73570279896572*^9}]
+}, Open  ]],
+
+Cell[BoxData["Map"], "Input",
+ CellChangeTimes->{{3.7427981063374863`*^9, 3.7427981069052877`*^9}}]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1648, 883},
+WindowMargins->{{107, Automatic}, {0, Automatic}},
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1955, 43, 129, "Input"],
+Cell[CellGroupData[{
+Cell[2538, 67, 3304, 66, 615, "Input"],
+Cell[5845, 135, 1261, 17, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7143, 157, 94, 1, 65, "Section"],
+Cell[7240, 160, 879, 20, 59, "Input"],
+Cell[8122, 182, 769, 21, 54, "Input"],
+Cell[CellGroupData[{
+Cell[8916, 207, 2116, 50, 675, "Input"],
+Cell[11035, 259, 208, 3, 32, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11292, 268, 100, 1, 65, "Section"],
+Cell[11395, 271, 879, 20, 59, "Input"],
+Cell[12277, 293, 774, 22, 54, "Input"],
+Cell[CellGroupData[{
+Cell[13076, 319, 2055, 47, 651, "Input"],
+Cell[15134, 368, 257, 4, 32, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15440, 378, 99, 1, 65, "Section"],
+Cell[15542, 381, 879, 20, 59, "Input"],
+Cell[16424, 403, 893, 23, 54, "Input"],
+Cell[CellGroupData[{
+Cell[17342, 430, 793, 21, 121, "Input"],
+Cell[18138, 453, 108, 1, 22, "Print"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18283, 459, 171, 4, 32, "Input"],
+Cell[18457, 465, 112, 1, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18606, 471, 2914, 68, 723, "Input"],
+Cell[21523, 541, 157, 2, 32, "Output"]
+}, Open  ]],
+Cell[21695, 546, 99, 1, 32, "Input"]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,308 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      8673,        299]
+NotebookOptionsPosition[      8382,        285]
+NotebookOutlinePosition[      8761,        301]
+CellTagsIndexPosition[      8718,        298]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ln", " ", 
+    RowBox[{"n", "!"}]}], " ", "=", 
+   RowBox[{
+    RowBox[{"n", " ", "ln", " ", "n"}], "-", "n", "+", 
+    RowBox[{"O", 
+     RowBox[{"(", 
+      RowBox[{"ln", " ", "n"}], ")"}], "  ", 
+     RowBox[{"(", 
+      RowBox[{"n", "\[GreaterEqual]", "2"}], ")"}]}]}]}], ";", 
+  "                ", 
+  RowBox[{
+   RowBox[{"ln", " ", "m"}], "=", 
+   RowBox[{
+    UnderscriptBox["\[Sum]", 
+     RowBox[{
+      SuperscriptBox["p", "\[Vee]"], "|", "m"}]], 
+    RowBox[{"ln", " ", "p"}]}]}], ";", "               ", 
+  RowBox[{
+   RowBox[{"ln", " ", 
+    RowBox[{"n", "!"}]}], " ", "=", 
+   RowBox[{
+    UnderscriptBox["\[Sum]", 
+     RowBox[{
+      SuperscriptBox["p", "\[Vee]"], "\[LessEqual]", "n"}]], 
+    RowBox[{"ln", " ", 
+     RowBox[{"p", "\[CenterDot]", 
+      RowBox[{"[", 
+       FractionBox["n", 
+        SuperscriptBox["p", "\[Vee]"]], "]"}]}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalLambda]", 
+   RowBox[{"(", "d", ")"}]}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"\[Piecewise]", "\[NoBreak]", GridBox[{
+       {
+        RowBox[{"ln", " ", "p"}], 
+        RowBox[{
+         RowBox[{"if", " ", 
+          RowBox[{"\[Exists]", 
+           RowBox[{"\[Vee]", 
+            RowBox[{"\[GreaterEqual]", 
+             RowBox[{"1", " ", "such", " ", "that", " ", "d"}]}]}]}]}], "=", 
+         SuperscriptBox["p", "\[Vee]"]}]},
+       {"0", 
+        RowBox[{"other", " ", "case"}]}
+      }]}], "           ", 
+    RowBox[{
+     UnderscriptBox["\[Sum]", 
+      RowBox[{"d", "\[LessEqual]", "x"}]], 
+     FractionBox[
+      RowBox[{"\[CapitalLambda]", 
+       RowBox[{"(", "d", ")"}]}], "d"]}]}], "=", 
+   RowBox[{
+    RowBox[{"ln", " ", "x"}], "+", 
+    RowBox[{"O", 
+     RowBox[{"(", "1", ")"}], 
+     RowBox[{"(", 
+      RowBox[{"x", "\[GreaterEqual]", "1"}], 
+      ")"}]}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   UnderscriptBox["\[Sum]", 
+    RowBox[{
+     SuperscriptBox["p", "\[Vee]"], "\[LessEqual]", "n"}]], 
+   RowBox[{"ln", " ", 
+    RowBox[{"p", "\[CenterDot]", 
+     RowBox[{"[", 
+      FractionBox["n", 
+       SuperscriptBox["p", "\[Vee]"]], "]"}]}]}]}], "=", 
+  RowBox[{
+   UnderscriptBox["\[Sum]", 
+    RowBox[{"d", "\[LessEqual]", "n"}]], 
+   RowBox[{"\[CapitalLambda]", 
+    RowBox[{
+     RowBox[{"(", "d", ")"}], "\[CenterDot]", 
+     RowBox[{"[", 
+      FractionBox["n", "d"], "]"}]}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"B", 
+   RowBox[{"(", "n", ")"}]}], ":=", 
+  RowBox[{
+   RowBox[{
+    UnderscriptBox["\[Sum]", 
+     RowBox[{"d", "\[LessEqual]", "n"}]], 
+    RowBox[{"\[CapitalLambda]", 
+     RowBox[{
+      RowBox[{"(", "d", ")"}], "\[CenterDot]", 
+      RowBox[{"[", 
+       FractionBox["n", "d"], "]"}]}], "                               ", "B", 
+     RowBox[{"(", "x", ")"}]}]}], "=", 
+   RowBox[{
+    RowBox[{"B", 
+     RowBox[{"(", 
+      RowBox[{"[", "x", "]"}], ")"}]}], "=", 
+    RowBox[{
+     RowBox[{
+      UnderscriptBox["\[Sum]", 
+       RowBox[{"d", "\[LessEqual]", "x"}]], 
+      RowBox[{"\[CapitalLambda]", 
+       RowBox[{
+        RowBox[{"(", "d", ")"}], "[", 
+        FractionBox["x", "d"], "]"}]}]}], "=", 
+     RowBox[{
+      RowBox[{"x", " ", "lnx"}], "-", "x", "+", 
+      RowBox[{"O", 
+       RowBox[{"(", 
+        RowBox[{"ln", " ", "x"}], ")"}]}]}]}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalPsi]", 
+   RowBox[{"(", "x", ")"}]}], ":=", 
+  RowBox[{
+   UnderscriptBox["\[Sum]", 
+    RowBox[{"d", "\[LessEqual]", "x"}]], 
+   RowBox[{"\[CapitalLambda]", 
+    RowBox[{"(", "d", ")"}], 
+    RowBox[{"<<", "x"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Chi]", 
+    RowBox[{"(", "u", ")"}]}], ":=", 
+   RowBox[{
+    RowBox[{"[", "u", "]"}], "-", 
+    RowBox[{"2", "[", 
+     FractionBox["u", "2"], "]"}]}]}], ";", 
+  "                                  ", 
+  RowBox[{
+   RowBox[{
+    SubscriptBox["B", "2"], 
+    RowBox[{"(", "x", ")"}]}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"B", 
+      RowBox[{"(", "x", ")"}]}], "-", 
+     RowBox[{"2", "B", 
+      RowBox[{"(", 
+       FractionBox["x", "2"], ")"}]}]}], "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", " ", "ln2"}], "+", 
+      RowBox[{"O", 
+       RowBox[{"(", 
+        RowBox[{"ln", " ", "x"}], ")"}]}]}], "=", 
+     RowBox[{
+      UnderscriptBox["\[Sum]", 
+       RowBox[{"d", "\[LessEqual]", "x"}]], 
+      RowBox[{"\[CapitalLambda]", 
+       RowBox[{
+        RowBox[{"(", "d", ")"}], "\[CenterDot]", "\[Chi]"}], 
+       RowBox[{"(", 
+        FractionBox["x", "d"], ")"}]}]}]}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Psi]", 
+    RowBox[{"(", "x", ")"}]}], "-", 
+   RowBox[{"\[Psi]", 
+    RowBox[{"(", 
+     FractionBox["x", "2"], ")"}]}]}], "\[LessEqual]", 
+  RowBox[{
+   SubscriptBox["B", "2"], 
+   RowBox[{"(", "x", ")"}]}], "\[LessEqual]", 
+  RowBox[{
+   RowBox[{"\[Psi]", 
+    RowBox[{
+     RowBox[{"(", "x", ")"}], "\[DoubleLongRightArrow]", "2"}], "x", " ", 
+    "ln2"}], "+", 
+   RowBox[{"O", 
+    RowBox[{"(", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"ln", " ", "x"}], ")"}], "2"], ")"}]}]}], "\[GreaterEqual]", 
+  " ", 
+  RowBox[{"\[Psi]", 
+   RowBox[{"(", "x", ")"}]}], "\[GreaterEqual]", 
+  RowBox[{
+   RowBox[{"x", " ", "ln2"}], "+", 
+   RowBox[{"O", 
+    RowBox[{"(", 
+     RowBox[{"ln", " ", "x"}], ")"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Psi]", 
+   RowBox[{"(", "x", ")"}]}], "=", 
+  RowBox[{
+   RowBox[{
+    UnderscriptBox["\[Sum]", 
+     RowBox[{
+      SuperscriptBox["p", "\[Vee]"], "\[LessEqual]", "x"}]], 
+    RowBox[{"ln", " ", "p"}]}], "=", 
+   RowBox[{
+    UnderscriptBox["\[Sum]", 
+     RowBox[{"p", "\[LessEqual]", "x"}]], 
+    RowBox[{
+     RowBox[{"[", 
+      FractionBox[
+       RowBox[{"ln", " ", "x"}], 
+       RowBox[{"ln", " ", "p"}]], "]"}], "ln", " ", 
+     "p"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Psi]", 
+    RowBox[{"(", "x", ")"}]}], "\[LessEqual]", 
+   RowBox[{"\[Pi]", 
+    RowBox[{"(", "x", ")"}], " ", "ln", " ", "x"}], "\[LessEqual]", 
+   RowBox[{"2", "\[Psi]", 
+    RowBox[{"(", "x", ")"}], "                        ", 
+    UnderscriptBox["liminf", 
+     RowBox[{"x", "\[Rule]", "\[Infinity]"}]], 
+    FractionBox[
+     RowBox[{"\[Pi]", 
+      RowBox[{"(", "x", ")"}]}], 
+     FractionBox["x", 
+      RowBox[{"ln", " ", "x"}]]]}], "\[LessEqual]", "1", "\[LessEqual]", 
+   RowBox[{
+    UnderscriptBox["limsup", 
+     RowBox[{"x", "\[Rule]", "\[Infinity]"}]], 
+    FractionBox[
+     RowBox[{"\[Pi]", 
+      RowBox[{"(", "x", ")"}]}], 
+     FractionBox["x", 
+      RowBox[{"ln", " ", "x"}]]]}]}], "=", 
+  RowBox[{
+   UnderscriptBox["limsup", 
+    RowBox[{"x", "\[Rule]", "\[Infinity]"}]], 
+   FractionBox[
+    RowBox[{"\[Psi]", 
+     RowBox[{"(", "x", ")"}]}], "x"]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Pi]", 
+   RowBox[{"(", "x", ")"}]}], "=", 
+  RowBox[{
+   RowBox[{
+    FractionBox[
+     RowBox[{"\[Psi]", 
+      RowBox[{"(", "x", ")"}]}], 
+     RowBox[{"ln", " ", "x"}]], "+", 
+    RowBox[{"O", 
+     RowBox[{"(", 
+      FractionBox["x", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"ln", " ", "x"}], ")"}], "2"]], ")"}], "                      ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ln", " ", "2"}], "+", 
+       RowBox[{"o", 
+        RowBox[{"(", "1", ")"}]}]}], "}"}], 
+     FractionBox["x", 
+      RowBox[{"ln", " ", "x"}]]}]}], "\[LessEqual]", 
+   RowBox[{"\[Pi]", 
+    RowBox[{"(", "x", ")"}]}], "\[LessEqual]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ln", " ", "4"}], "+", 
+      RowBox[{"o", 
+       RowBox[{"(", "1", ")"}]}]}], "}"}], 
+    FractionBox["x", 
+     RowBox[{"ln", " ", "x"}]]}]}]}]}], "Input",
+ CellChangeTimes->{{3.513578208959961*^9, 3.5135793626884766`*^9}, {
+   3.514274535977539*^9, 3.514274538915039*^9}, 3.524736576861328*^9}]
+},
+WindowSize->{1344, 633},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification->1.8000001907348633`,
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 7833, 263, 748, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

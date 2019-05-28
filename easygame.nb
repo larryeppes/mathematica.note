@@ -1,0 +1,1190 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     45959,       1180]
+NotebookOptionsPosition[     45476,       1159]
+NotebookOutlinePosition[     45820,       1174]
+CellTagsIndexPosition[     45777,       1171]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ FormBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Height", ",", "Width", ",", "Mines"}], "}"}], "=", 
+     RowBox[{"DialogInput", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"height", "=", "10"}], ",", 
+         RowBox[{"width", "=", "10"}], ",", 
+         RowBox[{"mines", "=", "10"}]}], "}"}], ",", 
+       RowBox[{"Column", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{"\"\<\:9ad8\:3000\:3000\>\"", ",", 
+             RowBox[{"InputField", "[", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", "height", "]"}], ",", "Number"}], 
+              "]"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{"\"\<\:5bbd\:3000\:3000\>\"", ",", 
+             RowBox[{"InputField", "[", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", "width", "]"}], ",", "Number"}], 
+              "]"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{"\"\<\:5730\:96f7\:6570\>\"", ",", 
+             RowBox[{"InputField", "[", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", "mines", "]"}], ",", "Number"}], 
+              "]"}]}], "}"}], "]"}], ",", 
+          RowBox[{"Button", "[", 
+           RowBox[{"\"\<\:786e\:5b9a\>\"", ",", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"IntegerQ", "[", "height", "]"}], "&&", 
+               RowBox[{"IntegerQ", "[", "width", "]"}], "&&", 
+               RowBox[{"IntegerQ", "[", "mines", "]"}], "&&", 
+               RowBox[{"height", ">", "0"}], "&&", 
+               RowBox[{
+                RowBox[{"height", "*", "width"}], ">", "mines", ">", "0"}]}], 
+              ",", 
+              RowBox[{"DialogReturn", "[", 
+               RowBox[{"{", 
+                RowBox[{"height", ",", "width", ",", "mines"}], "}"}], 
+               "]"}]}], "]"}], ",", 
+            RowBox[{"ImageSize", "\[Rule]", "Automatic"}]}], "]"}]}], "}"}], 
+        "]"}]}], "]"}]}], ";"}], "\n"}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Reset", "[", "]"}], ":=", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"MineArray", "=", 
+        RowBox[{"ConstantArray", "[", 
+         RowBox[{"0", ",", 
+          RowBox[{"{", 
+           RowBox[{"Height", ",", "Width"}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"DisplayArray", "=", 
+        RowBox[{"ConstantArray", "[", 
+         RowBox[{"\"\< \>\"", ",", 
+          RowBox[{"{", 
+           RowBox[{"Height", ",", "Width"}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"PressedArray", "=", 
+        RowBox[{"ConstantArray", "[", 
+         RowBox[{"\"\<DialogBox\>\"", ",", 
+          RowBox[{"{", 
+           RowBox[{"Height", ",", "Width"}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"MinesRemain", "=", "Mines"}], ";", 
+       RowBox[{"Smiley", "=", "\"\<\[NeutralSmiley]\>\""}], ";", 
+       RowBox[{"State", "=", "\"\<\:6316\>\""}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"n", "=", "1"}], ",", 
+         RowBox[{"n", "\[LessEqual]", "Mines"}], ",", 
+         RowBox[{"n", "++"}], ",", 
+         RowBox[{
+          RowBox[{"p", "=", 
+           RowBox[{"RandomChoice", "[", 
+            RowBox[{"Position", "[", 
+             RowBox[{"MineArray", ",", "0"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"MineArray", "[", 
+            RowBox[{"[", 
+             RowBox[{
+              RowBox[{"p", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], ",", 
+              RowBox[{"p", "[", 
+               RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "]"}], "=", "1"}]}]}],
+         "]"}]}], ")"}]}], ";"}], "\n"}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Dig", "[", 
+      RowBox[{"i_", ",", "j_"}], "]"}], ":=", 
+     RowBox[{"(", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"DisplayArray", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "j"}], "]"}], "]"}], "===", "\"\< \>\""}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"DisplayArray", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "j"}], "]"}], "]"}], "=", 
+          RowBox[{"Style", "[", 
+           RowBox[{
+            RowBox[{"Plus", "@@", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"MineArray", "[", 
+                 RowBox[{"[", 
+                  RowBox[{
+                   RowBox[{"i", "+", 
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+                   RowBox[{"j", "+", 
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}]}]}], "]"}], "]"}], "&"}], "/@", 
+               RowBox[{"Module", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"temp", "=", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", "1"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{"-", "1"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1"}], "}"}]}], "}"}]}], "}"}], ",", 
+                 RowBox[{
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"i", "\[Equal]", "1"}], ",", 
+                    RowBox[{"temp", "=", 
+                    RowBox[{"Cases", "[", 
+                    RowBox[{"temp", ",", 
+                    RowBox[{"Except", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", "_"}], "}"}], "]"}]}], "]"}]}]}],
+                    "]"}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"i", "\[Equal]", "Height"}], ",", 
+                    RowBox[{"temp", "=", 
+                    RowBox[{"Cases", "[", 
+                    RowBox[{"temp", ",", 
+                    RowBox[{"Except", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "_"}], "}"}], "]"}]}], "]"}]}]}], "]"}],
+                   ";", "\[IndentingNewLine]", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"j", "\[Equal]", "1"}], ",", 
+                    RowBox[{"temp", "=", 
+                    RowBox[{"Cases", "[", 
+                    RowBox[{"temp", ",", 
+                    RowBox[{"Except", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"_", ",", 
+                    RowBox[{"-", "1"}]}], "}"}], "]"}]}], "]"}]}]}], "]"}], 
+                  ";", "\[IndentingNewLine]", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"j", "\[Equal]", "Width"}], ",", 
+                    RowBox[{"temp", "=", 
+                    RowBox[{"Cases", "[", 
+                    RowBox[{"temp", ",", 
+                    RowBox[{"Except", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"_", ",", "1"}], "}"}], "]"}]}], "]"}]}]}], "]"}],
+                   ";", "temp"}]}], "]"}]}], ")"}]}], ",", "23"}], "]"}]}], 
+         ";", 
+         RowBox[{
+          RowBox[{"PressedArray", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "j"}], "]"}], "]"}], "=", "\"\<Pressed\>\""}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"DisplayArray", "[", 
+             RowBox[{"[", 
+              RowBox[{"i", ",", "j"}], "]"}], "]"}], "===", 
+            RowBox[{"Style", "[", 
+             RowBox[{"0", ",", "23"}], "]"}]}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"DisplayArray", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j"}], "]"}], "]"}], "=", "\"\<\>\""}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Dig", "[", 
+               RowBox[{
+                RowBox[{"i", "+", 
+                 RowBox[{"#", "[", 
+                  RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+                RowBox[{"j", "+", 
+                 RowBox[{"#", "[", 
+                  RowBox[{"[", "2", "]"}], "]"}]}]}], "]"}], "&"}], "/@", 
+             RowBox[{"Module", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"temp", "=", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", 
+                    RowBox[{"-", "1"}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", "1"}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{"-", "1"}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"1", ",", "0"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "1"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"1", ",", "1"}], "}"}]}], "}"}]}], "}"}], ",", 
+               RowBox[{
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{"i", "\[Equal]", "1"}], ",", 
+                  RowBox[{"temp", "=", 
+                   RowBox[{"Cases", "[", 
+                    RowBox[{"temp", ",", 
+                    RowBox[{"Except", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", "_"}], "}"}], "]"}]}], "]"}]}]}],
+                  "]"}], ";", "\[IndentingNewLine]", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{"i", "\[Equal]", "Height"}], ",", 
+                  RowBox[{"temp", "=", 
+                   RowBox[{"Cases", "[", 
+                    RowBox[{"temp", ",", 
+                    RowBox[{"Except", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "_"}], "}"}], "]"}]}], "]"}]}]}], "]"}],
+                 ";", "\[IndentingNewLine]", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{"j", "\[Equal]", "1"}], ",", 
+                  RowBox[{"temp", "=", 
+                   RowBox[{"Cases", "[", 
+                    RowBox[{"temp", ",", 
+                    RowBox[{"Except", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"_", ",", 
+                    RowBox[{"-", "1"}]}], "}"}], "]"}]}], "]"}]}]}], "]"}], 
+                ";", "\[IndentingNewLine]", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{"j", "\[Equal]", "Width"}], ",", 
+                  RowBox[{"temp", "=", 
+                   RowBox[{"Cases", "[", 
+                    RowBox[{"temp", ",", 
+                    RowBox[{"Except", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"_", ",", "1"}], "}"}], "]"}]}], "]"}]}]}], "]"}],
+                 ";", "temp"}]}], "]"}]}]}]}], "]"}], ";"}]}], "]"}], ")"}]}],
+     ";"}], "\n"}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Win", "[", "]"}], ":=", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"Position", "[", 
+          RowBox[{"DisplayArray", ",", "\"\< \>\""}], "]"}], "\[Equal]", 
+         RowBox[{"{", "}"}]}], "&&", 
+        RowBox[{"MinesRemain", "\[Equal]", "0"}]}], ",", 
+       RowBox[{
+        RowBox[{"Smiley", "=", "\"\<\[HappySmiley]\>\""}], ";", 
+        RowBox[{"Speak", "[", "\"\<you win\>\"", "]"}]}]}], "]"}]}], ";"}], 
+   "\n"}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"CreateDialog", "[", 
+   RowBox[{
+    RowBox[{"Reset", "[", "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Deploy", "[", 
+     RowBox[{"Panel", "[", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Dynamic", "[", 
+             RowBox[{"Style", "[", 
+              RowBox[{"MinesRemain", ",", "15"}], "]"}], "]"}], ",", 
+            "\"\<        \>\"", ",", 
+            RowBox[{"Button", "[", 
+             RowBox[{
+              RowBox[{"Dynamic", "[", 
+               RowBox[{"Style", "[", 
+                RowBox[{"Smiley", ",", "25"}], "]"}], "]"}], ",", 
+              RowBox[{"Reset", "[", "]"}], ",", 
+              RowBox[{"ImageSize", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"25", ",", "26"}], "}"}]}]}], "]"}]}], "}"}], "]"}], 
+         ",", 
+         RowBox[{"RadioButtonBar", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "State", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"\"\<\:6316\>\"", ",", "\"\<\:6807\>\""}], "}"}]}], "]"}],
+          ",", 
+         RowBox[{"Grid", "[", 
+          RowBox[{
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"With", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"i", "=", "i"}], ",", 
+                 RowBox[{"j", "=", "j"}]}], "}"}], ",", 
+               RowBox[{"Button", "[", 
+                RowBox[{
+                 RowBox[{"Dynamic", "[", 
+                  RowBox[{"DisplayArray", "[", 
+                   RowBox[{"[", 
+                    RowBox[{"i", ",", "j"}], "]"}], "]"}], "]"}], ",", 
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{"Smiley", "\[Equal]", "\"\<\[NeutralSmiley]\>\""}],
+                    ",", 
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"State", "\[Equal]", "\"\<\:6807\>\""}], ",", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DisplayArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"i", ",", "j"}], "]"}], "]"}], "===", 
+                    "\"\< \>\""}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DisplayArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"i", ",", "j"}], "]"}], "]"}], "=", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[GothicCapitalF]\>\"", ",", "25"}], "]"}]}],
+                     ";", "\[IndentingNewLine]", 
+                    RowBox[{"MinesRemain", "--"}]}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DisplayArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"i", ",", "j"}], "]"}], "]"}], "===", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[GothicCapitalF]\>\"", ",", "25"}], "]"}]}],
+                     ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DisplayArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"i", ",", "j"}], "]"}], "]"}], "=", "\"\< \>\""}],
+                     ";", 
+                    RowBox[{"MinesRemain", "++"}]}]}], "]"}]}], "]"}], ";", 
+                    RowBox[{"Win", "[", "]"}]}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"MineArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"i", ",", "j"}], "]"}], "]"}], "\[Equal]", "1"}], 
+                    "&&", 
+                    RowBox[{
+                    RowBox[{"DisplayArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"i", ",", "j"}], "]"}], "]"}], "===", 
+                    "\"\< \>\""}]}], ",", 
+                    RowBox[{
+                    RowBox[{"Smiley", "=", "\"\<\[SadSmiley]\>\""}], ";", 
+                    RowBox[{"Speak", "[", "\"\<you lost\>\"", "]"}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"DisplayArray", "=", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DisplayArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k", ",", "l"}], "]"}], "]"}], "===", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[GothicCapitalF]\>\"", ",", "25"}], "]"}]}],
+                     ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"MineArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k", ",", "l"}], "]"}], "]"}], "\[Equal]", "0"}], 
+                    ",", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[Times]\>\"", ",", "23"}], "]"}], ",", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[GothicCapitalF]\>\"", ",", "25"}], "]"}]}],
+                     "]"}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"MineArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k", ",", "l"}], "]"}], "]"}], "\[Equal]", "1"}], 
+                    ",", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[KernelIcon]\>\"", ",", "17"}], "]"}], ",", 
+                    RowBox[{"DisplayArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k", ",", "l"}], "]"}], "]"}]}], "]"}]}], "]"}], 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{"k", ",", "1", ",", "Height"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"l", ",", "1", ",", "Width"}], "}"}]}], "]"}]}], 
+                    ";", "\[IndentingNewLine]", 
+                    RowBox[{"PressedArray", "=", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DisplayArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k", ",", "l"}], "]"}], "]"}], "===", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[Times]\>\"", ",", "23"}], "]"}]}], "||", 
+                    RowBox[{
+                    RowBox[{"DisplayArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k", ",", "l"}], "]"}], "]"}], "===", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[KernelIcon]\>\"", ",", "17"}], "]"}]}]}], 
+                    ",", "\"\<Pressed\>\"", ",", 
+                    RowBox[{"PressedArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k", ",", "l"}], "]"}], "]"}]}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"k", ",", "1", ",", "Height"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"l", ",", "1", ",", "Width"}], "}"}]}], "]"}]}]}],
+                     ",", 
+                    RowBox[{
+                    RowBox[{"Dig", "[", 
+                    RowBox[{"i", ",", "j"}], "]"}], ";", 
+                    RowBox[{"Win", "[", "]"}]}]}], "]"}]}], "]"}]}], "]"}], 
+                 ",", 
+                 RowBox[{"ImageSize", "\[Rule]", 
+                  RowBox[{"{", 
+                   RowBox[{"25", ",", "25"}], "}"}]}], ",", 
+                 RowBox[{"Appearance", "\[Rule]", 
+                  RowBox[{"Dynamic", "[", 
+                   RowBox[{"PressedArray", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"i", ",", "j"}], "]"}], "]"}], "]"}]}]}], "]"}]}],
+               "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", "1", ",", "Height"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"j", ",", "1", ",", "Width"}], "}"}]}], "]"}], ",", 
+           RowBox[{"Spacings", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}]}]}], "]"}]}], "}"}], "]"}], "]"}],
+      "]"}]}], "]"}], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.5246613642353516`*^9, 3.5246613642441406`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  InterpretationBox[
+   RowBox[{
+    FormBox["NotebookObject",
+     TraditionalForm], "[", 
+    PanelBox[GridBox[{
+       {
+        TooltipBox[
+         ButtonBox[
+          StyleBox[
+           
+           DynamicBox[FEPrivate`FrontEndResource[
+            "FEBitmaps", "ManipulatePasteIcon"],
+            ImageSizeCache->{13., {4., 9.}}],
+           DynamicUpdating->True],
+          Appearance->{Automatic, None},
+          BaseStyle->{},
+          ButtonFunction:>FrontEndExecute[{
+             FrontEnd`SetSelectedNotebook[
+              NotebookObject[
+               FrontEndObject[
+                LinkObject["sp6_shm", 1, 1]], 20]]}],
+          Evaluator->None,
+          Method->"Queued"],
+         DynamicBox[
+          FEPrivate`FrontEndResource[
+          "FEStrings", "NotebookObjectToTheFront"]]], 
+        FormBox[
+         StyleBox["\<\"Untitled-4\"\>",
+          StripOnInput->False,
+          FontColor->GrayLevel[0.5]],
+         TraditionalForm]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}}],
+     FrameMargins->{{4, 5}, {4, 4}}], "]"}],
+   NotebookObject[
+    FrontEndObject[
+     LinkObject["sp6_shm", 1, 1]], 20],
+   Editable->False], TraditionalForm]], "Output",
+ CellChangeTimes->{3.5246613684472656`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"Height", ",", "Width", ",", "Speed"}], "}"}], "=", 
+    RowBox[{"DialogInput", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"height", "=", "23"}], ",", 
+        RowBox[{"width", "=", "13"}], ",", 
+        RowBox[{"speed", "=", "1.4"}]}], "}"}], ",", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Height\>\"", ",", 
+            RowBox[{"InputField", "[", 
+             RowBox[{
+              RowBox[{"Dynamic", "[", "height", "]"}], ",", "Number"}], 
+             "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Width \>\"", ",", 
+            RowBox[{"InputField", "[", 
+             RowBox[{
+              RowBox[{"Dynamic", "[", "width", "]"}], ",", "Number"}], 
+             "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Speed \>\"", ",", 
+            RowBox[{"InputField", "[", 
+             RowBox[{
+              RowBox[{"Dynamic", "[", "speed", "]"}], ",", "Number"}], 
+             "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Button", "[", 
+          RowBox[{"\"\<OK\>\"", ",", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"IntegerQ", "[", "height", "]"}], "&&", 
+              RowBox[{"IntegerQ", "[", "width", "]"}], "&&", 
+              RowBox[{"height", ">", "0"}], "&&", 
+              RowBox[{"width", ">", "0"}], "&&", 
+              RowBox[{"speed", ">", "0"}]}], ",", 
+             RowBox[{"DialogReturn", "[", 
+              RowBox[{"{", 
+               RowBox[{"height", ",", "width", ",", "speed"}], "}"}], "]"}]}],
+             "]"}], ",", 
+           RowBox[{"ImageSize", "\[Rule]", "Automatic"}]}], "]"}]}], "}"}], 
+       "]"}]}], "]"}]}], "\n"}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"TetrisPlot", "[", "array_", "]"}], ":=", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"EdgeForm", "[", "Black", "]"}], ",", "Gray", ",", 
+         RowBox[{"Rectangle", "/@", 
+          RowBox[{"Position", "[", 
+           RowBox[{"array", ",", "1"}], "]"}]}]}], "}"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"1", ",", 
+             RowBox[{"1", "+", "#"}]}], "}"}], "&"}], ")"}], "/@", 
+         RowBox[{"Dimensions", "@", "array"}]}]}], ",", 
+       RowBox[{"ImageSize", "\[Rule]", 
+        RowBox[{"20", " ", 
+         RowBox[{"Dimensions", "@", "array"}]}]}], ",", 
+       RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+       RowBox[{"FrameTicks", "\[Rule]", "None"}]}], "]"}]}], ";"}], "\n"}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"ClearLine", "[", 
+      RowBox[{"array_", ",", "n_"}], "]"}], ":=", 
+     RowBox[{"Join", "[", 
+      RowBox[{
+       RowBox[{"array", "[", 
+        RowBox[{"[", 
+         RowBox[{";;", 
+          RowBox[{"n", "-", "1"}]}], "]"}], "]"}], ",", 
+       RowBox[{"array", "[", 
+        RowBox[{"[", 
+         RowBox[{
+          RowBox[{"n", "+", "1"}], ";;"}], "]"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Table", "[", 
+         RowBox[{"0", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Dimensions", "[", "array", "]"}], "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "}"}]}], "]"}], "}"}]}], "]"}]}], 
+    ";"}], "\n"}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"ShowTetromino", "[", "n_", "]"}], ":=", 
+     RowBox[{"Switch", "[", 
+      RowBox[{"n", ",", "0", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "0", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "1", ",", "1", ",", "0"}], "}"}]}], "}"}], ",", 
+       "1", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "1", ",", "1", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
+       "2", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "1", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0", ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
+       "3", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "1", ",", "0"}], "}"}]}], "}"}], ",", 
+       "4", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "1", ",", "1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0", ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
+       "5", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "0", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
+       "6", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "1", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "1", ",", "0", ",", "0"}], "}"}]}], "}"}]}], 
+      "]"}]}], ";"}], "\n"}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"RestartTetris2", "[", "]"}], ":=", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Tetris2", "[", 
+         RowBox[{"[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "4"}], ";;"}], ",", 
+           RowBox[{
+            RowBox[{"Floor", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Dimensions", "[", "Tetris2", "]"}], "[", 
+               RowBox[{"[", "2", "]"}], "]"}], "/", "2"}], "]"}], ";;", 
+            RowBox[{
+             RowBox[{"Floor", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Dimensions", "[", "Tetris2", "]"}], "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "/", "2"}], "]"}], "+", 
+             "1"}]}]}], "]"}], "]"}], "=", 
+        RowBox[{"Transpose", "@", 
+         RowBox[{"ShowTetromino", "[", "Tetromino", "]"}]}]}], ";", 
+       RowBox[{"Tetromino", "=", 
+        RowBox[{"RandomInteger", "[", "6", "]"}]}], ";"}], ")"}]}], ";"}], 
+   "\n"}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"CreateDialog", "[", 
+   RowBox[{
+    RowBox[{"RemoveScheduledTask", "[", 
+     RowBox[{"ScheduledTasks", "[", "]"}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Tetromino", "=", 
+     RowBox[{"RandomInteger", "[", "6", "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Pausing", "=", "True"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Stop", "=", "True"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Score", "=", "0"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Tetris1", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", 
+       RowBox[{"{", "Height", "}"}], ",", 
+       RowBox[{"{", "Width", "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Tetris2", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", 
+       RowBox[{"{", 
+        RowBox[{"Height", "+", "4"}], "}"}], ",", 
+       RowBox[{"{", "Width", "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"RestartTetris2", "[", "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"RunScheduledTask", "[", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"!", "Pausing"}], ",", 
+        RowBox[{"Module", "[", 
+         RowBox[{
+          RowBox[{"{", "i", "}"}], ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Max", "[", 
+              RowBox[{"Tetris1", "[", 
+               RowBox[{"[", 
+                RowBox[{"-", "1"}], "]"}], "]"}], "]"}], "\[Equal]", "1"}], 
+            ",", 
+            RowBox[{
+             RowBox[{"Pausing", "=", 
+              RowBox[{"Stop", "=", "True"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"CreateDialog", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"TextCell", "[", "\"\<Game over.\>\"", "]"}], ",", 
+                RowBox[{"Row", "@", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Score:\>\"", ",", "Score"}], "}"}]}], ",", 
+                RowBox[{"DefaultButton", "[", "]"}]}], "}"}], "]"}]}], ",", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Max", "[", 
+                  RowBox[{"Tetris1", "+", 
+                   RowBox[{
+                    RowBox[{"RotateLeft", "[", "Tetris2", "]"}], "[", 
+                    RowBox[{"[", 
+                    RowBox[{";;", 
+                    RowBox[{"-", "5"}]}], "]"}], "]"}]}], "]"}], ">", "1"}], "||", 
+                RowBox[{
+                 RowBox[{"Max", "[", 
+                  RowBox[{"Tetris2", "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], "]"}], "\[Equal]", "1"}]}],
+                ",", 
+               RowBox[{
+                RowBox[{"Tetris1", "=", 
+                 RowBox[{"Tetris1", "+", 
+                  RowBox[{"Tetris2", "[", 
+                   RowBox[{"[", 
+                    RowBox[{";;", 
+                    RowBox[{"-", "5"}]}], "]"}], "]"}]}]}], ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"Tetris2", "=", 
+                 RowBox[{"Table", "[", 
+                  RowBox[{"0", ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Dimensions", "[", "Tetris2", "]"}], "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Dimensions", "[", "Tetris2", "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "}"}]}], "]"}]}], ";", 
+                RowBox[{"RestartTetris2", "[", "]"}]}], ",", 
+               RowBox[{"Tetris2", "=", 
+                RowBox[{"RotateLeft", "@", "Tetris2"}]}]}], "]"}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"For", "[", 
+              RowBox[{
+               RowBox[{"i", "=", 
+                RowBox[{"Length", "@", "Tetris1"}]}], ",", 
+               RowBox[{"i", ">", "0"}], ",", 
+               RowBox[{"i", "--"}], ",", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"Min", "[", 
+                   RowBox[{"Tetris1", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "]"}], "\[Equal]", "1"}], 
+                 ",", 
+                 RowBox[{
+                  RowBox[{"Tetris1", "=", 
+                   RowBox[{"ClearLine", "[", 
+                    RowBox[{"Tetris1", ",", "i"}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"Score", "++"}]}]}], "]"}]}], "]"}]}]}], "]"}]}], 
+         "]"}]}], "]"}], ",", 
+      RowBox[{"1.", "/", "Speed"}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Panel", "[", 
+     RowBox[{"Row", "@", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Deploy", "@", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"TetrisPlot", "[", 
+           RowBox[{"Transpose", "[", 
+            RowBox[{"Plus", "@@", 
+             RowBox[{"{", 
+              RowBox[{"Tetris1", ",", 
+               RowBox[{"Tetris2", "[", 
+                RowBox[{"[", 
+                 RowBox[{";;", 
+                  RowBox[{"-", "5"}]}], "]"}], "]"}]}], "}"}]}], "]"}], "]"}],
+           "]"}]}], ",", 
+        RowBox[{"Column", "@", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Row", "@", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Score:\>\"", ",", 
+              RowBox[{"Dynamic", "[", "Score", "]"}]}], "}"}]}], ",", 
+           RowBox[{"Deploy", "@", 
+            RowBox[{"Dynamic", "[", 
+             RowBox[{"TetrisPlot", "[", 
+              RowBox[{"ShowTetromino", "@", "Tetromino"}], "]"}], "]"}]}], 
+           ",", 
+           RowBox[{"Button", "[", 
+            RowBox[{
+             RowBox[{"Dynamic", "[", 
+              RowBox[{"If", "[", 
+               RowBox[{"Stop", ",", "\"\<Start\>\"", ",", "\"\<Restart\>\""}],
+                "]"}], "]"}], ",", 
+             RowBox[{
+              RowBox[{"Stop", "=", 
+               RowBox[{"Pausing", "=", "False"}]}], ";", 
+              RowBox[{"Score", "=", "0"}], ";", "\[IndentingNewLine]", 
+              RowBox[{"Tetris1", "=", 
+               RowBox[{"Table", "[", 
+                RowBox[{"0", ",", 
+                 RowBox[{"{", "Height", "}"}], ",", 
+                 RowBox[{"{", "Width", "}"}]}], "]"}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Tetris2", "=", 
+               RowBox[{"Table", "[", 
+                RowBox[{"0", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"Height", "+", "4"}], "}"}], ",", 
+                 RowBox[{"{", "Width", "}"}]}], "]"}]}], ";", 
+              RowBox[{"RestartTetris2", "[", "]"}]}]}], "]"}], ",", 
+           RowBox[{"Button", "[", 
+            RowBox[{
+             RowBox[{"Dynamic", "[", 
+              RowBox[{"If", "[", 
+               RowBox[{
+               "Pausing", ",", "\"\<Resume\>\"", ",", "\"\<Pause\>\""}], 
+               "]"}], "]"}], ",", 
+             RowBox[{"If", "[", 
+              RowBox[{"Pausing", ",", 
+               RowBox[{"Pausing", "=", "False"}], ",", 
+               RowBox[{"Pausing", "=", "True"}]}], "]"}], ",", 
+             RowBox[{"Enabled", "\[Rule]", 
+              RowBox[{"Dynamic", "[", 
+               RowBox[{"!", "Stop"}], "]"}]}]}], "]"}], ",", 
+           RowBox[{"Button", "[", 
+            RowBox[{"\"\<\[UpArrow]\>\"", ",", 
+             RowBox[{"Tetris2", "=", 
+              RowBox[{"Module", "[", 
+               RowBox[{
+                RowBox[{"{", "temp", "}"}], ",", 
+                RowBox[{
+                 RowBox[{"temp", "=", 
+                  RowBox[{
+                   RowBox[{"RotateRight", "[", 
+                    RowBox[{
+                    RowBox[{"Reverse", "@", 
+                    RowBox[{"Transpose", "@", 
+                    RowBox[{"RotateLeft", "[", 
+                    RowBox[{
+                    RowBox[{"PadRight", "[", 
+                    RowBox[{"Tetris2", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Max", "@", 
+                    RowBox[{"Dimensions", "@", "Tetris2"}]}], ",", 
+                    RowBox[{"Max", "@", 
+                    RowBox[{"Dimensions", "@", "Tetris2"}]}]}], "}"}]}], 
+                    "]"}], ",", 
+                    RowBox[{"Floor", "@", 
+                    RowBox[{"Mean", "@", 
+                    RowBox[{"Position", "[", 
+                    RowBox[{"Tetris2", ",", "1"}], "]"}]}]}]}], "]"}]}]}], 
+                    ",", 
+                    RowBox[{"Floor", "@", 
+                    RowBox[{"Mean", "@", 
+                    RowBox[{"Position", "[", 
+                    RowBox[{"Tetris2", ",", "1"}], "]"}]}]}]}], "]"}], "[", 
+                   RowBox[{"[", 
+                    RowBox[{
+                    RowBox[{";;", 
+                    RowBox[{
+                    RowBox[{"Dimensions", "[", "Tetris2", "]"}], "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], ",", " ", 
+                    RowBox[{";;", 
+                    RowBox[{
+                    RowBox[{"Dimensions", "[", "Tetris2", "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}]}]}], "]"}], "]"}]}], ";", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Length", "@", 
+                    RowBox[{"Position", "[", 
+                    RowBox[{"temp", ",", "1"}], "]"}]}], "\[Equal]", "4"}], "&&", 
+                    RowBox[{
+                    RowBox[{"Max", "[", 
+                    RowBox[{
+                    RowBox[{"temp", "[", 
+                    RowBox[{"[", 
+                    RowBox[{";;", 
+                    RowBox[{"-", "5"}]}], "]"}], "]"}], "+", "Tetris1"}], 
+                    "]"}], "\[LessEqual]", "1"}]}], ",", "temp", ",", 
+                   "Tetris2"}], "]"}]}]}], "]"}]}], ",", 
+             RowBox[{"Enabled", "\[Rule]", 
+              RowBox[{"Dynamic", "[", 
+               RowBox[{"!", "Pausing"}], "]"}]}]}], "]"}], ",", 
+           RowBox[{"Button", "[", 
+            RowBox[{"\"\<\[LeftArrow]\>\"", ",", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Max", "[", 
+                 RowBox[{"Tetris2", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}], "\[Equal]",
+                 "0"}], ",", 
+               RowBox[{"Tetris2", "=", 
+                RowBox[{"Module", "[", 
+                 RowBox[{
+                  RowBox[{"{", "temp", "}"}], ",", 
+                  RowBox[{
+                   RowBox[{"temp", "=", 
+                    RowBox[{"RotateLeft", "[", 
+                    RowBox[{"Tetris2", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "1"}], "}"}]}], "]"}]}], ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Max", "[", 
+                    RowBox[{
+                    RowBox[{"temp", "[", 
+                    RowBox[{"[", 
+                    RowBox[{";;", 
+                    RowBox[{"-", "5"}]}], "]"}], "]"}], "+", "Tetris1"}], 
+                    "]"}], "\[LessEqual]", "1"}], ",", "temp", ",", 
+                    "Tetris2"}], "]"}]}]}], "]"}]}]}], "]"}], ",", 
+             RowBox[{"Enabled", "\[Rule]", 
+              RowBox[{"Dynamic", "[", 
+               RowBox[{"!", "Pausing"}], "]"}]}]}], "]"}], ",", 
+           RowBox[{"Button", "[", 
+            RowBox[{"\"\<\[RightArrow]\>\"", ",", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Max", "[", 
+                 RowBox[{"Tetris2", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"All", ",", 
+                    RowBox[{"-", "1"}]}], "]"}], "]"}], "]"}], "\[Equal]", 
+                "0"}], ",", 
+               RowBox[{"Tetris2", "=", 
+                RowBox[{"Module", "[", 
+                 RowBox[{
+                  RowBox[{"{", "temp", "}"}], ",", 
+                  RowBox[{
+                   RowBox[{"temp", "=", 
+                    RowBox[{"RotateLeft", "[", 
+                    RowBox[{"Tetris2", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", "1"}]}], "}"}]}], "]"}]}], ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Max", "[", 
+                    RowBox[{
+                    RowBox[{"temp", "[", 
+                    RowBox[{"[", 
+                    RowBox[{";;", 
+                    RowBox[{"-", "5"}]}], "]"}], "]"}], "+", "Tetris1"}], 
+                    "]"}], "\[LessEqual]", "1"}], ",", "temp", ",", 
+                    "Tetris2"}], "]"}]}]}], "]"}]}]}], "]"}], ",", 
+             RowBox[{"Enabled", "\[Rule]", 
+              RowBox[{"Dynamic", "[", 
+               RowBox[{"!", "Pausing"}], "]"}]}]}], "]"}], ",", 
+           RowBox[{"Dynamic", "[", 
+            RowBox[{"If", "[", 
+             RowBox[{"Stop", ",", "\"\<Stop\>\"", ",", 
+              RowBox[{"If", "[", 
+               RowBox[{
+               "Pausing", ",", "\"\<Pausing\>\"", ",", "\"\<Playing\>\""}], 
+               "]"}]}], "]"}], "]"}]}], "}"}]}]}], "}"}]}], "]"}]}], "]"}], 
+  TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.5246614354902344`*^9, 3.5246614355*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"{", 
+   RowBox[{"23", ",", "13", ",", "1.4`"}], "}"}], TraditionalForm]], "Output",
+ CellChangeTimes->{3.5246614389746094`*^9}],
+
+Cell[BoxData[
+ FormBox[
+  InterpretationBox[
+   RowBox[{
+    FormBox["NotebookObject",
+     TraditionalForm], "[", 
+    PanelBox[GridBox[{
+       {
+        TooltipBox[
+         ButtonBox[
+          StyleBox[
+           
+           DynamicBox[FEPrivate`FrontEndResource[
+            "FEBitmaps", "ManipulatePasteIcon"],
+            ImageSizeCache->{13., {4., 9.}}],
+           DynamicUpdating->True],
+          Appearance->{Automatic, None},
+          BaseStyle->{},
+          ButtonFunction:>FrontEndExecute[{
+             FrontEnd`SetSelectedNotebook[
+              NotebookObject[
+               FrontEndObject[
+                LinkObject["sp6_shm", 1, 1]], 23]]}],
+          Evaluator->None,
+          Method->"Queued"],
+         DynamicBox[
+          FEPrivate`FrontEndResource[
+          "FEStrings", "NotebookObjectToTheFront"]]], 
+        FormBox[
+         StyleBox["\<\"Untitled-6\"\>",
+          StripOnInput->False,
+          FontColor->GrayLevel[0.5]],
+         TraditionalForm]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}}],
+     FrameMargins->{{4, 5}, {4, 4}}], "]"}],
+   NotebookObject[
+    FrontEndObject[
+     LinkObject["sp6_shm", 1, 1]], 23],
+   Editable->False], TraditionalForm]], "Output",
+ CellChangeTimes->{3.5246614390908203`*^9}]
+}, Open  ]]
+},
+WindowSize->{707, 505},
+WindowMargins->{{24, Automatic}, {Automatic, 30}},
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 21679, 526, 1152, "Input"],
+Cell[22261, 550, 1353, 42, 50, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23651, 597, 20288, 509, 1190, "Input"],
+Cell[43942, 1108, 162, 4, 30, "Output"],
+Cell[44107, 1114, 1353, 42, 50, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

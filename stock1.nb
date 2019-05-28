@@ -1,0 +1,781 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24825,        773]
+NotebookOptionsPosition[     23254,        726]
+NotebookOutlinePosition[     23585,        741]
+CellTagsIndexPosition[     23542,        738]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"allfiles", "=", 
+   RowBox[{"GetAllSZDailyFiles", "[", "]"}]}], ";"}]], "Input"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"BinaryReadList", "[", 
+    RowBox[{
+     RowBox[{"allfiles", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Integer32\>\"", ",", "\"\<Integer32\>\"", ",", "\"\<Integer32\>\"",
+        ",", "\"\<Integer32\>\"", ",", "\"\<Integer32\>\"", ",", 
+       "\"\<Real32\>\"", ",", "\"\<Integer32\>\"", ",", "\"\<Integer32\>\""}],
+       "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"datalength", "=", 
+   RowBox[{"Length", "[", "data", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.730270726998914*^9, 3.730270742758931*^9}, {
+  3.730270965420084*^9, 3.73027097421458*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\:4e03\:5929\:7ebf", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{"N", "[", 
+      RowBox[{"MovingAverage", "[", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "5"}], "]"}], "]"}], ",", "7"}], "]"}], "]"}], 
+     ",", "datalength", ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "5"}], "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730270618837113*^9, 3.73027064210638*^9}, {
+   3.730270736396225*^9, 3.730270769914557*^9}, 3.7302708144003963`*^9, {
+   3.7302709771828213`*^9, 3.730271083865415*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\:5de5\:4f5c\:7ebf", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{
+      RowBox[{"data", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "5"}], "]"}], "]"}], ",", 
+      RowBox[{"1", "/", "9"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7302708806787252`*^9, 3.730270889759584*^9}, {
+  3.730271095279462*^9, 3.730271114611753*^9}, {3.730271202647637*^9, 
+  3.7302712394624977`*^9}, {3.730277123867646*^9, 3.730277130008459*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\:751f\:547d\:7ebf", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{"N", "[", 
+      RowBox[{"MovingAverage", "[", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "5"}], "]"}], "]"}], ",", "25"}], "]"}], "]"}], 
+     ",", "datalength", ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "5"}], "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730271245069624*^9, 3.730271280486989*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\:4e0d\:60d1\:7ebf", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{"N", "[", 
+      RowBox[{"MovingAverage", "[", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "5"}], "]"}], "]"}], ",", "43"}], "]"}], "]"}], 
+     ",", "datalength", ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "5"}], "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730271310429981*^9, 3.7302713304970713`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\:59ca\:59b9\:7ebf", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{
+      RowBox[{"data", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "5"}], "]"}], "]"}], ",", 
+      RowBox[{"2", "/", "51"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730271347559601*^9, 3.730271366455634*^9}, {
+  3.730277135032218*^9, 3.730277135751977*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\:4e5d\:53f7\:7ebf", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{"N", "[", 
+      RowBox[{"MovingAverage", "[", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "5"}], "]"}], "]"}], ",", "90"}], "]"}], "]"}], 
+     ",", "datalength", ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "5"}], "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730271373418148*^9, 3.730271386916987*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "x", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\:5356\:7ebf", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{"N", "[", 
+      RowBox[{"ExponentialMovingAverage", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"21", " ", 
+             RowBox[{"Coefficient", "[", 
+              RowBox[{
+               RowBox[{"Normal", "@", 
+                RowBox[{"LinearModelFit", "[", 
+                 RowBox[{"#", ",", "x", ",", "x"}], "]"}]}], ",", "x", ",", 
+               "1"}], "]"}]}], "+", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"-", "1"}], "]"}], "]"}]}], ")"}], "&"}], "/@", 
+         RowBox[{"Partition", "[", 
+          RowBox[{
+           RowBox[{"data", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "5"}], "]"}], "]"}], ",", "21", ",", "1"}], 
+          "]"}]}], ",", 
+        RowBox[{"2", "/", "43"}]}], "]"}], "]"}], ",", "datalength", ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "5"}], "]"}], "]"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7302715091865892`*^9, 3.730271511580916*^9}, {
+  3.730271732460697*^9, 3.730271815106926*^9}, {3.7302718537429953`*^9, 
+  3.730271854099966*^9}, {3.730271981979025*^9, 3.730272075344388*^9}, {
+  3.730277177817616*^9, 3.730277178784766*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A3", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{"N", "[", 
+      RowBox[{"ExponentialMovingAverage", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"20", " ", 
+             RowBox[{"Coefficient", "[", 
+              RowBox[{
+               RowBox[{"Normal", "@", 
+                RowBox[{"LinearModelFit", "[", 
+                 RowBox[{"#", ",", "x", ",", "x"}], "]"}]}], ",", "x", ",", 
+               "1"}], "]"}]}], "+", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"-", "1"}], "]"}], "]"}]}], ")"}], "&"}], "/@", 
+         RowBox[{"Partition", "[", 
+          RowBox[{
+           RowBox[{"data", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "5"}], "]"}], "]"}], ",", "21", ",", "1"}], 
+          "]"}]}], ",", 
+        RowBox[{"2", "/", "69"}]}], "]"}], "]"}], ",", "datalength", ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "5"}], "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730272239411694*^9, 3.730272278041757*^9}, {
+  3.730272313847458*^9, 3.730272322998474*^9}, {3.730277184938243*^9, 
+  3.7302771858104897`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A4", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{
+      RowBox[{"data", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "5"}], "]"}], "]"}], ",", 
+      RowBox[{"2", "/", "11"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730272330164262*^9, 3.730272348124589*^9}, {
+  3.7302771945596323`*^9, 3.7302771951220093`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A5", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{
+        RowBox[{"1", ";;", 
+         RowBox[{"-", "3"}]}], ",", "5"}], "]"}], "]"}], ",", "datalength", 
+     ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "5"}], "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730272355246457*^9, 3.730272382492515*^9}, {
+  3.7302724239940968`*^9, 3.730272460235746*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A6", "=", 
+   RowBox[{"100", 
+    FractionBox[
+     RowBox[{"N", "[", 
+      RowBox[{"ExponentialMovingAverage", "[", 
+       RowBox[{
+        RowBox[{"Ramp", "[", 
+         RowBox[{
+          RowBox[{"data", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "5"}], "]"}], "]"}], "-", "A5"}], "]"}], ",", 
+        
+        RowBox[{"1", "/", "6"}]}], "]"}], "]"}], 
+     RowBox[{"N", "[", 
+      RowBox[{"ExponentialMovingAverage", "[", 
+       RowBox[{
+        RowBox[{"0.000001", "+", 
+         RowBox[{"Abs", "[", 
+          RowBox[{
+           RowBox[{"data", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "5"}], "]"}], "]"}], "-", "A5"}], "]"}]}], 
+        ",", 
+        RowBox[{"1", "/", "6"}]}], "]"}], "]"}]]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730277303427272*^9, 3.7302773315868073`*^9}, {
+  3.730277680414953*^9, 3.7302777977202787`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A7", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"-", "1"}], "]"}], "]"}], "<", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}]}], "&&", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"-", "1"}], "]"}], "]"}], ">", "79"}]}], ",", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", 
+            RowBox[{"-", "1"}], "]"}], "]"}], ",", "0"}], "]"}], ")"}], "&"}],
+       "/@", 
+      RowBox[{"Partition", "[", 
+       RowBox[{"A6", ",", "2", ",", "1"}], "]"}]}], ",", "datalength", ",", 
+     "0"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730277822491639*^9, 3.730277927088194*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"draw1", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}], "<", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "2"}], "]"}], "]"}]}], "&&", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1"}], "]"}], "]"}], ">", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "2"}], "]"}], "]"}]}]}], ",", "1", ",", "0"}],
+          "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"Thread", "[", 
+         RowBox[{"{", 
+          RowBox[{"A4", ",", "A3"}], "}"}], "]"}], ",", "2", ",", "1"}], 
+       "]"}]}], ",", "datalength", ",", "0"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730278219229114*^9, 3.730278263666357*^9}, {
+  3.7302783050218163`*^9, 3.730278317613106*^9}, {3.730279212685783*^9, 
+  3.7302793570464697`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A8", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"Min", "[", "#", "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "4"}], "]"}], "]"}], ",", "21", ",", "1"}], 
+       "]"}]}], ",", "datalength", ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "4"}], "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730279364791602*^9, 3.730279451774619*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A9", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"Max", "[", "#", "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "3"}], "]"}], "]"}], ",", "21", ",", "1"}], 
+       "]"}]}], ",", "datalength", ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "4"}], "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730279461473839*^9, 3.7302794781356993`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A10", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{
+      RowBox[{"100", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", "5"}], "]"}], "]"}], "-", "A8"}], 
+        RowBox[{"A9", "-", "A8", "+", "0.000001"}]]}], ",", 
+      RowBox[{"1", "/", "3"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730279492677945*^9, 3.730279554976658*^9}, {
+  3.730279620854684*^9, 3.730279688406266*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A11", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{
+      RowBox[{"50", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", "5"}], "]"}], "]"}], "-", "A8"}], 
+        RowBox[{"A9", "-", "A8", "+", "0.000001"}]]}], ",", 
+      RowBox[{"1", "/", "7"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730279699981762*^9, 3.73027971688148*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A12", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"0.667", 
+        RowBox[{"PadLeft", "[", 
+         RowBox[{
+          RowBox[{"A10", "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ";;", 
+             RowBox[{"-", "2"}]}], "]"}], "]"}], ",", "datalength"}], "]"}]}],
+        "+", 
+       RowBox[{"0.333", "A10"}]}], ",", 
+      RowBox[{"2", "/", "3"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730279764647843*^9, 3.730279869726686*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A13", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"Min", "[", "#", "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "4"}], "]"}], "]"}], ",", "55", ",", "1"}], 
+       "]"}]}], ",", "datalength", ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "4"}], "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730279874501813*^9, 3.730279919909975*^9}, 
+   3.7302799709124928`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A14", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"Max", "[", "#", "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "3"}], "]"}], "]"}], ",", "34", ",", "1"}], 
+       "]"}]}], ",", "datalength", ",", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "4"}], "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730279981200261*^9, 3.7302799914088993`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A15", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{
+      RowBox[{"100", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", "5"}], "]"}], "]"}], "-", "A13"}], 
+        RowBox[{"A14", "-", "A13", "+", "0.000001"}]]}], ",", 
+      RowBox[{"1", "/", "2"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7302800150578823`*^9, 3.730280051476033*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A16", "=", 
+   FractionBox[
+    RowBox[{"A11", "+", "A15"}], "2"]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730280059815299*^9, 3.7302800742929277`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A17", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"0.667", 
+        RowBox[{"PadLeft", "[", 
+         RowBox[{
+          RowBox[{"A15", "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ";;", 
+             RowBox[{"-", "2"}]}], "]"}], "]"}], ",", "datalength"}], "]"}]}],
+        "+", 
+       RowBox[{"0.333", "A10"}]}], ",", 
+      RowBox[{"2", "/", "3"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730280099769466*^9, 3.730280121634301*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A18", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{"A16", ",", 
+      RowBox[{"1", "/", "3"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730280131116562*^9, 3.7302801606691303`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A19", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"0.667", 
+        RowBox[{"PadLeft", "[", 
+         RowBox[{
+          RowBox[{"A18", "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ";;", 
+             RowBox[{"-", "2"}]}], "]"}], "]"}], ",", "datalength"}], "]"}]}],
+        "+", 
+       RowBox[{"0.333", "A18"}]}], ",", 
+      RowBox[{"2", "/", "3"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7302801700720263`*^9, 3.730280202023575*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A20", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}], "<", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "2"}], "]"}], "]"}]}], "&&", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1"}], "]"}], "]"}], ">", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "2"}], "]"}], "]"}]}]}], ",", "1", ",", "0"}],
+          "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"Thread", "[", 
+         RowBox[{"{", 
+          RowBox[{"A10", ",", "A11"}], "}"}], "]"}], ",", "2", ",", "1"}], 
+       "]"}]}], ",", "datalength", ",", "0"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730280240182839*^9, 3.730280275198627*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A21", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}], "<", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "2"}], "]"}], "]"}]}], "&&", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1"}], "]"}], "]"}], ">", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "2"}], "]"}], "]"}]}], "&&", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "2"}], "]"}], "]"}], "<", "30"}]}], ",", "1", 
+          ",", "0"}], "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"Thread", "[", 
+         RowBox[{"{", 
+          RowBox[{"A10", ",", "A19"}], "}"}], "]"}], ",", "2", ",", "1"}], 
+       "]"}]}], ",", "datalength", ",", "0"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7302803097002993`*^9, 3.7302803470311537`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A22", "=", 
+   RowBox[{"0.6", "A21"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7302803498104877`*^9, 3.7302803552698727`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A23", "=", 
+   RowBox[{"N", "[", 
+    FractionBox[
+     RowBox[{"Total", "/@", 
+      RowBox[{"data", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", 
+         RowBox[{"{", 
+          RowBox[{"3", ",", "4", ",", "5"}], "}"}]}], "]"}], "]"}]}], "3"], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730280394860879*^9, 3.730280468142721*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A24", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{"A23", ",", 
+      RowBox[{"2", "/", "7"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730280481746602*^9, 3.730280498267722*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A25", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"ExponentialMovingAverage", "[", 
+     RowBox[{"A24", ",", 
+      RowBox[{"1", "/", "3"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7302805157503357`*^9, 3.7302805370287*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A26", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}], "<", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "2"}], "]"}], "]"}]}], "&&", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1"}], "]"}], "]"}], ">", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "2"}], "]"}], "]"}]}]}], ",", "1", ",", "0"}],
+          "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"Thread", "[", 
+         RowBox[{"{", 
+          RowBox[{"A24", ",", "A25"}], "}"}], "]"}], ",", "2", ",", "1"}], 
+       "]"}]}], ",", "datalength", ",", "0"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.730280546056076*^9, 3.7302805679023733`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"draw2", "=", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}], "<", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "2"}], "]"}], "]"}]}], "&&", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "1"}], "]"}], "]"}], ">", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", 
+              RowBox[{"2", ",", "2"}], "]"}], "]"}]}]}], ",", "1", ",", "0"}],
+          "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"Thread", "[", 
+         RowBox[{"{", 
+          RowBox[{"\:5356\:7ebf", ",", 
+           RowBox[{"data", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "5"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+        "2", ",", "1"}], "]"}]}], ",", "datalength", ",", "0"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.730280616060316*^9, 3.73028066469066*^9}}]
+},
+WindowSize->{1026, 569},
+WindowMargins->{{Automatic, 201}, {312, 172}},
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 115, 3, 32, "Input"],
+Cell[676, 25, 700, 17, 80, "Input"],
+Cell[1379, 44, 652, 17, 35, "Input"],
+Cell[2034, 63, 527, 12, 35, "Input"],
+Cell[2564, 77, 528, 15, 35, "Input"],
+Cell[3095, 94, 530, 15, 35, "Input"],
+Cell[3628, 111, 429, 11, 35, "Input"],
+Cell[4060, 124, 528, 15, 35, "Input"],
+Cell[4591, 141, 1448, 37, 123, "Input"],
+Cell[6042, 180, 1259, 34, 103, "Input"],
+Cell[7304, 216, 417, 11, 35, "Input"],
+Cell[7724, 229, 503, 15, 32, "Input"],
+Cell[8230, 246, 923, 27, 69, "Input"],
+Cell[9156, 275, 926, 28, 35, "Input"],
+Cell[10085, 305, 1192, 34, 59, "Input"],
+Cell[11280, 341, 602, 18, 35, "Input"],
+Cell[11885, 361, 604, 18, 35, "Input"],
+Cell[12492, 381, 550, 15, 59, "Input"],
+Cell[13045, 398, 499, 14, 59, "Input"],
+Cell[13547, 414, 573, 17, 35, "Input"],
+Cell[14123, 433, 631, 19, 35, "Input"],
+Cell[14757, 454, 605, 18, 35, "Input"],
+Cell[15365, 474, 506, 14, 59, "Input"],
+Cell[15874, 490, 188, 5, 58, "Input"],
+Cell[16065, 497, 573, 17, 35, "Input"],
+Cell[16641, 516, 274, 7, 35, "Input"],
+Cell[16918, 525, 575, 17, 35, "Input"],
+Cell[17496, 544, 1090, 32, 59, "Input"],
+Cell[18589, 578, 1246, 36, 59, "Input"],
+Cell[19838, 616, 162, 4, 30, "Input"],
+Cell[20003, 622, 388, 12, 59, "Input"],
+Cell[20394, 636, 272, 7, 35, "Input"],
+Cell[20669, 645, 272, 7, 35, "Input"],
+Cell[20944, 654, 1092, 32, 59, "Input"],
+Cell[22039, 688, 1211, 36, 60, "Input"]
+}
+]
+*)
+

@@ -1,0 +1,630 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     24440,        620]
+NotebookOptionsPosition[     24005,        601]
+NotebookOutlinePosition[     24347,        616]
+CellTagsIndexPosition[     24304,        613]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Analyze", " ", "Card", " ", "Games", " ", "with", " ", 
+  "Hypergeometric", " ", "Distribution"}]], "Input",
+ CellChangeTimes->{{3.5103793031710005`*^9, 3.510379303181*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fgrid", "[", 
+   RowBox[{"list_", ",", 
+    RowBox[{"{", 
+     RowBox[{"col1_", ",", "col2_"}], "}"}]}], "]"}], ":=", 
+  RowBox[{"TraditionalForm", "@", 
+   RowBox[{"Grid", "[", 
+    RowBox[{"list", ",", 
+     RowBox[{"Dividers", "\[Rule]", "All"}], ",", 
+     RowBox[{"Spacings", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "1"}], "}"}], ",", "2"}], "}"}]}], ",", 
+     RowBox[{"Alignment", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Left", ",", "Center", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"1", ",", "1"}], "}"}], "\[Rule]", 
+           RowBox[{"{", "Center", "}"}]}], ",", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"1", ",", "2"}], "}"}], "\[Rule]", 
+           RowBox[{"{", "Center", "}"}]}]}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"BaseStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"FontFamily", "\[Rule]", "\"\<Verdana\>\""}], "}"}]}], ",", 
+     RowBox[{"Background", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"None", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Lighter", "[", 
+           RowBox[{
+            RowBox[{"Blend", "[", 
+             RowBox[{"{", 
+              RowBox[{"col1", ",", "col2"}], "}"}], "]"}], ",", ".4"}], "]"}],
+           ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Lighter", "[", 
+             RowBox[{
+              RowBox[{"Blend", "[", 
+               RowBox[{"{", 
+                RowBox[{"col1", ",", "col2"}], "}"}], "]"}], ",", ".7"}], 
+             "]"}], ",", 
+            RowBox[{"GrayLevel", "[", ".9", "]"}]}], "}"}]}], "}"}]}], 
+       "}"}]}], ",", 
+     RowBox[{"FrameStyle", "\[Rule]", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"Thick", ",", "White"}], "]"}]}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.510379245754916*^9, 3.510379245754916*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"dPlot", "[", 
+   RowBox[{"dist_", ",", "dom_", ",", "range_", ",", "label_"}], "]"}], ":=", 
+  RowBox[{"DiscretePlot", "[", 
+   RowBox[{
+    RowBox[{"PDF", "[", 
+     RowBox[{"dist", ",", "k"}], "]"}], ",", "dom", ",", 
+    RowBox[{"ExtentSize", "\[Rule]", 
+     RowBox[{"2", "/", "3"}]}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", "range"}], ",", 
+    RowBox[{"AxesOrigin", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "0.2"}], ",", "0"}], "}"}]}], ",", 
+    RowBox[{"BaseStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"FontFamily", "\[Rule]", "\"\<Verdana\>\""}], "}"}]}], ",", 
+    RowBox[{"Frame", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"True", ",", "False"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"True", ",", "False"}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"FrameLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<number of spades\>\"", ",", "Bold", ",", "12"}], "]"}], 
+       ",", "None"}], "}"}]}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", "280"}], ",", 
+    RowBox[{"PlotLabel", "\[Rule]", 
+     RowBox[{"Framed", "[", 
+      RowBox[{
+       RowBox[{"Style", "[", 
+        RowBox[{
+         RowBox[{"Grid", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", "label", "}"}], ",", 
+            RowBox[{"{", "dist", "}"}]}], "}"}], "]"}], ",", "12"}], "]"}], 
+       ",", 
+       RowBox[{"RoundingRadius", "\[Rule]", "5"}], ",", 
+       RowBox[{"Background", "\[Rule]", "LightOrange"}]}], "]"}]}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.5103792604849367`*^9, 3.5103792604849367`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Grid", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"fgrid", "[", 
+       RowBox[{
+        RowBox[{"Join", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"{", 
+            RowBox[{"\"\< \>\"", ",", "\"\<Probability of\>\""}], "}"}], 
+           "}"}], ",", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                "\"\<at least \>\"", ",", "k", ",", "\"\< spades\>\""}], 
+                "}"}], "]"}], ",", 
+              RowBox[{"NProbability", "[", 
+               RowBox[{
+                RowBox[{"x", "\[GreaterEqual]", "k"}], ",", 
+                RowBox[{"x", "\[Distributed]", 
+                 RowBox[{"HypergeometricDistribution", "[", 
+                  RowBox[{"5", ",", "13", ",", "52"}], "]"}]}]}], "]"}]}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "1", ",", "5"}], "}"}]}], "]"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", "Red"}], "}"}]}], "]"}], ",", "\"\<   \>\"", ",", 
+      RowBox[{"dPlot", "[", 
+       RowBox[{
+        RowBox[{"HypergeometricDistribution", "[", 
+         RowBox[{"5", ",", "13", ",", "52"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "0", ",", "5"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0.45"}], "}"}], ",", "\"\<Five-card poker\>\""}], 
+       "]"}]}], "}"}], ",", 
+    RowBox[{"{", "\"\<\>\"", "}"}], ",", 
+    RowBox[{"{", "\"\< \>\"", "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"fgrid", "[", 
+       RowBox[{
+        RowBox[{"Join", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"{", 
+            RowBox[{"\"\< \>\"", ",", "\"\<Probability of\>\""}], "}"}], 
+           "}"}], ",", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                "\"\<at least \>\"", ",", "k", ",", "\"\< spades\>\""}], 
+                "}"}], "]"}], ",", 
+              RowBox[{"NProbability", "[", 
+               RowBox[{
+                RowBox[{"x", "\[GreaterEqual]", "k"}], ",", 
+                RowBox[{"x", "\[Distributed]", 
+                 RowBox[{"HypergeometricDistribution", "[", 
+                  RowBox[{"13", ",", "13", ",", "52"}], "]"}]}]}], "]"}]}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "1", ",", "13"}], "}"}]}], "]"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Blue", ",", "Green"}], "}"}]}], "]"}], ",", "\"\<   \>\"", 
+      ",", 
+      RowBox[{"dPlot", "[", 
+       RowBox[{
+        RowBox[{"HypergeometricDistribution", "[", 
+         RowBox[{"13", ",", "13", ",", "52"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "0", ",", "13"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0.3"}], "}"}], ",", "\"\<Bridge\>\""}], "]"}]}], 
+     "}"}]}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.5103792705149508`*^9, 3.5103792705149508`*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TagBox[
+      FormBox[
+       TagBox[GridBox[{
+          {"\<\" \"\>", "\<\"Probability of\"\>"},
+          {
+           TemplateBox[{"\"at least \"","1","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.7784663865546301`"},
+          {
+           TemplateBox[{"\"at least \"","2","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.36704681872749356`"},
+          {
+           TemplateBox[{"\"at least \"","3","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.09276710684273942`"},
+          {
+           TemplateBox[{"\"at least \"","4","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.011224489795918405`"},
+          {
+           TemplateBox[{"\"at least \"","5","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.0004951980792316927`"}
+         },
+         AutoDelete->False,
+         BaseStyle->{FontFamily -> "Verdana"},
+         FrameStyle->Directive[
+           Thickness[Large], 
+           GrayLevel[1]],
+         GridBoxAlignment->{
+          "Columns" -> {{Left}}, "Rows" -> {{Center}}, 
+           "ItemsIndexed" -> {{1, 1} -> {Center}, {1, 2} -> {Center}}},
+         GridBoxBackground->{"Columns" -> {{None}}, "Rows" -> {
+             RGBColor[1., 0.4, 0.4], {
+              RGBColor[1., 0.7, 0.7], 
+              GrayLevel[0.9]}}},
+         GridBoxDividers->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+         GridBoxItemSize->{
+          "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+         GridBoxSpacings->{"Columns" -> {1, 1}, "Rows" -> {{2}}}],
+        "Grid"],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], "\<\"   \"\>", 
+     GraphicsBox[{
+       {RGBColor[0.24720000000000014`, 0.24, 0.6], {
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{-0.3333333333333333, 0}, \
+{0.3333333333333333, 0.22153361344537814`}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{0.6666666666666666, 0}, \
+{1.3333333333333333`, 0.41141956782713085`}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{1.6666666666666667`, 0}, \
+{2.3333333333333335`, 0.2742797118847539}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{2.6666666666666665`, 0}, \
+{3.3333333333333335`, 0.08154261704681873}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{3.6666666666666665`, 0}, \
+{4.333333333333333, 0.010729291716686675`}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          
+          RectangleBox[{4.666666666666667, 0}, \
+{5.333333333333333, 0.0004951980792316927}]}}}, 
+       {RGBColor[
+        0.24720000000000014`, 0.24, 0.6], {}, {{}, 
+         LineBox[{{{-0.3333333333333333, 0.22153361344537814`}, {
+          0.3333333333333333, 0.22153361344537814`}}, {{0.6666666666666666, 
+          0.41141956782713085`}, {1.3333333333333333`, 
+          0.41141956782713085`}}, {{1.6666666666666667`, 
+          0.2742797118847539}, {2.3333333333333335`, 0.2742797118847539}}, {{
+          2.6666666666666665`, 0.08154261704681873}, {3.3333333333333335`, 
+          0.08154261704681873}}, {{3.6666666666666665`, 
+          0.010729291716686675`}, {4.333333333333333, 
+          0.010729291716686675`}}, {{4.666666666666667, 
+          0.0004951980792316927}, {5.333333333333333, 
+          0.0004951980792316927}}}]}, {}, {{}, {}}}},
+      AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+      Axes->True,
+      AxesOrigin->{-0.2, 0},
+      BaseStyle->{FontFamily -> "Verdana"},
+      Frame->{{True, False}, {True, False}},
+      FrameLabel->{
+        FormBox[
+         StyleBox["\"number of spades\"", Bold, 12, StripOnInput -> False], 
+         TraditionalForm], None},
+      ImageSize->280,
+      Method->{"MessagesHead" -> DiscretePlot},
+      PlotLabel->FormBox[
+        FrameBox[
+         StyleBox[
+          TagBox[
+           GridBox[{{"\"Five-card poker\""}, {
+              RowBox[{"HypergeometricDistribution", "[", 
+                RowBox[{"5", ",", "13", ",", "52"}], "]"}]}}, AutoDelete -> 
+            False, GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Grid"], 
+          12, StripOnInput -> False], RoundingRadius -> 5, Background -> 
+         RGBColor[1, 0.9, 0.8], StripOnInput -> False], TraditionalForm],
+      PlotRange->{{-0.2, 5.}, {0, 0.45}},
+      PlotRangePadding->{{
+         Scaled[0.02], 
+         Scaled[0.02]}, {Automatic, Automatic}}]},
+    {"\<\"\"\>", "", ""},
+    {"\<\" \"\>", "", ""},
+    {
+     TagBox[
+      FormBox[
+       TagBox[GridBox[{
+          {"\<\" \"\>", "\<\"Probability of\"\>"},
+          {
+           TemplateBox[{"\"at least \"","1","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.9872090519624279`"},
+          {
+           TemplateBox[{"\"at least \"","2","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.9071471920235235`"},
+          {
+           TemplateBox[{"\"at least \"","3","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.7012738378949145`"},
+          {
+           TemplateBox[{"\"at least \"","4","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.4149442304286842`"},
+          {
+           TemplateBox[{"\"at least \"","5","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.1763362242068263`"},
+          {
+           TemplateBox[{"\"at least \"","6","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.05164429837475894`"},
+          {
+           TemplateBox[{"\"at least \"","7","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.010080323097402944`"},
+          {
+           TemplateBox[{"\"at least \"","8","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.0012637222809942803`"},
+          {
+           TemplateBox[{"\"at least \"","9","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "0.00009681923176369418`"},
+          {
+           TemplateBox[{"\"at least \"","10","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "4.207878650155368`*^-6"},
+          {
+           TemplateBox[{"\"at least \"","11","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "9.181851177592024`*^-8"},
+          {
+           TemplateBox[{"\"at least \"","12","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "7.999829174041495`*^-10"},
+          {
+           TemplateBox[{"\"at least \"","13","\" spades\""},
+            "Row",
+            
+            DisplayFunction->(
+             RowBox[{#, "\[InvisibleSpace]", #2, "\[InvisibleSpace]", #3}]& ),
+            InterpretationFunction->(RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                 RowBox[{#, ",", #2, ",", #3}], "}"}], "]"}]& )], 
+           "1.5747695224491078`*^-12"}
+         },
+         AutoDelete->False,
+         BaseStyle->{FontFamily -> "Verdana"},
+         FrameStyle->Directive[
+           Thickness[Large], 
+           GrayLevel[1]],
+         GridBoxAlignment->{
+          "Columns" -> {{Left}}, "Rows" -> {{Center}}, 
+           "ItemsIndexed" -> {{1, 1} -> {Center}, {1, 2} -> {Center}}},
+         GridBoxBackground->{"Columns" -> {{None}}, "Rows" -> {
+             RGBColor[0.4, 0.7, 0.7], {
+              RGBColor[0.7, 0.85, 0.85], 
+              GrayLevel[0.9]}}},
+         GridBoxDividers->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+         GridBoxItemSize->{
+          "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+         GridBoxSpacings->{"Columns" -> {1, 1}, "Rows" -> {{2}}}],
+        "Grid"],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], "\<\"   \"\>", 
+     GraphicsBox[{
+       {RGBColor[0.24720000000000014`, 0.24, 0.6], {
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{-0.3333333333333333, 0}, \
+{0.3333333333333333, 0.012790948037576362`}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{0.6666666666666666, 0}, \
+{1.3333333333333333`, 0.0800618599389039}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{1.6666666666666667`, 0}, \
+{2.3333333333333335`, 0.20587335412861002`}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{2.6666666666666665`, 0}, \
+{3.3333333333333335`, 0.2863296074662277}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{3.6666666666666665`, 0}, \
+{4.333333333333333, 0.23860800622185643`}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{4.666666666666667, 0}, \
+{5.333333333333333, 0.12469192583206691`}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{5.666666666666667, 0}, \
+{6.333333333333333, 0.041563975277355635`}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{6.666666666666667, 0}, \
+{7.333333333333333, 0.008816600816408771}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{7.666666666666667, 0}, \
+{8.333333333333334, 0.0011669030492305727`}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{8.666666666666666, 0}, \
+{9.333333333333334, 0.00009261135311353751}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{9.666666666666666, 0}, 
+           {10.333333333333334`, 4.116060138379445*^-6}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{10.666666666666666`, 0}, \
+{11.333333333333334`, 9.101852885851352*^-8}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{11.666666666666666`, 0}, \
+{12.333333333333334`, 7.984081478816976*^-10}]}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], Opacity[0.2], 
+          RectangleBox[{12.666666666666666`, 0}, \
+{13.333333333333334`, 1.5747695224491078`*^-12}]}}}, 
+       {RGBColor[
+        0.24720000000000014`, 0.24, 0.6], {}, {{}, LineBox[CompressedData["
+1:eJxTTMoPSmVmYGDgA2ImKA4Fg6v7VQ7w/FE26rKH8u1R+U/tjxtJyL2v2wLl
+f4XzV68CgV/2ky733OWLOgXlMznA+BD1rA7vMv9kWQZfgspzwfkQeV6H3g1L
+2Ld2nYPyBeF8iHohh4fKbfHnX++HyovC+RB5MYfX4ixT77svhcpLwvkQeSmH
+qnMRigV8TVB5WTgfIi/nYFZ4fHaEXDCUrwDnQ9QrOryWLH7H5S4BlVeC8yHy
+yg4nDz39N9X5oh1EXgXOh8irOuxdsezJvrwKqLwanA+RV3eo3jIp8H4eN1Re
+A86HyGs6XHi3YanilmpbiLwWnA8Aa4XQVA==
+          "]]}, {}, {{}, {}}}},
+      AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+      Axes->True,
+      AxesOrigin->{-0.2, 0},
+      BaseStyle->{FontFamily -> "Verdana"},
+      Frame->{{True, False}, {True, False}},
+      FrameLabel->{
+        FormBox[
+         StyleBox["\"number of spades\"", Bold, 12, StripOnInput -> False], 
+         TraditionalForm], None},
+      ImageSize->280,
+      Method->{"MessagesHead" -> DiscretePlot},
+      PlotLabel->FormBox[
+        FrameBox[
+         StyleBox[
+          TagBox[
+           GridBox[{{"\"Bridge\""}, {
+              RowBox[{"HypergeometricDistribution", "[", 
+                RowBox[{"13", ",", "13", ",", "52"}], "]"}]}}, AutoDelete -> 
+            False, GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Grid"], 
+          12, StripOnInput -> False], RoundingRadius -> 5, Background -> 
+         RGBColor[1, 0.9, 0.8], StripOnInput -> False], TraditionalForm],
+      PlotRange->{{-0.2, 13.}, {0, 0.3}},
+      PlotRangePadding->{{
+         Scaled[0.02], 
+         Scaled[0.02]}, {Automatic, Automatic}}]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{3.5103792750389595`*^9}]
+}, Open  ]]
+},
+WindowSize->{707, 505},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"8.0 for Microsoft Windows (64-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 197, 3, 31, "Input"],
+Cell[757, 25, 1962, 55, 172, "Input"],
+Cell[2722, 82, 1696, 46, 152, "Input"],
+Cell[CellGroupData[{
+Cell[4443, 132, 3209, 85, 232, "Input"],
+Cell[7655, 219, 16334, 379, 799, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

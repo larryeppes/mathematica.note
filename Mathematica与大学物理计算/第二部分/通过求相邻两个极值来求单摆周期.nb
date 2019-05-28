@@ -1,0 +1,156 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      4391,        147]
+NotebookOptionsPosition[      3924,        127]
+NotebookOutlinePosition[      4296,        143]
+CellTagsIndexPosition[      4253,        140]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData["\:901a\:8fc7\:6c42\:76f8\:90bb\:4e24\:4e2a\:6781\:503c\:6765\
+\:6c42\:5355\:6446\:5468\:671f"], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"g", "=", "9.8"}], ";", 
+  RowBox[{"L", "=", "1.5"}], ";", 
+  RowBox[{"\[CapitalOmega]", "=", 
+   SqrtBox[
+    RowBox[{"g", "/", "L"}]]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"v0", "=", "0.2"}], ";", 
+  RowBox[{"\[Omega]0", "=", 
+   RowBox[{"v0", "/", "L"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"s", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Theta]", "''"}], "[", "t", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"-", 
+          SuperscriptBox["\[CapitalOmega]", "2"]}], "*", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Theta]", "'"}], "[", "0", "]"}], "\[Equal]", 
+        "\[Omega]0"}]}], "}"}], ",", "\[Theta]", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "10"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Theta]", "=", 
+   RowBox[{"\[Theta]", "/.", 
+    RowBox[{"s", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"\[Theta]m1", "=", 
+  RowBox[{"FindMaximum", "[", 
+   RowBox[{
+    RowBox[{"\[Theta]", "[", "t", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0.5"}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"\[Theta]m2", "=", 
+  RowBox[{"FindMaximum", "[", 
+   RowBox[{
+    RowBox[{"\[Theta]", "[", "t", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "3"}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"t", "/.", 
+      RowBox[{"\[Theta]m2", "[", 
+       RowBox[{"[", "2", "]"}], "]"}]}], ")"}], "-", 
+    RowBox[{"(", 
+     RowBox[{"t", "/.", 
+      RowBox[{"\[Theta]m1", "[", 
+       RowBox[{"[", "2", "]"}], "]"}]}], ")"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<T= \>\"", ",", "T", ",", "\"\< s\>\""}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "g", ",", "L", ",", "\[CapitalOmega]", ",", "v0", ",", "\[Omega]0", ",", 
+   "s", ",", "\[Theta]", ",", "T", ",", "\[Theta]m1", ",", "\[Theta]m2"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.449055409484375*^9, 3.449055411015625*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"{", 
+   RowBox[{"0.05216994551888003`", ",", 
+    RowBox[{"{", 
+     RowBox[{"t", "\[Rule]", "0.6146477406102221`"}], "}"}]}], "}"}], 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{3.528446845876953*^9}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"{", 
+   RowBox[{"0.05216990786825713`", ",", 
+    RowBox[{"{", 
+     RowBox[{"t", "\[Rule]", "3.073239175554774`"}], "}"}]}], "}"}], 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{3.528446845876953*^9}],
+
+Cell[BoxData[
+ FormBox[
+  InterpretationBox[
+   RowBox[{"\<\"T= \"\>", "\[InvisibleSpace]", "2.4585914349445517`", 
+    "\[InvisibleSpace]", "\<\" s\"\>"}],
+   SequenceForm["T= ", 2.4585914349445517`, " s"],
+   Editable->False], TraditionalForm]], "Print",
+ CellChangeTimes->{3.528446845876953*^9}]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{615, 559},
+WindowMargins->{{144, Automatic}, {Automatic, 30}},
+FrontEndVersion->"8.0 for Microsoft Windows (32-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 118, 1, 31, "Input"],
+Cell[CellGroupData[{
+Cell[688, 25, 2430, 72, 222, "Input"],
+Cell[3121, 99, 242, 7, 30, "Output"],
+Cell[3366, 108, 241, 7, 30, "Output"],
+Cell[3610, 117, 298, 7, 23, "Print"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

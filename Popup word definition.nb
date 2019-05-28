@@ -1,0 +1,220 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6798,        210]
+NotebookOptionsPosition[      5978,        178]
+NotebookOutlinePosition[      6527,        198]
+CellTagsIndexPosition[      6484,        195]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["A popup unknown word\[CloseCurlyQuote]s definition", "Title",
+ CellChangeTimes->{{3.750486593100668*^9, 3.750486623558173*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+The context imported from here, default file name is \
+\[OpenCurlyDoubleQuote]/tmp/temp.txt\[CloseCurlyDoubleQuote].\
+\>", "Chapter",
+ CellChangeTimes->{{3.750486640543376*^9, 3.750486654021863*^9}, {
+  3.750488137750174*^9, 3.750488160031658*^9}}],
+
+Cell[TextData[{
+ "The article context has ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[{RowBox[{
+       RowBox[{"txt", "=", 
+         RowBox[{"Import", "[", 
+           Cell[
+            BoxData[
+             FormBox[
+              
+              TemplateBox[{
+               "\"article context location\"", "\"/tmp/temp.txt\"", "Named", 
+                BoxData}, "NotebookTemplateSlot"], TextForm]]], "]"}]}], ";", 
+       " ", 
+       RowBox[{"StringLength", "[", "txt", "]"}], " "}],"General",TextData},
+    "NotebookTemplateExpression"], TextForm]]],
+ " Characters."
+}], "Subsection",
+ CellChangeTimes->{{3.750488169623127*^9, 3.750488238634042*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["The final context", "Chapter",
+ CellChangeTimes->{{3.7504867577145967`*^9, 3.7504867631122713`*^9}, 
+   3.7504873150535*^9}],
+
+Cell[TextData[{
+ "first import the known words, the total known words are ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[{RowBox[{
+       RowBox[{"kw", "=", 
+         RowBox[{"ToLowerCase", "/@", 
+           RowBox[{"Flatten", "@", 
+             RowBox[{"Import", "[", "\"/home/math/kw\"", "]"}]}]}]}], ";", 
+       " ", 
+       RowBox[{"Length", "[", "kw", "]"}], " "}],"General",TextData},
+    "NotebookTemplateExpression"], TextForm]]],
+ "."
+}], "Subsection",
+ CellChangeTimes->{{3.75048740484916*^9, 3.750487456805901*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Then Initialize some function, Finally, the context is", "Subsection",
+ CellChangeTimes->{{3.750487470429969*^9, 3.750487492765971*^9}, {
+  3.750487672303624*^9, 3.750487673142234*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", 
+  RowBox[{"txt", ",", "kw", ",", "wd", ",", "worddef"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"txt", "=", 
+   RowBox[{"Import", "[", Cell[BoxData[
+     FormBox[
+      TemplateBox[{
+       "\"article context location\"","\"/tmp/temp.txt\"","Named",BoxData},
+       "NotebookTemplateSlot"], TextForm]]], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"kw", "=", 
+   RowBox[{"ToLowerCase", "/@", 
+    RowBox[{"Flatten", "@", 
+     RowBox[{"Import", "[", "\"\</home/math/kw\>\"", "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"wd", "[", "wrd_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"wdef", "=", "\"\<\>\""}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"wdef", "=", 
+       RowBox[{"WordDefinition", "[", "wrd", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"MissingQ", "[", "wdef", "]"}], ",", 
+        RowBox[{"Missing", "[", "]"}], ",", 
+        RowBox[{"StringRiffle", "[", 
+         RowBox[{"wdef", ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<\>\"", ",", "\"\<;\\n\>\"", ",", "\"\<;\>\""}], 
+           "}"}]}], "]"}]}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"worddef", "[", "wrd_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"MemberQ", "[", 
+        RowBox[{"kw", ",", 
+         RowBox[{"ToLowerCase", "@", "wrd"}]}], "]"}], ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{"wrd", ",", "18", ",", "Black", ",", "Bold"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"wdef", "=", 
+         RowBox[{"wd", "[", "wrd", "]"}]}], ";", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"MissingQ", "[", "wdef", "]"}], ",", 
+          RowBox[{"Style", "[", 
+           RowBox[{"wrd", ",", "18", ",", "Black", ",", "Bold"}], "]"}], ",", 
+          
+          RowBox[{"Tooltip", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"wrd", ",", "18", ",", "Blue", ",", "Bold"}], "]"}], ",", 
+            RowBox[{"Style", "[", 
+             RowBox[{"wdef", ",", "18", ",", "Red", ",", "Bold"}], "]"}]}], 
+           "]"}]}], "]"}]}]}], "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Row", "[", 
+  RowBox[{"List", "@@", 
+   RowBox[{"StringReplace", "[", 
+    RowBox[{"txt", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"RegularExpression", "[", "\"\<\\\\b\\\\w*\\\\b\>\"", "]"}], 
+       "\[RuleDelayed]", 
+       RowBox[{"worddef", "[", "\"\<$0\>\"", "]"}]}], "}"}]}], "]"}]}], 
+  "]"}]}], "Input",
+ CellFrameLabels->{{
+    Cell[
+     BoxData[
+      TemplateBox[{"EvaluateHideInput"}, "NotebookTemplateCellBehavior"]]], 
+    None}, {None, None}},
+ CellChangeTimes->{{3.750487508549152*^9, 3.750487511107236*^9}, {
+  3.750487622112348*^9, 3.7504876675277863`*^9}, {3.750487731598555*^9, 
+  3.750487732844487*^9}, {3.750488054871582*^9, 3.750488055554229*^9}, {
+  3.750488120945859*^9, 3.750488121333075*^9}, {3.750488324144588*^9, 
+  3.750488334934657*^9}, {3.750488398043704*^9, 3.750488407504223*^9}, {
+  3.750489101510688*^9, 3.750489107688512*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1471, 873},
+WindowMargins->{{291, 158}, {73, Automatic}},
+DockedCells->FEPrivate`FrontEndResource[
+ "NotebookTemplatingExpressions", "AuthoringDockedCell"],
+TaggingRules->{"NotebookTemplateVersion" -> 1., "NotebookTemplate" -> True},
+CellContext->Notebook,
+ShowCellTags->True,
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 133, 1, 93, "Title"],
+Cell[CellGroupData[{
+Cell[738, 27, 258, 5, 66, "Chapter"],
+Cell[999, 34, 654, 19, 66, "Subsection"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1690, 58, 130, 2, 66, "Chapter"],
+Cell[1823, 62, 524, 14, 56, "Subsection"],
+Cell[CellGroupData[{
+Cell[2372, 80, 191, 2, 37, "Subsection"],
+Cell[2566, 84, 3372, 89, 300, "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
